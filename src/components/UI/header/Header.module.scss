@@ -1,0 +1,78 @@
+$content-width:1200px;
+.header{
+    width: 100%;
+    .content{
+        width:$content-width;
+        display: flex;
+        align-items: center;
+    }
+    .topHeader{
+        width: 100%;
+        height: 50px;
+        background-color: #1D2D44;
+        display: flex;
+        justify-content: center;
+        .content{
+            justify-content: right;
+            gap: 10px;
+        }
+        .bag{
+            width: 22px;
+            height: 22px;
+        }
+        .search{
+            width: 200px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            border-bottom: 1px solid #fff;
+            img{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+    .bottomHeader{
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        .content{
+           
+            justify-content: space-between;
+            .logo{
+                width: 50px;
+                height: 50px;
+                cursor: pointer;
+            }
+            .menu{
+                display: flex;
+                gap:10px;
+                font-size: 17px;
+                &__item{
+                    cursor: pointer;
+                    position: relative;
+                    &::before{
+                        content: '';
+                        left: 0;
+                        bottom: -5px;
+                        height: 2px;
+                        background: #0D1321;
+                        width: 0;
+                        position: absolute;
+                        transition: all 0.2s;
+                    }
+                    &:hover{
+                        &::before{
+                            width: 100%;
+                            transition: all 0.2s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+

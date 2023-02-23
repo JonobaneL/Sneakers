@@ -1,0 +1,22 @@
+$content-width:1200px;
+$dark-color:#1D2D44;
+.shortList{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 80px 0;
+    .content{
+        width: $content-width;
+    }
+    .title{
+        text-align: center;
+        font-weight: 500;
+        color: $dark-color;
+    }
+    .cards{
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
