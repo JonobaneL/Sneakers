@@ -1,10 +1,11 @@
 $content-width:1200px;
 .tabs{
     width: 100%;
-    display: flex;
-    justify-content: center;
+    // display: flex;
+    // justify-content: center;
     .content{
         width: $content-width;
+        margin: 50px auto;
         display: grid; 
         grid-template-columns: 395px 5px 395px 5px 400px; 
         grid-template-rows: 420px 260px; 
