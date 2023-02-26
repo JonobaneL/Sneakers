@@ -1,21 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import shopingBag from '../../../images/dark-icons/shopping-bag.png'
 import user from '../../../images/dark-icons/user.png'
 import searchIcon from '../../../images/dark-icons/search-icon.png'
 import styles from './Header.module.scss'
 import SInput from '../input/SInput';
+import BurgerNav from '../burgerMenu/burgerNav';
+import BurgerButton from '../burgerButton/BurgerButton';
 
 const Header = () => {
+
+    const [burger, setBurger] = useState(false);
+    const showBurgerNav =()=>{
+      setBurger(!burger)
+    }
     return (
         <header className={styles.header}>
           <div className={styles.content}>
-          <div className={styles.burger}>
-              <span></span>
-            </div>
+          <BurgerButton show={showBurgerNav} />
             <div className={styles.logo}>
               <h1>SNEAKERS</h1>
             </div>
-            
             <nav className={styles.nav}>
               <div className={styles.topNav}>
                 <ul className={styles.list}>
@@ -41,6 +45,7 @@ const Header = () => {
               </div>
             </nav>
           </div>
+            <BurgerNav visible={burger}/>
         </header>
     );
 };

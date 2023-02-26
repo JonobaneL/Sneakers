@@ -3,12 +3,12 @@ $logo-font:'Bebas Neue', cursive;
 $icons-size:22px;
 .header{
     width: 100%;
-    height: 120px;
+    // height: 120px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 50px;
+    // z-index: 50px;
     &:before{
         content: '';
         position: absolute;
@@ -17,6 +17,7 @@ $icons-size:22px;
         width: 100%;
         height: 100%;
         background: #fff;
+        z-index: 3;
     }
     .content{
         width: $content-width;
@@ -26,18 +27,14 @@ $icons-size:22px;
         justify-content: space-between;
         align-items: center;
         position: relative;
-        z-index: 2;
+        z-index: 4;
         padding: 10px 0;
         .logo{
             h1{
                 font-size: 45px;
                 font-family: $logo-font;
                 color: #1D2D44;
-                // line-height: 100px;
             }
-        }
-        .burger{
-            display: none;
         }
         .nav{
             height: 100%;
@@ -119,33 +116,6 @@ $icons-size:22px;
         }
         .content{
             width: 100%;
-        }
-        .burger{
-            display: block !important;
-            width: 30px;
-            height: 20px;
-            position: relative;
-            span{
-                width: 100%;
-                height: 2px;
-                background: #1D2D44;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-            &::before,&::after{
-                content: '';
-                width: 100%;
-                height: 2px;
-                background: #1D2D44;
-                position: absolute;
-            }
-            &::before{
-                top: 0;
-            }
-            &::after{
-                bottom:0;
-            }
         }
         .nav{
             grid-template-rows: 100% !important;
