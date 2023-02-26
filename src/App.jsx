@@ -3,11 +3,7 @@ import Footer from "./components/UI/footer/Footer"
 import Header from "./components/UI/header/Header"
 import Tabs from "./components/UI/tabs/Tabs"
 
-import user from './images/dark-icons/user.png'
-import shopingBag from './images/dark-icons/shopping-bag.png'
-import search from './images/dark-icons/search-icon.png'
-import SInput from "./components/UI/input/SInput"
-import BurgerNav from "./components/UI/burgerMenu/burgerNav"
+
 
 
 
@@ -36,7 +32,6 @@ function App() {
         ]}
      />
      <Footer/> */}
-     <BurgerNav/>
      <div className="content">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut aspernatur facilis unde, neque officia dolorum pariatur nemo quia ipsa! Blanditiis, voluptas? Minima sequi impedit laboriosam numquam eum officiis in asperiores.
