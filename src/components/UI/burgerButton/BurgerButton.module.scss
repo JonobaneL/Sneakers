@@ -1,0 +1,45 @@
+.burger{display: none;}
+@media only screen and (max-width: 768px) {
+    .burger{
+        display: block;
+        width: 30px;
+        height: 20px;
+        position: relative;
+        span{
+            width: 100%;
+            height: 2px;
+            background: #1D2D44;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease 0s;
+        }
+        &::before,&::after{
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: #1D2D44;
+            position: absolute;
+            transition: all 0.3s ease 0s;
+        }
+        &::before{
+            top: 0;
+        }
+        &::after{
+            bottom:0;
+        }
+        &.active{
+            &::before{
+                transform: rotate(45deg);
+                top: 9px;
+            }
+            &::after{
+                transform: rotate(-45deg);
+                bottom: 9px;
+            }
+            span{
+                transform: scale(0);
+            }
+        }
+    }
+}
