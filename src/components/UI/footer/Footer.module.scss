@@ -1,8 +1,14 @@
 .footer{
     width: 100%;
     height: 80px;
+    background: #13315c;
     .content{
         max-width: 1200px;
+        // width: 80%;
         margin: 0 auto;
+        padding: 10px 0;
+        color: #fff;
+        display: flex;
+        align-items: center;
     }
 }

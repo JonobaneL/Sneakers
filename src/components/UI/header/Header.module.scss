@@ -8,7 +8,7 @@ $icons-size:22px;
     position: fixed;
     top: 0;
     left: 0;
-    // z-index: 50px;
+    z-index: 50;
     &:before{
         content: '';
         position: absolute;
@@ -17,7 +17,7 @@ $icons-size:22px;
         width: 100%;
         height: 100%;
         background: #fff;
-        z-index: 3;
+        z-index: 10;
     }
     .content{
         width: $content-width;
@@ -27,7 +27,7 @@ $icons-size:22px;
         justify-content: space-between;
         align-items: center;
         position: relative;
-        z-index: 4;
+        z-index: 13;
         padding: 10px 0;
         .logo{
             h1{
@@ -84,7 +84,7 @@ $icons-size:22px;
         }
     }
 }
-@media only screen and (max-width: 1230px) {
+@media only screen and (max-width: 1280px) {
     .header{
         .content{
             width: 1000px;
@@ -98,7 +98,7 @@ $icons-size:22px;
         }
     }
 }
-@media only screen and (min-width: 768px) and (max-width: 992px) {
+@media only screen and (min-width: 768px) and (max-width: 945px) {
     .header{
         .content{
             width: 700px;
