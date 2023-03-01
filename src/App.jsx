@@ -13,7 +13,7 @@ function App() {
      <BrowserRouter>
         <Header/>
         <StoreRoute/>
-        <Footer/>
+        {/* <Footer/> */}
      </BrowserRouter>
      
     </div>
