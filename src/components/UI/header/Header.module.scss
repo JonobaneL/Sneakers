@@ -3,12 +3,12 @@ $logo-font:'Bebas Neue', cursive;
 $icons-size:22px;
 .header{
     width: 100%;
-    // height: 120px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 50;
+    padding: 10px 80px;
     &:before{
         content: '';
         position: absolute;
@@ -20,15 +20,13 @@ $icons-size:22px;
         z-index: 10;
     }
     .content{
-        width: $content-width;
+        max-width: $content-width;
         height: 100%;
-        margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: relative;
         z-index: 13;
-        padding: 10px 0;
         .logo{
             h1{
                 font-size: 45px;
@@ -56,9 +54,6 @@ $icons-size:22px;
                     }
                 }
             }
-            // .bottomNav{
-            //     display: none;
-            // }
             .topNav{
                 img{
                     width: $icons-size;
@@ -76,35 +71,15 @@ $icons-size:22px;
     }
 }
 
+@media only screen and (min-width: 1360px) {
+    .header{
+        padding: 10px 0;
+        .content{
+            margin: 0 auto;
+        }
+    }
+}
 
-@media only screen and (min-width: 1281px){
-    .header{
-        .content{
-            width: 1200px;
-        }
-    }
-}
-@media only screen and (max-width: 1280px) {
-    .header{
-        .content{
-            width: 1000px;
-        }
-    }
-}
-@media only screen and (max-width: 1055px) {
-    .header{
-        .content{
-            width: 850px;
-        }
-    }
-}
-@media only screen and (min-width: 768px) and (max-width: 945px) {
-    .header{
-        .content{
-            width: 700px;
-        }
-    }
-}
 @media only screen and (max-width: 768px) {
     .header{
         height: 60px;
@@ -113,9 +88,6 @@ $icons-size:22px;
             h1{
                 font-size: 30px !important;
             }
-        }
-        .content{
-            width: 100%;
         }
         .nav{
             grid-template-rows: 100% !important;
@@ -128,4 +100,9 @@ $icons-size:22px;
         }
     }
     
+}
+@media only screen and (max-width: 375px) {
+    .header{
+        padding: 0 20px;
+    }
 }

@@ -24,7 +24,7 @@ const Header = () => {
               <div className={styles.topNav}>
                 <ul className={styles.list}>
                   <li className={styles.topItem}>
-                      <SInput type="text" placeholder="Find Something Special"/>
+                      <SInput height="30px" params={{type:"text",placeholder:"Find Something Special"}}/>
                       <img src={searchIcon} alt="search" />
                   </li>
                   <li className={styles.topItem}>

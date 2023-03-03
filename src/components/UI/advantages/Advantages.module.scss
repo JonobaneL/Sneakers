@@ -1,10 +1,9 @@
 .advantages{
     width: 100%;
-    padding: 40px 60px;
+    padding: 40px 80px;
     background-color:#d8def034;
     .content{
         max-width: 1200px;
-        // border:1px solid red;
         display: flex;
         justify-content: space-between;
     }
@@ -18,7 +17,7 @@
         }
         .title{
             font-size: 16px;
-            color:#0D1321;
+            color:#1d2d44;
             font-weight: 500;
             line-height: 25px;
         }
@@ -26,6 +25,7 @@
             font-size: 13px;
             line-height: 18px;
             font-weight: 300;
+            font-family: 'Open Sans', sans-serif;
         }
     }
     
@@ -35,6 +35,65 @@
         padding: 40px 0px;
         .content{
             margin: 0 auto;
+            
+            .description{
+                font-size: 14px;
+            }
         }
+    }
+}
+@media only screen and (max-width:1180px) {
+    .advantages{
+        .content{
+            gap: 20px;
+        }
+    }
+}
+@media only screen and (max-width:1024px) {
+    .advantages{
+        padding: 40px 60px;
+    }
+}
+@media only screen and (max-width:960px) {
+    .advantages{
+        .content{
+            gap: 40px;
+            flex-direction: column;
+            width: 400px;
+            margin: 0 auto;
+            .advantage{
+                width: 100%;
+                gap: 40px;
+                img{
+                    width: 60px;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width:560px) {
+    .advantages{
+        .content{
+            width: 100%;
+        }
+    }
+}
+@media only screen and (max-width:425px) {
+    .advantages{
+        padding: 30px 40px;
+        .content{
+            gap: 40px;
+            .advantage{
+                gap: 30px;
+                img{
+                    width: 40px;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width:375px) {
+    .advantages{
+        padding:30px 20px;
     }
 }

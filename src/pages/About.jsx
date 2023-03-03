@@ -1,8 +1,9 @@
-import Advantages from "../components/UI/advantages/Advantages";
+import ShortCardList from "../components/ShortCardLIst/ShortCardList";
+import Carousel from "../components/UI/Carousel/Carousel";
 
 const About = () => {
     return <div className="About">
-        <Advantages/>
+        <ShortCardList/>
     </div>;
 }
  

@@ -1,0 +1,50 @@
+.subscribe{
+    width: 100%;
+    padding: 50px 80px;
+    .content{
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        .title{
+            text-align: center;
+            color:#1d2d44;
+            h2{
+                margin-bottom: 10px;
+            }
+        }
+        .emailForm{
+            width: 100%;
+            display: flex;
+            align-self: center;
+            gap:5px;
+        }
+        .singUpButton{ 
+            width: 150px;
+            height: 40px;
+            background: #3e5c76;
+            border: none;
+            color:#fff;
+            font-size: 15px;
+        }
+    }
+}
+@media only screen and (min-width: 1360px) {
+    .subscribe{
+        padding: 50px 0;
+        .content{
+            margin: 0 auto;
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .subscribe{
+        padding: 50px 40px;
+    }
+    
+}
+@media only screen and (max-width: 375px) {
+    .subscribe{
+        padding: 50px 20px;
+    }
+}

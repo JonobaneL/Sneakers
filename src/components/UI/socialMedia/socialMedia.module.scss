@@ -1,0 +1,20 @@
+.socialMedia{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    .title{
+        font-size: 18px;
+        line-height: 25px;
+    }
+    .media{
+        display: flex;
+        gap: 20px;
+    }
+    .media__item{
+        img{
+            width: 20px;
+        }
+        cursor: pointer;
+    }
+}
