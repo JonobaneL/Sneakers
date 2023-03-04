@@ -1,0 +1,1 @@
+import {bestSellers,novelty} from '../data/homeSneakersData';

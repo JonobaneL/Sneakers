@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from '../Card/Card';
 import styles from './ShortCardList.module.scss'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import {bestSellers,novelty} from '../../data/homeSneakersData'
 const DATA = [
     {id:1,name:`Women's Zavala Combat Boot`,price:129.99,discount:46,image:'https://www.famousfootwear.com/blob/product-images/20000/39/31/0/39310_right_feed1000.jpg'},
     {id:2,name:`Women's Air Max Bella 5 Training Shoe`,price:89.99, discount:0,image:'https://www.famousfootwear.com/blob/product-images/20000/55/07/2/55072_right_feed1000.jpg'},
@@ -18,6 +19,9 @@ const DATA = [
 ]
 
 const ShortCardList = () => {
+    const [data,setData] = useState([...bestSellers])
+    
+    console.log(data);
     const settings = {
         dots: true,
         infinite: true,
@@ -30,7 +34,15 @@ const ShortCardList = () => {
         {id:2, value:"Novelty"},
     ]
     const [current,setCurrent] = useState(listNav[0].id);
-  
+    useEffect(()=>{
+        if(current==1){
+            setData([...bestSellers])
+            console.log('Best Sellers')
+        }else if(current==2){
+            setData([...novelty])
+            console.log('Novelty')
+        }
+    },[current])
     return (
         <div className={styles.shortList}>
             <div className={styles.content}>
@@ -45,7 +57,7 @@ const ShortCardList = () => {
                 </ul>
                 <Slider {...settings}>
                     {
-                        DATA.map(item=>
+                        data.map(item=>
                             <div onClick={()=>{console.log(item.id)}} key={item.id} className={styles.card}>
                                 <img src={item.image} alt={item.name} />
                                 <div className={styles.info}>

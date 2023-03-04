@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div>
             <Tabs/>
-            {/* <ShortCardList /> */}
+            <ShortCardList />
             <Subscribe/>
             <Advantages/>
         </div>

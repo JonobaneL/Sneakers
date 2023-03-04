@@ -19,6 +19,7 @@ $dark-color:#1D2D44;
             color: $dark-color;
             font-size: 22px;
             position: relative;
+            cursor: pointer;
             &.active{
                 &::before{
                     content:'';
@@ -39,6 +40,8 @@ $dark-color:#1D2D44;
         background: #fff;
         height: 310px;
         padding: 10px;
+            transition: all 0.4s;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         img{
             width: 100%;
         }
