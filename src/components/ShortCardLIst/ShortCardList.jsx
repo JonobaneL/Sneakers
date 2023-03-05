@@ -25,6 +25,7 @@ const ShortCardList = () => {
     const settings = {
         dots: true,
         infinite: true,
+        arrows:false,
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 5,
@@ -58,13 +59,7 @@ const ShortCardList = () => {
                 <Slider {...settings}>
                     {
                         data.map(item=>
-                            <div onClick={()=>{console.log(item.id)}} key={item.id} className={styles.card}>
-                                <img src={item.image} alt={item.name} />
-                                <div className={styles.info}>
-                                    <p className={styles.name}>{item.name}</p>
-                                    <p className={styles.price}>${item.price}</p>
-                                </div>
-                            </div>)
+                            <Card key={item.id} data={item}/>)
                     }
                 </Slider>
             </div>
