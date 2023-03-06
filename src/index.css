@@ -42,13 +42,7 @@ body::-webkit-scrollbar-thumb:hover {
     padding-top: 60px;
   }
 }
-.slick-slide>div{
-  margin: 10px 5px;
-  /* padding: 5px; */
-}
-/* .slick-list{
-  margin: 0 10px;
-} */
+
 .About .content{
   width: 100%;
   padding: 50px 30px;

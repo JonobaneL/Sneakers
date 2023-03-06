@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './Card.module.scss'
+import styles from './CarouselCard.module.scss'
 import {getFinalPrice} from '../../utils/getFinalPrice'
 
-const Card = ({data}) => {
+const CarouselCard = ({data}) => {
     return (
         <div className={styles.card}>
             <img src={data.image} alt={data.name} />
@@ -20,4 +20,4 @@ const Card = ({data}) => {
 };
 
 
-export default Card;
+export default CarouselCard;

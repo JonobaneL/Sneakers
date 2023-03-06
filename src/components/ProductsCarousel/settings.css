@@ -1,0 +1,18 @@
+
+.slick-slide>div{
+    margin: 10px 5px;
+}
+.slick-initialized .slick-slide{
+    display: flex;
+    justify-content: center;
+}
+li.slick-active{
+    background: #1D2D44;
+    transition: all 0.4s;
+}
+@media screen and (max-width:880px) {
+    .slick-list{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
