@@ -6,6 +6,7 @@ import styles from './Header.module.scss'
 import SInput from '../input/SInput';
 import BurgerNav from '../burgerMenu/burgerNav';
 import BurgerButton from '../burgerButton/BurgerButton';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -37,10 +38,10 @@ const Header = () => {
               </div>
               <div className={styles.bottomNav}>
                 <ul className={styles.list}>
-                  <li className={styles.bottomItem}>Men</li>
-                  <li className={styles.bottomItem}>Women</li>
-                  <li className={styles.bottomItem}>Accessories</li>
-                  <li className={styles.bottomItem}>Sale</li>
+                  <li className={styles.bottomItem}><Link to={`/shoes/men`}>Men</Link></li>
+                  <li className={styles.bottomItem}><Link to={`/shoes/women`}>Women</Link></li>
+                  <li className={styles.bottomItem}><Link to={`/shoes/accessories`}>Accessories</Link></li>
+                  <li className={styles.bottomItem}><Link to={`/shoes/sale`}>Sale</Link></li>
                 </ul>
               </div>
             </nav>

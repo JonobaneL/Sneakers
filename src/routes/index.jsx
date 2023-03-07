@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import About from "../pages/About";
 import Home from "../pages/Home";
+import Shoes from "../pages/Shoes/Shoes";
 
 export const publicRoutes = [
     {
@@ -10,6 +11,10 @@ export const publicRoutes = [
     {
         path:'/about', 
         element:<About/>
+    },
+    {
+        path:'/shoes/:type', 
+        element:<Shoes/>
     },
     {
         path:'*', 

@@ -1,0 +1,47 @@
+.listItem{
+    width: 100%;
+    p{
+        font-size: 15px;
+        color: #0d1321;
+    }
+    .mainItem{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 40px;
+        line-height: 24px;
+        padding: 4px 5px;
+        cursor: pointer;
+    }
+    
+    .subList{
+        width: 100%;
+        background: #fff;
+        background: rgba(116, 140, 171, 0.09);
+        overflow: hidden;
+        .subList__item{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            min-height: 40px;
+            padding: 4px 15px;
+            line-height: 24px;
+            cursor: pointer;
+        }
+    }
+    .subList__item:hover,.mainItem:hover{
+        background: rgba(116, 140, 171, 0.185);
+    }
+    .arrow{
+        width: 30px;
+        flex: 0 0 30px;
+        text-align: center;
+        font-size: 25px;
+        color: #3e5c76;
+        transition: all 0.2s;
+        &.active{
+            transform: scaleY(-1);
+            transition: all 0.2s;
+        }
+    }
+}

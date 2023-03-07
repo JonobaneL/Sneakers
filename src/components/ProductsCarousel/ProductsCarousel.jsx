@@ -13,7 +13,7 @@ const ProductsCarousel = () => {
     const slider = useRef(null)
     const listNav = [
         {id:1, value:"Best Sellers"},
-        {id:2, value:"Novelty"},
+        {id:2, value:"Newest"},
     ]
     const [current,setCurrent] = useState(listNav[0].id);
     const settings = {

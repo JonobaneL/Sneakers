@@ -1,0 +1,21 @@
+.shoes{
+    width: 100%;
+    padding:50px 80px;
+    .content{
+        width: 100%;
+        .title{
+            grid-area: title;
+            text-transform: capitalize;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+@media screen and (min-width:1360px) {
+    .shoes{
+        .content{
+            width: 1200px;
+            margin:0 auto;
+        }
+    }
+}
