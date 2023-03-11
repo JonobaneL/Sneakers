@@ -1,13 +1,15 @@
 import React from 'react';
 import DropDownListItem from '../DropDownListItem/DropDownListItem';
 import styles from './dropDonwList.module.scss'
-import {menShoesCategory} from '../../../data/menShoesCategory'
 
-const DropDownList = ({getData}) => {
+const DropDownList = ({getData, data}) => {
     return (
         <div className={styles.dropDownList}>
+            <div className={styles.title}>
+                Category
+            </div>
             {
-                menShoesCategory.map(item=>
+                data.map(item=>
                     <DropDownListItem key={item.id} data={item} getData={getData}/>
                 )
             }

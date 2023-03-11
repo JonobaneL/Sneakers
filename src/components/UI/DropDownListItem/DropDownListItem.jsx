@@ -12,13 +12,13 @@ const DropDownListItem = ({data,getData}) => {
                     e.preventDefault();
                     getData(data.name)
                 }}>{data.name}</p>
-                {data["sub-categoty"]
+                {data["sub-category"]
                     ?<span onClick={()=>{setIsOpen(prev=>!prev)}} className={`${styles.arrow} ${isOpen?styles.active:' '}`}>&#9662;</span>
                     :null    
                 }
             </div>
             {
-                data["sub-categoty"]
+                data["sub-category"]
                 ?<CSSTransition
                     in={isOpen}
                     timeout={200}
@@ -27,7 +27,7 @@ const DropDownListItem = ({data,getData}) => {
                     unmountOnExit
                 >
                     <div  className={`${styles.subList}`}>
-                        {data["sub-categoty"].map(item=>
+                        {data["sub-category"].map(item=>
                             <div 
                                 onClick={e=>{
                                     e.preventDefault();

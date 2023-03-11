@@ -1,4 +1,4 @@
-export const sneakersBrands = [,
+export const shoesBrands = [,
     {id:'1',name: 'ASICS', male: 'all'},
     {id:'2',name: 'Adidas', male: 'all'},
     {id:'3',name: 'B52 by Bullboxer', male: 'all'},

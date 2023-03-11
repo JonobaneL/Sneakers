@@ -1,7 +1,7 @@
 .checkBox{
     width: 180px;
-    height: 500px;
-    overflow-y: scroll;
+    // height: 500px;
+    // overflow-y: scroll;
     padding: 10px;
    
     .checkBox__item{
@@ -24,16 +24,4 @@
     .checkBox__label{
         cursor: pointer;
     }
-}
-.checkBox::-webkit-scrollbar {
-    width: 6px;
-}
-.checkBox::-webkit-scrollbar-track {
-    background: #b5b5b5;
-}
-.checkBox::-webkit-scrollbar-thumb {
-    background: #354862;
-}
-.checkBox::-webkit-scrollbar-thumb:hover {
-    background: #0d1321;
 }

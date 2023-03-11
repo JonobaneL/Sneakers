@@ -3,10 +3,21 @@
     padding:50px 80px;
     .content{
         width: 100%;
+        display: grid;
+        grid-template-columns: 180px 1fr; 
+        grid-template-rows: 100px 1fr; 
+        gap: 0px 20px; 
+        grid-template-areas: 
+          "title title"
+          "filters shoes"; 
         .title{
             grid-area: title;
-            text-transform: capitalize;
-            margin-bottom: 20px;
+            h2{
+                text-transform: capitalize;
+                font-weight: 600;
+                color: #1d2d44;
+            }
+           
         }
     }
 }

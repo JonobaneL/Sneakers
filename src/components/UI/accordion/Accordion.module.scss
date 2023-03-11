@@ -1,4 +1,6 @@
 .accordion{
+    border-bottom: 1px solid #3e5c765c;
+    padding-bottom: 10px;
     .title{
         height: 40px;
         display: flex;
@@ -7,20 +9,36 @@
         color: #1d2d44;
         cursor: pointer;
         padding: 0 5px;
-        margin-bottom: 10px;
+        font-weight: 600;
+        font-size: 15px;
         span{
             font-size: 30px;
+            color: #3e5c76 ;
         }
     }
     .content{
         width: 100%;
         max-height: 0;
         overflow: hidden;
-        transition: all 1s;
+        transition: all 0.8s;
+        &::-webkit-scrollbar {
+            width: 6px;
+            margin-right: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #b5b5b5;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #354862;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: #0d1321;
+        }
         &.showed{
             height: auto;
-            max-height:1000px;
-            transition: all 3s;
+            max-height:500px;
+            overflow-y: auto;
+            transition: all 1.5s;
         }
     }
 }

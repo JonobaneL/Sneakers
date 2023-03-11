@@ -1,0 +1,22 @@
+export const shoesMaterial = [
+    {id:1, name:"Canvas", male:'all'},
+    {id:2, name:"Embellishments", male:'men'},
+    {id:3, name:"EVA", male:'all'},
+    {id:4, name:"Fabric", male:'all'},
+    {id:5, name:"Faux Leather", male:'all'},
+    {id:6, name:"Gel", male:'men'},
+    {id:7, name:"Leather", male:'all'},
+    {id:8, name:"Lucite", male:'men'},
+    {id:9, name:"Mesh", male:'all' },
+    {id:10, name:"Microsuede", male:'all'},
+    {id:11, name:"Nubuck", male:'all'},
+    {id:12, name:"Nylon", male:'all'},
+    {id:13, name:"Patent", male:'all'},
+    {id:14, name:"Raffia", male:'men'},
+    {id:15, name:"Rubber", male:'all'},
+    {id:16, name:"Stretch", male:'women'},
+    {id:17, name:"Suede", male:'women'},
+    {id:18, name:"Synthetic Leather", male:'women'},
+    {id:19, name:"Velvet", male:'women'},
+]
+
