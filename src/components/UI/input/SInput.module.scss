@@ -4,7 +4,7 @@ $main-color:#1D2D44;
     height: 30px;
     border-bottom: 1px solid $main-color;
     padding: 0 5px;
-    font-size: 16px;
+    font-size: 15px;
     color: $main-color;
     background: transparent;
     &[data-theme='white']{
@@ -13,5 +13,11 @@ $main-color:#1D2D44;
         &::placeholder{
             color:#ffffffa9;
         }
+    }
+}
+
+@media screen and (min-width:1360px) {
+    .sInput{
+        font-size: 16px !important;
     }
 }

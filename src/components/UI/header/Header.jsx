@@ -19,7 +19,9 @@ const Header = () => {
           <div className={styles.content}>
           <BurgerButton show={showBurgerNav} />
             <div className={styles.logo}>
-              <h1>SNEAKERS</h1>
+              <Link to={`/`}>
+                <h1>SNEAKERS</h1>
+              </Link>
             </div>
             <nav className={styles.nav}>
               <div className={styles.topNav}>

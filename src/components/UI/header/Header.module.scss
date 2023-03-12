@@ -22,6 +22,7 @@ $icons-size:22px;
     .content{
         max-width: $content-width;
         height: 100%;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -65,7 +66,8 @@ $icons-size:22px;
                 }
             }
             .bottomNav a{
-                color: #1D2D44
+                color: #1D2D44;
+                font-size: 15px;
             }
         }
     }
@@ -73,9 +75,8 @@ $icons-size:22px;
 
 @media only screen and (min-width: 1360px) {
     .header{
-        padding: 10px 0;
-        .content{
-            margin: 0 auto;
+        .bottomNav a{
+            font-size: 16px !important;
         }
     }
 }

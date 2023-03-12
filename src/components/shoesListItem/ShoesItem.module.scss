@@ -1,8 +1,8 @@
 .item{
-    width: 220px;
+    width: 200px;
     padding: 5px;
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     color:#1d2d44;
     transition: all 0.4s;
     display: grid;
@@ -27,4 +27,11 @@
         font-size: 15px;
         font-weight: 600;
     }
+}
+@media screen and (min-width:1360px) {
+    .item{
+        width: 220px;
+        font-size: 16px;
+    }
+    
 }
