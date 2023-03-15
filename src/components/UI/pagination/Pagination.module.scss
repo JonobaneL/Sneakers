@@ -1,0 +1,24 @@
+.pagination{
+    display: flex;
+    gap:5px;
+    justify-content: center;
+    margin-top: 60px;
+    height: 40px;
+    .pagination__item{
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(29, 45, 68, 0.8);
+        cursor: pointer;
+        &.active{
+            background: rgba(29, 45, 68, 0.8);
+            color: #fff;
+        }
+        &:hover{
+            background: rgba(29, 45, 68, 0.8);
+            color: #fff;
+        }
+    }
+}

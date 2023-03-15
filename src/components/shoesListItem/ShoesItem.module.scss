@@ -27,11 +27,21 @@
         font-size: 15px;
         font-weight: 600;
     }
+    .price{
+        display: flex;
+        gap:10px;
+        .price__discount{
+            color: #a40000;
+        }
+        .price__diabled{
+            color: #2f2f2f;
+            text-decoration: line-through;
+        }
+    }
 }
 @media screen and (min-width:1360px) {
     .item{
         width: 220px;
         font-size: 16px;
     }
-    
 }

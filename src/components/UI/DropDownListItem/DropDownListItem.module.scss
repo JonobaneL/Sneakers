@@ -36,12 +36,16 @@
         width: 30px;
         flex: 0 0 30px;
         text-align: center;
-        font-size: 1rem;
+        font-size: 18px;
         color: #3e5c76;
         transition: all 0.2s;
         &.active{
             transform: scaleY(-1);
-            transition: all 0.2s;
         }
+    }
+}
+@media screen and (min-width:1360px) {
+    .arrow{
+        font-size: 24px;
     }
 }

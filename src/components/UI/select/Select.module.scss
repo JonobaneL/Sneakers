@@ -11,6 +11,7 @@
         padding:0 5px;
         font-size: 15px;
         cursor: pointer;
+        color: #0d1321;
         .arrow{
             width: 40px;
             height: 40px;
@@ -25,7 +26,6 @@
             }
             &.active{
                 transform: scaleY(-1);
-                transition: all 0.5s;
             }
         }
         .placeholder{
@@ -56,7 +56,6 @@
         &.active{
             visibility: visible;
             opacity: 1;
-            transition: all 0.4s;
         }
     }
 }

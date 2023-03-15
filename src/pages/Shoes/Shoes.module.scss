@@ -6,8 +6,8 @@
         margin:0 auto;
         display: grid;
         grid-template-columns: 180px 1fr; 
-        grid-template-rows: 100px 1fr; 
-        gap: 0px 40px; 
+        grid-template-rows: auto 1fr; 
+        gap:30px 40px; 
         grid-template-areas: 
           "title title"
           "filters shoes"; 
@@ -16,10 +16,40 @@
             h2{
                 text-transform: capitalize;
                 font-weight: 600;
-                color: #1d2d44;
+                color: #141414;
+                font-size: 30px;
+            
             }
+        }
+        .filters{
+            grid-area: filters;
+        }
+        .list{
+            grid-area: shoes;
            
         }
     }
 }
 
+@media screen and (max-width:1023px) {
+    .shoes{
+        .content{
+            grid-template-columns: 1fr; 
+            grid-template-rows: auto auto 1fr; 
+            row-gap: 20px;
+            grid-template-areas: 
+              "title"
+              "filters"
+              "shoes"; 
+            .title{
+                grid-area: title;
+                h2{
+                    text-transform: capitalize;
+                    font-weight: 600;
+                    color: #1d2d44;
+                }
+               
+            }
+        }
+    }
+}

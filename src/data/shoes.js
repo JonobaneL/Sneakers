@@ -23,7 +23,7 @@ export const shoes = [
             {
                 id:1,
                 title:"Black",
-                discount:5,
+                discount:10,
                 rate:4.0,
                 nAvailable:'6 6.5 7 7.5 8 9 14 15',
                 images:[
@@ -88,7 +88,7 @@ export const shoes = [
             {
                 id:1,
                 title:"Whiskey Brown",
-                discount: 0,
+                discount: 15,
                 rate:0,
                 nAvailable:'6 6.5 7.5 8.5 9.5 10 10.5 11.5 14',
                 images:[

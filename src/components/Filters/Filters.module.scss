@@ -1,6 +1,46 @@
 .filters{
-    width: 180px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    width: 100%;
+    .filters-options{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .filters-navigation{
+        display: none;
+    }
+    
+}
+@media screen and (max-width:1023px) {
+    .filters{
+        width: 100%;
+        .filters-navigation{
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .filters-navigation__opener{
+                background: none;
+                height: 40px; 
+                border:none;
+                display: flex;
+                gap:5px;
+                align-items: center;
+                font-size: 15px;
+                font-weight: 500;
+                color: #1d2d44;
+                letter-spacing: 0.5px;
+                img{
+                    width: 25px;
+                }
+            }
+            .select{
+                width: 200px;
+            }
+        }
+        .filters-options{
+            display: none;
+        }
+    }
 }
