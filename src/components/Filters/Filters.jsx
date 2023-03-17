@@ -44,11 +44,13 @@ const Filters = ({data}) => {
                 </div>
             </div>
             <div className={styles["filters-options"]}>
+                <div className={styles.select}>
                 <Select
-                    placeholder='Sort by'
-                    params={sortParams}
-                    getData={value=>{console.log(value);setFilters({...filters,sort:value})}}
-                />
+                        placeholder='Sort by'
+                        params={sortParams}
+                        getData={value=>{console.log(value);setFilters({...filters,sort:value})}}
+                    />
+                </div>
                 <DropDownList 
                     getData={value=>{
                         console.log(value);

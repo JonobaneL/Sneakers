@@ -1,6 +1,8 @@
 import React from 'react';
+import { usePagination } from '../../../hooks/usePagination';
 import styles from './Pagination.module.scss'
-const Pagination = ({pages, current, changePage}) => {
+const Pagination = ({total, current, changePage}) => {
+    const pages = usePagination(total);
     return (
         <div className={styles.pagination}>
             {

@@ -26,7 +26,13 @@
         }
         .list{
             grid-area: shoes;
-           
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            .shoes{
+                flex: 1 1 auto;
+                padding: 0;
+            }
         }
     }
 }
