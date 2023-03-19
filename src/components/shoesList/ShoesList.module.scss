@@ -1,9 +1,11 @@
 .shoes-list{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
     row-gap: 30px;
     column-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
 }
 @media screen and (min-width:1360px) {
     .shoes-list{
@@ -11,9 +13,15 @@
         row-gap: 40px;
     }
 }
-// @media screen  and (min-width:1240px) {
-//     .shoes-list{
-//         column-gap: 30px;
-//         row-gap: 40px;
-//     }
-// }
+@media screen and (min-width:1023px) and (max-width:1199px) {
+    .shoes-list{
+        column-gap: 30px;
+        row-gap: 40px;
+    }
+}
+@media screen and (max-width:768px) {
+    .shoes-list{
+        grid-template-columns: repeat(auto-fit,minmax(170px,1fr));
+        column-gap: 10px;
+    }
+}

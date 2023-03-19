@@ -1,9 +1,12 @@
 import React,{useState} from 'react'
+import CheckBox from '../components/UI/checkBox1/CheckBox';
 import SizeList from '../components/UI/sizeList/SizeList';
 const About = () => {
     return <div className="About">
         <div className="content" >
-          <SizeList/>
+          {/* <SizeList/> */}
+          <CheckBox label="Chanel"/>
+          <br />
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum asperiores illum, nisi temporibus expedita veritatis optio obcaecati autem, deserunt porro repudiandae ratione hic ut molestias, omnis fugit quia voluptatibus.
             Voluptates dignissimos deleniti ipsa aperiam et itaque similique quaerat. Incidunt nulla aliquid rerum enim ea consequuntur repudiandae! Non corporis provident iusto animi ullam. Autem repellendus molestias quod sint animi? Quis!
             Nobis eligendi necessitatibus voluptatum suscipit praesentium excepturi error beatae laborum vero eveniet aliquam alias, quis molestiae in quibusdam delectus minima itaque consectetur laudantium tenetur neque ducimus minus quidem harum. Et.

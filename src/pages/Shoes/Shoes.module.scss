@@ -59,3 +59,13 @@
         }
     }
 }
+@media screen and (max-width:768px) {
+    .shoes{
+        padding: 50px 60px;
+    }
+}
+@media screen and (max-width:375px) {
+    .shoes{
+        padding: 40px 20px;
+    }
+}

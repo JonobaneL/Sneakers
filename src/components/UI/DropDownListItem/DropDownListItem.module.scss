@@ -13,7 +13,6 @@
         padding: 4px 5px;
         cursor: pointer;
     }
-    
     .subList{
         width: 100%;
         background: #fff;
@@ -36,7 +35,7 @@
         width: 30px;
         flex: 0 0 30px;
         text-align: center;
-        font-size: 18px;
+        font-size: 20px;
         color: #3e5c76;
         transition: all 0.2s;
         &.active{
@@ -45,7 +44,9 @@
     }
 }
 @media screen and (min-width:1360px) {
-    .arrow{
-        font-size: 24px;
+    .listItem{
+        .arrow{
+            font-size: 25px;
+        }
     }
 }
