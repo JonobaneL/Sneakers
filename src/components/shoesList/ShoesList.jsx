@@ -4,9 +4,12 @@ import ShoesItem from '../shoesListItem/ShoesItem';
 const ShoesList = ({data}) => {
     return (
         <div className={styles["shoes-list"]}>
-            {data.map(item=>
+            {data.length>0?
+            data.map(item=>
                 <ShoesItem key={item.id} item={item}/>
-                )}
+                )
+            :<div className={styles.warning}>No Result</div>
+            }
         </div>
     );
 };

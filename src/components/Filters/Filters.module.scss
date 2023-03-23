@@ -1,7 +1,7 @@
 .filters{
     width: 100%;
     .filters-options{
-        width: 100%;
+        // width: 100%;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -13,7 +13,7 @@
 }
 @media screen and (max-width:1023px) {
     .filters{
-        width: 100%;
+        // width: 100%;
         position: relative;
         .filters-navigation{
             width: 100%;
@@ -42,11 +42,16 @@
         }
         .filters-options{
             position: absolute;
+            background: #3e5c76;
             z-index: 2;
-            background: #fff;
+            // background: #fff;
+            padding: 40px 80px;
             // display: none;
+            left: -80px;
+            right: -80px;
             margin-top: 20px;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            // box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
             .select{
                 display: none !important;
             }

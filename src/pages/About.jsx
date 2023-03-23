@@ -1,11 +1,72 @@
-import React,{useState} from 'react'
-import CheckBox from '../components/UI/checkBox1/CheckBox';
-import SizeList from '../components/UI/sizeList/SizeList';
+import React,{useState,useEffect,useMemo} from 'react'
+import CheckBox from '../components/UI/checkBox/CheckBox';
+import CheckBoxList from '../components/UI/checkBoxList/CheckBoxList';
+import { shoes } from '../data/shoes';
+import { useShoes } from '../hooks/useShoes';
+const data = [
+    {id:1,color: 'Black', name:"Name1",brand:"Vans",price:100},
+    {id:2,color: 'Brown',name:"Name2",brand:"Adidas",price:30},
+    {id:3,color: 'Brown',name:"Name3",brand:"Vans",price:80},
+    {id:4,color: 'Black', name:"Name4",brand:"Convers",price:90},
+    {id:5,color: 'Black', name:"Name5",brand:"Convers",price:50},
+    {id:6,color: 'Blue', name:"Name6",brand:"Vans",price:70},
+    {id:7,color: 'Black', name:"Name7",brand:"Vans",price:40},
+    {id:8,color: 'Blue', name:"Name8",brand:"Adidas",price:80},
+    {id:9,color: 'Blue', name:"Name9",brand:"Adidas",price:75},
+    {id:10,color: 'Black', name:"Name10",brand:"Vans",price:100},
+   
+]
+const priceFilters = [
+    {id:1,name:"Under $30"},
+    {id:2,name:"$30 to $50"},
+    {id:3,name:"$50 to $75"},
+    {id:4,name:"$75+"},
+]
+
 const About = () => {
+    const [checkedPrice, setCheckedPrice] = useState([])
+
+    const handlerColor =(elme)=>{
+        console.log(elme)
+        if(!checkedPrice.includes(elme)){
+            setCheckedPrice([...checkedPrice,elme])
+        }
+        else{
+            setCheckedPrice(checkedPrice.filter(item=>item!==elme))
+        }
+    }
+    const usePriceShoes =(list,price)=>{
+
+    }
+    const newData = usePriceShoes(shoes,checkedPrice)
+    console.log(newData)
+    console.log(checkedPrice)
+    
     return <div className="About">
         <div className="content" >
-          {/* <SizeList/> */}
-          <CheckBox label="Chanel"/>
+            <div className="filters">
+                <ul className='checkboxList'>
+                    {priceFilters.map(item=>
+                        <li key={item.id} className="checkboxList__item" >
+                            <label>
+                                <input type="checkbox" id={item.id} onClick={()=>handlerColor(item.name)} />
+                                {item.name}
+                            </label>
+                        </li>
+                    )}
+                </ul>
+            </div>
+            
+            {/* <ul className='dList'>
+                {newData.map(item=>
+                    <li key={item.id} className="dList__item">
+                        <p>{item.id}</p>
+                        <p>{item.name}</p>
+                        <p>{item.color}</p>
+                        <p>{item.brand}</p>
+                    </li>
+                )}
+            </ul> */}
           <br />
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum asperiores illum, nisi temporibus expedita veritatis optio obcaecati autem, deserunt porro repudiandae ratione hic ut molestias, omnis fugit quia voluptatibus.
             Voluptates dignissimos deleniti ipsa aperiam et itaque similique quaerat. Incidunt nulla aliquid rerum enim ea consequuntur repudiandae! Non corporis provident iusto animi ullam. Autem repellendus molestias quod sint animi? Quis!

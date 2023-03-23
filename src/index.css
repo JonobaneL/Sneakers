@@ -47,3 +47,29 @@ body::-webkit-scrollbar-thumb:hover {
   width: 1200px;
   margin: 100px auto;
 }
+.About .filters{
+  display: flex;
+}
+.About .dList{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
+}
+.dList .dList__item{
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  gap: 20px;
+}
+.About .checkboxList{
+  margin-bottom: 40px;
+  width: 250px;
+  padding: 10px;
+  background: rgba(90, 90, 90, 0.1);
+  border: 1px solid #2f2f2f;
+}

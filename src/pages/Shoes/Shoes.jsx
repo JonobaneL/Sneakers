@@ -3,46 +3,48 @@ import { useParams } from 'react-router-dom';
 import Filters from '../../components/Filters/Filters';
 import styles from './Shoes.module.scss'
 import ShoesList from '../../components/shoesList/ShoesList';
-import { getShoes } from '../../utils/getShoesPageData';
+import { getShoesData } from '../../utils/getShoesData';
 import { getTotalPagesCount } from '../../utils/pages';
 import Pagination from '../../components/UI/pagination/Pagination';
+import { useShoes } from '../../hooks/useShoes';
 const Shoes = () => {
     const {type} = useParams();
-    const [shoes,setShoes]=useState([])
-    const [shoesLength,setShoesLength]=useState(0)
-    const [shoesCategories,setShoesCategories]=useState([])
-    const [shoesBrands,setShoesBrands]=useState([])
-    const [shoesMaterial,setShoesMaterial]=useState([])
-    const [limit,setLimit] = useState(12)
-    const [currentPage,setCurrentPage] = useState(1)
-    useEffect(() => {
-      const response =  getShoes(type,limit,currentPage);
-      setShoes(response.shoesResponse);
-      setShoesLength(response.shoesLength);
-      setShoesCategories(response.shoesCategoriesResponse);
-      setShoesBrands(response.shoesBrandsResponse);
-      setShoesMaterial(response.shoesMaterialResponse);
-      window.scrollTo(0, 0)
-    }, [currentPage,limit]);
-    const totalCountPages = getTotalPagesCount(shoesLength,limit)
+    const [shoesData,shoesCategories,shoesBrands,shoesMaterial] = getShoesData(type); 
+    // const [limit,setLimit] = useState(12)
+    // const [currentPage,setCurrentPage] = useState(1);
+    const [filters,setFilters] = useState({
+      brands:[],
+      colors:[],
+      size:[],
+      materials:[],
+      price:[],
+      percent:[]
+    });
+    const filteredItems = useShoes(shoesData,type,filters.brands,filters.colors)
+    console.log(filters)
+    console.log(filteredItems)
+    // useEffect(()=>{
+    //   console.log(filters)
+    // },[filters])
+    const totalCountPages = getTotalPagesCount(filteredItems.length,12)
     return (
         <div className={styles.shoes}>
             <div className={styles.content}>
               <div className={styles.title}>
-                  <h2>{type}
+                  <h2 onClick={()=>setFilters({...filters,brands:['Adidas']})}>{type}
                     {type=='men' ||type=='women'?`'s shoes`:null}
                   </h2>
               </div>
               <div className={styles.filters}>
-                <Filters data={{shoes,shoesCategories,shoesBrands,shoesMaterial}}/>
+                <Filters filters={filters} setFilters={setFilters} data={{shoesCategories,shoesBrands,shoesMaterial}}/>
               </div>
               <div className={styles.list}>
                 <div className={styles.shoes}>
-                  <ShoesList data={shoes}/>
+                  <ShoesList data={filteredItems}/>
                 </div>
-                <div className={styles["list-navigation"]}>
+                {/* <div className={styles["list-navigation"]}>
                   <Pagination total={totalCountPages} current={currentPage} changePage={setCurrentPage}/>
-                </div>
+                </div> */}
               </div>
             </div>
         </div>

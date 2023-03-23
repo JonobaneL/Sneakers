@@ -41,6 +41,15 @@
         }
     }
 }
+
+@media screen and (max-width:1023px) {
+    .accordion{
+        border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+        .title{
+            color: #fff;
+        }
+    }
+}
 @keyframes showAnimation {
     from{
         opacity: 0;

@@ -2,13 +2,13 @@ import React,{useState} from 'react';
 import DropDownList from '../UI/dropDownList/dropDownList';
 import Select from '../UI/select/Select';
 import Accordion from '../UI/accordion/Accordion';
-import CheckBox from '../UI/checkBox/CheckBox';
 import {shoesColor} from '../../data/shoesColor'
 import filtersIcon from '../../images/filters.png' 
 import styles from './Filters.module.scss'
 import SizeList from '../UI/sizeList/SizeList';
+import CheckBoxList from '../UI/checkBoxList/CheckBoxList';
 
-const Filters = ({data}) => {
+const Filters = ({filters,setFilters,data}) => {
     const sortParams = [
         {id:1,value:'Top Rated'},
         {id:2,value:'Newest'},
@@ -27,7 +27,6 @@ const Filters = ({data}) => {
         {id:2,name:"30% to 50%"},
         {id:3,name:"50%+"},
     ]
-    const [filters,setFilters]=useState({sort:'',categoty:''})
     return (
         <div className={styles.filters}>
             <div className={styles["filters-navigation"]}>
@@ -58,23 +57,23 @@ const Filters = ({data}) => {
                     }}
                     data={data.shoesCategories}
                 />
-                <Accordion width='100%' title={"Brands"} >
-                    <CheckBox data={data.shoesBrands}/>
+                <Accordion width='100%' title="Brands" >
+                    <CheckBoxList filtersChange={(items)=>setFilters({...filters,brands:items})} data={data.shoesBrands}/>
                 </Accordion>
-                <Accordion width='100%' title={"Color"} >
-                    <CheckBox data={shoesColor}/>
+                <Accordion width='100%' title="Color" >
+                    <CheckBoxList filtersChange={(items)=>setFilters({...filters,colors:items})} data={shoesColor} colored={true}/>
                 </Accordion>
-                <Accordion fixed={true} width='100%' title={"Size"} >
+                <Accordion fixed={true} title="Size">
                     <SizeList/>
                 </Accordion>
-                <Accordion width='100%' title={"Material"} >
-                    <CheckBox data={data.shoesMaterial}/>
+                <Accordion width='100%' title="Material" >
+                    <CheckBoxList filtersChange={(items)=>setFilters({...filters,materials:items})} data={data.shoesMaterial}/>
                 </Accordion>
-                <Accordion width='100%' title={"Price"} >
-                    <CheckBox data={priceParams}/>
+                <Accordion width='100%' title="Price" >
+                    <CheckBoxList filtersChange={(items)=>setFilters({...filters,price:items})} data={priceParams}/>
                 </Accordion>
-                <Accordion width='100%' title={"Percent Off"} >
-                    <CheckBox data={percentOffParams}/>
+                <Accordion width='100%' title="Percent Off" >
+                    <CheckBoxList filtersChange={(items)=>setFilters({...filters,percent:items})} data={percentOffParams}/>
                 </Accordion>
             </div>
         </div>
