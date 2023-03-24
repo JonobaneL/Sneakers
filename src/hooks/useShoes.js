@@ -10,7 +10,7 @@ export const useShoesMale = (shoes,male='')=>{
     return filterByMale;
 }
 
-export const useShoes = (shoes,male,brand=[],color=[],price=[])=>{
+export const useShoes = (shoes,male,brand=[],color=[],price=[],percent=[],size=[])=>{
    const maleFiltered = useShoesMale(shoes,male)
     const filteredBrand = useMemo(()=>{
         if(brand.length>0){
@@ -28,6 +28,7 @@ export const useShoes = (shoes,male,brand=[],color=[],price=[])=>{
                 })
         }else return filteredBrand
     },[filteredBrand,color])
+    
     const filteredPrice = useMemo(()=>{
         const result = []
             price.forEach(price_item=>{
@@ -51,5 +52,38 @@ export const useShoes = (shoes,male,brand=[],color=[],price=[])=>{
             }
             else return result;
     },[filteredColor,price])
-    return filteredPrice;
+
+    const filteredPercent = useMemo(()=>{
+        const result = []
+            percent.forEach(percent_item=>{
+                switch(percent_item){
+                    case 'Up to 30%':
+                        result.push(...filteredColor.filter(item=>item.discount>0 && item.discount<30));
+                        break;
+                    case '30% to 50%':
+                        result.push(...filteredColor.filter(item=>item.discount>=30 && item.discount<50));
+                        break;
+                    case '50%+':
+                        result.push(...filteredColor.filter(item=>item.discount>=50 && item.discount<=100));
+                        break;
+                }
+            })
+            if(percent.length==0){
+                return filteredPrice
+            }
+            else return result;
+    },[filteredPrice, percent])
+    //доробити фільтрацію по розміру
+    const fitleredSize = useMemo(()=>{
+        const result =[];
+        size.forEach(size_item=>{
+            console.log(size_item)
+            result.push(...filteredPercent.filter(item=>item.availableSize.includes(size_item)))
+        })
+        if(size.length==0){
+            return filteredPercent;
+        }else return result
+    },[filteredPercent,size])
+
+    return fitleredSize;
 }

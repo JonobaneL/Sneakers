@@ -64,7 +64,7 @@ const Filters = ({filters,setFilters,data}) => {
                     <CheckBoxList filtersChange={(items)=>setFilters({...filters,colors:items})} data={shoesColor} colored={true}/>
                 </Accordion>
                 <Accordion fixed={true} title="Size">
-                    <SizeList/>
+                    <SizeList filtersChange={(items)=>setFilters({...filters,size:items})}/>
                 </Accordion>
                 <Accordion width='100%' title="Material" >
                     <CheckBoxList filtersChange={(items)=>setFilters({...filters,materials:items})} data={data.shoesMaterial}/>

@@ -20,7 +20,7 @@ const Shoes = () => {
       price:[],
       percent:[]
     });
-    const filteredItems = useShoes(shoesData,type,filters.brands,filters.colors,filters.price)
+    const filteredItems = useShoes(shoesData,type,filters.brands,filters.colors,filters.price,filters.percent)
     console.log(filters)
     console.log(filteredItems)
     useEffect(()=>{
