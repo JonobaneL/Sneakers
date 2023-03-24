@@ -328,7 +328,7 @@ export const shoes = [
         brand:'Nike',
         male:'men',
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/96/02/7/96027_right_feed1000.jpg",
-        price:84.99,
+        price:50.99,
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
             "Leather upper in a high-top lifestyle sneaker style",
@@ -379,7 +379,7 @@ export const shoes = [
         brand:'Nike',
         male:'men',
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/33/0/38330_right_feed1000.jpg",
-        price:84.99,
+        price:29.99,
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
             "Leather upper in a high-top lifestyle sneaker style",
@@ -430,7 +430,7 @@ export const shoes = [
         brand:'Nike',
         male:'men',
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/40/46/7/40467_right_feed1000.jpg",
-        price:84.99,
+        price:44.99,
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
             "Leather upper in a high-top lifestyle sneaker style",

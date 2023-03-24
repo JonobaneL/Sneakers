@@ -1,8 +1,5 @@
-import React,{useState,useEffect,useMemo} from 'react'
-import CheckBox from '../components/UI/checkBox/CheckBox';
-import CheckBoxList from '../components/UI/checkBoxList/CheckBoxList';
+import React,{useState,useEffect,useMemo, useRef} from 'react'
 import { shoes } from '../data/shoes';
-import { useShoes } from '../hooks/useShoes';
 const data = [
     {id:1,color: 'Black', name:"Name1",brand:"Vans",price:100},
     {id:2,color: 'Brown',name:"Name2",brand:"Adidas",price:30},
@@ -25,9 +22,8 @@ const priceFilters = [
 
 const About = () => {
     const [checkedPrice, setCheckedPrice] = useState([])
-
+    const check = useRef()
     const handlerColor =(elme)=>{
-        console.log(elme)
         if(!checkedPrice.includes(elme)){
             setCheckedPrice([...checkedPrice,elme])
         }
@@ -36,11 +32,34 @@ const About = () => {
         }
     }
     const usePriceShoes =(list,price)=>{
-
+        const response = useMemo(()=>{
+            const result = []
+            price.forEach(price_item=>{
+                switch(price_item){
+                    case 'Under $30':
+                        result.push(...list.filter(item=>item.price>0 && item.price<30));
+                        break;
+                    case '$30 to $50':
+                        result.push(...list.filter(item=>item.price>=30 && item.price<50));
+                        break;
+                    case '50 to $75':
+                        result.push(...list.filter(item=>item.price>=50 && item.price<75));
+                        break;
+                    case '$75+':
+                        result.push(...list.filter(item=>item.price>=75 && item.price<500000));
+                        break;
+                }
+            })
+            if(price.length==0){
+                return list
+            }
+            else return result;
+        },[list,price])
+        return response
     }
     const newData = usePriceShoes(shoes,checkedPrice)
     console.log(newData)
-    console.log(checkedPrice)
+    // console.log(checkedPrice)
     
     return <div className="About">
         <div className="content" >
@@ -49,7 +68,7 @@ const About = () => {
                     {priceFilters.map(item=>
                         <li key={item.id} className="checkboxList__item" >
                             <label>
-                                <input type="checkbox" id={item.id} onClick={()=>handlerColor(item.name)} />
+                                <input ref={check} type="checkbox" id={item.id} onClick={()=>handlerColor(item.name)} />
                                 {item.name}
                             </label>
                         </li>
@@ -57,16 +76,17 @@ const About = () => {
                 </ul>
             </div>
             
-            {/* <ul className='dList'>
+            <ul className='dList'>
                 {newData.map(item=>
                     <li key={item.id} className="dList__item">
                         <p>{item.id}</p>
                         <p>{item.name}</p>
                         <p>{item.color}</p>
                         <p>{item.brand}</p>
+                        <p>{item.price}</p>
                     </li>
                 )}
-            </ul> */}
+            </ul>
           <br />
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum asperiores illum, nisi temporibus expedita veritatis optio obcaecati autem, deserunt porro repudiandae ratione hic ut molestias, omnis fugit quia voluptatibus.
             Voluptates dignissimos deleniti ipsa aperiam et itaque similique quaerat. Incidunt nulla aliquid rerum enim ea consequuntur repudiandae! Non corporis provident iusto animi ullam. Autem repellendus molestias quod sint animi? Quis!

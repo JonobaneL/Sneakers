@@ -20,12 +20,20 @@ const Shoes = () => {
       price:[],
       percent:[]
     });
-    const filteredItems = useShoes(shoesData,type,filters.brands,filters.colors)
+    const filteredItems = useShoes(shoesData,type,filters.brands,filters.colors,filters.price)
     console.log(filters)
     console.log(filteredItems)
-    // useEffect(()=>{
-    //   console.log(filters)
-    // },[filters])
+    useEffect(()=>{
+      setFilters(
+        {
+          brands:[],
+          colors:[],
+          size:[],
+          materials:[],
+          price:[],
+          percent:[]
+        })
+    },[type])
     const totalCountPages = getTotalPagesCount(filteredItems.length,12)
     return (
         <div className={styles.shoes}>
