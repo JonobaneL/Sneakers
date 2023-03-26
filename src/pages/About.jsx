@@ -1,75 +1,44 @@
 import React,{useState,useEffect,useMemo, useRef} from 'react'
 import { shoes } from '../data/shoes';
-const data = [
-    {id:1,color: 'Black', name:"Name1",brand:"Vans",price:100},
-    {id:2,color: 'Brown',name:"Name2",brand:"Adidas",price:30},
-    {id:3,color: 'Brown',name:"Name3",brand:"Vans",price:80},
-    {id:4,color: 'Black', name:"Name4",brand:"Convers",price:90},
-    {id:5,color: 'Black', name:"Name5",brand:"Convers",price:50},
-    {id:6,color: 'Blue', name:"Name6",brand:"Vans",price:70},
-    {id:7,color: 'Black', name:"Name7",brand:"Vans",price:40},
-    {id:8,color: 'Blue', name:"Name8",brand:"Adidas",price:80},
-    {id:9,color: 'Blue', name:"Name9",brand:"Adidas",price:75},
-    {id:10,color: 'Black', name:"Name10",brand:"Vans",price:100},
-   
-]
-const priceFilters = [
-    {id:1,name:"Under $30"},
-    {id:2,name:"$30 to $50"},
-    {id:3,name:"$50 to $75"},
-    {id:4,name:"$75+"},
-]
+
+const sizeFilters = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15];
+
 
 const About = () => {
-    const [checkedPrice, setCheckedPrice] = useState([])
-    const check = useRef()
-    const handlerColor =(elme)=>{
-        if(!checkedPrice.includes(elme)){
-            setCheckedPrice([...checkedPrice,elme])
+    const [checkedSizes, setCheckedSize] = useState([])
+    const [isChecked,setIsChecked] = useState(false)
+    const handleChange = (data)=>{
+        const trigger = checkedSizes.includes(data);
+        if(!trigger){
+            setCheckedSize(prev=>[...prev,data])
         }
-        else{
-            setCheckedPrice(checkedPrice.filter(item=>item!==elme))
-        }
+        else setCheckedSize(prev=>prev.filter(item=>item!=data))
     }
-    const usePriceShoes =(list,price)=>{
-        const response = useMemo(()=>{
-            const result = []
-            price.forEach(price_item=>{
-                switch(price_item){
-                    case 'Under $30':
-                        result.push(...list.filter(item=>item.price>0 && item.price<30));
-                        break;
-                    case '$30 to $50':
-                        result.push(...list.filter(item=>item.price>=30 && item.price<50));
-                        break;
-                    case '50 to $75':
-                        result.push(...list.filter(item=>item.price>=50 && item.price<75));
-                        break;
-                    case '$75+':
-                        result.push(...list.filter(item=>item.price>=75 && item.price<500000));
-                        break;
-                }
-            })
-            if(price.length==0){
-                return list
+    const useSizeFileters = (list,filt=[])=>{
+        const filteredSize = useMemo(()=>{
+            if(filt.length>0){
+                return list.filter(item=>{
+                    if(filt.some(size_item=>item.availableSize.includes(size_item))) return item
+                });
             }
-            else return result;
-        },[list,price])
-        return response
+            else return list
+        },[list,filt])
+        console.log(filteredSize)
+        return filteredSize
     }
-    const newData = usePriceShoes(shoes,checkedPrice)
-    console.log(newData)
-    // console.log(checkedPrice)
-    
+   useEffect(()=>{
+    console.log(checkedSizes)
+    },[checkedSizes])
+    const filteredData = useSizeFileters(shoes,checkedSizes);
     return <div className="About">
         <div className="content" >
             <div className="filters">
                 <ul className='checkboxList'>
-                    {priceFilters.map(item=>
-                        <li key={item.id} className="checkboxList__item" >
+                    {sizeFilters.map((item,index)=>
+                        <li key={index} className={`checkboxList__item ${isChecked?'active':''}`} >
                             <label>
-                                <input ref={check} type="checkbox" id={item.id} onClick={()=>handlerColor(item.name)} />
-                                {item.name}
+                                <input value={isChecked} type="checkbox" onChange={()=>setIsChecked(prev=>!prev)} onClick={()=>handleChange(item)} />
+                                {item}
                             </label>
                         </li>
                     )}
@@ -77,7 +46,7 @@ const About = () => {
             </div>
             
             <ul className='dList'>
-                {newData.map(item=>
+                {filteredData.map(item=>
                     <li key={item.id} className="dList__item">
                         <p>{item.id}</p>
                         <p>{item.name}</p>

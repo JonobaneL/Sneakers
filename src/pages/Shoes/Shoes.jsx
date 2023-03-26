@@ -6,12 +6,12 @@ import ShoesList from '../../components/shoesList/ShoesList';
 import { getShoesData } from '../../utils/getShoesData';
 import { getTotalPagesCount } from '../../utils/pages';
 import Pagination from '../../components/UI/pagination/Pagination';
-import { useShoes } from '../../hooks/useShoes';
+import { useShoes, useToShow } from '../../hooks/useShoes';
 const Shoes = () => {
     const {type} = useParams();
     const [shoesData,shoesCategories,shoesBrands,shoesMaterial] = getShoesData(type); 
-    // const [limit,setLimit] = useState(12)
-    // const [currentPage,setCurrentPage] = useState(1);
+    const [limit,setLimit] = useState(12)
+    const [currentPage,setCurrentPage] = useState(1);
     const [filters,setFilters] = useState({
       brands:[],
       colors:[],
@@ -20,7 +20,8 @@ const Shoes = () => {
       price:[],
       percent:[]
     });
-    const filteredItems = useShoes(shoesData,type,filters.brands,filters.colors,filters.price,filters.percent)
+    const filteredItems = useShoes(shoesData,type,filters.brands,filters.colors,filters.price,filters.percent,filters.size)
+    const shownData = useToShow(filteredItems,limit,currentPage)
     console.log(filters)
     console.log(filteredItems)
     useEffect(()=>{
@@ -48,11 +49,15 @@ const Shoes = () => {
               </div>
               <div className={styles.list}>
                 <div className={styles.shoes}>
-                  <ShoesList data={filteredItems}/>
+                  <ShoesList data={shownData}/>
                 </div>
-                {/* <div className={styles["list-navigation"]}>
-                  <Pagination total={totalCountPages} current={currentPage} changePage={setCurrentPage}/>
-                </div> */}
+                {
+                  filteredItems.length>limit
+                  ? <div className={styles["list-navigation"]}>
+                      <Pagination total={totalCountPages} current={currentPage} changePage={setCurrentPage}/>
+                    </div>
+                  :null
+                }
               </div>
             </div>
         </div>

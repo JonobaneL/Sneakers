@@ -50,29 +50,32 @@ const Filters = ({filters,setFilters,data}) => {
                         getData={value=>{console.log(value);setFilters({...filters,sort:value})}}
                     />
                 </div>
-                <DropDownList 
-                    getData={value=>{
-                        console.log(value);
-                        setFilters({...filters,categoty:value})
-                    }}
-                    data={data.shoesCategories}
-                />
-                <Accordion width='100%' title="Brands" >
+                <Accordion fixed={true} title={"Category"} autoheight={true}>
+                    <DropDownList 
+                        getData={value=>{
+                            console.log(value);
+                            setFilters({...filters,category:value})
+                        }}
+                        data={data.shoesCategories}
+                    />
+                </Accordion>
+                
+                <Accordion  title="Brands" >
                     <CheckBoxList filtersChange={(items)=>setFilters({...filters,brands:items})} data={data.shoesBrands}/>
                 </Accordion>
-                <Accordion width='100%' title="Color" >
+                <Accordion  title="Color" >
                     <CheckBoxList filtersChange={(items)=>setFilters({...filters,colors:items})} data={shoesColor} colored={true}/>
                 </Accordion>
                 <Accordion fixed={true} title="Size">
                     <SizeList filtersChange={(items)=>setFilters({...filters,size:items})}/>
                 </Accordion>
-                <Accordion width='100%' title="Material" >
+                <Accordion  title="Material" >
                     <CheckBoxList filtersChange={(items)=>setFilters({...filters,materials:items})} data={data.shoesMaterial}/>
                 </Accordion>
-                <Accordion width='100%' title="Price" >
+                <Accordion  title="Price" >
                     <CheckBoxList filtersChange={(items)=>setFilters({...filters,price:items})} data={priceParams}/>
                 </Accordion>
-                <Accordion width='100%' title="Percent Off" >
+                <Accordion  title="Percent Off" >
                     <CheckBoxList filtersChange={(items)=>setFilters({...filters,percent:items})} data={percentOffParams}/>
                 </Accordion>
             </div>

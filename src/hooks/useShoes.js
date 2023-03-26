@@ -73,17 +73,21 @@ export const useShoes = (shoes,male,brand=[],color=[],price=[],percent=[],size=[
             }
             else return result;
     },[filteredPrice, percent])
-    //доробити фільтрацію по розміру
     const fitleredSize = useMemo(()=>{
-        const result =[];
-        size.forEach(size_item=>{
-            console.log(size_item)
-            result.push(...filteredPercent.filter(item=>item.availableSize.includes(size_item)))
-        })
-        if(size.length==0){
-            return filteredPercent;
-        }else return result
+        if(size.length>0){
+            return filteredPercent.filter(item=>{
+                if(size.some(size_item=>item.availableSize.includes(size_item))) return item
+            });
+        }
+        else return filteredPercent
     },[filteredPercent,size])
 
     return fitleredSize;
+}
+
+export const useToShow = (data,limit,current=1)=>{
+    const response = useMemo(()=>{
+        return data.filter((_,index)=>index>=((current*limit)-limit)&&index<(current*limit));
+    },[data,current]) 
+    return response;
 }

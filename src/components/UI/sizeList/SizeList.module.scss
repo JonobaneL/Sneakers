@@ -3,7 +3,7 @@
     width: 100%;
     flex-wrap: wrap;
     gap: 5px;
-    .item{
+    .size-list__item{
         width: 45px;
         height: 45px;
         border: 1px solid #1d2d44;
@@ -13,9 +13,10 @@
         justify-content: center;
         cursor:pointer;
         transition: all 0.4s;
-        &:hover{
+        &:hover,&.active{
             background: #3e5c76;
             color: #fff;
         }
     }
+    
 }
