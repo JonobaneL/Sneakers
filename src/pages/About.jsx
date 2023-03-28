@@ -1,61 +1,35 @@
 import React,{useState,useEffect,useMemo, useRef} from 'react'
+import DropDownList from '../components/UI/dropDownList/dropDownList';
 import { shoes } from '../data/shoes';
 
-const sizeFilters = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15];
-
+const filterCategory = [
+    {id:1,name:"Category1","sub-category":null},
+    {id:2,name:"Category2","sub-category":[
+        {id:21, name:"Sub-1-Category2"},
+        {id:22, name:"Sub-2-Category2"},
+        {id:23, name:"Sub-3-Category2"},
+        {id:24, name:"Sub-4-Category2"},
+    ]},
+    {id:3,name:"Category3","sub-category":[
+        {id:31, name:"Sub-1-Category3"},
+        {id:32, name:"Sub-2-Category3"},
+        {id:33, name:"Sub-3-Category3"},
+        {id:34, name:"Sub-4-Category3"},
+    ]},
+    {id:4, name:"Category4","sub-category":null},
+]
 
 const About = () => {
-    const [checkedSizes, setCheckedSize] = useState([])
-    const [isChecked,setIsChecked] = useState(false)
-    const handleChange = (data)=>{
-        const trigger = checkedSizes.includes(data);
-        if(!trigger){
-            setCheckedSize(prev=>[...prev,data])
-        }
-        else setCheckedSize(prev=>prev.filter(item=>item!=data))
+    const [category,setCategory] = useState([])
+    const handler = (el)=>{
+        setCategory([el])
     }
-    const useSizeFileters = (list,filt=[])=>{
-        const filteredSize = useMemo(()=>{
-            if(filt.length>0){
-                return list.filter(item=>{
-                    if(filt.some(size_item=>item.availableSize.includes(size_item))) return item
-                });
-            }
-            else return list
-        },[list,filt])
-        console.log(filteredSize)
-        return filteredSize
-    }
-   useEffect(()=>{
-    console.log(checkedSizes)
-    },[checkedSizes])
-    const filteredData = useSizeFileters(shoes,checkedSizes);
+    useEffect(()=>console.log(category),[category])
     return <div className="About">
         <div className="content" >
-            <div className="filters">
-                <ul className='checkboxList'>
-                    {sizeFilters.map((item,index)=>
-                        <li key={index} className={`checkboxList__item ${isChecked?'active':''}`} >
-                            <label>
-                                <input value={isChecked} type="checkbox" onChange={()=>setIsChecked(prev=>!prev)} onClick={()=>handleChange(item)} />
-                                {item}
-                            </label>
-                        </li>
-                    )}
-                </ul>
+            <div className="dl">
+                <DropDownList getData={handler} data={filterCategory}/>
             </div>
-            
-            <ul className='dList'>
-                {filteredData.map(item=>
-                    <li key={item.id} className="dList__item">
-                        <p>{item.id}</p>
-                        <p>{item.name}</p>
-                        <p>{item.color}</p>
-                        <p>{item.brand}</p>
-                        <p>{item.price}</p>
-                    </li>
-                )}
-            </ul>
           <br />
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum asperiores illum, nisi temporibus expedita veritatis optio obcaecati autem, deserunt porro repudiandae ratione hic ut molestias, omnis fugit quia voluptatibus.
             Voluptates dignissimos deleniti ipsa aperiam et itaque similique quaerat. Incidunt nulla aliquid rerum enim ea consequuntur repudiandae! Non corporis provident iusto animi ullam. Autem repellendus molestias quod sint animi? Quis!

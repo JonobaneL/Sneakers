@@ -27,6 +27,7 @@ const Filters = ({filters,setFilters,data}) => {
         {id:2,name:"30% to 50%"},
         {id:3,name:"50%+"},
     ]
+    
     return (
         <div className={styles.filters}>
             <div className={styles["filters-navigation"]}>
@@ -60,7 +61,14 @@ const Filters = ({filters,setFilters,data}) => {
                     />
                 </Accordion>
                 
-                <Accordion  title="Brands" >
+                <Accordion  
+                    title="Brands" 
+                    clearTriger={filters.brands.length>0?true:false} 
+                    clearHandler={(event)=>{
+                        console.log(event)
+                        window.scrollTo(0,0)
+                        setFilters({...filters,brands:[]})
+                    }}>
                     <CheckBoxList filtersChange={(items)=>setFilters({...filters,brands:items})} data={data.shoesBrands}/>
                 </Accordion>
                 <Accordion  title="Color" >

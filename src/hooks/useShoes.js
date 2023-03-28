@@ -1,4 +1,5 @@
 import { useMemo } from "react"
+import { getFinalPrice } from "../utils/getFinalPrice"
 export const useShoesMale = (shoes,male='')=>{
     const filterByMale = useMemo(()=>{
         if(male.length>0){
@@ -10,7 +11,7 @@ export const useShoesMale = (shoes,male='')=>{
     return filterByMale;
 }
 
-export const useShoes = (shoes,male,brand=[],color=[],price=[],percent=[],size=[])=>{
+export const useShoes = (shoes,male,brand=[],color=[],price=[],percent=[],size=[],material=[])=>{
    const maleFiltered = useShoesMale(shoes,male)
     const filteredBrand = useMemo(()=>{
         if(brand.length>0){
@@ -34,16 +35,28 @@ export const useShoes = (shoes,male,brand=[],color=[],price=[],percent=[],size=[
             price.forEach(price_item=>{
                 switch(price_item){
                     case 'Under $30':
-                        result.push(...filteredColor.filter(item=>item.price>0 && item.price<30));
+                        result.push(...filteredColor.filter(item=>{
+                            const fp = getFinalPrice(item.price,item.discount)
+                            if(fp>0 && fp<30) return item
+                        }));
                         break;
                     case '$30 to $50':
-                        result.push(...filteredColor.filter(item=>item.price>=30 && item.price<50));
+                        result.push(...filteredColor.filter(item=>{
+                            const fp = getFinalPrice(item.price,item.discount)
+                            if(fp>=30 && fp<50) return item
+                        }));
                         break;
-                    case '50 to $75':
-                        result.push(...filteredColor.filter(item=>item.price>=50 && item.price<75));
+                    case '$50 to $75':
+                        result.push(...filteredColor.filter(item=>{
+                            const fp = getFinalPrice(item.price,item.discount)
+                            if(fp>=50 && fp<75) return item
+                        }));
                         break;
                     case '$75+':
-                        result.push(...filteredColor.filter(item=>item.price>=75 && item.price<500000));
+                        result.push(...filteredColor.filter(item=>{
+                            const fp = getFinalPrice(item.price,item.discount)
+                            if(fp>=75 && fp<500000) return item
+                        }));
                         break;
                 }
             })
@@ -81,8 +94,12 @@ export const useShoes = (shoes,male,brand=[],color=[],price=[],percent=[],size=[
         }
         else return filteredPercent
     },[filteredPercent,size])
-
-    return fitleredSize;
+    const filteredMaterial = useMemo(()=>{
+        if(material.length>0){
+            return fitleredSize.filter(item=>material.includes(item.material))
+        }else return fitleredSize
+    },[material,fitleredSize])
+    return filteredMaterial;
 }
 
 export const useToShow = (data,limit,current=1)=>{

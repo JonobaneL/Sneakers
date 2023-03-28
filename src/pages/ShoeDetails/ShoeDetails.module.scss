@@ -1,0 +1,32 @@
+.shoe-details{
+    width: 100%;
+    .back{
+        width: 100%;
+        background: #3E5C76;
+        &-content{
+            width: 1200px;
+            height: 50px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            .content__icon{
+                width: 30px;
+            }
+            .content__title{
+                color: #fff;
+                font-size: 15px;
+            }
+        }
+    }
+    .content{
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        gap: 20px;
+        .product-images{
+            img{
+                width: 720px;
+            }
+        }
+    }
+}

@@ -10,7 +10,7 @@ const Pagination = ({total, current, changePage}) => {
                     <div 
                         key={item} 
                         className={`${styles.pagination__item} ${current==item?styles.active:''}`}
-                        onClick={()=>changePage(item)}
+                        onClick={()=>{window.scrollTo(0,0);changePage(item)}}
                     >
                         {item}
                     </div>

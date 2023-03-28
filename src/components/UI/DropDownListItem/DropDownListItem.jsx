@@ -1,16 +1,17 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import styles from './DropDownListItem.module.scss'
 import transit from './dropDownTransition.module.scss'
 import { CSSTransition } from 'react-transition-group';
 const DropDownListItem = ({data,getData}) => {
     const [isOpen,setIsOpen] = useState(false);
-    const [selectedCategory,setselectedCategory] = useState(null)
+    const [selectedCategory,setselectedCategory] = useState({})
+    
     return (
         <div tabIndex={0} onBlur={()=>setIsOpen(false)} className={styles.listItem}>
             <div className={styles.mainItem}>
                 <p onClick={e=>{
                     e.preventDefault();
-                    getData(data.name)
+                    setselectedCategory(data)
                 }}>{data.name}</p>
                 {data["sub-category"]
                     ?<span onClick={()=>{setIsOpen(prev=>!prev)}} className={`${styles.arrow} ${isOpen?styles.active:' '}`}>&#9662;</span>
@@ -31,7 +32,7 @@ const DropDownListItem = ({data,getData}) => {
                             <div 
                                 onClick={e=>{
                                     e.preventDefault();
-                                    getData(item.name)
+                                    setselectedCategory(item)
                                 }} 
                                 key={item.id} 
                                 className={styles.subList__item}

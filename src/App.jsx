@@ -1,6 +1,5 @@
 import Footer from "./components/UI/footer/Footer"
 import Header from "./components/UI/header/Header"
-import Tabs from "./components/UI/tabs/Tabs"
 import { BrowserRouter } from "react-router-dom";
 import StoreRoute from "./components/StoreRoute";
 

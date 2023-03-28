@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./settings.css"
 import {bestSellers,novelty} from '../../data/homeSneakersData'
+import ShoesItem from '../shoesListItem/ShoesItem';
 
 
 const ProductsCarousel = () => {
@@ -80,6 +81,7 @@ const ProductsCarousel = () => {
                 <Slider ref={slider} {...settings}>
                     {
                         data.map(item=>
+                            // <ShoesItem key={item.id} item={item}/>)
                             <CarouselCard key={item.id} data={item}/>)
                     }
                 </Slider>

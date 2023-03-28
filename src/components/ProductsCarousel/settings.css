@@ -5,6 +5,7 @@
 .slick-initialized .slick-slide{
     display: flex;
     justify-content: center;
+    height: 350px;
 }
 li.slick-active{
     background: #1D2D44;

@@ -11,9 +11,10 @@ $dark-color:#1D2D44;
     text-align: center;
     display: grid;
     position: relative;
-    grid-template-rows: 210px 1fr 40px;
+    grid-template-rows: 210px auto 1fr 40px;
     grid-template-areas: 
     "image"
+    "brand"
     "name"
     
     "price"; 
@@ -56,12 +57,16 @@ $dark-color:#1D2D44;
         width: 100%;
         grid-area: image;
     }
+    .brand{
+        font-size: 15px;
+        font-weight: 600;
+    }
     .name{
         grid-area: name;
         margin: 5px 0;
         font-size: 15px;
         line-height: 24px;
-        align-self: center;
+        align-self: top;
     }
     .price{
         grid-area: price;

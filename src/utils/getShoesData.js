@@ -1,4 +1,3 @@
-import {shoes} from '../data/shoes';
 import {shoesCategories} from '../data/shoesCategories'
 import {shoesMaterial} from '../data/shoesMaterial'
 import {shoesBrands} from '../data/shoesBrands'
@@ -13,5 +12,5 @@ export const getShoesData=(male)=>{
     });
     const shoesMaterialResponse = shoesMaterial.filter(item=>item.male === male || item.male === 'all');
     const shoesBrandsResponse = shoesBrands.filter(item=>item.male === male || item.male === 'all');
-    return [shoes,shoesCategoriesResponse,shoesBrandsResponse,shoesMaterialResponse];
+    return [shoesCategoriesResponse,shoesBrandsResponse,shoesMaterialResponse];
 }

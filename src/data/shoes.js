@@ -1,7 +1,7 @@
 
 export const shoes = [
     {
-        id:1001,
+        id:'1001',
         name:"Men's Surveyor Boat Shoe",
         category:"Boat Shoes",
         "sub-category":null,
@@ -10,6 +10,7 @@ export const shoes = [
         price:104.99,
         discount:10,
         male:'men',
+        material:'Canvas',
         availableSize:[8.5, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/58/75/8/58758_right_feed1000.jpg",
         descripion:[
@@ -67,7 +68,7 @@ export const shoes = [
         ]
     },
     {
-        id:1002,
+        id:'1002',
         name:"Men's Hardie II Chelsea Boot",
         category:"Boat Shoes",
         "sub-category":"Chelsea Boots",
@@ -76,6 +77,7 @@ export const shoes = [
         price:109.99,
         discount:15,
         male:'men',
+        material:'Canvas',
         availableSize:[7, 8, 9, 11, 12, 12.5, 13, 15],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/94/04/5/94045_right_feed1000.jpg",
         descripion:[
@@ -120,7 +122,7 @@ export const shoes = [
         ]
     },
     {
-        id:1003,
+        id:'1003',
         name:"Men's Chuck Taylor All Star Street Sneaker Boot",
         category:"Sneakers and Athletic Shoe",
         "sub-category":"Lifestyle and Fashion Sneakers",
@@ -129,6 +131,7 @@ export const shoes = [
         price:69.99,
         discount:0,
         male:'men',
+        material:'Canvas',
         availableSize:[7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/93/70/2/93702_right_feed1000.jpg",
         descripion:[
@@ -173,7 +176,7 @@ export const shoes = [
         ]
     },
     {
-        id:1004,
+        id:'1004',
         name:"Men's Court Vision Mid Sneaker",
         category:"Sneakers and Athletic Shoe",
         "sub-category":"Basketball Shoes",
@@ -182,6 +185,7 @@ export const shoes = [
         price:84.99,
         discount:40,
         male:'men',
+        material:'Mesh',
         availableSize:[7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/96/06/9/96069_right_feed1000.jpg",
         descripion:[
@@ -226,7 +230,7 @@ export const shoes = [
         ]
     },
     {
-        id:1005,
+        id:'1005',
         name:"Men's Court Vision Mid Sneaker",
         category:"Sneakers and Athletic Shoe",
         "sub-category":"Basketball Shoes",
@@ -235,6 +239,7 @@ export const shoes = [
         price:84.99,
         discount:0,
         male:'men',
+        material:'Leather',
         availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/51/64/6/51646_right_feed1000.jpg",
         descripion:[
@@ -279,7 +284,7 @@ export const shoes = [
         ]
     },
     {
-        id:1006,
+        id:'1006',
         name:"Men's Court Vision Mid Sneaker",
         category:"Sneakers and Athletic Shoe",
         "sub-category":"Basketball Shoes",
@@ -288,6 +293,7 @@ export const shoes = [
         price:84.99,
         discount:0,
         male:'men',
+        material:'Mesh',
         availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/32/6/38326_right_feed1000.jpg",
         descripion:[
@@ -332,7 +338,7 @@ export const shoes = [
         ]
     },
     {
-        id:1007,
+        id:'1007',
         name:"Men's Court Vision Mid Sneaker",
         category:"Sneakers and Athletic Shoe",
         "sub-category":"Basketball Shoes",
@@ -341,6 +347,7 @@ export const shoes = [
         price:50.99,
         discount:0,
         male:'men',
+        material:'Leather',
         availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/96/02/7/96027_right_feed1000.jpg",
         descripion:[
@@ -385,7 +392,7 @@ export const shoes = [
         ]
     },
     {
-        id:1008,
+        id:'1008',
         name:"Men's Court Vision Mid Sneaker",
         category:"Sneakers and Athletic Shoe",
         "sub-category":"Basketball Shoes",
@@ -394,6 +401,7 @@ export const shoes = [
         price:29.99,
         discount:0,
         male:'men',
+        material:'Leather',
         availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/33/0/38330_right_feed1000.jpg",
         descripion:[
@@ -438,7 +446,7 @@ export const shoes = [
         ]
     },
     {
-        id:1009,
+        id:'1009',
         name:"Men's Court Vision Mid Sneaker",
         category:"Sneakers and Athletic Shoe",
         "sub-category":"Basketball Shoes",
@@ -447,6 +455,7 @@ export const shoes = [
         price:44.99,
         discount:0,
         male:'men',
+        material:'Leather',
         availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/40/46/7/40467_right_feed1000.jpg",
         descripion:[
@@ -491,7 +500,7 @@ export const shoes = [
         ]
     },
     {
-        id:1010,
+        id:'1010',
         name:"Men's Court Vision Mid Sneaker",
         category:"Sneakers and Athletic Shoe",
         "sub-category":"Basketball Shoes",
@@ -500,6 +509,7 @@ export const shoes = [
         price:84.99,
         discount:0,
         male:'men',
+        material:'Leather',
         availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/35/1/38351_right_feed1000.jpg",
         descripion:[
@@ -544,7 +554,7 @@ export const shoes = [
         ]
     },
     {
-        id:1011,
+        id:'1011',
         name:"Women's Kascade Medium/Wide Espadrille Wedge",
         category:"Heels",
         "sub-category":"Wedge Heels",
@@ -553,6 +563,7 @@ export const shoes = [
         price:89.99,
         discount:44,
         male:'women',
+        material:'Leather',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/59/52/5/59525_right_feed1000.jpg",
         descripion:[
@@ -608,7 +619,7 @@ export const shoes = [
         ]
     },
     {
-        id:1012,
+        id:'1012',
         name:"Women's Janne Mary Jane",
         category:"Mary Janes",
         "sub-category":null,
@@ -617,6 +628,7 @@ export const shoes = [
         price:69.99,
         discount:29,
         male:'women',
+        material:'Leather',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/75/55/6/75556_right_feed1000.jpg",
         descripion:[
@@ -644,7 +656,7 @@ export const shoes = [
         ]
     },
     {
-        id:1013,
+        id:'1013',
         name:"Women's Excursion TR 16 Medium/Wide Trail Shoe",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Outdoor and Trail Shoes",
@@ -653,6 +665,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'women',
+        material:'Leather',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/35/47/1/35471_right_feed1000.jpg",
         descripion:[
@@ -696,7 +709,7 @@ export const shoes = [
         ]
     },
     {
-        id:1014,
+        id:'1014',
         name:"Women's Excursion TR 16 Medium/Wide Trail Shoe",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Outdoor and Trail Shoes",
@@ -705,6 +718,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'women',
+        material:'EVA',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/73/44/5/73445_right_feed1000.jpg",
         descripion:[
@@ -748,7 +762,7 @@ export const shoes = [
         ]
     },
     {
-        id:1015,
+        id:'1015',
         name:"Women's Excursion TR 16 Medium/Wide Trail Shoe",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Outdoor and Trail Shoes",
@@ -757,6 +771,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'women',
+        material:'EVA',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/73/66/7/73667_right_feed1000.jpg",
         descripion:[
@@ -800,7 +815,7 @@ export const shoes = [
         ]
     },
     {
-        id:1016,
+        id:'1016',
         name:"Women's Air Max Excee Sneaker",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Outdoor and Trail Shoes",
@@ -809,6 +824,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'women',
+        material:'EVA',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/55/07/2/55072_right_feed1000.jpg",
         descripion:[
@@ -852,7 +868,7 @@ export const shoes = [
         ]
     },
     {
-        id:1017,
+        id:'1017',
         name:"Women's Embury Chelsea Boot",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Outdoor and Trail Shoes",
@@ -861,6 +877,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'women',
+        material:'Velvet',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/39/31/0/39310_right_feed1000.jpg",
         descripion:[
@@ -904,7 +921,7 @@ export const shoes = [
         ]
     },
     {
-        id:1018,
+        id:'1018',
         name:"Women's Ward Low Top Platform Sneaker",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Outdoor and Trail Shoes",
@@ -913,6 +930,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'women',
+        material:'Velvet',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/76/83/5/76835_right_feed1000.jpg",
         descripion:[
@@ -956,7 +974,7 @@ export const shoes = [
         ]
     },
     {
-        id:1019,
+        id:'1019',
         name:"Women's Court Vision Alta Sneaker",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Outdoor and Trail Shoes",
@@ -965,6 +983,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'women',
+        material:'Patent',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/41/10/6/41106_right_feed1000.jpg",
         descripion:[
@@ -1008,7 +1027,7 @@ export const shoes = [
         ]
     },
     {
-        id:1020,
+        id:'1020',
         name:"Women's Air Max Excee Sneaker",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Outdoor and Trail Shoes",
@@ -1017,6 +1036,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'women',
+        material:'Patent',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/78/1/38781_right_feed1000.jpg",
         descripion:[
@@ -1060,7 +1080,7 @@ export const shoes = [
         ]
     },
     {
-        id:1021,
+        id:'1021',
         name:"Men's Rebound Game High Top Sneaker",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"High Tops",
@@ -1069,6 +1089,7 @@ export const shoes = [
         price:74.99,
         discount:0,
         male:'men',
+        material:'Fabric',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/45/53/0/45530_right_feed1000.jpg",
         descripion:[
@@ -1112,7 +1133,7 @@ export const shoes = [
         ]
     },
     {
-        id:1022,
+        id:'1022',
         name:"Men's Cloudfoam Alphabounce+ Sneaker",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Running Shoes",
@@ -1121,6 +1142,7 @@ export const shoes = [
         price:79.99,
         discount:0,
         male:'men',
+        material:'Leather',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/98/93/3/98933_right_feed1000.jpg",
         descripion:[
@@ -1164,7 +1186,7 @@ export const shoes = [
         ]
     },
     {
-        id:1023,
+        id:'1023',
         name:"Men's GEL Contend 8 Wide Running Shoe",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Running Shoes",
@@ -1173,6 +1195,7 @@ export const shoes = [
         price:69.99,
         discount:0,
         male:'men',
+        material:'Leather',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/48/7/38487_right_feed1000.jpg",
         descripion:[
@@ -1216,7 +1239,7 @@ export const shoes = [
         ]
     },
     {
-        id:1024,
+        id:'1024',
         name:"Men's Essentials Arizona Footbed Sandal",
         category:"Sandals",
         "sub-category":"Comfort Sandals",
@@ -1225,6 +1248,7 @@ export const shoes = [
         price:49.99,
         discount:0,
         male:'men',
+        material:'Rubber',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/40/41/0/40410_right_feed1000.jpg",
         descripion:[
@@ -1268,7 +1292,7 @@ export const shoes = [
         ]
     },
     {
-        id:1025,
+        id:'1025',
         name:"Men's Retaliation 4 Training Shoe",
         category:"Sneakers and Athletic Shoes",
         "sub-category":"Training Shoes",
@@ -1277,6 +1301,7 @@ export const shoes = [
         price:49.99,
         discount:0,
         male:'men',
+        material:'Fabric',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/73/07/9/73079_right_feed1000.jpg",
         descripion:[
@@ -1320,7 +1345,7 @@ export const shoes = [
         ]
     },
     {
-        id:1026,
+        id:'1026',
         name:"Men's Sync Medium/Wide Oxford",
         category:"Loafers and Oxfords",
         "sub-category":"Lace Ups",
@@ -1329,6 +1354,7 @@ export const shoes = [
         price:84.99,
         discount:0,
         male:'men',
+        material:'Fabric',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/45/58/4/45584_right_feed1000.jpg",
         descripion:[
@@ -1372,7 +1398,7 @@ export const shoes = [
         ]
     },
     {
-        id:1027,
+        id:'1027',
         name:"Men's Flex Medium/Wide Plain Toe Oxford",
         category:"Loafers and Oxfords",
         "sub-category":null,
@@ -1381,6 +1407,7 @@ export const shoes = [
         price:129.99,
         discount:0,
         male:'men',
+        material:'Rubber',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/62/62/4/62624_right_feed1000.jpg",
         descripion:[
@@ -1424,7 +1451,7 @@ export const shoes = [
         ]
     },
     {
-        id:1028,
+        id:'1028',
         name:"Men's Heist Knit Medium/Wide Oxford",
         category:"Loafers and Oxfords",
         "sub-category":null,
@@ -1433,6 +1460,7 @@ export const shoes = [
         price:119.99,
         discount:0,
         male:'men',
+        material:'Leather',
         availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/62/63/9/62639_right_feed1000.jpg",
         descripion:[

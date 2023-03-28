@@ -48,44 +48,6 @@ body::-webkit-scrollbar-thumb:hover {
   margin: 100px auto;
 }
 
-.About .dList{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 500px;
-}
-.dList .dList__item{
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  width: 100%;
-  height: 50px;
-  border: 1px solid #000;
-  border-radius: 3px;
-  gap: 20px;
-}
-.About .checkboxList{
-  margin-bottom: 40px;
-  width: 250px;
-  padding: 10px;
-  background: rgba(90, 90, 90, 0.1);
-  border: 1px solid #2f2f2f;
-  display: flex;
-  flex-wrap: wrap;
-  gap:10px;
-}
-.checkboxList .checkboxList__item{
-  width: 40px;
-  height: 40px;
-  border: 1px solid #2f2f2f;
-}
-.checkboxList__item label{
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.checkboxList__item input{
-  /* display: none; */
+.About .dl{
+  width: 200px;
 }

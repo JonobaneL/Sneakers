@@ -5,7 +5,8 @@ import {getFinalPrice} from '../../utils/getFinalPrice'
 const CarouselCard = ({data}) => {
     return (
         <div className={styles.card}>
-            <img src={data.image} alt={data.name} />
+            <img src={data.previewImage} alt={data.name} />
+            <p className={styles.brand}>{data.brand}</p>
             <p className={styles.name}>{data.name}</p>
             <div className={styles.price}>
                 {(data.discount)?
