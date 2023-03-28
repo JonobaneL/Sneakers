@@ -19,14 +19,49 @@
         }
     }
     .content{
-        width: 1200px;
-        margin: 0 auto;
+        max-width: 1200px;
+        padding: 40px 80px;
         display: flex;
         gap: 20px;
-        .product-images{
-            img{
-                width: 720px;
+        .product-info{
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #1d2d44;
+            .product-name{
+                font-size: 28px;
+                line-height: 38px;
+                font-weight: 800;
             }
+            .product-price{
+                display: flex;
+                gap: 10px;
+                align-items: end;
+                font-size: 22px;
+                .price__discount,.price{
+                    font-weight: 600;
+                }
+                .discount{
+                    color: #a40000;
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+                .price__diabled{
+                    font-size: 18px;
+                    text-decoration: line-through;
+                    color: rgba(29, 45, 68, 0.8);
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width: 1360px) {
+    .shoe-details{
+        .content{
+            margin: 0 auto;
+            padding: 40px 0;
         }
     }
 }

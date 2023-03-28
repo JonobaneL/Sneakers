@@ -5,7 +5,7 @@ import { getFinalPrice } from '../../utils/getFinalPrice';
 import { Link } from 'react-router-dom';
 const ShoesItem = ({item}) => {
     return (
-        <Link to={`/product/${item.id}`}>
+        <Link to={`/product/${item.id}/${item.colors[0].id}`}>
         <div className={styles.item}>
             <img src={item.previewImage} alt={item.name} />
             <p className={styles.brand}>{item.brand}</p>

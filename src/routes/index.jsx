@@ -18,7 +18,7 @@ export const publicRoutes = [
         element:<Shoes/>
     },
     {
-        path:'/product/:id',
+        path:'/product/:id/:colorId',
         element:<ShoeDetails/>
     },
     {

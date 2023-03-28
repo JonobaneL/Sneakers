@@ -1,14 +1,21 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getProductById } from '../../utils/getProduct';
+import { getColorById, getProductById } from '../../utils/getProduct';
 import backIcon from '../../images/back-icon.svg'
 import Rate from '../../components/UI/rate/Rate';
 import styles from './ShoeDetails.module.scss'
+import Gallery from '../../components/UI/gallery/Gallery';
+import { getFinalPrice } from '../../utils/getFinalPrice';
+import ColorSelect from '../../components/UI/colorSelect/ColorSelect';
+import { useMemo } from 'react';
 
 const ShoeDetails = () => {
-    const {id} = useParams();
-    const product = getProductById(id)
-    console.log(product)
+    const {id,colorId} = useParams();
+    const currentProduct = getProductById(id);
+    const productColor = getColorById(currentProduct,colorId);
+    const [poitedColor,setPointedColor] = useState(productColor.title)
+    console.log(productColor)
+   
     return (
         <div className={styles['shoe-details']}>
             <div className={styles.back}>
@@ -19,13 +26,26 @@ const ShoeDetails = () => {
             </div>
             <div className={styles.content}>
                 <div className={styles["product-images"]}>
-                    <img src={product.colors[0].images[0]} alt="" />
+                    <Gallery images={productColor.images} width='600px'/>
                 </div>
                 <div className={styles["product-info"]}>
-                    <p>{product.name}</p>
-                    <p>{product.price}</p>
-                    <Rate rateIndex={product.colors[0].rate} width='100px' />
-                    <p>Color: {product.colors[0].title}</p>
+                    <h2 className={styles["product-name"]}>{currentProduct.name}</h2>
+                    <div className={styles["product-price"]}>
+                        {(productColor.discount>0)?
+                        <p className={styles.price__discount}>${getFinalPrice(currentProduct.price,productColor.discount)}</p>
+                        : null
+                        }
+                        <p className={productColor.discount?styles.price__diabled:styles.price}>${currentProduct.price}</p>
+                        {(productColor.discount>0)?
+                        <p className={styles.discount}>{productColor.discount}% off</p>
+                        : null
+                        }
+                        </div>
+                    <Rate rateIndex={productColor.rate} width='100px' />
+                    <div className={styles["product-color"]}>
+                        <p>Color: {poitedColor}</p>
+                        <ColorSelect colors={currentProduct.colors} poitedColor={color=>setPointedColor(color)}/>
+                    </div>
                 </div>
                 
             </div>

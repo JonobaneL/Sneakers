@@ -109,14 +109,14 @@ export const shoes = [
                 id:2,
                 title:"Black",
                 discount:0,
-                rate:0,
+                rate:3,
                 nAvailable:'6 6.5 7.5 8.5 9.5 10.5 11.5 15',
                 images:[
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_pair_feed1000.jpg',
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_right_feed1000.jpg',
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_left_feed1000.jpg',
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_top_feed1000.jpg',
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_back_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/94/03/4/94034_pair_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/94/03/4/94034_right_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/94/03/4/94034_left_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/94/03/4/94034_top_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/94/03/4/94034_back_feed1000.jpg',
                 ]
             },
         ]
