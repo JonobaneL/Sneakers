@@ -47,7 +47,17 @@ const ShoeDetails = () => {
                         <ColorSelect colors={currentProduct.colors} poitedColor={color=>setPointedColor(color)}/>
                     </div>
                 </div>
-                
+                <div className={styles["product-description"]}>
+                    <h2>Details</h2>
+                    <p>{currentProduct.descripion[0]}</p>
+                    <ul>
+                        {currentProduct.descripion.map((item,index)=>
+                            index!=0
+                            ?<li key={index}>{item}</li>
+                            :null
+                        )}
+                    </ul>
+                </div>
             </div>
         </div>
     );

@@ -1,42 +1,11 @@
 import React,{useState,useEffect,useMemo, useRef} from 'react'
-import DropDownList from '../components/UI/dropDownList/dropDownList';
-import Gallery from '../components/UI/gallery/Gallery';
-import { shoes } from '../data/shoes';
-
+import SizeSelect from '../components/UI/sizeSelect/SizeSelect';
 
 const About = () => {
-    const productImages = shoes[1].colors[0].images;
-    const [selectedSlide,setSelected] = useState(0)
-    useEffect(()=>{
-        console.log(selectedSlide)
-    },[selectedSlide])
+    const nA = "7 8 9.5";
     return <div className="About">
         <div className="content" >
-            {/* <div className="galery">
-                <div className="slides">
-                    {productImages.map((item,index)=>
-                        <div key={index} className={`slide ${selectedSlide == index?'active':''}`}>
-                            <img src={item} alt={`slide${index}`} />
-                        </div>
-                        )}
-                </div>
-                <div className="galery-navigation">
-                    {productImages.map((item,index)=>
-                    <div 
-                        key={index} 
-                        className="nav__item"
-                        onClick={e=>{
-                            console.log(e.target.dataset.navid)
-                            setSelected(e.target.dataset.navid)}}
-                        >
-                        <img data-navid={index}  src={item} alt={`slide${index}`} />
-                    </div>
-                    )}
-                </div>
-            </div> */}
-
-            <br />
-            <Gallery images={productImages} width='520px'/>
+            <SizeSelect notAvaliable={nA}/>
           <br />
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum asperiores illum, nisi temporibus expedita veritatis optio obcaecati autem, deserunt porro repudiandae ratione hic ut molestias, omnis fugit quia voluptatibus.
             Voluptates dignissimos deleniti ipsa aperiam et itaque similique quaerat. Incidunt nulla aliquid rerum enim ea consequuntur repudiandae! Non corporis provident iusto animi ullam. Autem repellendus molestias quod sint animi? Quis!

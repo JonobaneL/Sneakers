@@ -52,7 +52,7 @@ export const shoes = [
                 ]
             },
             {
-                id:2,
+                id:3,
                 title:"Dark Tan",
                 discount:5,
                 rate:4.5,
