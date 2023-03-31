@@ -1,28 +1,59 @@
-import React, {useState,useEffect} from 'react';
-import CheckBox from '../checkBox/CheckBox';
+import React from 'react';
 import styles from './CheckBoxList.module.scss'
-const CheckBoxList = ({filtersChange,data,colored,clearCheckBoxs}) => {
-    const [checkedItems,setCheckedItem]=useState([])
-    const handleChange = (elem)=>{
-        const elmentIndex = checkedItems.indexOf(elem);
-        if(elmentIndex<0){
-            setCheckedItem([...checkedItems,elem])
-        }
-        else{
-            setCheckedItem(checkedItems.filter(item=>item !== elem))
-        }
-    }
-    useEffect(()=>{
-        filtersChange(checkedItems)
-    },[checkedItems])
-    return (
-        <div className={styles["checkBox-list"]}>
-            {data.map(item=>
-                <CheckBox key={item.id} label={item.name} color={colored?item.color:"#ffffff"} handler={handleChange} clearBox={clearCheckBoxs} />
-                )}
-        </div>
-    );
+import darkMark from '../../../images/check-mark/dark-icon.svg'
+import whiteMark from '../../../images/check-mark/white-icon.svg'
+import {getContrast} from '../../../utils/contrast'
+
+const CheckBoxItem = ({item,checkedItems,event,color="#ffffff"})=>{
+    const iconColor = getContrast(color)
+    return <li 
+        className={`${styles['list-item']} ${checkedItems.includes(item.name)?styles.active:''}`}
+        onClick={()=>event(item.name)}
+        
+        >
+            <div className={styles["checkbox-indicator"]}
+            style={{background:color,border:color=="#ffffff"?"1px solid rgba(62, 92, 118,0.8)":'none'}}
+            >
+                <img className={styles['checkbox-mark']} src={iconColor=='white'?whiteMark:darkMark} alt="checkbox-indicator" />
+            </div>
+            <p className={styles['list-title']}>
+                {item.name}
+            </p>
+    </li>
 };
 
 
+const CheckBoxList = ({data,checkedItems,handler,colored=false}) => {
+    const handleClick= (item)=>{
+        if(!checkedItems.includes(item)){
+            handler([...checkedItems,item])
+        }
+        else{
+            handler(checkedItems.filter(checked_item => checked_item!==item))
+        }
+    }
+    return (
+            <ul className={styles['checkbox-list']}>
+            {
+                data.map((item,index)=>
+                <CheckBoxItem key={index} item={item} checkedItems={checkedItems} event={handleClick} color={colored?item.color:"#ffffff"} /> 
+                )
+            }
+            </ul>
+    );
+};
+
 export default CheckBoxList;
+
+// <li 
+                    // key={index} 
+                    // className={`${styles['list-item']} ${checkedItems.includes(item.name)?styles.active:''}`}
+                    // onClick={()=>handleClick(item.name)}
+                    // >
+                    //     <div className={styles["checkbox-indicator"]}>
+                    //         <img className={styles['checkbox-mark']} src={darkMark} alt="checkbox-indicator" />
+                    //     </div>
+                    //     <p className={styles['list-title']}>
+                    //         {item.name}
+                    //     </p>
+                    // </li>

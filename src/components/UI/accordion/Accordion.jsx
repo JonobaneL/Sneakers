@@ -2,12 +2,17 @@ import React, {useState} from 'react';
 import AccordionButton from '../accordion-button/AccordionButton';
 import styles from './Accordion.module.scss'
 
-const Accordion = ({width='100%',title,children,fixed,autoheight=false,clearTriger=false,clearHandler=()=>{}}) => {
+const Accordion = ({width='100%',title,children,fixed,autoheight=false,data=[],handler}) => {
     const [isOpen, setIsOpen] = useState(fixed||false)
     const openContent=()=>{
         !fixed?
         setIsOpen(prev=>!prev)
         : null
+    }
+    const clearTriger = data.length>0?true:false;
+    const clearHandler = ()=>{
+        window.scrollTo(0,0)
+        handler();
     }
     const autoheightStyles = {
         height:'auto',

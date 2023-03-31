@@ -31,7 +31,7 @@ const Header = () => {
                       <img src={searchIcon} alt="search" />
                   </li>
                   <li className={styles.topItem}>
-                    <img src={shopingBag} alt="shoping-bag" />
+                    <Link to='/shopping-cart'><img src={shopingBag} alt="shoping-bag" /></Link>
                   </li>
                   <li className={styles.topItem}>
                     <img src={user} alt="user" />

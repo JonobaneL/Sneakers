@@ -6,7 +6,6 @@ import styles from './ColorSelect.module.scss'
 const ColorSelect = ({colors,poitedColor}) => {
     const {id,colorId} =useParams()
     const [selectedColor,setSelectedColor] = useState(colorId)
-    console.log(selectedColor)
     return <div className={styles["color-select"]}>
         {
             colors.map(item=>

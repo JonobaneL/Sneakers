@@ -2,15 +2,33 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    gap: 7px;
     .size-item{
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
         border: 1px solid #1d2d44;
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 400;
         color: #1d2d44;
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.2s;
+        cursor: pointer;
+        input{
+            appearance: none;
+        }
+        &.active, &:hover{
+            background-color: #1d2d44;
+            color:#fff
+        }
+       &.disabled{
+            background: linear-gradient(to left top,transparent calc(49% - 1px),rgba(124,135,142,.5) calc(50% - 1px),rgba(124,135,142,.5) calc(49% + 1px),transparent calc(50% + 1px)) no-repeat 0 0/100% 42px;
+            color: #484848;
+            background-color: #d0d3d4;
+            border: 1px solid #7c878e;
+            color: #7c878e;
+            cursor:not-allowed;
+       }
     }
 }

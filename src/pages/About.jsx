@@ -1,11 +1,11 @@
-import React,{useState,useEffect,useMemo, useRef} from 'react'
-import SizeSelect from '../components/UI/sizeSelect/SizeSelect';
+import React,{useState,useEffect,useMemo} from 'react'
+import InfoTabs from '../components/UI/info-tabs/InfoTabs';
 
 const About = () => {
-    const nA = "7 8 9.5";
+    
     return <div className="About">
         <div className="content" >
-            <SizeSelect notAvaliable={nA}/>
+                <InfoTabs/>        
           <br />
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum asperiores illum, nisi temporibus expedita veritatis optio obcaecati autem, deserunt porro repudiandae ratione hic ut molestias, omnis fugit quia voluptatibus.
             Voluptates dignissimos deleniti ipsa aperiam et itaque similique quaerat. Incidunt nulla aliquid rerum enim ea consequuntur repudiandae! Non corporis provident iusto animi ullam. Autem repellendus molestias quod sint animi? Quis!

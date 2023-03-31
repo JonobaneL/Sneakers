@@ -11,7 +11,7 @@ export const shoes = [
         discount:10,
         male:'men',
         material:'Canvas',
-        availableSize:[8.5, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+        availableSize:['8.5', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/58/75/8/58758_right_feed1000.jpg",
         descripion:[
             "Get the classic Sperry look in the Men's Sperry Surveyor Boat Shoe.",
@@ -58,11 +58,11 @@ export const shoes = [
                 rate:4.5,
                 nAvailable:'6 6.5 7 7.5',
                 images:[
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_pair_feed1000.jpg',
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_right_feed1000.jpg',
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_left_feed1000.jpg',
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_top_feed1000.jpg',
-                    'https://www.famousfootwear.com/blob/product-images/20000/51/25/3/51253_back_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/51/24/5/51245_pair_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/51/24/5/51245_right_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/51/24/5/51245_left_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/51/24/5/51245_top_feed1000.jpg',
+                    'https://www.famousfootwear.com/blob/product-images/20000/51/24/5/51245_back_feed1000.jpg',
                 ]
             },
         ]
@@ -78,7 +78,7 @@ export const shoes = [
         discount:15,
         male:'men',
         material:'Canvas',
-        availableSize:[7, 8, 9, 11, 12, 12.5, 13, 15],
+        availableSize:['7', '8', '9', '11', '12', '12.5', '13', '15'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/94/04/5/94045_right_feed1000.jpg",
         descripion:[
             "The Men's Dr. Martens Hardie II Chelsea Boot is built to handle anything anytime!",
@@ -132,7 +132,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Canvas',
-        availableSize:[7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+        availableSize:['7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/93/70/2/93702_right_feed1000.jpg",
         descripion:[
             "The Men's Dr. Martens Hardie II Chelsea Boot is built to handle anything anytime!",
@@ -186,7 +186,7 @@ export const shoes = [
         discount:40,
         male:'men',
         material:'Mesh',
-        availableSize:[7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+        availableSize:['7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/96/06/9/96069_right_feed1000.jpg",
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
@@ -240,7 +240,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Leather',
-        availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
+        availableSize:['6', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '14', '15'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/51/64/6/51646_right_feed1000.jpg",
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
@@ -294,7 +294,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Mesh',
-        availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
+        availableSize:['6', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '14', '15'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/32/6/38326_right_feed1000.jpg",
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
@@ -348,7 +348,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Leather',
-        availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
+        availableSize:['6', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '14', '15'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/96/02/7/96027_right_feed1000.jpg",
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
@@ -402,7 +402,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Leather',
-        availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
+        availableSize:['6', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '14', '15'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/33/0/38330_right_feed1000.jpg",
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
@@ -456,7 +456,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Leather',
-        availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
+        availableSize:['6', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '14', '15'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/40/46/7/40467_right_feed1000.jpg",
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
@@ -510,7 +510,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Leather',
-        availableSize:[6, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15],
+        availableSize:['6', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13', '14', '15'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/35/1/38351_right_feed1000.jpg",
         descripion:[
             "Get old-school style in the Men's Nike Court Vision Mid Sneaker.",
@@ -564,7 +564,7 @@ export const shoes = [
         discount:44,
         male:'women',
         material:'Leather',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/59/52/5/59525_right_feed1000.jpg",
         descripion:[
             "All in the details. This comfy espadrille wedge has so much personality with its knotted straps and espadrille heel. Canvas or fabric upper with a round toe, stretch knot for a secure fit, eco-microfiber sock lining, espadrille-inspired jute detailing, and added flex. Toe box and heel counter crafted with recycled materials.",
@@ -629,7 +629,7 @@ export const shoes = [
         discount:29,
         male:'women',
         material:'Leather',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/75/55/6/75556_right_feed1000.jpg",
         descripion:[
             "Elevate your collection with the Women's Madden Girl Janne Mary Jane.",
@@ -666,7 +666,7 @@ export const shoes = [
         discount:0,
         male:'women',
         material:'Leather',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5','7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/35/47/1/35471_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -719,7 +719,7 @@ export const shoes = [
         discount:0,
         male:'women',
         material:'EVA',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/73/44/5/73445_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -772,7 +772,7 @@ export const shoes = [
         discount:0,
         male:'women',
         material:'EVA',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/73/66/7/73667_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -825,7 +825,7 @@ export const shoes = [
         discount:0,
         male:'women',
         material:'EVA',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/55/07/2/55072_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -878,7 +878,7 @@ export const shoes = [
         discount:0,
         male:'women',
         material:'Velvet',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/39/31/0/39310_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -931,7 +931,7 @@ export const shoes = [
         discount:0,
         male:'women',
         material:'Velvet',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/76/83/5/76835_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -984,7 +984,7 @@ export const shoes = [
         discount:0,
         male:'women',
         material:'Patent',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/41/10/6/41106_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1037,7 +1037,7 @@ export const shoes = [
         discount:0,
         male:'women',
         material:'Patent',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/78/1/38781_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1090,7 +1090,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Fabric',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/45/53/0/45530_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1143,7 +1143,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Leather',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/98/93/3/98933_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1196,7 +1196,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Leather',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/38/48/7/38487_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1249,7 +1249,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Rubber',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/40/41/0/40410_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1302,7 +1302,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Fabric',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/73/07/9/73079_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1355,7 +1355,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Fabric',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/45/58/4/45584_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1408,7 +1408,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Rubber',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/62/62/4/62624_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",
@@ -1461,7 +1461,7 @@ export const shoes = [
         discount:0,
         male:'men',
         material:'Leather',
-        availableSize:[6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.5],
+        availableSize:['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12.5'],
         previewImage:"https://www.famousfootwear.com/blob/product-images/20000/62/63/9/62639_right_feed1000.jpg",
         descripion:[
             "The start of unstoppable. Meet your all-around trail runner with the Women's Saucony Excursion TR 16 Medium/Wide Trail Shoe.",

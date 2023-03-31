@@ -4,7 +4,7 @@ import styles from './Gallery.module.scss'
 const Gallery = ({images,width}) => {
     const [selectedSlide,setSelected] = useState(0)
     return ( 
-        <div className={styles.gallery} style={{width:width}}>
+        <div className={styles.gallery} style={{width:`${width}px`,height:`${width-80}px`}}>
             <div className={styles["gallery-navigation"]}>
                 {images.map((item,index)=>
                 <div 

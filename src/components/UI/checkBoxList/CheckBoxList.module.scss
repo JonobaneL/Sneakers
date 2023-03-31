@@ -1,6 +1,32 @@
-.checkBox-list{
+.checkbox-list{
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 10px 0;
+    .list-item{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        cursor: pointer;
+        .checkbox-indicator{
+            width: 26px;
+            height: 26px;
+            border-radius:2px;
+            position: relative;
+            .checkbox-mark{
+                position: absolute;
+                width: 75%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                visibility: hidden;
+            }
+        }
+        &.active{
+            .checkbox-mark{
+                visibility: visible;
+            }
+        }
+    }
 }

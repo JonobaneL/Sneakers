@@ -1,0 +1,33 @@
+.shopping-cart{
+    width: 100%;
+    .content{
+        width: 1200px;
+        margin: 40px auto;
+        display: flex;
+        gap: 40px;
+        .shoes{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .shoes-item{
+                width: 100%;
+                height: 150px;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                border: 1px solid red;
+                .image{
+                    width: 120px;
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .total{
+            width: 400px;
+            border: 1px solid black;
+        }
+    }
+}

@@ -1,32 +1,52 @@
 import React from "react";
-import { useState } from "react";
+import { getAvailableSizes } from "../../../utils/getAvailablesizes";
 import styles from './SizeSelect.module.scss';
 
-const SizeItem = ({data})=>{
-    const [choosedSize,setChoosed] = useState(false)
-    return <label className={styles['size-item']}>
-        <input 
-            type="radio" 
-            name="size" 
-            checked={choosedSize} 
-            data-value = {data}
-            onChange={(e)=>{
-                console.log(e.target.dataset.value)
-                setChoosed(prev=>!prev)
-                console.log(choosedSize)
-            }}/>
-        {data}
-    </label>
-}
-
-const SizeSelect = ({notAvaliable}) => {
-    const size = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15];
-    const [choosedSize,setChoosed] = useState(false)
+const SizeSelect = ({notAvailable=[],choosed,handler,type}) => {
+    const size = [
+        {value:'6', available:true}, 
+        {value:'6.5', available:true}, 
+        {value:'7', available:true}, 
+        {value:'7.5', available:true}, 
+        {value:'8', available:true}, 
+        {value:'8.5', available:true}, 
+        {value:'9', available:true}, 
+        {value:'9.5', available:true}, 
+        {value:'10', available:true}, 
+        {value:'10.5', available:true}, 
+        {value:'11', available:true}, 
+        {value:'11.5', available:true}, 
+        {value:'12', available:true}, 
+        {value:'12.5', available:true}, 
+        {value:'13', available:true}, 
+        {value:'14', available:true}, 
+        {value:'15', available:true}
+    ];
+    const availableSizes = getAvailableSizes(size,notAvailable);
+    const handelChange = (data)=>{
+        if(type=='single'){
+            handler([data])
+        }
+        else if(type == "multi"){
+            if(choosed.includes(data)){
+                handler(choosed.filter(item=>item!== data))
+            }else{
+                handler([...choosed,data])
+            }
+        }
+    }
+   
     return <div className={styles['size-select']}>
-        {size.map((item,index)=>
-            <SizeItem key={index} data={item}/>
+        {availableSizes.map((item,index)=>
+            <div 
+                key={index} 
+                className={`${styles['size-item']} ${choosed.includes(item.value)?styles.active:''} ${!item.available?styles.disabled:''}`}
+                onClick={()=>handelChange(item.value)}
+                >
+                {item.value}
+            </div>
         )}
-    </div>;
+    </div>
 }
  
 export default SizeSelect;

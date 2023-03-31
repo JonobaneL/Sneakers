@@ -24,9 +24,7 @@ const Shoes = () => {
     });
     const filteredItems = useShoes(shoes,type,filters.brands,filters.colors,filters.price,filters.percent,filters.size,filters.materials)
     const shownData = useToShow(filteredItems,limit,currentPage)
-    console.log(filters)
-    console.log(filteredItems)
-    useEffect(()=>{
+    const clearEvent =()=>{
       setFilters(
         {
           brands:[],
@@ -36,6 +34,16 @@ const Shoes = () => {
           price:[],
           percent:[]
         })
+    }
+    const clearTriger = ()=>{
+      let result = false
+      for(var obj_item in filters){
+        if(filters[obj_item].length>0) result = true
+      }
+      return  result
+    }
+    useEffect(()=>{
+      clearEvent()
     },[type])
     const totalCountPages = getTotalPagesCount(filteredItems.length,12)
     return (
@@ -48,6 +56,7 @@ const Shoes = () => {
               </div>
               <div className={styles.shoesNumber}>
                   <p>{(currentPage*limit)-limit+1}-{currentPage*limit>filteredItems.length?filteredItems.length:currentPage*limit} of {filteredItems.length} products</p>
+                  <p onClick={()=>clearEvent()} className={`${styles.clearBtn} ${clearTriger()?styles.active:''}`}>Clear All Refinements</p>
               </div>
               <div className={styles.filters}>
                 <Filters filters={filters} setFilters={setFilters} data={{shoesCategories,shoesBrands,shoesMaterial}}/>
