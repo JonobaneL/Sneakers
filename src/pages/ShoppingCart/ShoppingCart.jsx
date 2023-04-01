@@ -1,23 +1,18 @@
 import React from 'react';
 import styles from './ShoppingCart.module.scss'
-import { shoppingCart } from '../../data/shopping-cart';
+import { useState } from 'react';
+import { useShoppingCart } from '../../context/CartContext';
+import CartItem from '../../components/CartItem/CartItem';
+
 const ShoppingCart = () => {
+    const {shoppingCart} = useShoppingCart()
     return (
         <div className={styles['shopping-cart']}>
             <div className={styles.content}>
                 <div className={styles.shoes}>
                     {
                         shoppingCart.map(item=>
-                            <div key={item.id} className={styles['shoes-item']}>
-                                <div className={styles.image}>
-                                    <img src={item.img} alt={item.name} />
-                                </div>
-                                <div className="info">
-                                    <p>{item.name}</p>
-                                    <p>{item.color}</p>
-                                    <p>{item.price}</p>
-                                </div>
-                            </div>
+                            <CartItem key={item.id} {...item}/>
                             )
                     }
                 </div>

@@ -1,4 +1,4 @@
-import React,{useRef, useState} from 'react';
+import React,{useEffect, useRef, useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getColorById, getProductById } from '../../utils/getProduct';
 import backIcon from '../../images/back-icon.svg'
@@ -9,27 +9,33 @@ import { getFinalPrice } from '../../utils/getFinalPrice';
 import ColorSelect from '../../components/UI/colorSelect/ColorSelect';
 import SizeSelect from '../../components/UI/sizeSelect/SizeSelect';
 import InfoTabs from '../../components/UI/info-tabs/InfoTabs';
+import { useShoppingCart } from '../../context/CartContext';
 
 const ShoeDetails = () => {
     const {id,colorId} = useParams();
     const currentProduct = getProductById(id);
     const productColor = getColorById(currentProduct,colorId);
     const [poitedColor,setPointedColor] = useState(productColor.title)
+    const {addToCart} = useShoppingCart()
     const warning_ref = useRef();
-    window.scrollTo(0,0)
-    const [shoes,setShoes]=useState({
-        id:currentProduct.id,
-        name:currentProduct.name,
-        color:productColor.title,
-        price:getFinalPrice(currentProduct.price,productColor.discount),
-        size:[],
-        quantity:1
-    })
+    // window.scrollTo(0,0)
+    const [shoes,setShoes]=useState({id:'',name:'',color:'',size:[],quantity:0})
     const clickHandler = ()=>{
         if(shoes.size.length==0){
             warning_ref.current.hidden = false;
+        }else{
+            addToCart(shoes.id,shoes.size,shoes.color)
         }
     }
+    useEffect(()=>{
+        setShoes({ 
+            id:currentProduct.id,
+            name:currentProduct.name,
+            color:productColor.id,
+            price:getFinalPrice(currentProduct.price,productColor.discount),
+            size:[],
+            quantity:1})
+    },[id,colorId])
     console.log(shoes)
     return (
         <div className={styles['shoe-details']}>

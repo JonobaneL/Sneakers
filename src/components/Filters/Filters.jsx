@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import DropDownList from '../UI/dropDownList/dropDownList';
 import Select from '../UI/select/Select';
 import Accordion from '../UI/accordion/Accordion';
@@ -6,7 +6,7 @@ import {shoesColor} from '../../data/shoesColor'
 import filtersIcon from '../../images/filters.png' 
 import styles from './Filters.module.scss'
 import SizeSelect from '../UI/sizeSelect/SizeSelect';
-import CheckBoxList from '../UI/CheckBoxList/CheckBoxList';
+import CheckBoxList from '../UI/checkBoxList/CheckBoxList';
 
 const Filters = ({filters,setFilters,data}) => {
     const sortParams = [
