@@ -4,17 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 import StoreRoute from "./components/StoreRoute";
 import { CartProvider } from "./context/CartContext";
 
-
-
-
 function App() {
   return (
   <CartProvider>
     <div className="App">
      <BrowserRouter>
         <Header/>
-        <StoreRoute/>
-        <Footer/>
+        <div className="content">
+          <StoreRoute/>
+        </div>
+          <Footer/>
      </BrowserRouter>
     </div>
     </CartProvider>

@@ -7,9 +7,10 @@ import SInput from '../input/SInput';
 import BurgerNav from '../burgerMenu/burgerNav';
 import BurgerButton from '../burgerButton/BurgerButton';
 import { Link } from 'react-router-dom';
+import { useShoppingCart } from '../../../context/CartContext';
 
 const Header = () => {
-
+    const {cartQuantity} = useShoppingCart()
     const [burger, setBurger] = useState(false);
     const showBurgerNav =()=>{
       setBurger(!burger)
@@ -31,7 +32,12 @@ const Header = () => {
                       <img src={searchIcon} alt="search" />
                   </li>
                   <li className={styles.topItem}>
-                    <Link to='/shopping-cart'><img src={shopingBag} alt="shoping-bag" /></Link>
+                    <Link to='/shopping-cart'>
+                      <div className={styles.shopingBag}>
+                        <img src={shopingBag} alt="shoping-bag" />
+                        {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
+                      </div>
+                      </Link>
                   </li>
                   <li className={styles.topItem}>
                     <img src={user} alt="user" />

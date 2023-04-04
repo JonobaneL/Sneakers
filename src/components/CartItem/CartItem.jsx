@@ -1,34 +1,37 @@
 import styles from './CartItem.module.scss'
-import { shoes } from '../../data/shoes'
+import { useShoes } from '../../hooks/useShoes';
+import { useShoppingCart } from '../../context/CartContext';
+import removeIcon from '../../images/cancel.svg'
 
-const CartItem = ({id,color,size,quantity}) => {
-    const item = {}
-    const getProduct=(id,colorId)=>{
-        const productResponse = shoes.find(item=>item.id=id);
-        const colorResponse = shoes.find(item=>item.id==colorId)
-        return {name:productResponse.name,color:colorResponse.title,image:colorResponse.images[1],}
-    }
+const CartItem = ({id,colorId,size,quantity}) => {
+    const {increaseCartQuantity,decreaseCartQuantity,removeFromCart} = useShoppingCart()
+    const item = useShoes(id,colorId)
+    console.log(colorId)
     return <div className={styles['cart-item']}>
         <div className={styles.image}>
-            <img src={item.img} alt={item.name} />
+            <img src={item.images[1]} alt={item.name} />
         </div>
         <div className={styles.info}>
             <h3 className={styles['product-name']}>{item.name}</h3>
-            {/* <p>{item.}</p> */}
-            <p>Color: {item.color}</p>
-            <p>Size: {item.size}</p>
-            {/* <p className={styles['product-price']}>${item.price}</p> */}
+            <p>Color: {item.colorName}</p>
+            <p>Size: {size}</p>
         </div>
-        <div className={styles['product-cost']}>
+        <div className={styles['product-quantity']}>
             <button 
                 className={styles.btn}
                 onClick={()=>{
-                    item.quantity=item.quantity+1
+                    decreaseCartQuantity(id,colorId,size)
                 }}
             >-</button>
-            <p>{item.quantity}</p>
-            <button className={styles.btn}>+</button>
+            <p className={styles.quantity}>{quantity}</p>
+            <button className={styles.btn}onClick={()=>increaseCartQuantity(id,colorId,size)}>+</button>
         </div>
+        <div className={styles["product-cost"]}>
+            ${(quantity*item.cost).toFixed(2)}
+        </div>
+        <button className={styles["remove-product"]} onClick={()=>removeFromCart(id,colorId,size)}>
+            <img  src={removeIcon} alt="" />
+        </button>
     </div>;
 }
  

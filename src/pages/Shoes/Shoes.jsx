@@ -5,14 +5,15 @@ import Pagination from '../../components/UI/pagination/Pagination';
 import { useParams } from 'react-router-dom';
 import { getShoesData } from '../../utils/getShoesData';
 import { getTotalPagesCount } from '../../utils/getPageCount';
-import { useShoes, useToShow } from '../../hooks/useShoes';
+import { useFiltered, useToShow } from '../../hooks/useFilters';
 import { shoes } from '../../data/shoes';
 import styles from './Shoes.module.scss'
 
 const Shoes = () => {
     const {type} = useParams();
     const [shoesCategories,shoesBrands,shoesMaterial] = getShoesData(type); 
-    const [limit,setLimit] = useState(12)
+    // const [limit,setLimit] = useState(12)
+    const limit = 12;
     const [currentPage,setCurrentPage] = useState(1);
     const [filters,setFilters] = useState({
       brands:[],
@@ -22,7 +23,7 @@ const Shoes = () => {
       price:[],
       percent:[]
     });
-    const filteredItems = useShoes(shoes,type,filters.brands,filters.colors,filters.price,filters.percent,filters.size,filters.materials)
+    const filteredItems = useFiltered(shoes,type,filters.brands,filters.colors,filters.price,filters.percent,filters.size,filters.materials)
     const shownData = useToShow(filteredItems,limit,currentPage)
     const clearEvent =()=>{
       setFilters(
@@ -44,6 +45,7 @@ const Shoes = () => {
     }
     useEffect(()=>{
       clearEvent()
+      window.scrollTo(0,0)
     },[type])
     const totalCountPages = getTotalPagesCount(filteredItems.length,12)
     return (

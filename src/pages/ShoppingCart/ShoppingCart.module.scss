@@ -4,17 +4,59 @@
         width: 1200px;
         margin: 40px auto;
         display: flex;
-        gap: 40px;
+        gap: 30px;
         .shoes{
-            width: 100%;
+            width: 830px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            
+            border-radius: 4px;
+            padding: 10px 20px;
+            border: 1px solid rgba(29, 45, 68, 0.3);
         }
         .total{
-            width: 400px;
-            border: 1px solid black;
+            width: 340px;
+            height: 100%;
+            .coupon{
+                width: 100%;
+                border: 1px solid rgba(29, 45, 68, 0.3);
+                border-radius: 4px;
+                padding: 15px;
+                .coupon__field{
+                    display: flex;
+                    margin-top: 5px;
+                    .apply_btn{
+                        height: 40px;
+                        padding: 0 10px;
+                        color: #fff;
+                        font-size: 14px;
+                        background: #1d2d44;
+                        cursor: pointer;
+                        border-radius: 2px;
+                    }
+                }
+            }
+            .cost{
+                width: 100%;
+                margin-top: 20px;
+                border: 1px solid rgba(29, 45, 68, 0.3);
+                border-radius: 4px;
+                padding: 15px;
+                color: #1d2d44;
+                .info{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    li{
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+                .total__cost{
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+            }
         }
     }
 }

@@ -7,47 +7,43 @@ export const useShoppingCart=()=>{
     return useContext(CartContext)
 }
 export const CartProvider = ({children})=>{
-    const [shoppingCart,setShopingCart] = useState([
-        {
-            id: "1002",
-            size:['8'],
-            colorId:2,
-            quantity: 1,
-        },
-    ])
-    console.log("Cart = ",shoppingCart)
-    const addToCart =(id,size,color)=>{
-        return setShopingCart(currentItems=>[...currentItems,{id,size,color,quantity:1}])
+    const [shoppingCart,setShopingCart] = useState([])
+    const addToCart =(id,size,colorId)=>{
+        return setShopingCart(currentItems=>[...currentItems,{id,size,colorId,quantity:1}])
     }
     const getItemQuantity = (id)=>{
         return shoppingCart.fing(item=>item.id===id)?.quantity||0
     }
-    function increaseCartQuantity(id){
+    function increaseCartQuantity(id,colorId,size){
         setShopingCart(currentItems=>{
             return currentItems.map(item=>{
-                if(item.id === id){
+                if(item.id === id && item.colorId === colorId && item.size === size){
                     return {...item,quantity: item.quantity+1}
                 }else return item
             })
         })
     }
-    function decreaseCartQuantity(id){
+    function decreaseCartQuantity(id,colorId,size){
         setShopingCart(currentItems=>{
-            if(currentItems.fing(item=>item.id===id)?.quantity === 1){
-                return shoppingCart.filter(item=>item.id !== id)
+            if(currentItems.find(item=>item.id===id && item.colorId === colorId && item.size === size)?.quantity === 1){
+                return shoppingCart.filter(item=>item.id !== id || item.colorId !== colorId || item.size !== size)
             }else{
                 return currentItems.map(item=>{
-                    if(item.id === id){
+                    if(item.id === id && item.colorId === colorId && item.size === size){
                         return {...item,quantity: item.quantity-1}
                     }else return item
                 })
             }
         })
     }
-    function removeFromCart(id){
-        return setShopingCart(currentItems=>{
-            currentItems.filter(item=> item.id !== id)
-        })
+    function removeFromCart(id,colorId,size){
+        setShopingCart(currentItems=>currentItems.filter(item=> {
+                if(item.id !==id || item.colorId!==colorId || item.size!== size){
+                    return item;
+                }
+                else{return null}
+            })
+        )
     }
     const cartQuantity = shoppingCart.reduce((quantity,item)=>item.quantity+quantity,0)
     return(

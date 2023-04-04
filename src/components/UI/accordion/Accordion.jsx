@@ -20,11 +20,11 @@ const Accordion = ({width='100%',title,children,fixed,autoheight=false,data=[],h
     }
     return (
         <div style={{width:width}} className={styles.accordion}>
-            <div onClick={openContent} className={styles.title}>
-                <span className={styles['title-text']}>{title}</span>
+            <div className={styles.title}>
+                <span onClick={openContent} className={styles['title-text']}>{title}</span>
                 <p className={`${styles['clear-btn']} ${clearTriger?styles.active:''}`} onClick={clearHandler}>Clear</p>
                 {
-                    !fixed?<AccordionButton triger={isOpen}/>:null
+                    !fixed?<AccordionButton handler={openContent} triger={isOpen}/>:null
                 }
             </div>
             <div style={autoheight?autoheightStyles:null} className={`${styles.content} ${isOpen?styles.showed:''}`}>

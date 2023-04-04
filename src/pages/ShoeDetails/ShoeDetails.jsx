@@ -1,69 +1,74 @@
 import React,{useEffect, useRef, useState} from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getColorById, getProductById } from '../../utils/getProduct';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import backIcon from '../../images/back-icon.svg'
 import Rate from '../../components/UI/rate/Rate';
 import styles from './ShoeDetails.module.scss'
 import Gallery from '../../components/UI/gallery/Gallery';
-import { getFinalPrice } from '../../utils/getFinalPrice';
 import ColorSelect from '../../components/UI/colorSelect/ColorSelect';
 import SizeSelect from '../../components/UI/sizeSelect/SizeSelect';
 import InfoTabs from '../../components/UI/info-tabs/InfoTabs';
 import { useShoppingCart } from '../../context/CartContext';
+import { useShoes } from '../../hooks/useShoes';
+import Toast from '../../components/Toast/Toast';
 
 const ShoeDetails = () => {
     const {id,colorId} = useParams();
-    const currentProduct = getProductById(id);
-    const productColor = getColorById(currentProduct,colorId);
-    const [poitedColor,setPointedColor] = useState(productColor.title)
+    const currentProduct = useShoes(id,colorId)
+    const [poitedColor,setPointedColor] = useState(currentProduct.colorName)
     const {addToCart} = useShoppingCart()
     const warning_ref = useRef();
-    // window.scrollTo(0,0)
-    const [shoes,setShoes]=useState({id:'',name:'',color:'',size:[],quantity:0})
+    const [isToastOpen,setToastOpen] = useState(false)
+    const [shoes,setShoes]=useState({id:'',name:'',colorId:1,size:[],quantity:0})
+    const goBack = useNavigate()
     const clickHandler = ()=>{
         if(shoes.size.length==0){
             warning_ref.current.hidden = false;
         }else{
-            addToCart(shoes.id,shoes.size,shoes.color)
+            addToCart(shoes.id,...shoes.size,parseInt(shoes.colorId))
+            seter();
+            setToastOpen(true)
         }
     }
-    useEffect(()=>{
+    const seter = ()=>{
         setShoes({ 
             id:currentProduct.id,
             name:currentProduct.name,
-            color:productColor.id,
-            price:getFinalPrice(currentProduct.price,productColor.discount),
+            colorId:colorId,
+            price:currentProduct.cost,
             size:[],
             quantity:1})
+    }
+    useEffect(()=>{
+        window.scrollTo(0,0)
+        seter();
     },[id,colorId])
-    console.log(shoes)
     return (
         <div className={styles['shoe-details']}>
             <div className={styles.back}>
                 <div className={styles["back-content"]}>
                     <img className={styles.content__icon} src={backIcon} alt="back" />
-                    <Link to={'/'} className={styles.content__title}>Back to Results</Link>
+                    <p className={styles.content__title} onClick={()=>goBack(-1)}>Back to Results</p>
                 </div>
             </div>
             <div className={styles.content}>
                 <div className={styles["product-images"]}>
-                    <Gallery images={productColor.images} width={700}/>
+                    <Gallery images={currentProduct.images} width={700}/>
                 </div>
                 <div className={styles["product-info"]}>
                     <h2 className={styles["product-name"]}>{currentProduct.name}</h2>
                     <div className={styles["product-price"]}>
-                        {(productColor.discount>0)?
-                        <p className={styles.price__discount}>${getFinalPrice(currentProduct.price,productColor.discount)}</p>
+                        {(currentProduct.discount>0)?
+                        <p className={styles.price__discount}>${currentProduct.cost}</p>
                         : null
                         }
-                        <p className={productColor.discount?styles.price__diabled:styles.price}>${currentProduct.price}</p>
-                        {(productColor.discount>0)?
-                        <p className={styles.discount}>{productColor.discount}% off</p>
+                        <p className={currentProduct.discount?styles.price__diabled:styles.price}>${currentProduct.price}</p>
+                        {(currentProduct.discount>0)?
+                        <p className={styles.discount}>{currentProduct.discount}% off</p>
                         : null
                         }
                     </div>
                     <div className={styles['product-rate']}>
-                        <Rate rateIndex={productColor.rate} width='100px' />
+                        <Rate rateIndex={currentProduct.rate} width='100px' />
                     </div>
                     <div className={styles["product-color"]}>
                         <p className={styles.blockTitle}>Color: {poitedColor}</p>
@@ -71,7 +76,7 @@ const ShoeDetails = () => {
                     </div>
                     <div className={styles["product-size"]}>
                         <p className={styles.blockTitle}>Size:   <span hidden className={styles.warringMessage} ref={warning_ref}>Please select a size</span></p>
-                        <SizeSelect notAvailable={productColor.nAvailable} choosed={shoes.size} handler={(data)=>setShoes({...shoes,size:data})} type='single'/>
+                        <SizeSelect notAvailable={currentProduct.nAvailable} choosed={shoes.size} handler={(data)=>setShoes({...shoes,size:data})} type='single'/>
                     </div>
                     <button 
                         onClick={clickHandler} 
@@ -122,6 +127,7 @@ const ShoeDetails = () => {
                     </InfoTabs>
                 </div>
             </div>
+            <Toast type="success" open={isToastOpen} closeHandler={() => setToastOpen(false)}>Added to Cart</Toast>
         </div>
     );
 };

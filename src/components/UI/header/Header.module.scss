@@ -55,6 +55,26 @@ $icons-size:22px;
                 }
             }
             .topNav{
+                .shopingBag{
+                    position: relative;
+                    .cart-quantity{
+                        position: absolute;
+                        background: #1D2D44;
+                        top:-8px;
+                        right: -8px;
+                        font-size: 12px;
+                        color: #fff;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        line-height: 12px;
+                        font-weight: 600;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding-left: 1px;
+                    }
+                }
                 img{
                     width: $icons-size;
                     height: $icons-size;
