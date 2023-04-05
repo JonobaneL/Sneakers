@@ -45,6 +45,7 @@ const About = () => {
       }))
       console.log(data)
     }
+    
     console.log(data)
     return <div className="About">
         <div className="content" >

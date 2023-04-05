@@ -49,6 +49,13 @@ const ShoppingCart = () => {
         <div className={styles['shopping-cart']}>
             <div className={styles.content}>
                 <div className={styles.shoes}>
+                    <div className={styles['shoes-title']}>
+                        <p>Added Items</p>
+                        <p>Size</p>
+                        <p>Color</p>
+                        <p>Quantity</p>
+                        <p>Total</p>
+                    </div>
                     {
                         shoppingCart.map(item=>
                             <CartItem key={`${item.id}#${item.colorId}#${item.size}`} {...item}/>
