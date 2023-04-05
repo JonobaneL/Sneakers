@@ -57,9 +57,9 @@ const ShoppingCart = () => {
                 </div>
                 <div className={styles.total}>
                     <div className={styles.coupon}>
-                        <h3>Have coupon?</h3>
+                        <h3 className={styles.coupon__title}>Have coupon?</h3>
                         <div className={styles.coupon__field}>
-                            <SInput height='40px' params={{placeholder:'Coupon code',ref:couponRef}}/>
+                            <SInput height='100%' params={{placeholder:'Coupon code',ref:couponRef}}/>
                             <button onClick={couponHandler} className={styles.apply_btn}>Apply</button>
                         </div>
                     </div>
