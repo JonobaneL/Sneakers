@@ -12,6 +12,9 @@ import { useShoppingCart } from '../../../context/CartContext';
 const Header = () => {
     const {cartQuantity} = useShoppingCart()
     const [burger, setBurger] = useState(false);
+    const ToTop = ()=>{
+      window.scrollTo(0,0)
+    }
     const showBurgerNav =()=>{
       setBurger(!burger)
     }
@@ -33,7 +36,7 @@ const Header = () => {
                   </li>
                   <li className={styles.topItem}>
                     <Link preventScrollReset={true} to='/shopping-cart'>
-                      <div className={styles.shopingBag}>
+                      <div onClick={ToTop} className={styles.shopingBag}>
                         <img src={shopingBag} alt="shoping-bag" />
                         {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
                       </div>

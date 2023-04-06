@@ -51,10 +51,10 @@ const ShoppingCart = () => {
                 <div className={styles.shoes}>
                     <div className={styles['shoes-title']}>
                         <p>Added Items</p>
-                        <p>Size</p>
-                        <p>Color</p>
-                        <p>Quantity</p>
-                        <p>Total</p>
+                        <p className={styles['title-size']}>Size</p>
+                        <p className={styles['title-color']}>Color</p>
+                        <p className={styles['title-quantity']}>Quantity</p>
+                        <p className={styles['title-total']}>Total</p>
                     </div>
                     {
                         shoppingCart.map(item=>

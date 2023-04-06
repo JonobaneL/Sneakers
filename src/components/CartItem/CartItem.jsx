@@ -11,10 +11,11 @@ const CartItem = ({id,colorId,size,quantity}) => {
         <div className={styles['cart-item']}>
             <img className={styles['product-image']} src={item.images[1]} alt={item.name} />
             <p className={styles['product-name']}>{item.name}</p>
-            <p className={styles['product-size']}>{size}</p>
-            <p className={styles['product-color']}>{item.colorName}</p>
-            <p className={styles["product-total"]}>${(quantity*item.cost).toFixed(2)}</p>
+            <p className={`${styles['product-size']} ${styles.details}`}><span className={styles.parameter}>Size: </span>{size}</p>
+            <p className={`${styles['product-color']} ${styles.details}`}><span className={styles.parameter}>Color: </span>{item.colorName}</p>
+            <p className={`${styles["product-total"]} ${styles.details}`}>${(quantity*item.cost).toFixed(2)}</p>
             <div className={styles['product-quantity']}>
+                <span className={styles.parameter}>Qty: </span>
                 <button 
                     className={styles.btn}
                     onClick={()=>{
