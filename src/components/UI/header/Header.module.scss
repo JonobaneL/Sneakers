@@ -122,6 +122,21 @@ $icons-size:22px;
     }
     
 }
+@media screen and (max-width:425px) {
+    .topNav{
+        .list{
+            gap:20px !important;
+        }
+        img{
+            width: 20px !important;
+            height: 20px !important;
+        }
+        .cart-quantity{
+            top:-6px;
+            right: -6px;
+        }
+    }
+}
 @media only screen and (max-width: 375px) {
     .header{
         padding: 0 20px;

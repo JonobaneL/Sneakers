@@ -6,7 +6,6 @@ import removeIcon from '../../images/cancel.svg'
 const CartItem = ({id,colorId,size,quantity}) => {
     const {increaseCartQuantity,decreaseCartQuantity,removeFromCart} = useShoppingCart()
     const item = useShoes(id,colorId)
-    console.log(colorId)
     return (
         <div className={styles['cart-item']}>
             <img className={styles['product-image']} src={item.images[1]} alt={item.name} />

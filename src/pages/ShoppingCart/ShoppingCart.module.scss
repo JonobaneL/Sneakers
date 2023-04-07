@@ -7,48 +7,66 @@
         display: flex;
         flex-direction: column;
         gap: 30px;
+        color: #1d2d44;
+        .empty-cart{
+            text-align: center;
+        }
         .shoes{
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 10px;
             border-radius: 4px;
+
+            .shoes-title{
+                width: 100%;
+                height: 45px;
+                border-bottom: 1px solid #3e5c7866;
+                display: grid;
+                grid-template-columns: 120px minmax(200px, 1.8fr) 0.8fr 1fr 1fr 1fr 30px;
+                grid-template-areas: "column1 column1 column2 column3 column4 column5 .";
+                align-items: center;
+                color: #1d2d44;
+                font-size: 15px;
+                p:first-child{
+                    grid-area: column1;
+                }
+                .title-size{
+                    grid-area: column2;
+                }
+                .title-color{
+                    grid-area: column3;
+                }
+                .title.quantity{
+                    grid-area: column4;
+                }
+                .title-total{
+                    grid-area: column5;
+                }
+            }
         }
         .total{
-            max-width: 340px;
+            width: 300px;
             height: 100%;
+            align-self: self-end;
             .coupon{
-                width: 100%;
-                border: 1px solid rgba(29, 45, 68, 0.3);
-                border-radius: 4px;
-                padding: 15px;
-                color: #1d2d44;
-                .coupon__title{
-                    font-size: 16px;
-                    font-weight: 500;
-                }
-                .coupon__field{
-                    display: flex;
-                    margin-top: 5px;
-                    align-items: end;
-                    height: 40px;
-                    .apply_btn{
-                        height: 100%;
-                        padding: 0 10px;
-                        color: #fff;
-                        font-size: 14px;
-                        background: #1d2d44;
-                        cursor: pointer;
-                        border-radius: 2px;
-                    }
+                display: flex;
+                align-items: end;
+                height: 35px;
+                .apply_btn{
+                    height: 100%;
+                    padding: 0 10px;
+                    color: #fff;
+                    font-size: 14px;
+                    background: #1d2d44;
+                    cursor: pointer;
+                    border-radius: 2px;
                 }
             }
             .cost{
                 width: 100%;
                 margin-top: 20px;
-                border: 1px solid rgba(29, 45, 68, 0.3);
                 border-radius: 4px;
-                padding: 15px;
                 color: #1d2d44;
                 .info{
                     display: flex;
@@ -57,6 +75,12 @@
                     li{
                         display: flex;
                         justify-content: space-between;
+                        border-bottom: 1px solid rgba(62, 92, 118, 0.3607843137);
+                        padding-bottom:5px;
+                        .parameter{
+                            font-size: 15px;
+                            font-weight: 500;
+                        }
                     }
                 }
                 .total__cost{
@@ -67,61 +91,8 @@
         }
     }
 }
-@media screen and (min-width:1240px) {
-    .total{
-        flex: 1 0 340px !important;
-    }
-}
-@media screen and (max-width:1180px) {
-    .coupon__field{
-        height: 35px !important;
-    }
-}
-@media screen and (max-width:1024px) {
-    .content{
-        gap: 20px !important;
-    }
-}
-@media screen and (max-width:980px) {
-    .content{
-        flex-direction: column;
-    }
-}
-@media screen and (max-width:768px) {
-    .shopping-cart{
-        padding: 20px 40px;
-    }
-}
 
 
-
-.shoes-title{
-    width: 100%;
-    height: 45px;
-    // border-bottom: 2px solid #3e5c76;
-    border-bottom: 1px solid #3e5c7866;
-    display: grid;
-    grid-template-columns: 120px minmax(200px, 1.8fr) 0.8fr 1fr 1fr 1fr 30px;
-    grid-template-areas: "column1 column1 column2 column3 column4 column5 .";
-    align-items: center;
-    color: #1d2d44;
-    font-size: 15px;
-    p:first-child{
-        grid-area: column1;
-    }
-    .title-size{
-        grid-area: column2;
-    }
-    .title-color{
-        grid-area: column3;
-    }
-    .title.quantity{
-        grid-area: column4;
-    }
-    .title-total{
-        grid-area: column5;
-    }
-}
 @media screen and (max-width:1180px) {
     .shoes-title{
         grid-template-columns: 100px minmax(200px, 1.8fr) 0.8fr 1fr 1fr 1fr 25px;
@@ -129,9 +100,28 @@
 }
 @media screen and (max-width:920px) {
     .shoes-title{
-        grid-template-columns: 100%;
+        grid-template-columns: 100% !important;
         .title-size,.title-color,.title-quantity,.title-total{
             display: none;
         }
+    }
+    .coupon__field{
+        height: 35px !important;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .shopping-cart{
+        padding: 20px 40px;
+    }
+}
+@media screen and (max-width:425px) {
+    .total{
+        width: 100% !important;
+    }
+}
+@media screen and (max-width:375px) {
+    .shopping-cart{
+        padding: 20px 20px;
     }
 }
