@@ -7,6 +7,7 @@ import filtersIcon from '../../images/filters.png'
 import styles from './Filters.module.scss'
 import SizeSelect from '../UI/sizeSelect/SizeSelect';
 import CheckBoxList from '../UI/checkBoxList/CheckBoxList';
+import { useSearchParamsState } from '../../hooks/useSearchParamsState';
 
 const Filters = ({filters,setFilters,data}) => {
     const sortParams = [
@@ -27,6 +28,8 @@ const Filters = ({filters,setFilters,data}) => {
         {id:2,name:"30% to 50%"},
         {id:3,name:"50%+"},
     ]
+    const [brandFilters,setBrandFilters] = useSearchParamsState({name:"brand", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
+    console.log(brandFilters)
     return (
         <div className={styles.filters}>
             <div className={styles["filters-navigation"]}>
@@ -66,7 +69,8 @@ const Filters = ({filters,setFilters,data}) => {
                     handler={()=>{
                         setFilters({...filters,brands:[]})
                     }}>
-                    <CheckBoxList data={data.shoesBrands} handler={(item)=>setFilters({...filters,brands:item})} checkedItems={filters.brands} />
+                    {/* <CheckBoxList data={data.shoesBrands} handler={(item)=>setFilters({...filters,brands:item})} checkedItems={filters.brands} /> */}
+                    <CheckBoxList data={data.shoesBrands} handler={(item)=>setBrandFilters(item)} checkedItems={brandFilters} />
                 </Accordion>
                 <Accordion
                     title="Color"

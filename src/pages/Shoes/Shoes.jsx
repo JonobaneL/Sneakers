@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react';
 import Filters from '../../components/Filters/Filters';
 import ShoesList from '../../components/shoesList/ShoesList';
 import Pagination from '../../components/UI/pagination/Pagination';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getShoesData } from '../../utils/getShoesData';
 import { getTotalPagesCount } from '../../utils/getPageCount';
 import { useFiltered, useToShow } from '../../hooks/useFilters';

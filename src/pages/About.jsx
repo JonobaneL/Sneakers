@@ -1,40 +1,14 @@
 import React,{useState,useEffect,useMemo, useCallback} from 'react'
 import { useSearchParams,useNavigate, useNavigation, BrowserRouter, useLocation, createSearchParams } from 'react-router-dom';
+import { useLatest } from '../hooks/useLatest';
+import { useSearchParamsState } from '../hooks/useSearchParamsState';
 
 
 const About = () => {
 
-  function getSearchParam(search,param){
-    const searchParams = createSearchParams(search);
-    // console.log(searchParams.toString())
-    return searchParams.get(param)
-  }
-  function setSearchParam(search,param,value){
-    const searchParams = createSearchParams(search);
-    Boolean(value)
-    ? searchParams.set(param, value)
-    : searchParams.delete(param);
-      console.log(searchParams.toString())
-    return searchParams.toString()
-  }
-const useSearchParamsState = ({name,serialize=String,deserialize=(v)=>v}) =>{
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [value, setValue] = useState(()=>{
-    const tmpValue = deserialize(getSearchParam(location.search,name));
-    return tmpValue;
-  })
-  const updateValue = useCallback((value)=>{
-    setValue(value);
-    const newSearch = setSearchParam(location.search,name,serialize(value));
-    navigate({search:newSearch})
-
-  },[location,name,serialize])
-  return [value,updateValue];
-}
 
   const [check,setCheked] = useSearchParamsState({name:"indicator",deserialize:(v)=>v?v:""})
-  const [filed,setField] = useSearchParamsState({name:"field",deserialize:(v)=>v?v:[]})
+  const [filed,setField] = useSearchParamsState({name:"field", serialize:(data)=>data.join("+"), deserialize:(data)=>data?data.split("+"):[]})
   
 console.log(filed)
     return <div className="About">
@@ -56,9 +30,15 @@ console.log(filed)
               
            <button
            onClick={()=>{
-            setField(["red","blue","green"])
+            setField(()=>["red","blue","green"])
            }}
-           >Click</button>
+           >Click 1!</button>
+           <button
+           style={{marginLeft:"100px"}}
+           onClick={()=>{
+            setField(prev=>[...prev,"yellow"])
+           }}
+           >Click 2!</button>
            <h2>{filed}</h2>
            {/* <button style={{width:'120px',height:'40px',fontSize:'15px'}}
             onClick={()=>setSearchParam(search,'num',10)}
