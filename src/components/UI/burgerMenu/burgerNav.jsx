@@ -8,7 +8,7 @@ const BurgerNav = ({visible}) => {
     return  <div className={rootClass.join(' ')}>
                 <div className={styles.content}>
                     <div className={styles.search}>
-                        <SInput type="text" placeholder="Find Something Special" data-theme="white"/>
+                        <SInput type="text" placeholder="Find Something Special" theme={window.screen.availWidth>"1024px"?"dark":"white"}/>
                         <img src={searchIcon} alt="search" />
                     </div>
                     <ul className={styles.nav}>

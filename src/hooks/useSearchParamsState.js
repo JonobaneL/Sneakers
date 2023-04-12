@@ -30,9 +30,7 @@ export const useSearchParamsState = ({name,serialize=String,deserialize=(v)=>v})
           :newValue;  
         
       setValue(actualValue);
-  console.log(typeof serialize(actualValue))
       const newSearch = setSearchParam(location.search,name,serialize(actualValue));
-      console.log(newSearch)
       navigate({search:newSearch})
   
     },[location,name,serialize,latestValue])

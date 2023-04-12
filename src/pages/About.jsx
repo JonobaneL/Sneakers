@@ -9,7 +9,7 @@ const About = () => {
 
   const [check,setCheked] = useSearchParamsState({name:"indicator",deserialize:(v)=>v?v:""})
   const [filed,setField] = useSearchParamsState({name:"field", serialize:(data)=>data.join("+"), deserialize:(data)=>data?data.split("+"):[]})
-  
+  // const 
 console.log(filed)
     return <div className="About">
         <div className="content" >

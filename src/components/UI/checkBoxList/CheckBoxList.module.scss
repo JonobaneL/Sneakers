@@ -13,6 +13,7 @@
             width: 26px;
             height: 26px;
             border-radius:2px;
+            min-width:26px;
             position: relative;
             .checkbox-mark{
                 position: absolute;
@@ -22,6 +23,9 @@
                 transform: translate(-50%,-50%);
                 visibility: hidden;
             }
+        }
+        .list-title{
+            font-size: 15px;
         }
         &.active{
             .checkbox-mark{

@@ -1,4 +1,15 @@
 .dropDownList{
     width: 100%;
-    background: #fff;
+    // background: #fff;
+    .all-category{
+        font-size: 14px;
+        color:#1d2d44;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+}
+@media screen and (max-width:1024px) {
+    .all-category{
+       color:#fff !important;
+    }
 }

@@ -1,7 +1,18 @@
 import styles from './SInput.module.scss'
 
-const SInput = (props) => {
-    return  <input style={{height:props.height}} className={styles.sInput} {...props.params}/>;
+const SInput = ({height,params,theme}) => {
+    const WHITE_THEME = {
+        height:height,
+        color: "#fff",
+        borderBottom: "1px solid #fff",
+    }
+    const DARK_THEME = {
+        height:height,
+        color: "#1D2D44",
+        borderBottom: "1px solid #1D2D44",
+    }
+    console.log(theme)
+    return  <input style={{height:height}} data-theme={theme} className={styles.sInput} {...params}/>;
 }
 
  

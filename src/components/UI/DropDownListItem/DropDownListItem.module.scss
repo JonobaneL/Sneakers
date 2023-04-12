@@ -1,9 +1,7 @@
 .listItem{
     width: 100%;
-    p{
-        font-size: 15px;
-        color: #0d1321;
-    }
+    color: #0d1321;
+    font-size: 15px;
     .mainItem{
         display: flex;
         align-items: center;
@@ -48,5 +46,10 @@
         .arrow{
             font-size: 25px;
         }
+    }
+}
+@media screen and (max-width:1024px){
+    .listItem, .arrow{
+        color:#fff !important;
     }
 }

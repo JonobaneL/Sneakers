@@ -7,8 +7,8 @@ $main-color:#1D2D44;
     font-size: 15px;
     color: $main-color;
     background: transparent;
-    &[data-theme='white']{
-        color: #fff;
+    &[data-theme="white"]{
+        color: #fff !important;
         border-bottom: 1px solid #fff;
         &::placeholder{
             color:#ffffffa9;

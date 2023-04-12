@@ -13,8 +13,6 @@
 }
 @media screen and (max-width:1023px) {
     .filters{
-        // width: 100%;
-        position: relative;
         .filters-navigation{
             width: 100%;
             height: 40px;
@@ -44,17 +42,54 @@
             position: absolute;
             background: #3e5c76;
             z-index: 2;
-            // background: #fff;
             padding: 40px 80px;
-            // display: none;
-            left: -80px;
-            right: -80px;
-            margin-top: 20px;
-            // box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            display: none;
+            margin-top: 45px;
+            width: 100%;
+            left: 0;
             box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+            transition:all 0.4s;
+            &.active{
+                display: flex;
+                transition:all 0.4s;
+            }
             .select{
                 display: none !important;
             }
         }
+    }
+    .button-bar{
+        display: flex;
+        margin-top: 10px;
+        justify-content: space-between;
+        align-items: center;
+        &__clear{
+            font-size: 15px;
+            // font-weight: 300;
+            color:#fff;
+            text-decoration:underline;
+            letter-spacing: 0.5px;
+            cursor:pointer;
+
+        }
+        &__view{
+            padding:10px 20px;
+            background: #fff;
+            border-radius:3px;
+            color:#1d2d44;
+            cursor:pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+}
+@media screen and (max-width:768px) {
+    .filters-options{
+        padding: 30px 40px !important;
+    }
+}
+@media screen and (max-width:375px) {
+    .filters-options{
+        padding: 20px 20px !important;
     }
 }

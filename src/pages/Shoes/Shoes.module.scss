@@ -59,12 +59,13 @@
 @media screen and (max-width:1023px) {
     .shoes{
         .content{
-            grid-template-columns: 1fr; 
-            grid-template-rows: auto auto 1fr; 
+            grid-template-columns: 1fr !important; 
+            grid-template-rows: auto auto auto 1fr; 
             row-gap: 20px;
             grid-template-areas: 
               "title"
               "filters"
+              "shoesNumber"
               "shoes"; 
             .title{
                 grid-area: title;

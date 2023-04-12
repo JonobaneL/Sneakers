@@ -8,8 +8,20 @@ import styles from './Filters.module.scss'
 import SizeSelect from '../UI/sizeSelect/SizeSelect';
 import CheckBoxList from '../UI/checkBoxList/CheckBoxList';
 import { useSearchParamsState } from '../../hooks/useSearchParamsState';
+import { useEffect,useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getShoesFiltersData } from '../../utils/getShoesData';
+import { useMemo } from 'react';
+import { useLatest } from '../../hooks/useLatest';
+import { useFiltered } from '../../hooks/useFilters';
+import { shoes } from '../../data/shoes';
 
-const Filters = ({filters,setFilters,data}) => {
+const FILTERS_SERIALIZE = data => data.join("-");
+const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
+    
+//виправити роботу сраних фільтрів
+
+const Filters = ({filters,setFilters,numberOfProducts}) => {
     const sortParams = [
         {id:1,value:'Top Rated'},
         {id:2,value:'Newest'},
@@ -28,12 +40,56 @@ const Filters = ({filters,setFilters,data}) => {
         {id:2,name:"30% to 50%"},
         {id:3,name:"50%+"},
     ]
+    const {type} = useParams();
+    const [shoesCategories,shoesBrands,shoesMaterial] = getShoesFiltersData(type)
     const [brandFilters,setBrandFilters] = useSearchParamsState({name:"brand", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
-    console.log(brandFilters)
+    const [colorFilters,setColorFilters] = useSearchParamsState({name:"color", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
+    const [sizeFilters,setSizeFilters] = useSearchParamsState({name:"size",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
+    const [materialFilters,setMaterialFilters] = useSearchParamsState({name:"material",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
+    const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
+    const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
+    const navigate = useNavigate()
+    const latestType = useLatest(type)
+    useEffect(()=>{
+        // clearEvent()
+        console.log("start effect")
+        console.log("latest",latestType)
+    },[])
+    useEffect(()=>{
+        console.log("end effect")
+        setFilters({
+            brands:brandFilters,
+            colors:colorFilters,
+            size:sizeFilters,
+            materials:materialFilters,
+            price:priceFilters,
+            percent:percentFilters
+        })
+        console.log(fil)
+        console.log("brand",brandFilters)
+    },[brandFilters,colorFilters,sizeFilters,materialFilters,priceFilters,percentFilters,type])
+    const clearEvent =()=>{
+        setBrandFilters([])
+        setColorFilters([])
+        setSizeFilters([])
+        setMaterialFilters([])
+        setPriceFilters([])
+        setPercentFilters([])
+        navigate({search:''})
+    }
+    const fil = useFiltered(shoes,type,brandFilters);
+
+   
+   
+    const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(false);
+    const theme = window.screen.availWidth<1024?"white":"dark"
     return (
         <div className={styles.filters}>
             <div className={styles["filters-navigation"]}>
-                <button className={styles["filters-navigation__opener"]}>
+                <button 
+                    className={styles["filters-navigation__opener"]}
+                    onClick={()=>setIsFiltersOptionsOpen(prev=>!prev)}
+                >
                     <img src={filtersIcon} alt="" />
                     Filter
                 </button>
@@ -45,7 +101,7 @@ const Filters = ({filters,setFilters,data}) => {
                     />
                 </div>
             </div>
-            <div className={styles["filters-options"]}>
+            <div className={`${styles["filters-options"]} ${isFiltersOptionsOpen?styles.active:''}`}>
                 <div className={styles.select}>
                 <Select
                         placeholder='Sort by'
@@ -53,71 +109,80 @@ const Filters = ({filters,setFilters,data}) => {
                         getData={value=>{console.log(value);setFilters({...filters,sort:value})}}
                     />
                 </div>
-                <Accordion fixed={true} title={"Category"} autoheight={true}>
+                <Accordion fixed={true} title={"Category"} theme={theme} autoheight={true}>
                     <DropDownList 
                         getData={value=>{
                             console.log(value);
                             setFilters({...filters,category:value})
                         }}
-                        data={data.shoesCategories}
+                        data={shoesCategories}
                     />
                 </Accordion>
                 
                 <Accordion  
                     title="Brands" 
-                    data={filters.brands} 
+                    data={brandFilters}
+                    theme={theme} 
                     handler={()=>{
-                        setFilters({...filters,brands:[]})
+                        setBrandFilters([])
                     }}>
-                    {/* <CheckBoxList data={data.shoesBrands} handler={(item)=>setFilters({...filters,brands:item})} checkedItems={filters.brands} /> */}
-                    <CheckBoxList data={data.shoesBrands} handler={(item)=>setBrandFilters(item)} checkedItems={brandFilters} />
+                    <CheckBoxList data={shoesBrands} handler={(item)=>setBrandFilters(item)} checkedItems={brandFilters} />
                 </Accordion>
                 <Accordion
                     title="Color"
-                    data={filters.colors} 
+                    data={filters.colors}
+                    theme={theme} 
                     handler={()=>{
-                        setFilters({...filters,colors:[]})
+                        setColorFilters([])
                     }}
                     >
-                    <CheckBoxList data={shoesColor} handler={(item)=>setFilters({...filters,colors:item})} checkedItems={filters.colors} colored={true} />
+                    <CheckBoxList data={shoesColor} handler={(item)=>setColorFilters(item)} checkedItems={colorFilters} colored={true} />
                 </Accordion>
                 <Accordion 
                     fixed={true} 
                     title="Size"
-                    data={filters.size} 
+                    theme={theme} 
+                    data={sizeFilters} 
                     handler={()=>{
-                        setFilters({...filters,size:[]})
+                        setSizeFilters([])
                     }}
                 >
-                    <SizeSelect choosed={filters.size} handler={(size_data)=>setFilters({...filters,size:size_data})} type='multi'/>
+                    <SizeSelect  choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} theme={theme} type='multi'/>
                 </Accordion>
                 <Accordion
                     title="Material"
-                    data={filters.materials} 
+                    data={materialFilters} 
+                    theme={theme} 
                     handler={()=>{
-                        setFilters({...filters,materials:[]})
+                        setMaterialFilters([])
                     }}
                     >
-                    <CheckBoxList data={data.shoesMaterial} handler={(item)=>setFilters({...filters,materials:item})} checkedItems={filters.materials} />
+                    <CheckBoxList data={shoesMaterial} handler={(item)=>setMaterialFilters(item)} checkedItems={materialFilters} />
                 </Accordion>
                 <Accordion  
                     title="Price"
-                    data={filters.price} 
+                    data={priceFilters} 
+                    theme={theme} 
                     handler={()=>{
-                        setFilters({...filters,price:[]})
+                        setPriceFilters([])
                     }}
                     >
-                    <CheckBoxList data={priceParams} handler={(item)=>setFilters({...filters,price:item})} checkedItems={filters.price} />
+                    <CheckBoxList data={priceParams} handler={(item)=>setPriceFilters(item)} checkedItems={priceFilters} />
                 </Accordion>
                 <Accordion
                     title="Percent Off"
-                    data={filters.percent} 
+                    data={percentFilters} 
+                    theme={theme} 
                     handler={()=>{
-                        setFilters({...filters,percent:[]})
+                        setPercentFilters([])
                     }}
                     >
-                    <CheckBoxList data={percentOffParams} handler={(item)=>setFilters({...filters,percent:item})} checkedItems={filters.percent} />
+                    <CheckBoxList data={percentOffParams} handler={(item)=>setPercentFilters(item)} checkedItems={percentFilters} />
                 </Accordion>
+                <div className={styles['button-bar']}>
+                    <p className={styles['button-bar__clear']} onClick={()=>clearEvent()}>Clear filters</p>
+                    <button onClick={()=>setIsFiltersOptionsOpen(false)} className={styles['button-bar__view']}>View results ({numberOfProducts})</button>
+                </div>
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import { getAvailableSizes } from "../../../utils/getAvailablesizes";
 import styles from './SizeSelect.module.scss';
 
-const SizeSelect = ({notAvailable=[],choosed,handler,type}) => {
+const SizeSelect = ({notAvailable=[],choosed,handler,type,theme="dark"}) => {
     const size = [
         {value:'6', available:true}, 
         {value:'6.5', available:true}, 
@@ -35,12 +35,21 @@ const SizeSelect = ({notAvailable=[],choosed,handler,type}) => {
             }
         }
     }
-   
+   const DARK_THEME={
+    border:"1px solid #1d2d44",
+    color:"#1d2d44"
+   } 
+   const WHITE_THEME={
+    border:"1px solid #ffffff9b",
+    color:"#fff"
+   }
+
     return <div className={styles['size-select']}>
         {availableSizes.map((item,index)=>
             <div 
                 key={index} 
                 className={`${styles['size-item']} ${choosed.includes(item.value)?styles.active:''} ${!item.available?styles.disabled:''}`}
+                style={theme=='dark'?DARK_THEME:WHITE_THEME}
                 onClick={()=>handelChange(item.value)}
                 >
                 {item.value}
