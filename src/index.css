@@ -59,20 +59,8 @@ body::-webkit-scrollbar-thumb:hover {
   width: 100%;
 }
 .About .content{
-  width: 800px;
-  border: 1px solid red;
+  width: 1000px;
+  border: 1px solid #1d2d44;
   margin: 20px auto;
   padding: 20px 50px;
-}
-.About .progres{
-  width: 300px;
-  height: 30px;
-  background: green;
-  position: absolute;
-  transition: width 2s;
-
-}
-.progres.active{
-  width: 0;
-  transition: width 2s;
 }

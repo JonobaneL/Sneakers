@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {memo,useState} from 'react';
+
 import DropDownListItem from '../DropDownListItem/DropDownListItem';
 import styles from './dropDonwList.module.scss'
 
-const DropDownList = ({getData, data}) => {
+const DropDownList = memo(({getData, data}) => {
     const [choosedCategory,setChoosedCategory] = useState({id:1,name:''})
     console.log(choosedCategory)
     const clearEvent = ()=>{
@@ -30,7 +31,7 @@ const DropDownList = ({getData, data}) => {
             
         </div>
     );
-};
+});
 
 
 export default DropDownList;

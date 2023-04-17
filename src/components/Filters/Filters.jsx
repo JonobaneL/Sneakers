@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import DropDownList from '../UI/dropDownList/dropDownList';
 import Select from '../UI/select/Select';
 import Accordion from '../UI/accordion/Accordion';
@@ -21,7 +21,8 @@ const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
     
 //виправити роботу сраних фільтрів
 
-const Filters = ({filters,setFilters,numberOfProducts}) => {
+const Filters = memo(({filters,setFilters,numberOfProducts}) => {
+    console.log("render filters")
     const sortParams = [
         {id:1,value:'Top Rated'},
         {id:2,value:'Newest'},
@@ -186,7 +187,7 @@ const Filters = ({filters,setFilters,numberOfProducts}) => {
             </div>
         </div>
     );
-};
+});
 
 
 export default Filters;

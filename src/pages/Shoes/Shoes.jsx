@@ -9,6 +9,7 @@ import { shoes } from '../../data/shoes';
 import styles from './Shoes.module.scss'
 
 const Shoes = () => {
+  console.log("render shoes")
     const {type} = useParams();
     // const [shoesCategories,shoesBrands,shoesMaterial] = getShoesData(type); 
     // const [limit,setLimit] = useState(12)

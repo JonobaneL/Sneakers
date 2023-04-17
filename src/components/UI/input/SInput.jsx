@@ -1,6 +1,7 @@
+import { memo } from 'react'
 import styles from './SInput.module.scss'
 
-const SInput = ({height,params,theme}) => {
+const SInput = memo(({height,params,theme}) => {
     const WHITE_THEME = {
         height:height,
         color: "#fff",
@@ -11,9 +12,9 @@ const SInput = ({height,params,theme}) => {
         color: "#1D2D44",
         borderBottom: "1px solid #1D2D44",
     }
-    console.log(theme)
+    // console.log(theme)
     return  <input style={{height:height}} data-theme={theme} className={styles.sInput} {...params}/>;
-}
+})
 
  
 export default SInput;

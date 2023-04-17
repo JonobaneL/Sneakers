@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import AccordionButton from '../accordion-button/AccordionButton';
 import styles from './Accordion.module.scss'
 
-const Accordion = ({width='100%',title,children,fixed,autoheight=false,data=[],handler,theme="dark"}) => {
+const Accordion = ({width='100%',title,children,fixed=false,autoheight=false,data=[],handler,theme="dark"}) => {
     const [isOpen, setIsOpen] = useState(fixed||false)
     const DARK_THEME = {
         width:width,
