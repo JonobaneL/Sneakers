@@ -11,8 +11,6 @@ import { useSearchParamsState } from '../../hooks/useSearchParamsState';
 import { useEffect,useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getShoesFiltersData } from '../../utils/getShoesData';
-import { useMemo } from 'react';
-import { useLatest } from '../../hooks/useLatest';
 import { useFiltered } from '../../hooks/useFilters';
 import { shoes } from '../../data/shoes';
 
@@ -50,12 +48,7 @@ const Filters = memo(({filters,setFilters,numberOfProducts}) => {
     const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const navigate = useNavigate()
-    const latestType = useLatest(type)
-    useEffect(()=>{
-        // clearEvent()
-        console.log("start effect")
-        console.log("latest",latestType)
-    },[])
+  
     useEffect(()=>{
         console.log("end effect")
         setFilters({

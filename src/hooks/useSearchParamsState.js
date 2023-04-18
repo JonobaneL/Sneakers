@@ -14,21 +14,22 @@ function setSearchParam(search,param,value){
     return searchParams.toString()
 }
 
-export const useSearchParamsState = ({name,serialize=String,deserialize=(v)=>v}) =>{
+export const useSearchParamsState = ({type,name,serialize=String,deserialize=(v)=>v}) =>{
     const location = useLocation();
     const navigate = useNavigate();
     const [value, setValue] = useState(()=>{
       const tmpValue = deserialize(getSearchParam(location.search,name));
       return tmpValue;
     })
+    // console.log(type)
     const latestValue = useLatest(value);
     const updateValue = useCallback(
       (newValue)=>{
+      console.log("updateSearchParams")
       const actualValue = 
         typeof newValue === 'function'
           ? newValue(latestValue.current)
           :newValue;  
-        
       setValue(actualValue);
       const newSearch = setSearchParam(location.search,name,serialize(actualValue));
       navigate({search:newSearch})

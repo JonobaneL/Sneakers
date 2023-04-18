@@ -5,9 +5,9 @@ import Filters1 from "../../components/Filters1/Filters1";
 import ShoesList from "../../components/shoesList/ShoesList";
 const Products = () => {
     const {type,male} = useParams();
-    console.log(type,male)
     const [filters,setFilters] = useState({})
     const [data,setData] = useState([]);
+
     return <div className={styles.products}>
             <div className={styles.content}>
               <div className={styles.title}>

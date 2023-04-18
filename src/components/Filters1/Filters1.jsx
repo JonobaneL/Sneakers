@@ -1,14 +1,15 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import styles from './Filters.module.scss'
 import Select from "../UI/select/Select";
 import Accordion from "../UI/accordion/Accordion";
 import CheckBoxList from "../UI/checkBoxList/CheckBoxList";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getShoesFiltersData } from "../../utils/getShoesData";
 import { useSearchParamsState } from "../../hooks/useSearchParamsState";
 import { shoesColor } from "../../data/shoesColor";
 import { useFiltered } from "../../hooks/useFilters";
 import { shoes } from "../../data/shoes";
+import { useLatest } from "../../hooks/useLatest";
 
 const SORT_PARAMS = [
     {id:1,value:'Top Rated'},
@@ -35,21 +36,18 @@ const Filters1 = ({setData}) => {
 
     const {type,male} = useParams()
     const [shoesCategories,shoesBrands,shoesMaterial] = getShoesFiltersData(male)
-    const [brandFilters,setBrandFilters] = useSearchParamsState({name:"brand", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
-    const [colorFilters,setColorFilters] = useSearchParamsState({name:"color", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
-    const [sizeFilters,setSizeFilters] = useSearchParamsState({name:"size",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
-    const [materialFilters,setMaterialFilters] = useSearchParamsState({name:"material",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
-    const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
-    const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
-    console.log(brandFilters)
+    const [brandFilters,setBrandFilters] = useSearchParamsState({type:male,name:"brand", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
+    const [colorFilters,setColorFilters] = useSearchParamsState({type:male,name:"color", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
+    const [sizeFilters,setSizeFilters] = useSearchParamsState({type:male,name:"size",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
+    const [materialFilters,setMaterialFilters] = useSearchParamsState({type:male,name:"material",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
+    const [priceFilters,setPriceFilters] = useSearchParamsState({type:male,name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
+    const [percentFilters,setPercentFilters] = useSearchParamsState({type:male,name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
   const filteredData = useFiltered(shoes,male,brandFilters)
-    useEffect(()=>{
+    
+  useEffect(()=>{
         setData(filteredData)
     },[filteredData])
-    useEffect(()=>{
-        setBrandFilters([])
-    },[type,male])
-    console.log(filteredData)
+    console.log(brandFilters)
     return <div className={styles.filters}>
         <Select 
             placeholder='Sort by'
