@@ -46,3 +46,13 @@
         }
     }
 }
+@media screen and (max-width:375px) {
+    .info-tabs{
+        .tabs-nav{
+            gap: 7px;
+            .nav-item{
+                font-size: 15px;
+            }
+        }
+    }
+}

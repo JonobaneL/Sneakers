@@ -3,7 +3,6 @@ $icons-size:22px;
     display: none;
 }
 @media only screen and (max-width: 768px){
-  
     .burgerNav{
         width: 100%;
         display: block;
@@ -19,7 +18,8 @@ $icons-size:22px;
             content: '';
             width: 100%;
             height: 100%;
-            background: #13315c;
+            // background: #13315c;
+            background: #3e5c86;
             position: absolute;
             top: 0;
             left: 0;
@@ -41,9 +41,15 @@ $icons-size:22px;
         }
         .nav{
             margin-top: 20px;
-            .navItem{
+            li{
                 text-align: center;
                 height: 40px;
+                font-weight: 400;
+                line-height: 40px;
+                color: #fff;
+                font-size: 18px;
+            }
+            .navItem{
                 font-weight: 400;
                 line-height: 40px;
                 color: #fff;

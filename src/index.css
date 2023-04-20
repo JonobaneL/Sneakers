@@ -59,8 +59,10 @@ body::-webkit-scrollbar-thumb:hover {
   width: 100%;
 }
 .About .content{
-  width: 1000px;
+  max-width: 705px;
   border: 1px solid #1d2d44;
   margin: 20px auto;
-  padding: 20px 50px;
+  padding: 1px;
+  /* width: 700px; */
+  position: relative;
 }

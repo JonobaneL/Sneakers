@@ -1,13 +1,9 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import styles from './BurgerButton.module.scss'
-const BurgerButton = ({show}) => {
-    const burgerButton = useRef(null);
-     const burgeListener = ()=>{
-        show();
-        burgerButton.current.classList.toggle(styles.active)
-     }
+const BurgerButton = ({visible,setVisible}) => {
+    
     return (
-        <div ref={burgerButton} className={styles.burger} onClick={burgeListener}>
+        <div className={`${styles.burger} ${visible?styles.active:''}`} onClick={()=>setVisible(prev=>!prev)}>
               <span></span>
         </div>
     );

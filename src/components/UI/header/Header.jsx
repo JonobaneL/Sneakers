@@ -12,16 +12,15 @@ import { useShoppingCart } from '../../../context/CartContext';
 const Header = () => {
     const {cartQuantity} = useShoppingCart()
     const [burger, setBurger] = useState(false);
+    const [searchQuery,setSearchQuery] = useState("")
     const ToTop = ()=>{
       window.scrollTo(0,0)
     }
-    const showBurgerNav =()=>{
-      setBurger(!burger)
-    }
+    
     return (
         <header className={styles.header}>
           <div className={styles.content}>
-          <BurgerButton show={showBurgerNav} />
+          <BurgerButton visible={burger} setVisible={setBurger} />
             <div className={styles.logo}>
               <Link to={`/`}>
                 <h1>SNEAKERS</h1>
@@ -31,7 +30,7 @@ const Header = () => {
               <div className={styles.topNav}>
                 <ul className={styles.list}>
                   <li className={styles.topItem}>
-                      <SInput height="30px" params={{type:"text",placeholder:"Find Something Special"}}/>
+                      <SInput height="30px" params={{type:"text",placeholder:"Find Something Special"}} value={searchQuery} setValue={setSearchQuery}/>
                       <img src={searchIcon} alt="search" />
                   </li>
                   <li className={styles.topItem}>
@@ -49,15 +48,15 @@ const Header = () => {
               </div>
               <div className={styles.bottomNav}>
                 <ul className={styles.list}>
-                  <li className={styles.bottomItem}><Link to={`/shoes/men`}>Men</Link></li>
-                  <li className={styles.bottomItem}><Link to={`/shoes/women`}>Women</Link></li>
+                  <li className={styles.bottomItem}><Link to={`/shoes/men`} reloadDocument>Men</Link></li>
+                  <li className={styles.bottomItem}><Link to={`/shoes/women`} reloadDocument>Women</Link></li>
                   <li className={styles.bottomItem}><Link to={`/shoes/accessories`}>Accessories</Link></li>
                   <li className={styles.bottomItem}><Link to={`/shoes/sale`}>Sale</Link></li>
                 </ul>
               </div>
             </nav>
           </div>
-            <BurgerNav visible={burger}/>
+            <BurgerNav visible={burger} setVisible={setBurger}/>
         </header>
     );
 };

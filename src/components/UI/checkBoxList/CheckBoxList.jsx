@@ -12,7 +12,7 @@ const CheckBoxItem = ({item,checkedItems,event,color,theme})=>{
     }
     const WHITE_THEME={
         background:color,
-        border:color=="#3e5c76"?"1px solid #fff":"none",
+        border:color=="#3e5c86"?"1px solid #fff":"none",
     }
     return <li 
         className={`${styles['list-item']} ${checkedItems.includes(item.name)?styles.active:''}`}
@@ -30,7 +30,7 @@ const CheckBoxItem = ({item,checkedItems,event,color,theme})=>{
 };
 
 
-const CheckBoxList = ({data,checkedItems,handler,colored=false,theme="white"}) => {
+const CheckBoxList = ({data,checkedItems,handler,colored=false,theme="dark"}) => {
     const handleClick= (item)=>{
         if(!checkedItems.includes(item)){
             handler([...checkedItems,item])
@@ -39,12 +39,15 @@ const CheckBoxList = ({data,checkedItems,handler,colored=false,theme="white"}) =
             handler(checkedItems.filter(checked_item => checked_item!==item))
         }
     }
+    const checkbox_color = theme=="dark"?"#ffffff":"#3e5c86";  
     return (
             <ul className={styles['checkbox-list']}>
             {
+                data.length>0?
                 data.map((item,index)=>
-                <CheckBoxItem key={index} theme={theme} item={item} checkedItems={checkedItems} event={handleClick} color={colored?item.color:theme=="dark"?"#ffffff":"#3e5c76"} /> 
+                <CheckBoxItem key={index} theme={theme} item={item} checkedItems={checkedItems} event={handleClick} color={colored?item.color:checkbox_color} /> 
                 )
+                :<p>Not Found</p>
             }
             </ul>
     );

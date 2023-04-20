@@ -10,14 +10,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid rgba(29, 45, 68, 0.8);
+        border: 1px solid #1d2d44cc;
         cursor: pointer;
         &.active{
-            background: rgba(29, 45, 68, 0.8);
+            background: #3e5c86;
             color: #fff;
         }
         &:hover{
-            background: rgba(29, 45, 68, 0.8);
+            background: #3e5c86;
             color: #fff;
         }
     }

@@ -1,10 +1,9 @@
 import { Navigate } from "react-router-dom";
 import About from "../pages/About";
 import Home from "../pages/Home";
-import ShoeDetails from "../pages/ShoeDetails/ShoeDetails";
-import Shoes from "../pages/Shoes/Shoes";
 import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 import Products from "../pages/Products/Products";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 
 export const publicRoutes = [
     {
@@ -16,12 +15,8 @@ export const publicRoutes = [
         element:<About/>
     },
     {
-        path:'tmp/:type', 
-        element:<Shoes/>
-    },
-    {
         path:'/product/:id/:colorId',
-        element:<ShoeDetails/>
+        element:<ProductDetails/>
     },
     {
         path:'/shopping-cart',
