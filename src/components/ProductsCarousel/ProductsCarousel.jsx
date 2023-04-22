@@ -29,26 +29,33 @@ const ProductsCarousel = () => {
             {
                 breakpoint: 1360,
                 settings: {
+                  slidesToShow: 5,
+                  slidesToScroll: 5,
+                }
+            },
+            {
+                breakpoint: 1130,
+                settings: {
                   slidesToShow: 4,
                   slidesToScroll: 4,
                 }
             },
             {
-                breakpoint: 1130,
+                breakpoint: 880,
                 settings: {
                   slidesToShow: 3,
                   slidesToScroll: 3,
                 }
             },
             {
-                breakpoint: 880,
+                breakpoint: 600,
                 settings: {
                   slidesToShow: 2,
                   slidesToScroll: 2,
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 425,
                 settings: {
                   slidesToShow: 1,
                   slidesToScroll: 1,
@@ -82,7 +89,8 @@ const ProductsCarousel = () => {
                     {
                         data.map(item=>
                             // <ShoesItem key={item.id} item={item}/>)
-                            <CarouselCard key={item.id} data={item}/>)
+                            <ShoesItem key={item.id} item={item}/>)
+                            // <CarouselCard key={item.id} data={item}/>)
                     }
                 </Slider>
             </div>

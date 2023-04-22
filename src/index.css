@@ -55,14 +55,3 @@ body::-webkit-scrollbar-thumb:hover {
   flex: 1 1 auto;
 }
 
-.About{
-  width: 100%;
-}
-.About .content{
-  max-width: 705px;
-  border: 1px solid #1d2d44;
-  margin: 20px auto;
-  padding: 1px;
-  /* width: 700px; */
-  position: relative;
-}
