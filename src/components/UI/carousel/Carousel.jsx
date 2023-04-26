@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Carousel.module.scss'
+import titleStyles from './carousel-title.module.css'
 import { Link } from 'react-router-dom';
 
 const Carousel = ({data}) => {
@@ -7,7 +8,6 @@ const Carousel = ({data}) => {
     return (
         <div className={styles.carousel}>
             <div className={styles.content}>
-                <div className={styles.background}></div>
             {data.map(item=>
                 <div key={item.id} className={`${styles.item} ${selectedItemID === item.id?styles.active:''}`}>
                     <div className={styles.title}>
@@ -17,7 +17,9 @@ const Carousel = ({data}) => {
                         <button className={styles.discover}><Link to={item.link}>discover now</Link></button>
                     </div>
                     <div className={styles.image}>
-                        <img  src={item.img} alt="" />
+                        <div className={styles.scelet}>
+                            <img  src={item.img} alt="" />
+                        </div>
                     </div>
                 </div>
                 )}

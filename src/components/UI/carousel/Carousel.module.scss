@@ -1,23 +1,29 @@
 .carousel{
     width: 100%;
     position: relative;
+    &::before{
+        content: '';
+        position: absolute;
+        width: 50%;
+        // border-bottom: 385px solid #3e5c86;
+        // border-left: 100px solid transparent;
+        height: 100%;
+        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+        background: #3e5c86;
+        right: 0;
+        z-index: -1;
+        
+    }
     .content{
         max-width: 1200px;
         margin: 0 auto;
         display:grid;
         grid-template-columns: 1fr;
-        grid-template-rows:500px 50px;
+        grid-template-rows:auto 30px;
         grid-template-areas:
         "slide"
         "dots";
-        .background{
-            position: absolute;
-            width: 50%;
-            border-bottom: 500px solid #3e5c86;
-            border-left: 100px solid transparent;
-            height: 0;
-            right: 0;
-        }
+        
         .item{
             grid-area: slide;
             display: flex;
@@ -29,13 +35,17 @@
                 transition: all 1s;
             }
             .title{
-                width: 600px;
+                max-width: 600px;
+                flex: 0 1 100%;
                 text-transform: uppercase;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                // padding: 20px 0;
+                container-type:inline-size;
                 &__season{
-                    font-size: 14px;
+                    // font-size: 14px;
+                    font-size: clamp(10px,3cqi,14px);
                     font-weight: 600;
                     padding-left: 30px;
                     position: relative;
@@ -51,14 +61,17 @@
                     }
                 }
                 &__head{
-                    font-size: 90px;
                     font-weight: 800;
                     -webkit-text-stroke: 3px #1d2d44;
                     line-height: 100%;
-                    color:#fff;
+                    color:transparent;
+                    word-break: break-word;
+                    max-height: 270px;
+                    font-size: min(16cqi,90px);
                 }
                 &__description{
-                    font-size: 16px;
+                    font-size: min(4cqi,16px);
+                    // font-size: 16px;
                     color: #2f2f2f;
                     font-weight: 500;
                     margin-top: 20px;
@@ -68,26 +81,38 @@
                     height: 60px;
                     text-transform: uppercase;
                     background: #3e5c86;
-                    font-size: 14px;
+                    // font-size: 14px;
+                    font-size: clamp(10px,3cqi,14px);
+
                     margin-top: 20px;
                     letter-spacing: 0.5px;
                     a{
                         color: #fff;
+
                     }
                 }
             }
             .image{
-                position: relative;
-                width: 600px;
-                height: 500px;
-                    
-                img{
-                    width: 380px;
-                    position: absolute;
-                    top: 60px;
-                    left: 110px;
-                    transform: scaleX(-1) rotate(1deg);
-                }
+                flex: 0 1 100%;
+                max-width: 600px;
+                // height: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: right;
+                // padding: 0 50px; 
+                padding-left: 100px;
+                border: 1px solid red;
+                .scelet{
+                    max-width: 380px;
+                    img{
+                        width: 100%;
+                         // position: absolute;
+                         // top: 60px;
+                         // left: 110px;
+                         transform: scaleX(-1) rotate(2deg);
+                     }
+                }   
+                
             }
         }
        
@@ -99,7 +124,7 @@
             .dot{
                 width: 30px;
                 height: 30px;
-                border: 2px solid #fff;
+                border: 2px solid transparent;
                 border-radius:50%;
                 position: relative;
                 transition: all 0.5s;
@@ -132,5 +157,81 @@
 @media screen and (max-width:1360px) {
     .carousel{
         padding: 0 80px;
+    }
+}
+@media screen and (max-width:1140px) {
+    .carousel .content .item .title .discover{
+        width: 160px;
+        height: 45px;
+    }
+}
+@media screen and (max-width:768px) {
+    .carousel{
+        padding: 0 40px;
+        .content{
+            grid-template-rows: auto 20px;
+            .item .title{
+                &__season{
+                    padding-left: 23px;
+                    &::before{
+                        height: 1px;
+                        width:20px;
+                        transform: translateY(-50%);
+                    }
+                }
+                
+                &__head{
+                    -webkit-text-stroke: 2px #1d2d44;
+                }
+                .discover{
+                    width: 140px;
+                    height: 35px;
+                }
+            }
+            .dots{
+                .dot{
+                    width: 20px;
+                    height: 20px;
+                    &::before{
+                        width: 5px;
+                        height: 5px;
+                    }
+                }
+            }
+        } 
+        
+    }
+}
+@media screen and (max-width:425px) {
+    .carousel{
+        background-color: rgba($color: #fff, $alpha: 0.6);
+        background-image: url('../../../images/carousel-background.svg');
+        background-size: cover;
+        background-color: rgba($color: #fff, $alpha: 0.4);
+        backdrop-filter: blur(8px);
+        &::before{
+            display: none;
+        }
+        .content{
+            .item{
+                .title{
+                    padding: 25px 0;
+                    &__head{
+                    font-size: min(15cqi,90px);
+                    }
+                    &__description{
+                        margin-top: 15px;
+                    }
+                }
+                .image{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 375px) {
+    .carousel{
+        padding: 0 20px;
     }
 }
