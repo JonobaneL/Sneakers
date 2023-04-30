@@ -14,7 +14,7 @@
     }
     .content{
         max-width: 1200px;
-        margin: 0 auto;
+        margin-inline: auto;
         display:grid;
         grid-template-columns: 1fr;
         grid-template-rows:auto 30px;
@@ -26,12 +26,12 @@
             grid-area: slide;
             display: flex;
             opacity: 0;
-            visibility: hidden;
+            // visibility: hidden;
             &.active{
                 opacity: 1;
                 visibility: visible;
-                transition: all 1s;
             }
+
             .title{
                 max-width: 600px;
                 flex: 0 1 100%;
@@ -79,9 +79,9 @@
                     font-size: clamp(10px,3cqi,14px);
                     margin-top: 20px;
                     letter-spacing: 0.5px;
-                    a{
-                        color: #fff;
-                    }
+                    cursor: pointer;
+                    color: #fff;
+                    font-weight: 500;
                 }
             }
             .image{
@@ -192,13 +192,15 @@
     .carousel{
         background-image: url('../../../images/carousel-background.svg');
         background-size: 130%;
+        padding: 10px 40px;
         &::before{
             display: none;
         }
         .content{
             .item{
                 .title{
-                    padding: 25px 0;//подумати за падінг
+                    margin-top:15px;
+                    margin-bottom: 20px;
                     &__season{
                         color: rgba($color: #fff, $alpha: 0.9);
                         &::before{
@@ -219,11 +221,39 @@
                     display: none;
                 }
             }
+            .dots{
+                .dot{
+                   &.active,&:hover{
+                    border: 2px solid #fff;
+                    &::before{
+                        background:#fff;
+                    }
+                   }
+                    &::before{
+                        background:rgba($color: #fff, $alpha: 0.9)
+                    }
+                }
+            }
         }
     }
 }
 @media only screen and (max-width: 375px) {
     .carousel{
-        padding: 0 20px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
+}
+
+
+.item-enter-active{
+    opacity: 0;
+}
+.item-enter-done{
+    opacity: 0;
+}
+.item-exit-active{
+    opacity: 1;
+}
+.item-exit-done{
+    opacity: 1;
 }
