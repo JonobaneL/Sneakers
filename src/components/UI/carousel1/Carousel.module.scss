@@ -1,7 +1,6 @@
 .carousel{
     width: 100%;
     position: relative;
-    padding-bottom: 10px;
     &::before{
         content: '';
         position: absolute;
@@ -11,7 +10,6 @@
         background: #3e5c86;
         right: 0;
         z-index: -1;
-        
     }
     .content{
         max-width: 1200px;
@@ -22,17 +20,8 @@
         grid-template-areas:
         "slide"
         "dots";
-        
-        .item{
-            grid-area: slide;
+        .carousel_item{
             display: flex;
-            opacity: 0;
-            // visibility: hidden;
-            &.active{
-                opacity: 1;
-                visibility: visible;
-            }
-
             .title{
                 max-width: 600px;
                 flex: 0 1 100%;
@@ -102,52 +91,31 @@
                 
             }
         }
-       
-        .dots{
+        .dots_nav{
             grid-area: dots;
             display: flex;
             align-items: center;
             gap: 7px;
             .dot{
-                width: 30px;
-                height: 30px;
-                border: 2px solid transparent;
-                border-radius:50%;
-                position: relative;
-                transition: all 0.5s;
-                &::before{
-                    content:'';
-                    width: 7px;
-                    height: 7px;
-                    border-radius: 50%;
-                    background: #898989;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%,-50%);
-                }
-                cursor: pointer;
-                &.active,&:hover{
-                    border: 2px solid #1d2d44;
-                    transition: all 0.5s;
-                    &::before{
-                        background: #1d2d44;
-                    }
-                }
+                box-sizing: content-box;
+               width: 7px;
+               height: 7px;
+               border-radius: 50%;
+               border: 10px solid #fff;
+               background-color: #a0a0a0;
+               box-shadow: 0 0 0 2px #000;
             }
-            
         }
     }
    
 }
-
 @media screen and (max-width:1360px) {
     .carousel{
         padding: 0 80px;
     }
 }
 @media screen and (max-width:1140px) {
-    .carousel .content .item .title .discover{
+    .carousel .content .carousel_item .title .discover{
         width: 160px;
         height: 45px;
     }
@@ -157,7 +125,7 @@
         padding: 0 40px;
         .content{
             grid-template-rows: auto 20px;
-            .item .title{
+            .carousel_item .title{
                 &__season{
                     padding-left: 23px;
                     &::before{
@@ -175,16 +143,16 @@
                     height: 35px;
                 }
             }
-            .dots{
-                .dot{
-                    width: 20px;
-                    height: 20px;
-                    &::before{
-                        width: 5px;
-                        height: 5px;
-                    }
-                }
-            }
+            // .dots{
+            //     .dot{
+            //         width: 20px;
+            //         height: 20px;
+            //         &::before{
+            //             width: 5px;
+            //             height: 5px;
+            //         }
+            //     }
+            // }
         } 
         
     }
@@ -198,7 +166,7 @@
             display: none;
         }
         .content{
-            .item{
+            .carousel_item{
                 .title{
                     margin-top:15px;
                     margin-bottom: 20px;
@@ -222,19 +190,19 @@
                     display: none;
                 }
             }
-            .dots{
-                .dot{
-                   &.active,&:hover{
-                    border: 2px solid #fff;
-                    &::before{
-                        background:#fff;
-                    }
-                   }
-                    &::before{
-                        background:rgba($color: #fff, $alpha: 0.9)
-                    }
-                }
-            }
+            // .dots{
+            //     .dot{
+            //        &.active,&:hover{
+            //         border: 2px solid #fff;
+            //         &::before{
+            //             background:#fff;
+            //         }
+            //        }
+            //         &::before{
+            //             background:rgba($color: #fff, $alpha: 0.9)
+            //         }
+            //     }
+            // }
         }
     }
 }
@@ -243,18 +211,4 @@
         padding-left: 20px;
         padding-right: 20px;
     }
-}
-
-
-.item-enter-active{
-    opacity: 0;
-}
-.item-enter-done{
-    opacity: 0;
-}
-.item-exit-active{
-    opacity: 1;
-}
-.item-exit-done{
-    opacity: 1;
 }
