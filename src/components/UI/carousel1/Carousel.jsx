@@ -23,13 +23,13 @@ const Carousel = ({data,arrows=false,dots=true}) => {
             };
           },
           center: {
-            zIndex: 1,
-            x: 0,
+            // zIndex: 1,
+            // x: 0,
             opacity: 1
           },
           exit: (direction) => {
             return {
-              zIndex: 0,
+            //   zIndex: 0,
             //   x: direction < 0 ? 500 : -500,
               opacity: 0
             };
@@ -50,14 +50,17 @@ const Carousel = ({data,arrows=false,dots=true}) => {
             x:-20,
             opacity:0
         },
-        visible:{
-            x:0,
-            opacity:1,
-            transition:{
-                type: "spring", 
-                stiffness: 300, 
-                damping: 30,
-                duration:1
+        visible:(index)=>{
+            return{
+                x:0,
+                opacity:1,
+                transition:{
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 30,
+                    duration:1,
+                    delay:index*0.2
+                }
             }
         }
     }
@@ -74,25 +77,34 @@ const Carousel = ({data,arrows=false,dots=true}) => {
                     variants={itemVariants}
                     transition={{
                         opacity: { duration: 0.2 },
-                        staggerChildren:0.4,
+                        when:'beforeChildren'
                     }}
                     className={styles.carousel_item}>
                         <div className={styles.title}>
                             <motion.p
                                 variants={infoVariants}
+                                initial="hidden"
+                                animate="visible"
+                                custom={0}
                                 className={styles.title__season}>{data[pageIndex].season}</motion.p>
                             <motion.p
-                                
+                                initial="hidden"
+                                animate="visible"
+                                custom={1}
                                 variants={infoVariants}
                                 className={styles.title__head}>{data[pageIndex].title}</motion.p>
                             <motion.p
-                               
+                               initial="hidden"
+                               animate="visible"
                                 variants={infoVariants}
+                                custom={2}
                                 className={styles.title__description}>{data[pageIndex].description}</motion.p>
                             <Link to={data[pageIndex].link}>
                                 <motion.button
-                                    
+                                    initial="hidden"
+                                    animate="visible"
                                     variants={infoVariants}
+                                    custom={3}
                                     className={styles.discover}
                                     >
                                     discover now
@@ -106,10 +118,8 @@ const Carousel = ({data,arrows=false,dots=true}) => {
                             transition={{
                                 x: { type: "spring", stiffness: 300, damping: 30,duration:1},
                             }}
-                        className={styles.image}>
-                            <div className={styles.scelet}>
+                            className={styles.image}>
                                 <img  src={data[pageIndex].img} alt="" />
-                            </div>
                         </motion.div>
                     </motion.div>
                 </AnimatePresence>
@@ -122,7 +132,7 @@ const Carousel = ({data,arrows=false,dots=true}) => {
                             //     background:"#1d2d44"
                             // }}
                             // animate={{boxShadow:pageIndex===index?'0px 0px 0px 2px #1d2d44':'0px 0px 0px 2px transparent'}}
-                            className={styles.dot}
+                            className={`${styles.dot} ${pageIndex===index?styles.active:''}`}
                             onClick={()=>dotsPaginate(index)}
                         ></motion.div>
                         )}

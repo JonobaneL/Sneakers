@@ -1,57 +1,109 @@
 import React, { useState } from 'react';
 import styles from './Carousel.module.scss'
+import { AnimatePresence, wrap,motion, AnimateSharedLayout } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
+const Carousel = ({data,arrows=false,dots=true,children}) => {
+    console.log(children)
+    const primatyCarouselStyles = {
+        padding:`0 ${arrows?'50px':0} ${dots?'30px':0} ${arrows?'50px':0}`
+    }
+    const [[page,direction],setPage]=useState([0,0])
+    const pageIndex = wrap(0,children.length,page);
 
-const Carousel = ({data}) => {
-    const [selectedItemID,setSelectedItemID] = useState(data[0].id)
-    const [triger,setTriger] = useState(true)
+    const arrowsPaginate = newDirection =>{
+        setPage([page+newDirection,newDirection])
+    }
+    const dotsPaginate = dotIndex =>{
+        setPage([dotIndex,dotIndex<pageIndex?-1:1])
+    }
+    const itemVariants = {
+        enter: (direction) => {
+            return {
+            //   x: direction > 0 ? 500 : -500,
+              opacity: 0
+            };
+          },
+          center: {
+            // zIndex: 1,
+            // x: 0,
+            opacity: 1
+          },
+          exit: (direction) => {
+            return {
+            //   zIndex: 0,
+            //   x: direction < 0 ? 500 : -500,
+              opacity: 0
+            };
+          }
+    }
+    const imageVariants ={
+        start:{
+            x: 20,
+            opacity:0,
+        },
+        done:{
+            x:0,
+            opacity:1,
+        }
+    }
+    const infoVariants = {
+        hidden:{
+            x:-20,
+            opacity:0
+        },
+        visible:(index)=>{
+            return{
+                x:0,
+                opacity:1,
+                transition:{
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 30,
+                    duration:1,
+                    delay:index*0.2
+                }
+            }
+        }
+    }
     return (
         <div className={styles.carousel}>
-            <div className={styles.content}>
-            {data.map(item=>
-            <SwitchTransition key={item.id} mode="out-in">
-                <CSSTransition 
-                key={triger}
-                timeout={500}
-                classNames={{
-                    enterActive: styles["item-enter-active"],
-                    enterDone: styles["item-enter-done"],
-                    exitActive: styles["item-exit-active"],
-                    exitDone: styles["item-exit-done"],
+            <AnimatePresence initial={false} mode='wait' custom={direction}>
+                <motion.div 
+                key={page}
+                custom={direction}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                variants={itemVariants}
+                transition={{
+                    opacity: { duration: 0.2 },
+                    when:'beforeChildren'
                 }}
-                >
-                    <div  className={`${styles.item} ${selectedItemID === item.id?styles.active:''}`}>
-                        <div className={styles.title}>
-                            <p className={styles.title__season}>{item.season}</p>
-                            <p className={styles.title__head}>{item.title}</p>
-                            <p className={styles.title__description}>{item.description}</p>
-                            <Link to={item.link}><button className={styles.discover}>discover now</button></Link>
-                        </div>
-                        <div className={styles.image}>
-                            <div className={styles.scelet}>
-                                <img  src={item.img} alt="" />
-                            </div>
-                        </div>
-                    </div>
-                </CSSTransition>
-            </SwitchTransition>
-                )}
-                <div className={styles.dots}>
-                    {data.map(item=>
-                        <div 
-                            key={item.id} 
-                            className={`${styles.dot} ${selectedItemID === item.id?styles.active:''}`}
-                            onClick={()=>{setSelectedItemID(item.id);setTriger(p=>!p)}}
-                            ></div>
+                className={styles.content}>
+                    
+                    {children[pageIndex]}
+                </motion.div>
+            </AnimatePresence>
+            <div onClick={()=>arrowsPaginate(-1)} className={styles.leftArrow}>&#60;</div>
+            <div onClick={()=>arrowsPaginate(1)} className={styles.rightArrow}>&#62;</div>
+            {
+                dots&&<div className={styles.dots_nav}>
+                    {data.map((_,index)=>
+                        <motion.div
+                        key={index}
+                        // whileHover={{
+                        //     background:"#1d2d44"
+                        // }}
+                        // animate={{boxShadow:pageIndex===index?'0px 0px 0px 2px #1d2d44':'0px 0px 0px 2px transparent'}}
+                        className={`${styles.dot} ${pageIndex===index?styles.active:''}`}
+                        onClick={()=>dotsPaginate(index)}
+                    ></motion.div>
                     )}
-                   
-                </div>  
-                <div className={styles.circle}></div>
-            </div>
+                </div>
+            }
+            
         </div>
     );
 };
-
 
 export default Carousel;

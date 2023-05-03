@@ -1,260 +1,155 @@
 .carousel{
     width: 100%;
     position: relative;
-    padding-bottom: 10px;
-    &::before{
-        content: '';
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
-        background: #3e5c86;
-        right: 0;
-        z-index: -1;
-        
-    }
-    .content{
-        max-width: 1200px;
-        margin-inline: auto;
-        display:grid;
-        grid-template-columns: 1fr;
-        grid-template-rows:auto 30px;
-        grid-template-areas:
-        "slide"
-        "dots";
-        
-        .item{
-            grid-area: slide;
+    padding: 40px 0;// потім забрати, бо падінги будуть задаватися через обгортку
+    display: grid;
+    grid-template-columns:30px 1fr 30px;
+    grid-template-rows:auto auto;
+    row-gap: 10px;
+    align-items: center;
+    grid-template-areas: 
+    "leftArrow content rightArrow"
+    ". dots .";
+        .content{
+            grid-area: content;
             display: flex;
-            opacity: 0;
-            // visibility: hidden;
-            &.active{
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .title{
-                max-width: 600px;
-                flex: 0 1 100%;
-                text-transform: uppercase;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                container-type:inline-size;
-                &__season{
-                    font-size: clamp(10px,3cqi,14px);
-                    font-weight: 600;
-                    padding-left: 30px;
-                    position: relative;
-                    color: #383838;
-                    &::before{
-                        content: '';
-                        position: absolute;
-                        width: 25px;
-                        height: 2px;
-                        background: #2f2f2f;
-                        left: 0;
-                        top: 50%;
-                    }
-                }
-                &__head{
-                    font-weight: 800;
-                    -webkit-text-stroke: 3px #1d2d44;
-                    line-height: 100%;
-                    color:transparent;
-                    word-break: break-word;
-                    max-height: 270px;
-                    font-size: min(16cqi,90px);
-                }
-                &__description{
-                    font-size: min(4cqi,16px);
-                    color: #2f2f2f;
-                    font-weight: 500;
-                    margin-top: 20px;
-                }
-                .discover{
-                    width: 180px;
-                    height: 60px;
-                    text-transform: uppercase;
-                    background: #3e5c86;
-                    font-size: clamp(10px,3cqi,14px);
-                    margin-top: 20px;
-                    letter-spacing: 0.5px;
-                    cursor: pointer;
-                    color: #fff;
-                    font-weight: 500;
-                }
-            }
-            .image{
-                flex: 0 1 100%;
-                max-width: 600px;
-                display: flex;
-                align-items: center;
-                justify-content: right;
-                padding-left: 100px;
-                .scelet{
-                    max-width: 380px;
-                    img{
-                        width: 100%;
-                         transform: scaleX(-1) rotate(2deg);
-                     }
-                }   
-                
-            }
+            align-items: center;
+            justify-content: center;
         }
-       
-        .dots{
+        .leftArrow,.rightArrow{
+            width: 30px;
+            height: 30px;
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        .leftArrow{
+            grid-area: leftArrow;
+        }
+        .rightArrow{
+            grid-area: rightArrow;
+        }
+        .dots_nav{
             grid-area: dots;
             display: flex;
             align-items: center;
-            gap: 7px;
+            justify-content: center;
+            gap: 10px;
             .dot{
-                width: 30px;
-                height: 30px;
-                border: 2px solid transparent;
+                width: 10px;
+                height: 10px;
                 border-radius:50%;
-                position: relative;
+                background: #898989;
                 transition: all 0.5s;
-                &::before{
-                    content:'';
-                    width: 7px;
-                    height: 7px;
-                    border-radius: 50%;
-                    background: #898989;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%,-50%);
-                }
                 cursor: pointer;
                 &.active,&:hover{
-                    border: 2px solid #1d2d44;
-                    transition: all 0.5s;
-                    &::before{
-                        background: #1d2d44;
-                    }
+                    background: #232323;
                 }
             }
-            
         }
-    }
    
 }
-
-@media screen and (max-width:1360px) {
-    .carousel{
-        padding: 0 80px;
-    }
-}
-@media screen and (max-width:1140px) {
-    .carousel .content .item .title .discover{
-        width: 160px;
-        height: 45px;
-    }
-}
-@media screen and (max-width:768px) {
-    .carousel{
-        padding: 0 40px;
-        .content{
-            grid-template-rows: auto 20px;
-            .item .title{
-                &__season{
-                    padding-left: 23px;
-                    &::before{
-                        height: 1px;
-                        width:20px;
-                        transform: translateY(-50%);
-                    }
-                }
+// @media screen and (max-width:1360px) {
+//     .carousel{
+//         padding: 0 80px 10px 80px;
+//     }
+// }
+// @media screen and (max-width:1140px) {
+//     .carousel .content .carousel_item .title .discover{
+//         width: 160px;
+//         height: 45px;
+//     }
+// }
+// @media screen and (max-width:768px) {
+//     .carousel{
+//         padding: 0 40px 10px 40px;
+//         .content{
+//             grid-template-rows: auto 20px;
+//             .carousel_item .title{
+//                 &__season{
+//                     padding-left: 23px;
+//                     &::before{
+//                         height: 1px;
+//                         width:20px;
+//                         transform: translateY(-50%);
+//                     }
+//                 }
                 
-                &__head{
-                    -webkit-text-stroke: 2px #1d2d44;
-                }
-                .discover{
-                    width: 140px;
-                    height: 35px;
-                }
-            }
-            .dots{
-                .dot{
-                    width: 20px;
-                    height: 20px;
-                    &::before{
-                        width: 5px;
-                        height: 5px;
-                    }
-                }
-            }
-        } 
+//                 &__head{
+//                     -webkit-text-stroke: 2px #1d2d44;
+//                 }
+//                 .discover{
+//                     width: 140px;
+//                     height: 35px;
+//                 }
+//             }
+//             .dots_nav{
+//                 .dot{
+//                     width: 20px;
+//                     height: 20px;
+//                     &::before{
+//                         width: 5px;
+//                         height: 5px;
+//                     }
+//                 }
+//             }
+//         } 
         
-    }
-}
-@media screen and (max-width:425px) {
-    .carousel{
-        background-image: url('../../../images/carousel-background.svg');
-        background-size: 130%;
-        padding: 10px 40px;
-        &::before{
-            display: none;
-        }
-        .content{
-            .item{
-                .title{
-                    margin-top:15px;
-                    margin-bottom: 20px;
-                    &__season{
-                        color: rgba($color: #fff, $alpha: 0.9);
-                        &::before{
-                            background: rgba($color: #fff, $alpha: 0.9);
-                        }
-                    }
-                    &__head{
-                    font-size: min(15cqi,90px);
-                    -webkit-text-stroke-color:#fff;
+//     }
+// }
+// @media screen and (max-width:425px) {
+//     .carousel{
+//         background-image: url('../../../images/carousel-background.svg');
+//         background-size: 130%;
+//         padding: 10px 40px;
+//         &::before{
+//             display: none;
+//         }
+//         .content{
+//             .carousel_item{
+//                 .title{
+//                     margin-top:15px;
+//                     margin-bottom: 20px;
+//                     &__season{
+//                         color: rgba($color: #fff, $alpha: 0.9);
+//                         &::before{
+//                             background: rgba($color: #fff, $alpha: 0.9);
+//                         }
+//                     }
+//                     &__head{
+//                     font-size: min(15cqi,90px);
+//                     -webkit-text-stroke-color:#fff;
 
-                    }
-                    &__description{
-                        margin-top: 15px;
-                        color: #fff;
-                    }
-                }
-                .image{
-                    display: none;
-                }
-            }
-            .dots{
-                .dot{
-                   &.active,&:hover{
-                    border: 2px solid #fff;
-                    &::before{
-                        background:#fff;
-                    }
-                   }
-                    &::before{
-                        background:rgba($color: #fff, $alpha: 0.9)
-                    }
-                }
-            }
-        }
-    }
-}
-@media only screen and (max-width: 375px) {
-    .carousel{
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
-
-
-.item-enter-active{
-    opacity: 0;
-}
-.item-enter-done{
-    opacity: 0;
-}
-.item-exit-active{
-    opacity: 1;
-}
-.item-exit-done{
-    opacity: 1;
-}
+//                     }
+//                     &__description{
+//                         margin-top: 15px;
+//                         color: #fff;
+//                     }
+//                 }
+//                 .image{
+//                     display: none;
+//                 }
+//             }
+//             .dots_nav{
+//                 .dot{
+//                    &.active,&:hover{
+//                     border: 2px solid #fff;
+//                     &::before{
+//                         background:#fff;
+//                     }
+//                    }
+//                     &::before{
+//                         background:rgba($color: #fff, $alpha: 0.9)
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+// @media only screen and (max-width: 375px) {
+//     .carousel{
+//         padding-left: 20px;
+//         padding-right: 20px;
+//     }
+// }
