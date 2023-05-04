@@ -10,12 +10,20 @@
     grid-template-areas: 
     "leftArrow content rightArrow"
     ". dots .";
-        .content{
-            grid-area: content;
+    .container{
+        grid-area: content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .item{
+            outline: 2px solid green;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
+    }
+        
         .leftArrow,.rightArrow{
             width: 30px;
             height: 30px;
@@ -23,6 +31,7 @@
             font-weight: 800;
             line-height: 30px;
             cursor: pointer;
+            outline: 2px solid purple;
         }
         .leftArrow{
             grid-area: leftArrow;
@@ -31,6 +40,7 @@
             grid-area: rightArrow;
         }
         .dots_nav{
+            outline: 2px solid blue;
             grid-area: dots;
             display: flex;
             align-items: center;

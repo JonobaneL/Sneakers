@@ -1,84 +1,35 @@
 .about{
     width: 100%;
-    
     .content{
-       
-        .carousel{
-            position: relative;
-            .item{
-                display: flex;
-                width: 100%;
-                .title{
-                    max-width: 600px;
-                    flex: 0 1 100%;
-                    text-transform: uppercase;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    container-type:inline-size;
-                    &__season{
-                        font-size: clamp(10px,3cqi,14px);
-                        font-weight: 600;
-                        padding-left: 30px;
-                        position: relative;
-                        color: #383838;
-                        &::before{
-                            content: '';
-                            position: absolute;
-                            width: 25px;
-                            height: 2px;
-                            background: #2f2f2f;
-                            left: 0;
-                            top: 50%;
-                        }
-                    }
-                    &__head{
-                        font-weight: 800;
-                        -webkit-text-stroke: 3px #1d2d44;
-                        line-height: 100%;
-                        color:transparent;
-                        word-break: break-word;
-                        max-height: 270px;
-                        font-size: min(16cqi,90px);
-                    }
-                    &__description{
-                        font-size: min(4cqi,16px);
-                        color: #2f2f2f;
-                        font-weight: 500;
-                        margin-top: 20px;
-                    }
-                    .discover{
-                        width: 180px;
-                        height: 60px;
-                        text-transform: uppercase;
-                        background: #3e5c86;
-                        font-size: clamp(10px,3cqi,14px);
-                        margin-top: 20px;
-                        letter-spacing: 0.5px;
-                        cursor: pointer;
-                        color: #fff;
-                        font-weight: 500;
-                    }
-                }
-                .image{
-                    flex: 0 1 100%;
-                    max-width: 600px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: right;
-                    padding-left: 100px;
-                    .scelet{
-                        max-width: 380px;
-                        img{
-                            width: 100%;
-                             transform: scaleX(-1) rotate(2deg);
-                         }
-                    }   
-                    
-                }
-            }
+    //    padding: 50px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+       .list{
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        height: 120px;
+        gap:20px;
+        .listItem{
+            display: block;
+            height: 80px;
+            width: 100%;
+            flex: 0 0 80px;
+            border-radius: 20px; 
+            background: #2f2f2f;
+            padding: 25px;
+            color: #fff;
         }
-        
+       }
+        .btn1,.btn2{
+            font-size: 15px;
+            width: 140px;
+            height:30px;
+            background: #3e3e3e;
+            color: #fff;
+        }
     }
     
 }
