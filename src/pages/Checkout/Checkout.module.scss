@@ -1,0 +1,14 @@
+.checkout{
+    width: 100%;
+    padding:20px 80px;
+    .content{
+        max-width:1200px;
+        margin-inline:auto;
+        // border: 1px solid red;
+        .title{
+            text-align:center;
+            font-weight: 600;
+            color: #202020;
+        }
+    }
+}

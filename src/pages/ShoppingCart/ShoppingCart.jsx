@@ -9,6 +9,7 @@ import { getFinalPrice } from '../../utils/getFinalPrice';
 import { getCouponDiscount } from '../../utils/getCouponDiscount';
 import Toast from '../../components/Toast/Toast';
 import Accordion from '../../components/UI/accordion/Accordion';
+import { Link } from 'react-router-dom';
 const ShoppingCart = () => {
     const {shoppingCart} = useShoppingCart()
     const [discount,setDiscount] = useState(0)
@@ -87,6 +88,7 @@ const ShoppingCart = () => {
                                         <p className={styles.total__cost}>${getFinalPrice(total,discount)}</p>
                                     </li>
                                 </ul>
+                                <Link to='/checkout'><button>proceed to checkout</button></Link>
                             </div>
                         </div>
                     </>

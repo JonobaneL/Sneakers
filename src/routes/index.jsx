@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 import Products from "../pages/Products/Products";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
+import Checkout from "../pages/Checkout/Checkout";
 
 export const publicRoutes = [
     {
@@ -29,6 +30,10 @@ export const publicRoutes = [
     {
         path:'/:type/:male',
         element:<Products/>   
+    },
+    {
+        path:'/checkout',
+        element:<Checkout/>
     },
     {
         path:'*', 
