@@ -45,7 +45,6 @@ const ShoppingCart = () => {
     },0);
     console.log("Cart = ",shoppingCart)
     console.log(window.screen.availWidth>768?true:false);
-    // const [couponOpen, setCoupon] = useState()
     return (
         <div className={styles['shopping-cart']}>
             <div className={styles.content}>
