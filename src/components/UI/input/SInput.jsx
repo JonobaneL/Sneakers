@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import styles from './SInput.module.scss'
 
+
 const SInput = memo(({height,params,theme,value,setValue}) => {
     const WHITE_THEME = {
         color: "#fff",

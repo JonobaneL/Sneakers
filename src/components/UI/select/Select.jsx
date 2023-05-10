@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Select.module.scss'
 import arrow from '../../../images/down-arrow.png'
-const Select = ({placeholder, params,getData}) => {
+const Select = ({placeholder, params,getData,type='underLineType',height='40px',children}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectValue, setSelectValue] = useState({})
    
@@ -15,7 +15,7 @@ const Select = ({placeholder, params,getData}) => {
     }
     return (
         <div tabIndex={0} className={styles.select} onBlur={()=>setIsOpen(false)}>
-            <div className={styles.selectField} onClick={()=>{setIsOpen(!isOpen)}}  >
+            <div className={`${styles.selectField} ${styles[type]}`} style={{height:height}} onClick={()=>{setIsOpen(!isOpen)}}  >
                 <p>{selectValue.value||<span className={styles.placeholder}>{placeholder}</span>}</p>
                 <button className={`${styles.arrow} ${isOpen?styles.active:''}`}>
                     <img src={arrow} alt="" />
@@ -45,3 +45,4 @@ const Select = ({placeholder, params,getData}) => {
 
 
 export default Select;
+//поправити селект(трохи переробити його) хоча вже ніби не треба нічого фіксити

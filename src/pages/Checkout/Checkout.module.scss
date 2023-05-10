@@ -1,18 +1,19 @@
 .checkout{
     width: 100%;
-    padding:20px 80px;
+    padding:40px 80px 60px 80px;
     .content{
         max-width:1200px;
         margin-inline:auto;
         display:grid;
         grid-template-columns:1fr 350px;
         grid-template-rows: 50px auto;
+        align-items: start;
         grid-template-areas:
         "title title"
         "orderForm orderSummary";
         column-gap:60px;
+        row-gap: 10px;
         color: #292929;
-        // border: 1px solid red;
         .title{
             grid-area:title;
             text-align:center;
@@ -26,9 +27,6 @@
             flex-direction: column;
             gap: 20px;
             .customer{
-                // display: flex;
-                // flex-direction:column;
-                // gap: 10px;
                 .customInput{
                     width: 100%;
                     height: 50px;
@@ -68,6 +66,8 @@
             }
         }
         .cart{
+            position: sticky;
+            top: 140px;
             width: 100%;
             padding: 15px;
             border:1px solid #ddd;
