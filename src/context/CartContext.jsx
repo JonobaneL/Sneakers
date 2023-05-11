@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useShoes } from "../hooks/useShoes";
 
 const CartContext = React.createContext({});
 
@@ -45,11 +46,16 @@ export const CartProvider = ({children})=>{
             })
         )
     }
+    const cartSubTotal = shoppingCart.reduce((total,cartItem)=>{
+       const item = useShoes(cartItem.id,cartItem.colorId);
+       return total+(item?.cost||0)*cartItem.quantity; 
+    },0).toFixed(2);
     const cartQuantity = shoppingCart.reduce((quantity,item)=>item.quantity+quantity,0)
     return(
         <CartContext.Provider value={{
             shoppingCart,
             cartQuantity,
+            cartSubTotal,
             addToCart,
             getItemQuantity,
             increaseCartQuantity,
