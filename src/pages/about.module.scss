@@ -1,34 +1,26 @@
 .about{
     width: 100%;
+    padding: 40px 0;
     .content{
-    //    padding: 50px 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-       .list{
-        display: flex;
-        justify-content: center;
-        width: 80%;
-        height: 120px;
-        gap:20px;
-        .listItem{
-            display: block;
-            height: 80px;
-            width: 100%;
-            flex: 0 0 80px;
-            border-radius: 20px; 
-            background: #2f2f2f;
-            padding: 25px;
-            color: #fff;
-        }
-       }
-        .btn1,.btn2{
-            font-size: 15px;
-            width: 140px;
-            height:30px;
-            background: #3e3e3e;
-            color: #fff;
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+            input{
+                height: 35px;
+                border:1px solid #b0b0b0;
+                border-radius: 6px;
+                padding: 0 5px;
+            }
+            button{
+                height: 35px;
+                background: #2f2f2f;
+                color:#fff
+            }
         }
     }
     
