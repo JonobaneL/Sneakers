@@ -44,6 +44,7 @@ const useValidation = (value,validations,validationErrorMessages) =>{
           break;
         case 'isEmpty':
           value ? setIsEmpty(false) : setIsEmpty(true);
+          // ще раз тут написати умову а тоді з цією зміною юзати десь isDurty
         break;
       }
     }
