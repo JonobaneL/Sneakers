@@ -1,11 +1,11 @@
 import styles from './CartItem.module.scss'
-import { useShoes } from '../../hooks/useShoes';
+import { useProduct } from '../../hooks/useProduct';
 import { useShoppingCart } from '../../context/CartContext';
 import removeIcon from '../../images/cancel.svg'
 
 const CartItem = ({id,colorId,size,quantity}) => {
     const {increaseCartQuantity,decreaseCartQuantity,removeFromCart} = useShoppingCart()
-    const item = useShoes(id,colorId)
+    const item = useProduct(id,colorId)
     return (
         <div className={styles['cart-item']}>
             <img className={styles['product-image']} src={item.images[1]} alt={item.name} />

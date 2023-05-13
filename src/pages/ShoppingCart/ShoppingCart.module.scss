@@ -11,14 +11,14 @@
         .empty-cart{
             text-align: center;
         }
-        .shoes{
+        .products{
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 10px;
             border-radius: 4px;
 
-            .shoes-title{
+            .products-title{
                 width: 100%;
                 height: 45px;
                 border-bottom: 1px solid #3e5c7866;
@@ -46,47 +46,54 @@
             }
         }
         .total{
-            width: 300px;
+            width: 350px;
             height: 100%;
             align-self: self-end;
+            padding: 15px;
+            border:1px solid #ddd;
+            box-shadow:0 4px 8px rgba(221,221,221,.5);
+            border-radius:5px;
+            .coupon-title{
+                margin-bottom: 8px;
+                font-size: 15px;
+                font-weight: 500;
+            }
             .coupon{
+                width: 100%;
                 display: flex;
-                align-items: end;
-                height: 35px;
-                .apply_btn{
-                    height: 100%;
-                    padding: 0 10px;
+                align-items: center;
+                position: relative;
+                padding-bottom: 15px;
+                .apply-coupon{
+                    position: absolute;
+                    right: 0;
+                    background: #3e5c86;
                     color: #fff;
+                    border-radius: 5px;
+                    height: 40px;
+                    padding-inline: 10px;
                     font-size: 14px;
-                    background: #1d2d44;
-                    cursor: pointer;
-                    border-radius: 2px;
+                    font-weight: 500;
                 }
             }
-            .cost{
+            .coupon-remove{
+                text-align: center;
+                margin-top: 10px;
+                font-size: 15px;
+                color: #181818;
+                font-weight: 500;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+            .checkout-btn{
+                height: 40px;
                 width: 100%;
-                margin-top: 20px;
-                border-radius: 4px;
-                color: #1d2d44;
-                .info{
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                    li{
-                        display: flex;
-                        justify-content: space-between;
-                        border-bottom: 1px solid rgba(62, 92, 118, 0.3607843137);
-                        padding-bottom:5px;
-                        .parameter{
-                            font-size: 15px;
-                            font-weight: 500;
-                        }
-                    }
-                }
-                .total__cost{
-                    font-weight: 600;
-                    font-size: 18px;
-                }
+                background: #3e5c86;
+                color: #fff;
+                font-size: 15px;
+                border-radius:5px;
+                margin-top: 10px;
+                cursor: pointer;
             }
         }
     }
@@ -94,19 +101,16 @@
 
 
 @media screen and (max-width:1180px) {
-    .shoes-title{
+    .products-title{
         grid-template-columns: 100px minmax(200px, 1.8fr) 0.8fr 1fr 1fr 1fr 25px;
     }
 }
 @media screen and (max-width:920px) {
-    .shoes-title{
-        grid-template-columns: 100% !important;
+   .shopping-cart .content .products .products-title{
+        grid-template-columns: 100%;
         .title-size,.title-color,.title-quantity,.title-total{
             display: none;
         }
-    }
-    .coupon__field{
-        height: 35px !important;
     }
 }
 
@@ -116,9 +120,10 @@
     }
 }
 @media screen and (max-width:425px) {
-    .total{
-        width: 100% !important;
+    .shopping-cart .content .total{
+        width: 100%;
     }
+   
 }
 @media screen and (max-width:375px) {
     .shopping-cart{

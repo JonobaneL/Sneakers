@@ -1,6 +1,6 @@
 import {shoes} from '../data/shoes'
 import { getFinalPrice } from '../utils/getFinalPrice';
-export const useShoes =(id,colorId)=>{
+export const useProduct =(id,colorId)=>{
     const response = shoes.find(item=>item.id === id);
     const colorResponse = response.colors.find(item=>item.id === parseInt(colorId,10));
     return {

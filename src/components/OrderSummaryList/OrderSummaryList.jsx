@@ -1,9 +1,9 @@
 import { useShoppingCart } from '../../context/CartContext';
-import { useShoes } from '../../hooks/useShoes';
+import { useProduct } from '../../hooks/useProduct';
 import styles from './OrderSummaryList.module.scss'
 
 const Item = ({id,colorId,size,quantity}) =>{
-    const item = useShoes(id,colorId)
+    const item = useProduct(id,colorId)
     return <li className={styles['list-item']}>
         <img className={styles['list-item__image']} src={item.images[1]} alt={item.name} />
         <div className={styles['list-item__info']}>

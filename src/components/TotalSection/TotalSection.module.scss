@@ -1,0 +1,25 @@
+.total{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 15px 0;
+    border-bottom: 1px solid #b0b0b0;
+    border-top: 1px solid #b0b0b0;
+    font-size: 15px;
+    color: #474747;
+    &__item{
+        display: flex;
+        justify-content: space-between;
+        .price{
+            color: #2f2f2f;
+            font-weight: 500;
+        }
+        .shipping__details{
+            width: 130px;
+            text-align: right;
+            color: #2f2f2f;
+            font-weight: 500;
+        }
+    }
+}

@@ -12,10 +12,13 @@ import PayPalIcon from '../../images/PayPal-icon.svg'
 import CInput from '../../components/UI/inputV2/CInput';
 import CreditCardFrom from '../../components/CreditCardForm/CreditCardFrom';
 import OrdreSummaryList from '../../components/OrderSummaryList/OrderSummaryList';
+import TotalSection from '../../components/TotalSection/TotalSection';
+import editIcon from '../../images/edit-icon.svg'
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
     const [customer,setCustomer] = useState('new');
-    const {cartSubTotal} = useShoppingCart();
+    const {cartSubTotal,cartTotal} = useShoppingCart();
     const hadler = (param)=>{
         console.log(param)
     }
@@ -102,25 +105,14 @@ const Checkout = () => {
             </div>
             <div className={styles.cart}>
                 <h3 className={styles['cart__title']}>Order Summary</h3>
-                <ul className={styles["order-total"]}>
-                    <li className={styles['order-total__item']}>
-                    Subtotal
-                    <p className={styles.price}>${cartSubTotal}</p>
-                    </li>
-                    <li className={styles['order-total__item']}>
-                    Discount
-                    <p className={styles.price}>$0</p>
-                    </li>
-                    <li className={styles['order-total__item']}>
-                        Shipping
-                    <p className={styles.shipping__details}>according to the carrier's tariffs</p>
-                    </li>
-                    <li className={styles['order-total__item']}>
-                        Total
-                        <p className={styles.price}>${cartSubTotal}</p>
-                    </li>
-                </ul>
+                <TotalSection/>
                 <div className={styles.productList}>
+                    <Link to='/shopping-cart'>
+                        <div className={styles.productList__edit}>
+                            <img src={editIcon} alt="Edit cart" />
+                            Edit
+                        </div>
+                    </Link>
                     <OrdreSummaryList/>
                 </div>
             </div>

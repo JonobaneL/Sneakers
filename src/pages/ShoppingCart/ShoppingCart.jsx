@@ -4,22 +4,20 @@ import { useRef } from 'react';
 import { useShoppingCart } from '../../context/CartContext';
 import CartItem from '../../components/CartItem/CartItem';
 import SInput from '../../components/UI/input/SInput';
-import { useShoes } from '../../hooks/useShoes';
-import { getFinalPrice } from '../../utils/getFinalPrice';
 import { getCouponDiscount } from '../../utils/getCouponDiscount';
 import Toast from '../../components/Toast/Toast';
 import Accordion from '../../components/UI/accordion/Accordion';
 import { Link } from 'react-router-dom';
+import TotalSection from '../../components/TotalSection/TotalSection';
+import CInput from '../../components/UI/inputV2/CInput';
 const ShoppingCart = () => {
-    const {shoppingCart} = useShoppingCart()
-    const [discount,setDiscount] = useState(0)
+    const {shoppingCart,setCartDiscount,cartDiscount} = useShoppingCart()
     const [CartToast,setCartToast]=useState({
         type:"",
         content:"",
     })
     const [isToastOpen,setToastOpen] = useState(false)
-    const couponRef = useRef();
-  
+    const couponRef = useRef({});
     const couponHandler = ()=>{
         const discount_res = getCouponDiscount(couponRef.current.value)
         console.log(discount_res)
@@ -33,17 +31,17 @@ const ShoppingCart = () => {
             couponRef.current.value=''
         }
         else{
-            setDiscount(discount_res)
+            setCartDiscount(discount_res)
             setCartToast({type:'success',content:"Coupon was added"})
             couponRef.current.value=''
         }
         setToastOpen(true)
     }
-    const total = shoppingCart.reduce((total,cartItem)=>{
-        const item = useShoes(cartItem.id,cartItem.colorId);
-        return total+(item?.cost||0)*cartItem.quantity;
-    },0);
-    console.log("Cart = ",shoppingCart)
+    const removeCoupon = ()=>{
+        setCartDiscount(0)
+        setCartToast({type:'warning',content:"Coupon was deleted"})
+        setToastOpen(true)
+    }
     console.log(window.screen.availWidth>768?true:false);
     return (
         <div className={styles['shopping-cart']}>
@@ -51,8 +49,8 @@ const ShoppingCart = () => {
                 {
                     shoppingCart.length>0
                     ?<>
-                        <div className={styles.shoes}>
-                            <div className={styles['shoes-title']}>
+                        <div className={styles.products}>
+                            <div className={styles['products-title']}>
                                 <p>Added Items</p>
                                 <p className={styles['title-size']}>Size</p>
                                 <p className={styles['title-color']}>Color</p>
@@ -66,34 +64,20 @@ const ShoppingCart = () => {
                             }
                         </div>
                         <div className={styles.total}>
-                            <Accordion fixed={window.screen.availWidth>768?true:false} title="Have coupon?">
-                                <div className={styles.coupon}>
-                                    <SInput height='100%' params={{placeholder:'Coupon code',ref:couponRef}}/>
-                                    <button onClick={couponHandler} className={styles.apply_btn}>Apply</button>
-                                </div>
-                            </Accordion>
-                            <div className={styles.cost}>
-                                <ul className={styles.info}>
-                                    <li>
-                                        <p className={styles.parameter}>Total price:</p>
-                                        <p>${(total).toFixed(2)}</p>
-                                    </li>
-                                    <li>
-                                        <p className={styles.parameter}>Discount:</p>
-                                        <p>{discount}{discount>0?"%":null}</p>
-                                    </li>
-                                    <li>
-                                        <p className={styles.parameter}>Total:</p>
-                                        <p className={styles.total__cost}>${getFinalPrice(total,discount)}</p>
-                                    </li>
-                                </ul>
-                                <Link to='/checkout'><button>proceed to checkout</button></Link>
+                            <h4 className={styles['coupon-title']}>Have a coupon?</h4>
+                            <div className={styles.coupon}>
+                                <CInput id="coupon-fullBorder-40" placeholder="Coupon code" ref={couponRef} />
+                                <button onClick={couponHandler} className={styles['apply-coupon']}>Apply</button>
                             </div>
+                                <TotalSection shippingSection={false} />
+                                {
+                                   cartDiscount? <p onClick={removeCoupon} className={styles['coupon-remove']}>Remove coupon</p>:null
+                                }
+                                <Link to='/checkout'><button className={styles['checkout-btn']}>Proceed to Checkout</button></Link>
                         </div>
                     </>
                     :<h2 className={styles["empty-cart"]}>Your cart is empty</h2>
                 }
-                
             </div>
             <Toast type={CartToast.type} open={isToastOpen} closeHandler={() => setToastOpen(false)}>
                 {CartToast.content}

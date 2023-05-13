@@ -3,7 +3,7 @@ import styles from './ProductDetails.module.scss'
 import { useParams } from 'react-router-dom';
 import backIcon from '../../images/back-icon.svg'
 import InfoTabs from '../../components/UI/info-tabs/InfoTabs';
-import { useShoes } from '../../hooks/useShoes';
+import { useProduct } from '../../hooks/useProduct';
 import Gallery from '../../components/UI/gallery/Gallery';
 import Rate from '../../components/UI/rate/Rate';
 import ColorSelect from '../../components/UI/colorSelect/ColorSelect';
@@ -14,7 +14,7 @@ import Toast from '../../components/Toast/Toast';
 
 const ProductDetails = () => {
     const {id,colorId} = useParams();
-    const currentProduct = useShoes(id,colorId)
+    const currentProduct = useProduct(id,colorId)
     const [poitedColor,setPointedColor] = useState(currentProduct.colorName)
     const warning_ref = useRef();
     const [productColor,setProductColor] = useState([])
