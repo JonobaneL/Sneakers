@@ -10,6 +10,7 @@ export const useValidation = (value='',validations,validationErrorMessages) =>{
     const [maxLength,setMaxLength] = useState(false);
     const [isEmail,setEmailError] = useState(false);
     const [currentErrors, setCurrentErrors] = useState([])
+    const [isValid,setIsValid] = useState(false)
     const standart = {
         isEmpty:'Field is empty',
         minLength:'Not enough letters',
@@ -60,11 +61,17 @@ export const useValidation = (value='',validations,validationErrorMessages) =>{
         }
       }
     },[value])
+    useEffect(()=>{
+      if(currentErrors.length <= 0){
+        setIsValid(true)
+      }else{setIsValid(false)}
+    },[value,currentErrors])
     return {
       isEmpty,
       minLength,
       maxLength,
       isEmail,
+      isValid,
       currentErrors,
     }
   }

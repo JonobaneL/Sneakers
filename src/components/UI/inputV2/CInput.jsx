@@ -2,7 +2,6 @@ import { forwardRef } from 'react';
 import styles from './CInput.module.scss'
 
 const CInput = forwardRef((params,ref) => {
-    console.log(params)
     const inputType = params.id.split('-')[1] || 'underline';
     const inputHeight = params.id.split('-')[2] || '40';
     if(inputType=='underline')

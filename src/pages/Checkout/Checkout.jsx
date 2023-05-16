@@ -1,8 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Checkout.module.scss'
 import InfoTabs from '../../components/UI/info-tabs/InfoTabs';
-import { useShoppingCart } from '../../context/CartContext';
-import { useEffect } from 'react';
 import RadioList from '../../components/RadioList/RadioList';
 import Select from '../../components/UI/select/Select';
 import { city } from '../../data/shipping-data';
@@ -15,15 +13,21 @@ import OrdreSummaryList from '../../components/OrderSummaryList/OrderSummaryList
 import TotalSection from '../../components/TotalSection/TotalSection';
 import editIcon from '../../images/edit-icon.svg'
 import { Link } from 'react-router-dom';
+import { useInput } from '../../hooks/useInput';
+import ValidationErrorMessages from '../../components/ValidationErrorMessages/ValidationErrorMessages';
+import mapPoint from '../../images/map-pointer.svg'
+import rightArrow from '../../images/right-arrow.svg'
 
 const Checkout = () => {
     const [customer,setCustomer] = useState('new');
-    const {cartSubTotal,cartTotal} = useShoppingCart();
     const hadler = (param)=>{
         console.log(param)
     }
+    const firstName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
+    const lastName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
+    const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:'Please enter a valid email address',isEmail:'Please enter a valid email address'})
+    const phoneNumber = useInput('',{isEmpty:true},{isEmpty:'Please enter your phone number'})
     const currentCity = city[city.length-1]
-    console.log(currentCity)
     const ukrposhtaOffices = getPostOffice(currentCity.id,'ukrposhta')
     const novaposhtaOffices = getPostOffice(currentCity.id,'novaposhta')
     return <div className={styles.checkout}>
@@ -36,12 +40,20 @@ const Checkout = () => {
                         <InfoTabs titles={[{id:'1',name:`I'm a new buyer`},{id:'2',name:`I'm a regular customer`}]}>
                             <div className={styles.newCustomer}>
                                 <div className={styles['customer-info']}>
-                                        <input className={styles.customInput} type="text" placeholder='First name*' />
-                                        <input className={styles.customInput} type="text" placeholder='Last name*' />
+                                        <ValidationErrorMessages durty={firstName.isDurty} errorMessages={firstName.currentErrors}>
+                                            <CInput value={firstName.value} onChange={e=>firstName.onChange(e)} onBlur={e=>firstName.onBlur(e)} id='firstName-fullBorder-50' placeholder='First name*' type='text' data-errors={firstName.isValid==false && firstName.isDurty}/>
+                                        </ValidationErrorMessages>
+                                        <ValidationErrorMessages durty={lastName.isDurty} errorMessages={lastName.currentErrors}>
+                                            <CInput value={lastName.value} onChange={e=>lastName.onChange(e)} onBlur={e=>lastName.onBlur(e)} id='lastName-fullBorder-50' placeholder='Last name*' type='text' data-errors={lastName.isValid==false && lastName.isDurty}/>
+                                        </ValidationErrorMessages>
                                     </div>
                                     <div className={styles['customer-contacts']}>
-                                        <input className={styles.customInput} type="text" placeholder='Email*' />
-                                        <input className={styles.customInput} type="tel" placeholder='Phone number*' />
+                                        <ValidationErrorMessages durty={email.isDurty} errorMessages={email.currentErrors}>
+                                            <CInput value={email.value} onChange={e=>email.onChange(e)} onBlur={e=>email.onBlur(e)} id='email-fullBorder-50' placeholder='Email*' type='email' name="email"  data-errors={email.isValid==false && email.isDurty}/>
+                                        </ValidationErrorMessages>
+                                        <ValidationErrorMessages durty={phoneNumber.isDurty} errorMessages={phoneNumber.currentErrors}>
+                                            <CInput value={phoneNumber.value} onChange={e=>phoneNumber.onChange(e)} onBlur={e=>phoneNumber.onBlur(e)} id='phoneNumber-fullBorder-50' placeholder='Phone number*' type='tel'  data-errors={phoneNumber.isValid==false && phoneNumber.isDurty}/>
+                                        </ValidationErrorMessages>
                                     </div>
                                 </div>
                             <div>
@@ -52,7 +64,16 @@ const Checkout = () => {
                     </div>
                     <div className={styles.shipping}>
                         <h2 className={styles['section-title']}>Shipping</h2>
-                        <div className="city"></div>
+                        <div className={styles.city}>
+                            <img className={styles.city__pointIcon} src={mapPoint} alt="Map point" />
+                            <p className={styles.city__name}>
+                                Your city is
+                                <span className={styles.city__current}>{currentCity.name}</span>
+                            </p>
+                            <button className={styles.city__arrow}>
+                                <img src={rightArrow} alt="" />
+                            </button>
+                        </div>
                         <RadioList list={[
                             {id:'opt1',label:'Pickup from Ukrposhta',value:'ukrposhta-prickup'},
                             {id:'opt2',label:'Courier Ukrposhta',value:'ukrposhta-courier'},

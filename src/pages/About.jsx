@@ -13,7 +13,7 @@ const About = () => {
           <form>
             <input value={email.value} onChange={e =>email.onChange(e)} onBlur={e =>email.onBlur(e)} type="email" name="email" id="userEmail" placeholder="Enter your email" />
             <ul>
-              {email.isDurty && email.currentErrors.map(item=><li>{item}</li>)}
+              {email.isDurty && email.currentErrors[email.currentErrors.length-1]}
             </ul>
             <input value={password.value} onChange={e =>password.onChange(e)} onBlur={e =>password.onBlur(e)} type="password" name='password' id='userPassword' placeholder='Enter your password' />
             <button type='submit'>Log In</button>
