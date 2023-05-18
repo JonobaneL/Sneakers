@@ -1,0 +1,27 @@
+.autocomplete{
+    width: 100%;
+    position: relative;
+    .autocomplete-result{
+        position: absolute;
+        top: 45px;
+        background: #fff;
+        width: 100%;
+        box-shadow:0 4px 8px rgba(221,221,221,.5);
+        border-radius: 5px;
+        max-height: 120px;
+        overflow-y: auto;
+        &__item{
+            height: 40px;
+            padding: 0 10px;
+            line-height: 40px;
+            border-radius: 5px;
+            transition: all 0.1s;
+            cursor: pointer;
+            &:hover{
+                background: rgba($color: #3e5c86, $alpha: 1);
+                color: #fff;
+                transition: all 0.1s;
+            }
+        }
+    }
+}

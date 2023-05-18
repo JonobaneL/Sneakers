@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './ShoesList.module.scss'
-import ShoesItem from '../shoesListItem/ShoesItem';
-const ShoesList = ({data}) => {
+import styles from './ProductList.module.scss'
+import ProductsItem from '../productsListItem/ProductsItem';
+const ProductsList = ({data}) => {
     return (
         <div className={styles["shoes-list"]}>
             {data.length>0?
             data.map(item=>
-                <ShoesItem key={item.id} item={item}/>
+                <ProductsItem key={item.id} item={item}/>
                 )
             :<div className={styles.warning}>No Result</div>
             }
@@ -15,4 +15,4 @@ const ShoesList = ({data}) => {
 };
 
 
-export default ShoesList;
+export default ProductsList;

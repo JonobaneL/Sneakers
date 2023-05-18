@@ -48,8 +48,8 @@ const Header = () => {
               </div>
               <div className={styles.bottomNav}>
                 <ul className={styles.list}>
-                  <li className={styles.bottomItem}><Link to={`/shoes/men`} reloadDocument>Men</Link></li>
-                  <li className={styles.bottomItem}><Link to={`/shoes/women`} reloadDocument>Women</Link></li>
+                  <li className={styles.bottomItem}><Link to={`/shoes/men`} /*reloadDocument*/>Men</Link></li>
+                  <li className={styles.bottomItem}><Link to={`/shoes/women`} >Women</Link></li>
                   <li className={styles.bottomItem}><Link to={`/shoes/accessories`}>Accessories</Link></li>
                   <li className={styles.bottomItem}><Link to={`/shoes/sale`}>Sale</Link></li>
                 </ul>

@@ -1,9 +1,10 @@
-import {useState,useCallback} from 'react'
+import {useState,useCallback, useEffect} from 'react'
 import {useLocation, useNavigate, createSearchParams} from 'react-router-dom'
 import { useLatest } from './useLatest';
 
 function getSearchParam(search,param){
     const searchParams = createSearchParams(search);
+    console.log('get funck')
     return searchParams.get(param)
 }
 function setSearchParam(search,param,value){
@@ -32,7 +33,9 @@ export const useSearchParamsState = ({name,serialize=String,deserialize=(v)=>v})
       setValue(actualValue);
       const newSearch = setSearchParam(location.search,name,serialize(actualValue));
       navigate({search:newSearch})
-  
+        // console.log('location',location)
+        // console.log('name',name)
+        // console.log('latestValue',latestValue)
     },[location,name,serialize,latestValue])
     return [value,updateValue];
   }

@@ -3,7 +3,6 @@ import styles from './Checkout.module.scss'
 import InfoTabs from '../../components/UI/info-tabs/InfoTabs';
 import RadioList from '../../components/RadioList/RadioList';
 import Select from '../../components/UI/select/Select';
-import { city } from '../../data/shipping-data';
 import { getPostOffice } from '../../utils/getPostOffice';
 import CustomerAddressForm from '../../components/CustomerAddress/CustomerAddressForm';
 import PayPalIcon from '../../images/PayPal-icon.svg'
@@ -17,9 +16,12 @@ import { useInput } from '../../hooks/useInput';
 import ValidationErrorMessages from '../../components/ValidationErrorMessages/ValidationErrorMessages';
 import mapPoint from '../../images/map-pointer.svg'
 import rightArrow from '../../images/right-arrow.svg'
+import ModalWindow from '../../components/ModalWindow/ModalWindow';
+import CityForm from '../../components/CityForm/CityForm';
 
 const Checkout = () => {
     const [customer,setCustomer] = useState('new');
+    const [currentCity,setCurrentCity] = useState({})
     const hadler = (param)=>{
         console.log(param)
     }
@@ -27,9 +29,15 @@ const Checkout = () => {
     const lastName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:'Please enter a valid email address',isEmail:'Please enter a valid email address'})
     const phoneNumber = useInput('',{isEmpty:true},{isEmpty:'Please enter your phone number'})
-    const currentCity = city[city.length-1]
+    
+    
     const ukrposhtaOffices = getPostOffice(currentCity.id,'ukrposhta')
     const novaposhtaOffices = getPostOffice(currentCity.id,'novaposhta')
+    const [isCityModalOpen,setIsCityModalOpen] = useState(false);
+    const validRadio = currentCity.id>0?false:true;
+    const closeModalWindowHandler = ()=>{
+        setIsCityModalOpen(false)
+    }
     return <div className={styles.checkout}>
         <div className={styles.content}>
             <h1 className={styles.title}>Checkout</h1>
@@ -64,23 +72,31 @@ const Checkout = () => {
                     </div>
                     <div className={styles.shipping}>
                         <h2 className={styles['section-title']}>Shipping</h2>
-                        <div className={styles.city}>
+                        <div className={styles.city} onClick={()=>setIsCityModalOpen(true)}>
                             <img className={styles.city__pointIcon} src={mapPoint} alt="Map point" />
                             <p className={styles.city__name}>
-                                Your city is
-                                <span className={styles.city__current}>{currentCity.name}</span>
+                                {
+                                currentCity.id?<>
+                                    Your city is<span className={styles.city__current}>{currentCity.name}</span>
+                                </>:'Choose your city'
+                                }
                             </p>
                             <button className={styles.city__arrow}>
                                 <img src={rightArrow} alt="" />
                             </button>
+                            
                         </div>
-                        <RadioList list={[
-                            {id:'opt1',label:'Pickup from Ukrposhta',value:'ukrposhta-prickup'},
-                            {id:'opt2',label:'Courier Ukrposhta',value:'ukrposhta-courier'},
-                            {id:'opt3',label:'Pickup from Nova Poshta',value:'novaposhta-prickup'},
-                            {id:'opt4',label:'Courier Nova Poshta',value:'novaposhta-courier'},
-                        ]}
-                        groupName='shipping'
+                        <ModalWindow isOpen={isCityModalOpen} closeHandler={closeModalWindowHandler} title='Choose your city'>
+                            <CityForm currentCity={currentCity} setCity={setCurrentCity} closeHandler={closeModalWindowHandler}/>
+                        </ModalWindow>
+                        <RadioList 
+                            list={[
+                                {id:'opt1',label:'Pickup from Ukrposhta',value:'ukrposhta-prickup',disabled:validRadio},
+                                {id:'opt2',label:'Courier Ukrposhta',value:'ukrposhta-courier',disabled:validRadio},
+                                {id:'opt3',label:'Pickup from Nova Poshta',value:'novaposhta-prickup',disabled:validRadio},
+                                {id:'opt4',label:'Courier Nova Poshta',value:'novaposhta-courier',disabled:validRadio},
+                            ]}
+                            groupName='shipping'
                         >
                             <div className={styles['option-wrapper']} >
                                 <Select placeholder='Select a post office'

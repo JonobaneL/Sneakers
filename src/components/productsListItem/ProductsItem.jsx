@@ -1,6 +1,6 @@
 import React from 'react';
 import Rate from '../UI/rate/Rate';
-import styles from './ShoesItem.module.scss'
+import styles from './ProductsItem.module.scss'
 import { getFinalPrice } from '../../utils/getFinalPrice';
 import { Link } from 'react-router-dom';
 const ShoesItem = ({item}) => {

@@ -3,7 +3,6 @@ import { useProduct } from "../hooks/useProduct";
 
 const CartContext = React.createContext({});
 
-
 export const useShoppingCart=()=>{
     return useContext(CartContext)
 }

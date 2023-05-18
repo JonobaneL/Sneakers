@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import styles from './Products.module.scss'
 import { useLocation, useParams } from "react-router-dom";
 import Filters from "../../components/Filters/Filters";
-import ShoesList from "../../components/shoesList/ShoesList";
+import ProductsList from "../../components/productsList/ProductList";
 import { useToShow } from "../../hooks/useFilters";
 import { getTotalPagesCount } from "../../utils/getPageCount";
 import Pagination from "../../components/UI/pagination/Pagination";
@@ -26,7 +26,7 @@ const Products = () => {
               </div>
               <div className={styles.list}>
                 <div className={styles.shoes}>
-                  <ShoesList data={shownData}/>
+                  <ProductsList data={shownData}/>
                 </div>
                 {
                    data.length>limit

@@ -3,10 +3,8 @@ import styles from './ShoppingCart.module.scss'
 import { useRef } from 'react';
 import { useShoppingCart } from '../../context/CartContext';
 import CartItem from '../../components/CartItem/CartItem';
-import SInput from '../../components/UI/input/SInput';
 import { getCouponDiscount } from '../../utils/getCouponDiscount';
 import Toast from '../../components/Toast/Toast';
-import Accordion from '../../components/UI/accordion/Accordion';
 import { Link } from 'react-router-dom';
 import TotalSection from '../../components/TotalSection/TotalSection';
 import CInput from '../../components/UI/inputV2/CInput';

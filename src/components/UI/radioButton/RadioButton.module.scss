@@ -14,7 +14,9 @@
     border:2px solid #1d2d44;
     cursor: pointer;
     position: relative;
-    
+    &.disabled{
+        border:2px solid #a6a6a6;
+    }
     &::after {
         content: '';
         width: 12px;

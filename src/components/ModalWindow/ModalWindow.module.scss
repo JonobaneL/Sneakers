@@ -1,0 +1,37 @@
+.modal-wrapper{
+    // width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba($color: #000000, $alpha: 0.5);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .modal-window{
+        width: 600px;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        padding: 15px;
+        z-index: 110;
+        .modal-header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #1f1f1f;
+            border-bottom: 1px solid #b0b0b0;
+            padding-bottom: 10px;
+            .closeModal{
+                width: 30px;
+                height: 30px;
+                background: none;
+                cursor: pointer; 
+            }
+        }
+        
+    }
+}
