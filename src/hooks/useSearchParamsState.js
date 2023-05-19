@@ -1,4 +1,4 @@
-import {useState,useCallback, useEffect} from 'react'
+import {useState,useCallback, useEffect, useLayoutEffect} from 'react'
 import {useLocation, useNavigate, createSearchParams} from 'react-router-dom'
 import { useLatest } from './useLatest';
 
@@ -18,14 +18,18 @@ function setSearchParam(search,param,value){
 export const useSearchParamsState = ({name,serialize=String,deserialize=(v)=>v}) =>{
     const location = useLocation();
     const navigate = useNavigate();
-    const [value, setValue] = useState(()=>{
-      const tmpValue = deserialize(getSearchParam(location.search,name));
-      return tmpValue;
-    })
-    const latestValue = useLatest(value);
+    const [value, setValue] = useState([])
+    useLayoutEffect(()=>{ //як варіань але треба тестити
+      console.log('first effect')
+      setValue(()=>{
+        const tmpValue = deserialize(getSearchParam(location.search,name));
+        return tmpValue;
+      })
+    },[location.pathname])
+    const latestValue = useLatest(value); 
+
     const updateValue = useCallback(
       (newValue)=>{
-      // console.log("updateSearchParams")
       const actualValue = 
         typeof newValue === 'function'
           ? newValue(latestValue.current)
@@ -33,9 +37,8 @@ export const useSearchParamsState = ({name,serialize=String,deserialize=(v)=>v})
       setValue(actualValue);
       const newSearch = setSearchParam(location.search,name,serialize(actualValue));
       navigate({search:newSearch})
-        // console.log('location',location)
-        // console.log('name',name)
-        // console.log('latestValue',latestValue)
     },[location,name,serialize,latestValue])
+
+
     return [value,updateValue];
   }

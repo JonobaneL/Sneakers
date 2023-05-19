@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import styles from './Filters.module.scss'
 import Select from "../UI/select/Select";
 import Accordion from "../UI/accordion/Accordion";
 import CheckBoxList from "../UI/checkBoxList/CheckBoxList";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getShoesFiltersData } from "../../utils/getShoesData";
 import { useSearchParamsState } from "../../hooks/useSearchParamsState";
 import { shoesColor } from "../../data/shoesColor";
@@ -13,6 +13,7 @@ import DropDownList from "../UI/dropDownList/dropDownList";
 import SizeSelect from "../UI/sizeSelect/SizeSelect";
 import filtersIcon from '../../images/filters.png' 
 import { useSearch } from "../../hooks/useSearch";
+import { useLatest } from "../../hooks/useLatest";
 
 
 const SORT_PARAMS = [
@@ -57,7 +58,6 @@ const Filters = ({setData}) => {
     useEffect(()=>{
         setData(filteredData)
     },[filteredData])
-
     const clearEvent = ()=>{
         setCategoryFilters([]);
         setBrandFilters([]);
@@ -68,7 +68,8 @@ const Filters = ({setData}) => {
         setPercentFilters([]);
         navigate({search:''})
     }
-    console.log(categoryFilters)
+    const latestMale = useLatest(male)
+   
     return <div className={styles.filters}>
         <div className={styles["filters-nav"]}>
             <button 

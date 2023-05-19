@@ -4,20 +4,36 @@ import { useInput } from '../hooks/useInput';
 
 
 const About = () => {
-  const email = useInput('',{isEmpty:true,minLength:4,isEmail:true}, {isEmpty:'Field cannot be empty',minLength:'Enter more then 3 letters'});
-  const password = useInput('',{isEmpty:true,minLength:6},{});
-  console.log(email.isEmail)
-  console.log(email.currentErrors) 
+  const [flag1,setFlag1] = useState(0)
+  const [flag2,setFlag2] = useState(0)
+  const [flag3,setFlag3] = useState(0)
+  const [flag4,setFlag4] = useState(0)
+
+  useEffect(()=>{
+    console.log('useEffect worked');
+  },[flag1,flag2,flag3,flag4])
     return <div className={styles.about}>
         <div className={styles.content} >
-          <form>
-            <input value={email.value} onChange={e =>email.onChange(e)} onBlur={e =>email.onBlur(e)} type="email" name="email" id="userEmail" placeholder="Enter your email" />
-            <ul>
-              {email.isDurty && email.currentErrors[email.currentErrors.length-1]}
-            </ul>
-            <input value={password.value} onChange={e =>password.onChange(e)} onBlur={e =>password.onBlur(e)} type="password" name='password' id='userPassword' placeholder='Enter your password' />
-            <button type='submit'>Log In</button>
-          </form>
+          <div className="">
+          <button
+          onClick={()=>setFlag1(p=>p+1)}
+          >Click 1</button>
+          </div>
+          <div className="">
+          <button
+          onClick={()=>setFlag2(p=>p+1)}
+          >Click 2</button>
+          </div>
+          <div className="">
+          <button
+          onClick={()=>setFlag3(p=>p+1)}
+          >Click 3</button>
+          </div>
+          <div className="">
+          <button
+          onClick={()=>setFlag4(p=>p+1)}
+          >Click 4</button>
+          </div>
         </div>
     </div>;
 }
