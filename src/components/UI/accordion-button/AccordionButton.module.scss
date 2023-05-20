@@ -2,6 +2,8 @@
     width: 12px;
     height: 12px;
     position: relative;
+    flex: 1 0 12px;
+    cursor: pointer;
     .btnLine1,.btnLine2{
         position: absolute;
         background:#0d1321;
@@ -17,13 +19,15 @@
         width: 1px;
         left: 50%;
         transform: translateX(-50%);
-        visibility: visible;
+        // visibility: visible;
+        opacity: 1;
         transition: all 0.2s;
     }
     &.opened{
         .btnLine2{
-            visibility: hidden;
+            // visibility: hidden;
             transition: all 0.2s;
+            opacity: 0;
         }
     }
 }

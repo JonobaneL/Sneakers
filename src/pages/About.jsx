@@ -1,39 +1,24 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
-import { useInput } from '../hooks/useInput';
-
+import Accrodion from '../components/UI/accordionV2/AccordionV2';
+import CheckBoxList from '../components/UI/checkBoxList/CheckBoxList';
+import { shoesBrands } from '../data/shoesBrands';
 
 const About = () => {
-  const [flag1,setFlag1] = useState(0)
-  const [flag2,setFlag2] = useState(0)
-  const [flag3,setFlag3] = useState(0)
-  const [flag4,setFlag4] = useState(0)
-
-  useEffect(()=>{
-    console.log('useEffect worked');
-  },[flag1,flag2,flag3,flag4])
+    const [brandFilters,setBrandFilters] = useState([])
     return <div className={styles.about}>
         <div className={styles.content} >
-          <div className="">
-          <button
-          onClick={()=>setFlag1(p=>p+1)}
-          >Click 1</button>
-          </div>
-          <div className="">
-          <button
-          onClick={()=>setFlag2(p=>p+1)}
-          >Click 2</button>
-          </div>
-          <div className="">
-          <button
-          onClick={()=>setFlag3(p=>p+1)}
-          >Click 3</button>
-          </div>
-          <div className="">
-          <button
-          onClick={()=>setFlag4(p=>p+1)}
-          >Click 4</button>
-          </div>
+         <Accrodion
+         fixed={true}
+            header={
+                <div style={{display:'flex',gap:'10px',justifyContent:'space-between',paddingRight:'10px'}}>
+                    <p>Some title</p>
+                    <a href="#">Clear</a>
+                </div>
+            }
+         >
+           <CheckBoxList theme="dark" data={shoesBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
+         </Accrodion>
         </div>
     </div>;
 }

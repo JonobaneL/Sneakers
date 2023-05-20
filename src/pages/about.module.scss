@@ -2,28 +2,10 @@
     width: 100%;
     padding: 40px 0;
     .content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-        form{
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 300px;
-            input{
-                height: 35px;
-                border:1px solid #b0b0b0;
-                border-radius: 6px;
-                padding: 0 5px;
-            }
-            button{
-                height: 35px;
-                background: #2f2f2f;
-                color:#fff
-            }
-        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-inline: 100px;
     }
-    
 }
 

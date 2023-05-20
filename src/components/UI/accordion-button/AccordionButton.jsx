@@ -9,7 +9,7 @@ const AccordionButton = ({triger = null,handler,theme}) => {
         background:"#fff"
     }
     return ( 
-        <div onClick={handler} className={`${styles.btn} ${triger?styles.opened:''}`}>
+        <div onClick={e=>{handler();e.stopPropagation()}} className={`${styles.btn} ${triger?styles.opened:''}`}>
             <div style={theme=="dark"?DARK_THEME:WHITE_THEME} className={styles.btnLine1}></div>
             <div style={theme=="dark"?DARK_THEME:WHITE_THEME} className={styles.btnLine2}></div>
         </div>
