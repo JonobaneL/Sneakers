@@ -18,8 +18,8 @@
             appearance: none;
         }
         &.active, &:hover{
-            background-color: #1d2d44;
-            color:#fff !important
+            background-color: #3e5c86;
+            color:#ffffff !important;
         }
        &.disabled{
             background: linear-gradient(to left top,transparent calc(49% - 1px),rgba(124,135,142,.5) calc(50% - 1px),rgba(124,135,142,.5) calc(49% + 1px),transparent calc(50% + 1px)) no-repeat 0 0/100% 42px;

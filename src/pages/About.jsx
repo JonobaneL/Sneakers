@@ -1,24 +1,65 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
-import Accrodion from '../components/UI/accordionV2/AccordionV2';
-import CheckBoxList from '../components/UI/checkBoxList/CheckBoxList';
-import { shoesBrands } from '../data/shoesBrands';
+import { AnimatePresence, motion } from 'framer-motion';
+import Toast from '../components/ToastV2/Toast';
+import { useToast } from '../hooks/useToast';
+
+
+// const ToastItem = ({data,deleteHandler})=>{
+//     setTimeout(()=>{
+//         deleteHandler(data.id)
+//     },2000)
+//     return (
+//         <motion.li
+//         layout
+//         initial={{ scale: 0.8, opacity: 0 }}
+//         animate={{ scale: 1, opacity: 1 }}
+//         exit={{ scale: 0.8, opacity: 0 }}
+//         transition={{ type: "spring",duration:0.5 }}
+//         className={`${styles.toast__item} ${styles[data.type]}`}
+//         onClick={()=>deleteHandler(data.id)}
+//         >
+//         {data.title}
+//         <div className={`${styles.progress} ${styles[data.type]}`}/>
+//         </motion.li>
+//     )
+// }
 
 const About = () => {
-    const [brandFilters,setBrandFilters] = useState([])
+//   const [toast,setToast] = useState([
+//     { id: "22", title: "Added to cart", type: "success" }
+//   ])
+  const [title,setTitle] = useState('')
+//   const addToast = (prop1,prop2) =>{
+//     setToast(p=>[...p,{id:`${Date.now()}`,title:prop1,type:prop2}])
+//   }
+//   const removerToast =(id) =>{
+//     setToast(p=>p.filter(item=>item.id!==id))
+//   }
+    const {toasts,addToast} = useToast();
+    console.log('about',toasts)
     return <div className={styles.about}>
         <div className={styles.content} >
-         <Accrodion
-         fixed={true}
-            header={
-                <div style={{display:'flex',gap:'10px',justifyContent:'space-between',paddingRight:'10px'}}>
-                    <p>Some title</p>
-                    <a href="#">Clear</a>
+            <div className="form">
+                <input type="text" value={title} onChange={e=>setTitle(e.target.value)} />
+                <div style={{display:'flex',gap:'10px'}}>
+                    <button onClick={()=>addToast('success',title)}>Success</button>
+                    <button onClick={()=>addToast('warning', title)}>Warning</button>
+                    <button onClick={()=>addToast( 'error', title)}>Error</button>
                 </div>
-            }
-         >
-           <CheckBoxList theme="dark" data={shoesBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
-         </Accrodion>
+                
+            </div> 
+            {/* <ul className={styles.toast}>
+                <AnimatePresence mode='sync'>
+                {
+                    toast.map((item)=>
+                       <ToastItem key={item.id} data={item} deleteHandler={removerToast} />
+                    )
+                }
+                </AnimatePresence>
+
+            </ul> */}
+            <Toast/>
         </div>
     </div>;
 }

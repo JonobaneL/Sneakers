@@ -34,7 +34,7 @@ const Header = () => {
                       <img src={searchIcon} alt="search" />
                   </li>
                   <li className={styles.topItem}>
-                    <Link preventScrollReset={true} to='/shopping-cart'>
+                    <Link preventScrollReset={false} to='/shopping-cart'>
                       <div onClick={ToTop} className={styles.shopingBag}>
                         <img src={shopingBag} alt="shoping-bag" />
                         {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}

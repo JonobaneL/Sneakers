@@ -104,7 +104,7 @@ const Filters = ({setData}) => {
             <AccordionV2 
                 fixed={true}
                 theme={theme}
-                autoheight={true}
+                autoHeight={true}
                 header={
                     <div style={ACCORDION_STYLES}>
                         Category

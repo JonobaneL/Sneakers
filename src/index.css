@@ -36,18 +36,12 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background: #444444;
 }
+
 .App{
-  padding-top: 120px;
-}
-@media screen and (max-width:768px) {
-  .App{
-    padding-top: 60px;
-  }
-}
-.App{
-  height: 100vh; /*під питанням ця властивість, знайти можливість пофіксити*/
-  display: flex;
-  flex-direction: column;
+  /*під питанням ця властивість, знайти можливість пофіксити*/
+  /* height: 100vh;  */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 .App .content{
   flex: 1 1 auto;

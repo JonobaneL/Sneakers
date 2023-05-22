@@ -1,0 +1,220 @@
+$logo-font:'Bebas Neue', cursive;
+$icons-size:22px;
+
+.header-wrapper{
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    .header-top{
+        height: 40px;
+        background:#f5f5f5;
+        padding-inline: 80px;
+        .content{
+            height: 100%;
+            max-width: 1200px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            .nav{
+                display: flex;
+                gap: 10px;
+                &__item{
+                    font-size: 13px;
+                    cursor: pointer;
+                    &.line{
+                        cursor: default;
+                    }
+                }
+            }
+        }
+        
+    }
+    .header-bottom{
+        height: 60px;
+        background: #fff;
+        box-shadow:0 4px 8px rgba(221, 221, 221, 0.5);
+        padding-inline: 80px;
+        .content{
+            height: 100%;
+            max-width: 1200px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            .logo{
+                align-self: center;
+                padding-top: 5px;
+                h1{
+                    font-size: 35px;
+                    line-height: 100%;
+                    font-family: $logo-font;
+                    color: #3e5c86;
+                }
+               
+            }
+            .nav{
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                align-items: center;
+                gap: 25px;
+                &__item{
+                    cursor: pointer;
+                    a{
+                        font-size: 16px;
+                        color: #1d2d44;
+                    }
+                }
+            }
+            .button-nav{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                .bag{
+                    position: relative;
+                    .cart-quantity{
+                        position: absolute;
+                        background: #1D2D44;
+                        top:-8px;
+                        right: -8px;
+                        font-size: 12px;
+                        color: #fff;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        line-height: 12px;
+                        font-weight: 600;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding-left: 1px;
+                    }
+                }
+                img{
+                    width: $icons-size;
+                    height: $icons-size;
+                }
+                .search{
+                    width: 180px;
+                    height: 40px;
+                    background: #f5f5f5;
+                    border-radius: 100px;
+                    display: flex;
+                    align-items: center;
+                    &.active{
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 600px;
+                        transition: all 0.4s;
+                    }
+                    &__btn{
+                        width: 40px;
+                        height: 40px;
+                        flex: 1 0 40px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: none;
+                        img{
+                            width: 20px;
+                            height: 20px;
+                        }
+                        cursor: pointer;
+                        &:hover{
+                            background: #e5e5e5;
+                        }
+                    }
+                    &__field{
+                        width: 100%;
+                        height: 40px;
+                        padding: 8px 5px;
+                        background: transparent;
+                        font-size: 15px;
+                        &::placeholder{
+                            font-size: 15px;
+                        }
+                    }
+                }
+                .cancel_btn{
+                    cursor: pointer;
+                    color: #141414;
+                    font-weight: 600;
+                    font-size: 16px;
+                    background: none;
+                }
+            }
+        }
+        
+    }
+}
+@media screen and (max-width:1024px) {
+    .header-wrapper .header-bottom .content .nav{
+        transform: translateX(-60%);
+    }   
+}
+@media screen and (width < 1000px) {
+    .header-wrapper .header-top{
+        display: none;
+    }
+    .header-wrapper .header-bottom .content {
+        .nav{
+            display: none;
+        } 
+        .button-nav {
+            .search{
+                width: 30px;
+                background: #fff;
+                &__field{
+                    visibility: hidden;
+                    opacity: 0;
+                }
+                &__btn{
+                    width: 20px;
+                }
+                &.active{
+                    width: 450px;
+                    background: #f5f5f5;
+                    .search__field{
+                        visibility: visible;
+                        opacity: 1;
+                        transition: all 0,5 ;
+                    }
+                }
+            }
+            .favorites{
+                display: none;
+            }
+        }
+        
+    }
+     
+}
+@media screen and (max-width:768px) {
+    .header-wrapper .header-bottom{
+        padding-inline:40px;
+        .content .logo{
+            h1{
+             font-size: 30px;
+            }
+         }
+    }
+     
+}
+
+@media screen and (max-width:425px) {
+    .header-wrapper .header-bottom{
+        padding-inline: 20px;
+    }
+}
+
+@media screen and (max-width:375px) {
+    .header-wrapper .header-bottom{
+        padding-inline: 20px;
+    }
+}

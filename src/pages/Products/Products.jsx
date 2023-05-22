@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react"; 
 import styles from './Products.module.scss'
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Filters from "../../components/Filters/Filters";
 import ProductsList from "../../components/productsList/ProductList";
 import { useToShow } from "../../hooks/useFilters";
@@ -17,6 +17,7 @@ const Products = () => {
             <div className={styles.content}>
                   <h2 className={styles.title}>{male}
                     {male=='men' ||male=='women'?`'s shoes`:null}
+                    {male=='kids'?`' shoes`:null}
                   </h2>
                 <p className={styles.nuberOfProducts}> 
                   {(currentPage*limit)-limit+1}-{limit} of {data.length} products

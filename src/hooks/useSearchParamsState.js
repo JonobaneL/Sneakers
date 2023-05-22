@@ -4,7 +4,6 @@ import { useLatest } from './useLatest';
 
 function getSearchParam(search,param){
     const searchParams = createSearchParams(search);
-    console.log('get funck')
     return searchParams.get(param)
 }
 function setSearchParam(search,param,value){
@@ -20,7 +19,6 @@ export const useSearchParamsState = ({name,serialize=String,deserialize=(v)=>v})
     const navigate = useNavigate();
     const [value, setValue] = useState([])
     useLayoutEffect(()=>{ //як варіань але треба тестити
-      console.log('first effect')
       setValue(()=>{
         const tmpValue = deserialize(getSearchParam(location.search,name));
         return tmpValue;
