@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import styles from './Filters.module.scss'
 import Select from "../UI/select/Select";
-import Accordion from "../UI/accordion/Accordion";
 import AccordionV2 from "../UI/accordionV2/AccordionV2";
 import CheckBoxList from "../UI/checkBoxList/CheckBoxList";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,6 +14,7 @@ import SizeSelect from "../UI/sizeSelect/SizeSelect";
 import filtersIcon from '../../images/filters.png' 
 import { useSearch } from "../../hooks/useSearch";
 import ClearButton from "../UI/clear-button/ClearButton";
+import { AnimatePresence,motion } from "framer-motion";
 
 
 const SORT_PARAMS = [
@@ -78,133 +78,104 @@ const Filters = ({setData}) => {
    
     return <div className={styles.filters}>
         <div className={styles["filters-nav"]}>
-            <button 
-                className={styles["filters-nav__opener"]}
-                onClick={()=>setIsFiltersOptionsOpen(prev=>!prev)}
-            >
-                <img src={filtersIcon} alt="" />
-                Filter
-            </button>
-                <div className={styles.select}>
-                    <Select
-                        placeholder='Sort by'
-                        params={SORT_PARAMS}
-                        getData={(value)=>setSort(value)}
-                    />
-                </div>
-        </div>
-        <div className={`${styles["filters-options"]} ${isFiltersOptionsOpen?styles.active:''}`}>
-            <div style={{display:windowSize<1024?'none':'block'}}>
-                <Select 
+            <div className={styles.select}>
+                <Select
                     placeholder='Sort by'
                     params={SORT_PARAMS}
                     getData={(value)=>setSort(value)}
                 />
             </div>
-            <AccordionV2 
-                fixed={true}
-                theme={theme}
-                autoHeight={true}
-                header={
-                    <div style={ACCORDION_STYLES}>
-                        Category
-                    </div>
-                }
-                >
-                <DropDownList 
-                    handler={value=>{
-                        setCategoryFilters(value)
-                    }}
-                    data={shoesCategories}
-                />
-            </AccordionV2>
-            {/* <Accordion 
-                fixed={true}
-                theme={theme}
-                autoheight={true}
-                title="Category"
-                >
-                <DropDownList 
-                    handler={value=>{
-                        setCategoryFilters(value)
-                    }}
-                    data={shoesCategories}
-                />
-            </Accordion> */}
-            <AccordionV2
-                header={
-                    <div style={ACCORDION_STYLES}>
-                        Brands
-                        <ClearButton triger={brandFilters.length} handler={()=>setBrandFilters([])}/>
-                    </div>
-                }
+            <button 
+                className={styles["filters-nav__opener"]}
+                onClick={()=>setIsFiltersOptionsOpen(prev=>!prev)}
             >
-                <CheckBoxList theme={theme} data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
-            </AccordionV2>
-            {/* <Accordion data={[]} title={"Brands"} theme={theme} searchField={true} searchQuery={searchQuery} setSearchQuery={setSearchQuery}>
-                <CheckBoxList theme={theme} data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
-            </Accordion> */}
-            <AccordionV2 header={<div style={{fontWeight:600,fontSize:'15px'}}>Color</div>}>
-                <CheckBoxList theme={theme} data={shoesColor} handler={(value)=>setColorFilters(value)} checkedItems={colorFilters} colored={true} />
-            </AccordionV2>
-            {/* <Accordion theme={theme} title="Color" data={[]}>
-                <CheckBoxList theme={theme} data={shoesColor} handler={(value)=>setColorFilters(value)} checkedItems={colorFilters} colored={true} />
-            </Accordion> */}
-            <AccordionV2 
-                fixed={true} 
-                header={<div style={{fontWeight:600,fontSize:'15px'}}>Size</div>}
-                theme={theme} 
-                data={sizeFilters} 
-                handler={()=>{
-                    setSizeFilters([])
-                }}
-            >
-                <SizeSelect  choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} theme={theme} type='multi'/>
-            </AccordionV2>
-            {/* <Accordion 
-                fixed={true} 
-                title="Size"
-                theme={theme} 
-                data={sizeFilters} 
-                handler={()=>{
-                    setSizeFilters([])
-                }}
-            >
-                <SizeSelect  choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} theme={theme} type='multi'/>
-            </Accordion> */}
-            <AccordionV2 
-                header={<div style={{fontWeight:600,fontSize:'15px'}}>Material</div>}
-                >
-                <CheckBoxList theme={theme} data={shoesMaterial} handler={(value)=>setMaterialFilters(value)} checkedItems={materialFilters} />
-            </AccordionV2>
-            {/* <Accordion title="Material" data={[]} theme={theme} >
-                <CheckBoxList theme={theme} data={shoesMaterial} handler={(value)=>setMaterialFilters(value)} checkedItems={materialFilters} />
-            </Accordion> */}
-            <AccordionV2  
-                autoHeight={true}
-                header={<div style={{fontWeight:600,fontSize:'15px'}}>Price</div>}
-                >
-                <CheckBoxList theme={theme} data={PRICE_PARAMS} handler={(value)=>setPriceFilters(value)} checkedItems={priceFilters} />
-            </AccordionV2>
-            {/* <Accordion  
-                title="Price"
-                data={priceFilters} 
-                theme={theme}
-                >
-                <CheckBoxList theme={theme} data={PRICE_PARAMS} handler={(value)=>setPriceFilters(value)} checkedItems={priceFilters} />
-            </Accordion> */}
-            <AccordionV2
-                autoHeight={true}
-                header={<div style={{fontWeight:600,fontSize:'15px'}}>Percent Off</div>}
-            >
-                <CheckBoxList theme={theme} data={PERCENT_PARAMS} handler={(value)=>setPercentFilters(value)} checkedItems={percentFilters} />
-            </AccordionV2>
-            
-            <div className={styles["button-bar"]}>
-                <p className={styles['button-bar__clear']} onClick={()=>clearEvent()}>Clear filters</p>
-                <button onClick={()=>setIsFiltersOptionsOpen(false)} className={styles['button-bar__view']}>View results ({filteredData.length})</button>
-            </div>
+                Filter
+                <img src={filtersIcon} alt="" />
+            </button>
         </div>
+        <AnimatePresence>
+            {
+                isFiltersOptionsOpen && <>
+                    <motion.div 
+                    
+                    className={`${styles["filters-options"]}`}>
+                        <div style={{display:windowSize<1024?'none':'block'}}>
+                            <Select 
+                                placeholder='Sort by'
+                                params={SORT_PARAMS}
+                                getData={(value)=>setSort(value)}
+                            />
+                        </div>
+                        <AccordionV2 
+                            fixed={true}
+                            theme={theme}
+                            autoHeight={true}
+                            header={
+                                <div style={ACCORDION_STYLES}>
+                                    Category
+                                </div>
+                            }
+                            >
+                            <DropDownList 
+                                handler={value=>{
+                                    setCategoryFilters(value)
+                                }}
+                                data={shoesCategories}
+                            />
+                        </AccordionV2>
+                        <AccordionV2
+                            header={
+                                <div style={ACCORDION_STYLES}>
+                                    Brands
+                                    <ClearButton triger={brandFilters.length} handler={()=>setBrandFilters([])}/>
+                                </div>
+                            }
+                        >
+                            <CheckBoxList theme={theme} data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
+                        </AccordionV2>
+                        
+                        <AccordionV2 header={<div style={{fontWeight:600,fontSize:'15px'}}>Color</div>}>
+                            <CheckBoxList theme={theme} data={shoesColor} handler={(value)=>setColorFilters(value)} checkedItems={colorFilters} colored={true} />
+                        </AccordionV2>
+                        <AccordionV2 
+                            fixed={true} 
+                            header={<div style={{fontWeight:600,fontSize:'15px'}}>Size</div>}
+                            theme={theme} 
+                            data={sizeFilters} 
+                            handler={()=>{
+                                setSizeFilters([])
+                            }}
+                        >
+                            <SizeSelect  choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} theme={theme} type='multi'/>
+                        </AccordionV2>
+                        <AccordionV2 
+                            header={<div style={{fontWeight:600,fontSize:'15px'}}>Material</div>}
+                            >
+                            <CheckBoxList theme={theme} data={shoesMaterial} handler={(value)=>setMaterialFilters(value)} checkedItems={materialFilters} />
+                        </AccordionV2>
+                        <AccordionV2  
+                            autoHeight={true}
+                            header={<div style={{fontWeight:600,fontSize:'15px'}}>Price</div>}
+                            >
+                            <CheckBoxList theme={theme} data={PRICE_PARAMS} handler={(value)=>setPriceFilters(value)} checkedItems={priceFilters} />
+                        </AccordionV2>
+                        <AccordionV2
+                            autoHeight={true}
+                            header={<div style={{fontWeight:600,fontSize:'15px'}}>Percent Off</div>}
+                        >
+                            <CheckBoxList theme={theme} data={PERCENT_PARAMS} handler={(value)=>setPercentFilters(value)} checkedItems={percentFilters} />
+                        </AccordionV2>
+                        <div className={styles["button-bar"]}>
+                            <p className={styles['button-bar__clear']} onClick={()=>clearEvent()}>Clear filters</p>
+                            <button onClick={()=>setIsFiltersOptionsOpen(false)} className={styles['button-bar__view']}>View results ({filteredData.length})</button>
+                        </div>
+                    </motion.div>
+                
+                </>
+            }
+           
+        </AnimatePresence>
+        
         
     </div>;
 };
