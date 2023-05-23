@@ -23,7 +23,7 @@ const BurgerMenu = ({isOpen,closeHandler}) => {
             backdropFilter: 'blur(4px)'
         },
         exit:{
-            backdropFilter:'none',
+            backdropFilter:'blur(0)',
             background:'none',
         }
     }
@@ -36,7 +36,7 @@ const BurgerMenu = ({isOpen,closeHandler}) => {
         }
     }
     return ReactDom.createPortal(
-        <AnimatePresence mode='popLayout'>
+        <AnimatePresence mode='sync'>
             {
                 isOpen && <>
                 <motion.div 
@@ -46,7 +46,7 @@ const BurgerMenu = ({isOpen,closeHandler}) => {
                     exit='exit'
                     variants={wrapperVariants}
                     transition={{
-                        duration:0.3
+                        duration:0.2
                     }}
                     className={styles['burger-wrapper']}
                 >
