@@ -1,6 +1,6 @@
 import ReactDom from 'react-dom'
 import styles from './ModalWindow.module.scss'
-import closeIcon from '../../images/close-icon.svg'
+import closeIcon from '../../images/cancel.svg'
 
 const ModalWindow = ({children,isOpen,closeHandler,title}) => {
     if(!isOpen) {

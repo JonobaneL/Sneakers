@@ -12,9 +12,6 @@ const DropDownList = memo(({handler, data}) => {
             name:''
         })
     }
-    // useEffect(()=>{
-    //     getData(choosedCategory.name)
-    // },[choosedCategory])
     const VISIBLE = {display:"block"};
     const INVISIBLE = {display:"none"};
     return (

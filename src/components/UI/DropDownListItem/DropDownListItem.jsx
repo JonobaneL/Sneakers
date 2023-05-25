@@ -4,7 +4,6 @@ import transit from './dropDownTransition.module.scss'
 import { CSSTransition } from 'react-transition-group';
 const DropDownListItem = ({data,getData,fixed=false}) => {
     const [isOpen,setIsOpen] = useState(fixed||false);
-    // console.log(isOpen)
     return (
         <div tabIndex={0} onBlur={()=>setIsOpen(false)} className={styles.listItem}>
             <div className={styles.mainItem}>
