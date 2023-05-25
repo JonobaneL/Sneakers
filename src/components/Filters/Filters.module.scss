@@ -20,17 +20,21 @@
             justify-content: space-between;
             &__opener{
                 background: none;
-                height: 40px; 
+                height: 30px; 
                 border:none;
                 display: flex;
                 gap:5px;
                 align-items: center;
-                font-size: 15px;
-                font-weight: 500;
-                color: #1d2d44;
-                letter-spacing: 0.5px;
+                justify-content: center;
+                font-size: 16px;
+                font-weight: 600;
+                color: #141414;
+                // letter-spacing: 0.5px;
+                outline: 1.5px solid #CACACB;
+                border-radius: 20px;
+                min-width: 100px;
                 img{
-                    width: 25px;
+                    width: 22px;
                 }
             }
             .select{
@@ -38,16 +42,17 @@
             }
         }
         &-options{
-            position: absolute;
+            position: fixed;
             background: #3e5c86;
-            z-index: 2;
+            z-index: 100;
             left: 0;
-            margin-top: 5px;
+            top: 0;
+            bottom: 0;
+            right: 0;
             padding: 25px 80px 40px 80px;
-            display: none;
-            &.active{
-                display: block;
-            }
+            // &.active{
+            //     display: block;
+            // }
             .button-bar{
                 display: flex;
                 margin-top: 20px;

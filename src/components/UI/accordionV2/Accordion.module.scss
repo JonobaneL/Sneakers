@@ -26,16 +26,24 @@
         overflow-y: auto;
         // margin: 10px 0;
         padding-inline: 5px;
+
+        
         &.opened{
             visibility: visible;
             opacity: 1;
             max-height: 400px;
             transition: all 0.3s;
-            &.autoHeight{
-                max-height: fit-content;
+            // &.autoHeight{
+            //     max-height: fit-content;
+            // }
+        }
+        &.autoHeight{
+            transition: all 0.3s;
+            &.opened{
+                transition: all 0.3s;
+                max-height: min-content;
             }
         }
-        
         &::-webkit-scrollbar {
             width: 6px;
             margin-right: 5px;
