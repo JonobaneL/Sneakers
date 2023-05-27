@@ -1,5 +1,5 @@
 import React from 'react';
-import SInput from '../UI/input/SInput';
+import CInput from '../UI/input/CInput';
 import styles from './Subscribe.module.scss'
 const Subscribe = () => {
     return (
@@ -10,7 +10,7 @@ const Subscribe = () => {
                     <p>Subscribe and be the first who receive information about discounts and new products</p>
                 </div>
                 <div className={styles.emailForm}>
-                    <SInput height="40px" params={{placeholder:"E-mail"}} />
+                    <CInput id="location-underline-40" placeholder="E-mail"/>
                     <button className={styles.singUpButton}>SING UP</button>
                 </div>
             </div>

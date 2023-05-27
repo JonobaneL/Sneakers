@@ -41,14 +41,14 @@
 @media screen and (max-width:1024px) {
     .products{
         .content{
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto 1fr;
-            gap: 10px 0;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto 1fr;
+            align-items: center;
+            gap: 0 0;
             grid-template-areas: 
-            "title"
-            "filters"
-            "numberOf"
-            "list";
+            "title title"
+            "numberOf filters"
+            "list list";
         }
     }
     

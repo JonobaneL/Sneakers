@@ -7,7 +7,7 @@ import { getCouponDiscount } from '../../utils/getCouponDiscount';
 import Toast from '../../components/Toast/Toast';
 import { Link } from 'react-router-dom';
 import TotalSection from '../../components/TotalSection/TotalSection';
-import CInput from '../../components/UI/inputV2/CInput';
+import CInput from '../../components/UI/input/CInput';
 const ShoppingCart = () => {
     const {shoppingCart,setCartDiscount,cartDiscount} = useShoppingCart()
     const [CartToast,setCartToast]=useState({

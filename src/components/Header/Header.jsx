@@ -7,14 +7,11 @@ import searchIcon from '../../images/dark-icons/search-icon.png'
 import BurgerButton from '../UI/burgerButton/BurgerButton';
 import { useShoppingCart } from '../../context/CartContext';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import { useToast } from '../../hooks/useToast';
 
 const Header = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)
     const [burgerMenu,setBurgerMenu] = useState(false);
     const {cartQuantity} = useShoppingCart();
-    const {toasts} = useToast()
-    console.log('hader',toasts)
     return (
         <div className={styles['header-wrapper']}>
             <div className={styles["header-top"]}>

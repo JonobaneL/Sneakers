@@ -1,36 +1,56 @@
-import React,{useEffect, useState} from 'react';
+import React,{useState} from 'react';
 import styles from './DropDownListItem.module.scss'
-import transit from './dropDownTransition.module.scss'
-import { CSSTransition } from 'react-transition-group';
+import { AnimatePresence,motion } from 'framer-motion';
 const DropDownListItem = ({data,getData,fixed=false}) => {
     const [isOpen,setIsOpen] = useState(fixed||false);
+    const subListVarianst = {
+        hidden:{
+            height:0,
+        },
+        visible:{
+            height:'fit-content',
+        }
+    }
     return (
-        <div tabIndex={0} onBlur={()=>setIsOpen(false)} className={styles.listItem}>
+        <div 
+            tabIndex={0} 
+            onBlur={()=>!fixed&&setIsOpen(false)} 
+            onClick={()=>{
+                if(!fixed){
+                    data["sub-category"]?
+                    setIsOpen(prev=>!prev) 
+                    :getData([data])
+                }
+                
+            }} 
+            className={styles.listItem}
+            >
             <div className={styles.mainItem}>
                 <p onClick={e=>{
-                    e.preventDefault();
-                    getData(data)
+                     e.stopPropagation()
+                     !fixed && getData([data])
                 }}>{data.name}</p>
                 {data["sub-category"]
-                    ?<span onClick={()=>{setIsOpen(prev=>!prev)}} className={`${styles.arrow} ${isOpen?styles.active:' '}`}>&#9662;</span>
+                    ?<span 
+                        className={`${styles.arrow} ${isOpen?styles.active:' '}`}
+                        >&#9662;</span>
                     :null    
                 }
             </div>
+            <AnimatePresence initial={false}>
             {
-                data["sub-category"]
-                ?<CSSTransition
-                    in={isOpen}
-                    timeout={200}
-                    mountOnEnter
-                    classNames={transit}
-                    unmountOnExit
-                >
-                    <div  className={`${styles.subList}`}>
+                (data["sub-category"] && isOpen)?
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={subListVarianst}
+                        className={`${styles.subList}`}>
                         {data["sub-category"].map(item=>
                             <div 
                                 onClick={e=>{
                                     e.preventDefault();
-                                    getData(item)
+                                    getData([data,item])
                                 }} 
                                 key={item.id} 
                                 className={styles.subList__item}
@@ -38,10 +58,11 @@ const DropDownListItem = ({data,getData,fixed=false}) => {
                                 <p>{item.name}</p> 
                             </div>
                         )}
-                    </div>
-                </CSSTransition>
+                    </motion.div>
                 :null
             }
+            </AnimatePresence>
+            
         </div>
     );
 };

@@ -48,16 +48,36 @@
         max-height: 200px;
         overflow-x: auto;
         z-index: 5;
+        &::-webkit-scrollbar {
+            width: 6px;
+            margin-right: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #fff;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #1d2d44;
+            border-radius: 6px;
+
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: #1d2d44;
+        }
         .options__item{
             padding: 10px;
             cursor: pointer;
             font-size: 15px;
             &:hover{
-                background: #1d2d4409;
+                background: rgba(29, 45, 68, 0.035);
             }
             &.active{
                 background: #3e5c86;
                 color: #fff;
+            }
+            &.disabled{
+                cursor:not-allowed;
+                background: rgba(210, 210, 210, 0.4);
+                color: #747474;
             }
         }
         &.active{

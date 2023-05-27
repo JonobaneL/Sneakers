@@ -1,4 +1,4 @@
-import CInput from '../UI/inputV2/CInput';
+import CInput from '../UI/input/CInput';
 import styles from './CreaditCardForm.module.scss'
 
 const CreditCardFrom = () => {

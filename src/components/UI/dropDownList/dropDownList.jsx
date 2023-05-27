@@ -3,15 +3,29 @@ import React, {memo,useEffect,useState} from 'react';
 import DropDownListItem from '../DropDownListItem/DropDownListItem';
 import styles from './dropDonwList.module.scss'
 
-const DropDownList = memo(({handler, data}) => {
+const DropDownList = memo(({handler, data,seleted}) => {
+    const searchCategory = ()=>{
+        if(seleted.length>0){
+            const mainCategory = data.find(item=>seleted.includes(item.name))
+            const subCategory = mainCategory['sub-category']?.find(item=>seleted.includes(item.name))
+            return subCategory?subCategory:mainCategory
+        }else{
+            return {id:1,name:''}
+        }
+        
+    }
     const [choosedCategory,setChoosedCategory] = useState({id:1,name:''})
     const clearEvent = ()=>{
-        handler("")
+        handler([])
         setChoosedCategory({
             id:1,
             name:''
         })
     }
+    useEffect(()=>{
+        setChoosedCategory(searchCategory())
+    },[seleted.length])
+    
     const VISIBLE = {display:"block"};
     const INVISIBLE = {display:"none"};
     return (
@@ -22,9 +36,9 @@ const DropDownList = memo(({handler, data}) => {
                     fixed={true}
                     data={choosedCategory} 
                     getData={(element)=>{
-                        console.log(element)
-                        handler(element.name)
-                        setChoosedCategory(element);
+                        handler(element.length>1?[element[0].name,element[1].name]:[element[0].name])
+                        setChoosedCategory(element.length>1?element[1]:element[0]);
+                        console.log('sdfsdf')
                         }
                     }/>
 
@@ -36,8 +50,8 @@ const DropDownList = memo(({handler, data}) => {
                             key={item.id} 
                             data={item} 
                             getData={(element)=>{
-                                handler(element.name)
-                                setChoosedCategory(element)
+                                handler(element.length>1?[element[0].name,element[1].name]:[element[0].name])
+                                setChoosedCategory(element.length>1?element[1]:element[0]);
                             }
                         }/>
                     )

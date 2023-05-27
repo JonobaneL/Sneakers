@@ -29,10 +29,11 @@
                 font-size: 16px;
                 font-weight: 600;
                 color: #2f2f2f;
-                // letter-spacing: 0.5px;
                 outline: 1.5px solid #CACACB;
                 border-radius: 20px;
-                min-width: 100px;
+                width: 100px;
+                margin-left: auto;
+                margin-right:0;
                 img{
                     width: 20px;
                 }
@@ -66,9 +67,7 @@
                 background: none;
                 height: 24px;
                 width: 24px;
-                margin-right: 0;
-                margin-left: auto;
-                margin-top: 10px;
+                margin: 10px 0 10px auto;
                 cursor: pointer;
                 img{
                     width: 100%;
@@ -76,24 +75,22 @@
             }
             .button-bar{
                 display: flex;
-                margin-top: 20px;
-                justify-content: space-between;
+                margin-top: 40px;
                 align-items: center;
-                &__clear{
-                    font-size: 15px;
-                    color:#fff;
-                    text-decoration:underline;
-                    letter-spacing: 0.5px;
+                gap:10px;
+                &__clear,&__view{
+                    width: 50%;
+                    height:50px;
+                    background: none;
+                    border-radius:30px;
+                    border: 1px solid rgb(229, 229, 229);
+                    font-size: 16px;
                     cursor:pointer;
                 }
                 &__view{
-                    padding:10px 20px;
-                    background: #fff;
-                    border-radius:3px;
-                    color:#1d2d44;
-                    cursor:pointer;
-                    font-size: 16px;
-                    font-weight: 500;
+                   color:#fff;
+                   background: #3e5c86;
+                   border: none;
                 }
             }
         }
@@ -103,21 +100,30 @@
     .filters{
         &-options{
             padding: 15px 40px 30px 40px;
+        }
+    }
+}
+@media screen and (max-width:425px) {
+    .filters{
+        &-options{
             .button-bar{
-                &__clear{
-                    font-size: 14px;
-                }
-                &__view{
-                    font-size: 14px;
+                &__clear,&__view{
+                    font-size: 15px;
                 }
             }
         }
     }
 }
+
 @media screen and (max-width:375px) {
     .filters{
         &-options{
             padding: 10px 20px 25px 20px;
+            .button-bar{
+                &__clear,&__view{
+                    font-size: 14px;
+                }
+            }
         }
     }
 }

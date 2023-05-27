@@ -1,8 +1,8 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
 import { AnimatePresence, motion } from 'framer-motion';
-import Toast from '../components/ToastV2/Toast';
-import { useToast } from '../hooks/useToast';
+import DropDownList from '../components/UI/dropDownList/dropDownList';
+import { getShoesFiltersData } from '../utils/getShoesData';
 
 
 // const ToastItem = ({data,deleteHandler})=>{
@@ -29,18 +29,21 @@ const About = () => {
 //   const [toast,setToast] = useState([
 //     { id: "22", title: "Added to cart", type: "success" }
 //   ])
-  const [title,setTitle] = useState('')
-//   const addToast = (prop1,prop2) =>{
+//   const [title,setTitle] = useState('')
+//   const addToast = (prop2,prop1) =>{
 //     setToast(p=>[...p,{id:`${Date.now()}`,title:prop1,type:prop2}])
 //   }
 //   const removerToast =(id) =>{
 //     setToast(p=>p.filter(item=>item.id!==id))
 //   }
-    const {toasts,addToast} = useToast();
-    console.log('about',toasts)
+const [productCategories] = getShoesFiltersData('men')
+
+    const [category,setCatergory] = useState([])
+    console.log(category)
+
     return <div className={styles.about}>
         <div className={styles.content} >
-            <div className="form">
+            {/* <div className="form">
                 <input type="text" value={title} onChange={e=>setTitle(e.target.value)} />
                 <div style={{display:'flex',gap:'10px'}}>
                     <button onClick={()=>addToast('success',title)}>Success</button>
@@ -48,7 +51,7 @@ const About = () => {
                     <button onClick={()=>addToast( 'error', title)}>Error</button>
                 </div>
                 
-            </div> 
+            </div>  */}
             {/* <ul className={styles.toast}>
                 <AnimatePresence mode='sync'>
                 {
@@ -59,7 +62,12 @@ const About = () => {
                 </AnimatePresence>
 
             </ul> */}
-            <Toast/>
+            <DropDownList
+                handler={value=>setCatergory(value)}
+                data={productCategories}
+            />
+
+
         </div>
     </div>;
 }

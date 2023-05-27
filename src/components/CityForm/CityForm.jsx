@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './CityForm.module.scss'
 import deliveryTruck from '../../images/delivery-truck.svg'
 import { popularCities } from '../../data/shipping-data';
-import CInput from '../UI/inputV2/CInput';
+import CInput from '../UI/input/CInput';
 import SearchField from '../UI/autocomplete/Autocomplete';
 import { findLocation } from '../../utils/searchLocation';
 

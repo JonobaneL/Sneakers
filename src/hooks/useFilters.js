@@ -1,5 +1,6 @@
 import { useMemo } from "react"
 import { getFinalPrice } from "../utils/getFinalPrice"
+import { priceSort } from "../utils/priceSort"
 export const useShoesMale = (shoes,male='')=>{
     const filterByMale = useMemo(()=>{
         if(male.length>0){
@@ -10,17 +11,53 @@ export const useShoesMale = (shoes,male='')=>{
     },[shoes,male])
     return filterByMale;
 }
-
-export const useFiltered = (shoes,male,brand=[],color=[],price=[],percent=[],size=[],material=[])=>{
+const useSort = (products,sortMethod) =>{
+    const response = useMemo(()=>{
+        if(sortMethod){
+            switch(sortMethod){
+                case 1:
+                    return products
+                case 2:
+                    return products
+                case 3:
+                    return priceSort(products,'highTolow');
+                case 4:
+                    return priceSort(products);
+                case 5:
+                    return products.filter(item=>item.discount>0)
+            }
+        }else{
+            return products;
+        }
+    },[products,sortMethod])
+    return response;
+}
+export const useFiltered = (shoes,male,sortMethod,category=[],brand=[],color=[],price=[],percent=[],size=[],material=[])=>{
    const maleFiltered = useShoesMale(shoes,male)
+   const sortRes = useSort(maleFiltered,sortMethod)
+   const filteredCategories = useMemo(()=>{
+        if(category.length>0){
+           return sortRes.filter(item=>{
+            if(category.includes(item.category) && category.length==1){
+                return item
+            }
+            else if(category.includes(item.category) && category.length>1){
+                if(category.includes(item['sub-category'])) return item
+            }
+        })
+        }else return sortRes
+   },[sortRes,category])
+
+   const some = filteredCategories;
     const filteredBrand = useMemo(()=>{
         if(brand.length>0){
-            return maleFiltered.filter(item=>
+            return filteredCategories.filter(item=>
                 {
                     if(brand.includes(item.brand))return item
                 })
-        }else return maleFiltered
-    },[maleFiltered,brand]);
+        }else return filteredCategories
+    },[filteredCategories,brand]);
+    
     const filteredColor = useMemo(()=>{
         if(color.length>0){
             return filteredBrand.filter(item=>

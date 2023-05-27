@@ -16,23 +16,14 @@ const Carousel = ({data,arrows=false,dots=true}) => {
         setPage([dotIndex,dotIndex<pageIndex?-1:1])
     }
     const itemVariants = {
-        enter: (direction) => {
-            return {
-            //   x: direction > 0 ? 500 : -500,
+        enter: {
               opacity: 0
-            };
           },
           center: {
-            // zIndex: 1,
-            // x: 0,
             opacity: 1
           },
-          exit: (direction) => {
-            return {
-            //   zIndex: 0,
-            //   x: direction < 0 ? 500 : -500,
+          exit:{
               opacity: 0
-            };
           }
     }
     const imageVariants ={
@@ -67,10 +58,9 @@ const Carousel = ({data,arrows=false,dots=true}) => {
     return (
         <div className={styles.carousel}>
             <div className={styles.content}>
-                <AnimatePresence initial={false} mode='wait' custom={direction}>
+                <AnimatePresence initial={false} mode='wait'>
                     <motion.div 
                     key={page}
-                    custom={direction}
                     initial="enter"
                     animate="center"
                     exit="exit"

@@ -6,7 +6,7 @@ import Select from '../../components/UI/select/Select';
 import { getPostOffice } from '../../utils/getPostOffice';
 import CustomerAddressForm from '../../components/CustomerAddress/CustomerAddressForm';
 import PayPalIcon from '../../images/PayPal-icon.svg'
-import CInput from '../../components/UI/inputV2/CInput';
+import CInput from '../../components/UI/input/CInput';
 import CreditCardFrom from '../../components/CreditCardForm/CreditCardFrom';
 import OrdreSummaryList from '../../components/OrderSummaryList/OrderSummaryList';
 import TotalSection from '../../components/TotalSection/TotalSection';

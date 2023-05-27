@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Select.module.scss'
 import arrow from '../../../images/down-arrow.png'
-const Select = ({placeholder, params,getData,type='underLineType',height='40px',children}) => {
+const Select = ({placeholder, params,getData,type='underLineType',height='40px',disabled=[]}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectValue, setSelectValue] = useState({})
    
@@ -29,9 +29,10 @@ const Select = ({placeholder, params,getData,type='underLineType',height='40px',
                                 key={item.id} 
                                 onClick={e=>{
                                     e.stopPropagation();
-                                    selectOption(item)
+                                    if(!disabled.includes(item.id)) selectOption(item)
+                                    
                                 }} 
-                                className={`${styles.options__item} ${isOptionSelected(item)?styles.active:''}`}
+                                className={`${styles.options__item} ${isOptionSelected(item)?styles.active:''} ${disabled.includes(item.id)?styles.disabled:''}`}
                             >
                                 {item.value}
                             </li>

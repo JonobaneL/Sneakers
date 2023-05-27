@@ -3,7 +3,7 @@ import {shoesMaterial} from '../data/shoesMaterial'
 import {shoesBrands} from '../data/shoesBrands'
 
 const SORT_PARAMS = [
-    {id:1,value:'Top Rated'},
+    {id:1,value:'Featured'},
     {id:2,value:'Newest'},
     {id:3,value:'Price: High to Low'},
     {id:4,value:'Price: Low to High'},

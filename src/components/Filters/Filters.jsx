@@ -26,8 +26,8 @@ const ACCORDION_STYLES = {
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
 const Filters = ({setData}) => {
-    const [sort,setSort] = useState('')
-    const windowSize = window.screen.availWidth<1024;
+    const [sort,setSort] = useState()
+    const windowSize = window.screen.availWidth<=1024;
     const theme = "dark";
     const filtersWrapperVariants = {
         hidden:{
@@ -45,16 +45,17 @@ const Filters = ({setData}) => {
             y:0
         }
     }
+    console.log(sort)
     const {type,male} = useParams()
     const [productCategories,productBrands,productMaterials,productSortParams,productPriceParams,productPercentParams] = getShoesFiltersData(male)
-    const [categoryFilters,setCategoryFilters] = useSearchParamsState({name:"category",deserialize:(data)=>data?data:""})
+    const [categoryFilters,setCategoryFilters] = useSearchParamsState({name:"category",serialize:(data)=>data.join(">"), deserialize:(data)=>data?data.split(">"):[]})
     const [brandFilters,setBrandFilters] = useSearchParamsState({name:"brand", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
     const [colorFilters,setColorFilters] = useSearchParamsState({name:"color", serialize:(data)=>data.join("-"), deserialize:(data)=>data?data.split("-"):[]})
     const [sizeFilters,setSizeFilters] = useSearchParamsState({name:"size",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [materialFilters,setMaterialFilters] = useSearchParamsState({name:"material",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
-    const filteredData = useFiltered(shoes,male,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
+    const filteredData = useFiltered(shoes,male,sort,categoryFilters,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
     const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(!windowSize);
     const [searchQuery,setSearchQuery] = useState('');
     const searchedBrands = useSearch(productBrands,searchQuery)
@@ -75,13 +76,6 @@ const Filters = ({setData}) => {
    
     return <div className={styles.filters}>
         <div className={styles["filters-nav"]}>
-            <div className={styles.select}>
-                <Select
-                    placeholder='Sort by'
-                    params={productSortParams}
-                    getData={(value)=>setSort(value)}
-                />
-            </div>
             <button 
                 className={styles["filters-nav__opener"]}
                 onClick={()=>{
@@ -93,7 +87,7 @@ const Filters = ({setData}) => {
                 <img src={filtersIcon} alt="" />
             </button>
         </div>
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
             {
                 isFiltersOptionsOpen && <>
                 {
@@ -117,20 +111,21 @@ const Filters = ({setData}) => {
                         duration:0.4
                     }}
                     className={`${styles["filters-options"]}`}>
-                        <button
-                        className={styles['close-btn']}
-                            onClick={()=>{setIsFiltersOptionsOpen(false);document.body.style.overflowY='unset'}}
-                        >
-                            <img src={closeIcon} alt="close" />
-                        </button>
-                        <div style={{display:windowSize?'none':'block'}}>
-                            <Select 
-                    
-                                placeholder='Sort by'
-                                params={productSortParams}
-                                getData={(value)=>setSort(value)}
-                            />
-                        </div>
+                        {
+                            windowSize && <button
+                            className={styles['close-btn']}
+                                onClick={()=>{setIsFiltersOptionsOpen(false);document.body.style.overflowY='unset'}}
+                            >
+                                <img src={closeIcon} alt="close" />
+                            </button>
+                        }
+                        
+                        <Select 
+                            placeholder='Sort by'
+                            params={productSortParams}
+                            getData={(value)=>setSort(value)}
+                            disabled={!sort?[1]:[]}
+                        />
                         <Accordion 
                             fixed={true}
                             theme={theme}
@@ -146,6 +141,7 @@ const Filters = ({setData}) => {
                                     setCategoryFilters(value)
                                 }}
                                 data={productCategories}
+                                seleted={categoryFilters}
                             />
                         </Accordion>
                         <Accordion
@@ -211,7 +207,7 @@ const Filters = ({setData}) => {
                             <CheckBoxList theme={theme} data={productPercentParams} handler={(value)=>setPercentFilters(value)} checkedItems={percentFilters} />
                         </Accordion>
                         <div className={styles["button-bar"]}>
-                            <p className={styles['button-bar__clear']} onClick={()=>clearEvent()}>Clear filters</p>
+                            <button className={styles['button-bar__clear']} onClick={()=>clearEvent()}>Clear</button>
                             <button onClick={()=>setIsFiltersOptionsOpen(false)} className={styles['button-bar__view']}>View results ({filteredData.length})</button>
                         </div>
                     </motion.div>
@@ -221,7 +217,7 @@ const Filters = ({setData}) => {
            
         </AnimatePresence>
         
-        
+         
     </div>;
 };
  

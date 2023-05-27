@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <div>
             <Carousel data={home_data}/>
-            {/* <ProductsCarousel /> */}
+            <ProductsCarousel />
             <Subscribe/>
             <Advantages/>
         </div>
