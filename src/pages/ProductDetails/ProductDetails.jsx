@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styles from './ProductDetails.module.scss'
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import backIcon from '../../images/back-icon.svg'
 import InfoTabs from '../../components/UI/info-tabs/InfoTabs';
 import { useProduct } from '../../hooks/useProduct';
@@ -20,7 +20,8 @@ const ProductDetails = () => {
     const [productColor,setProductColor] = useState([])
     const {addToCart} = useShoppingCart()
     const [isToastOpen,setToastOpen] = useState(false)
-  
+    const {state} = useLocation();
+    const navigate = useNavigate()
     const addHandler =()=>{
         if(productColor.length==0){
             warning_ref.current.hidden = false;
@@ -29,12 +30,15 @@ const ProductDetails = () => {
             setToastOpen(true)
         }
     }
+    const backEvent =()=>{
+        navigate(`/${state.type}/${state.male}`)
+    }
     return (
         <div className={styles["product-details"]}>
             <div className={styles.back}>
                 <div className={styles.content}>
-                    <img className={styles.back__icon} src={backIcon} alt="back" />
-                    <p className={styles.back__title} onClick={()=>{}}>Back to Results</p>
+                    <img className={styles.back__icon} onClick={backEvent} src={backIcon} alt="back" />
+                    <p className={styles.back__title} onClick={backEvent}>Back to Results</p>
                 </div>
             </div>
             <div className={styles.details}>
@@ -60,7 +64,7 @@ const ProductDetails = () => {
                         </div>
                         <div className={styles["product-color"]}>
                             <p className={styles.blockTitle}>Color: {poitedColor}</p>
-                            <ColorSelect colors={currentProduct.colors} poitedColor={color=>setPointedColor(color)}/>
+                            <ColorSelect colors={currentProduct.colors} poitedColor={color=>setPointedColor(color)} locationState={state} />
                         </div>
                         <div className={styles["product-size"]}>
                             <p className={styles.blockTitle}>Size:   <span hidden className={styles.warringMessage} ref={warning_ref}>Please select a size</span></p>

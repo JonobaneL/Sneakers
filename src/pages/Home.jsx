@@ -6,6 +6,7 @@ import Carousel from '../components/UI/carousel1/Carousel';
 import sneker from '../images/sneakers.png'
 import boot from '../images/boot.png'
 import sandal from '../images/sandal.png'
+import styles from './Home.module.scss'
 const Home = () => {
     const home_data= [
         {id:1,season:'summer 2023',title:"Hello new season",description:'Limited time to offer - up to 50% off',link:"/shoes/men",img:sneker},
@@ -15,7 +16,9 @@ const Home = () => {
     return (
         <div>
             <Carousel data={home_data}/>
-            <ProductsCarousel />
+            <div className={styles.products}>
+                <ProductsCarousel />
+            </div>
             <Subscribe/>
             <Advantages/>
         </div>

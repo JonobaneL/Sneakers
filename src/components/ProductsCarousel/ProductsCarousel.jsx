@@ -1,102 +1,78 @@
-import React, {useEffect, useState, useRef} from 'react';
-import CarouselCard from '../CarouselCard/CarouselCard';
+import { AnimatePresence,motion } from 'framer-motion';
 import styles from './ProductsCarousel.module.scss'
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import "./settings.css"
-import {bestSellers,novelty} from '../../data/homeSneakersData'
-import ProductsItem from '../productsListItem/ProductsItem';
+import { bestSellers } from '../../data/homeSneakersData';
+import { useState } from 'react';
+import arrow from '../../images/right-arrow.svg'
+import ShoesItem from '../productsListItem/ProductsItem';
 
-
-const ProductsCarousel = () => {
-    const [data,setData] = useState([...bestSellers])
-    const slider = useRef(null)
-    const listNav = [
-        {id:1, value:"Best Sellers"},
-        {id:2, value:"Newest"},
-    ]
-    const [current,setCurrent] = useState(listNav[0].id);
-    const settings = {
-        dots: true,
-        infinite: true,
-        arrows:false,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 5,
-        dotsClass: styles.dots__bar,
-        responsive:[
-            {
-                breakpoint: 1360,
-                settings: {
-                  slidesToShow: 5,
-                  slidesToScroll: 5,
-                }
-            },
-            {
-                breakpoint: 1130,
-                settings: {
-                  slidesToShow: 4,
-                  slidesToScroll: 4,
-                }
-            },
-            {
-                breakpoint: 880,
-                settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 3,
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                  slidesToShow: 2,
-                  slidesToScroll: 2,
-                }
-            },
-            {
-                breakpoint: 425,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                }
-            },
-        ],
-      };
-     
-    useEffect(()=>{
-        if(current==1){
-            setData([...bestSellers])
-            slider.current.slickGoTo(0)
-        }else if(current==2){
-            setData([...novelty])
-            slider.current.slickGoTo(0)
-        }
-    },[current])
-    return (
-        <div className={styles.shortList}>
-            <div className={styles.content}>
-                <ul className={styles.nav}>
-                    {listNav.map(item=>
-                        <li
-                            key={item.id}
-                            className={styles.nav__item+" "+ (current==item.id?styles.active:'')}
-                            onClick={()=>setCurrent(item.id)}
-                        >{item.value}</li>
-                    )}
-                </ul>
-                <Slider ref={slider} {...settings}>
+const ProductCarousel = () => {
+    //best sellers
+    //newest
+    const toScroll=1;
+    const toShow = 4;
+    const [[start,end],setBorders] = useState([0,toShow]);
+    const [direction,setDirection] = useState(0)
+    const carouselVariants = {
+        enter: direction=>{
+            return {
+                x: direction > 0 ? 200 : -200,
+                opacity: 0
+            }
+        },
+        ready:{
+            x:0,
+            opacity:1,
+        },
+        exit:direction=>{
+            return {
+                x: direction < 0 ? 200 : -200,
+                opacity: 0
+            }
+        },
+    }
+    const paginate =(newDirection)=>{
+        setBorders([start+(newDirection*toScroll),end+(newDirection*toScroll)]);
+        setDirection(newDirection)
+    }
+    return ( 
+        <div className={styles.wrapper}>
+            <button className={`${styles.arrow} ${start<=0?styles.disabled:''}`} onClick={()=>paginate(-1)}>
+                <img src={arrow} alt="prev" />
+            </button>
+            <motion.div className={styles.carousel} layout>
+                <AnimatePresence initial={false} mode='popLayout' custom={direction}>
                     {
-                        data.map(item=>
-                            // <ShoesItem key={item.id} item={item}/>)
-                            <ProductsItem key={item.id} item={item}/>)
-                            // <CarouselCard key={item.id} data={item}/>)
+                        bestSellers.map((item,index)=>{
+                            if(index>=start && index<end)
+                            return (
+                                <motion.div 
+                                    key={item.id}
+                                    layout
+                                    custom={direction}
+                                    className={styles.carousel__item}
+                                    variants={carouselVariants}
+                                    initial="enter"
+                                    animate="ready"
+                                    exit="exit"
+                                    transition={{
+                                        x: { type: "tween",duration:0.3 },
+                                        opacity: { duration: 0.3 }
+                                    }}
+                                >
+                                    {/* <img src={item.colors[0].images[0]} alt="" />
+                                    <p>{item.name}{item.id}</p> */}
+                                    <ShoesItem item={item}/>
+                                </motion.div>
+                            )
+                        })
                     }
-                </Slider>
-            </div>
+                </AnimatePresence>
+            </motion.div>
+            <button className={`${styles.arrow} ${end >= bestSellers.length?styles.disabled:''}`} onClick={()=>paginate(1)}>
+                <img src={arrow} alt="next" />
+            </button>
         </div>
-    );
-};
-
-
-export default ProductsCarousel;
+     );
+}
+ 
+export default ProductCarousel;

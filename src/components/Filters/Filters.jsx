@@ -45,7 +45,6 @@ const Filters = ({setData}) => {
             y:0
         }
     }
-    console.log(sort)
     const {type,male} = useParams()
     const [productCategories,productBrands,productMaterials,productSortParams,productPriceParams,productPercentParams] = getShoesFiltersData(male)
     const [categoryFilters,setCategoryFilters] = useSearchParamsState({name:"category",serialize:(data)=>data.join(">"), deserialize:(data)=>data?data.split(">"):[]})

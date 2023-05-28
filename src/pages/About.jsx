@@ -1,9 +1,7 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
 import { AnimatePresence, motion } from 'framer-motion';
-import DropDownList from '../components/UI/dropDownList/dropDownList';
-import { getShoesFiltersData } from '../utils/getShoesData';
-
+import { bestSellers } from '../data/homeSneakersData';
 
 // const ToastItem = ({data,deleteHandler})=>{
 //     setTimeout(()=>{
@@ -26,6 +24,7 @@ import { getShoesFiltersData } from '../utils/getShoesData';
 // }
 
 const About = () => {
+    // console.log(matches)
 //   const [toast,setToast] = useState([
 //     { id: "22", title: "Added to cart", type: "success" }
 //   ])
@@ -36,10 +35,36 @@ const About = () => {
 //   const removerToast =(id) =>{
 //     setToast(p=>p.filter(item=>item.id!==id))
 //   }
-const [productCategories] = getShoesFiltersData('men')
-
-    const [category,setCatergory] = useState([])
-    console.log(category)
+    // const [start,setStart] = useState(0)
+    // const [end,setEnd] = useState(5)
+    const toScroll = 1;
+    const [[start,end],setBorders]=useState([0,5])
+    const [direction,setDirection] = useState(0)
+    console.log(start,end)
+    
+    const paginate =(newDirection)=>{
+        setBorders([start+(newDirection*toScroll),end+(newDirection*toScroll)]);
+        setDirection(newDirection)
+    }
+   
+    const carouselVariants = {
+        enter: direction=>{
+            return {
+                x: direction > 0 ? 200 : -200,
+                opacity: 0
+            }
+        },
+        ready:{
+            x:0,
+            opacity:1,
+        },
+        exit:direction=>{
+            return {
+                x: direction < 0 ? 200 : -200,
+                opacity: 0
+            }
+        },
+    }
 
     return <div className={styles.about}>
         <div className={styles.content} >
@@ -62,11 +87,36 @@ const [productCategories] = getShoesFiltersData('men')
                 </AnimatePresence>
 
             </ul> */}
-            <DropDownList
-                handler={value=>setCatergory(value)}
-                data={productCategories}
-            />
 
+            <div className={styles.productCarousel}>
+                    <motion.div layout className={styles.products}>
+                        <AnimatePresence initial={false} custom={direction} mode='popLayout'>
+                            {bestSellers.map((item,index)=>{
+                                if(index>=start && index<end)
+                                return <motion.div 
+                                    layout 
+                                    key={item.id} 
+                                    className={styles.products__item}
+                                    initial="enter"
+                                    animate="ready"
+                                    exit="exit"
+                                    custom={direction}
+                                    variants={carouselVariants}
+                                    transition={{
+                                        x: { type: "spring", stiffness: 300, damping: 30 },
+                                        opacity: { duration: 0.2 }
+                                    }}
+                                    >
+                                    <img src={item.colors[0].images[0]} alt="" />
+                                    <p>{item.name}{item.id}</p>
+                                </motion.div> 
+                            })}
+                        </AnimatePresence>
+
+                        </motion.div>
+            </div>
+            <button onClick={()=>paginate(-1)}>prev</button>
+            <button onClick={()=>paginate(1)}>next</button>
 
         </div>
     </div>;
