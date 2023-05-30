@@ -1,7 +1,9 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
-import { AnimatePresence, motion } from 'framer-motion';
 import { bestSellers } from '../data/homeSneakersData';
+import { itemsToShow } from '../utils/itemsToShow';
+import DropDownMenu from '../components/UI/dropDownMenu/DropDownMenu';
+import Toast from '../components/ToastV2/Toast';
 
 // const ToastItem = ({data,deleteHandler})=>{
 //     setTimeout(()=>{
@@ -35,37 +37,8 @@ const About = () => {
 //   const removerToast =(id) =>{
 //     setToast(p=>p.filter(item=>item.id!==id))
 //   }
-    // const [start,setStart] = useState(0)
-    // const [end,setEnd] = useState(5)
-    const toScroll = 1;
-    const [[start,end],setBorders]=useState([0,5])
-    const [direction,setDirection] = useState(0)
-    console.log(start,end)
-    
-    const paginate =(newDirection)=>{
-        setBorders([start+(newDirection*toScroll),end+(newDirection*toScroll)]);
-        setDirection(newDirection)
-    }
-   
-    const carouselVariants = {
-        enter: direction=>{
-            return {
-                x: direction > 0 ? 200 : -200,
-                opacity: 0
-            }
-        },
-        ready:{
-            x:0,
-            opacity:1,
-        },
-        exit:direction=>{
-            return {
-                x: direction < 0 ? 200 : -200,
-                opacity: 0
-            }
-        },
-    }
-
+    const [isOpen,setIsOpen] = useState(false)
+    const [type,setType] = useState('')
     return <div className={styles.about}>
         <div className={styles.content} >
             {/* <div className="form">
@@ -87,37 +60,23 @@ const About = () => {
                 </AnimatePresence>
 
             </ul> */}
-
-            <div className={styles.productCarousel}>
-                    <motion.div layout className={styles.products}>
-                        <AnimatePresence initial={false} custom={direction} mode='popLayout'>
-                            {bestSellers.map((item,index)=>{
-                                if(index>=start && index<end)
-                                return <motion.div 
-                                    layout 
-                                    key={item.id} 
-                                    className={styles.products__item}
-                                    initial="enter"
-                                    animate="ready"
-                                    exit="exit"
-                                    custom={direction}
-                                    variants={carouselVariants}
-                                    transition={{
-                                        x: { type: "spring", stiffness: 300, damping: 30 },
-                                        opacity: { duration: 0.2 }
-                                    }}
-                                    >
-                                    <img src={item.colors[0].images[0]} alt="" />
-                                    <p>{item.name}{item.id}</p>
-                                </motion.div> 
-                            })}
-                        </AnimatePresence>
-
-                        </motion.div>
-            </div>
-            <button onClick={()=>paginate(-1)}>prev</button>
-            <button onClick={()=>paginate(1)}>next</button>
-
+            <button onClick={()=>{
+                setType('success')
+                setIsOpen(true)
+                }}
+            >Success</button>
+            <button onClick={()=>{
+                setType('warning')
+                setIsOpen(true)
+                }}
+            >Warning</button>
+            <button onClick={()=>{
+                setType('error')
+                setIsOpen(true)
+                }}
+            >Error</button>
+            <Toast title="Fuck" type={type} triger={isOpen} handler={setIsOpen} />           
+            
         </div>
     </div>;
 }

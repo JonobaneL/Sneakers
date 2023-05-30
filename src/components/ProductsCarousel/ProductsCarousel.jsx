@@ -4,12 +4,29 @@ import { bestSellers } from '../../data/homeSneakersData';
 import { useState } from 'react';
 import arrow from '../../images/right-arrow.svg'
 import ShoesItem from '../productsListItem/ProductsItem';
+import { itemsToShow } from '../../utils/itemsToShow';
 
 const ProductCarousel = () => {
     //best sellers
     //newest
+    const windowSize = window.screen.availWidth;
+   
     const toScroll=1;
-    const toShow = 4;
+   const toShow =  itemsToShow()
+    // >1280
+    // const toShow = 5;
+
+    //1280
+    // const toShow = 4;
+    //1024
+    // const toShow = 4;
+    //768
+    // const toShow = 1;
+
+        
+
+
+
     const [[start,end],setBorders] = useState([0,toShow]);
     const [direction,setDirection] = useState(0)
     const carouselVariants = {

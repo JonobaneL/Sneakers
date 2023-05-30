@@ -120,7 +120,7 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <Toast type="success" open={isToastOpen} closeHandler={() => setToastOpen(false)}>Added to Cart</Toast>
+            <Toast type="success" open={isToastOpen} closeHandler={() => setToastOpen(true)}>Added to Cart</Toast>
         </div>
     );
 };

@@ -1,0 +1,24 @@
+.wrapper{
+    width: 100%;
+    padding: 40px 80px;
+    .content{
+        max-width:1200px;
+        margin-inline:auto;
+        .title{
+            font-weight: 600;
+            font-size: 26px;
+            color:#1d2d44;
+            margin-bottom: 10px;
+        }
+    }
+}
+@media screen and (max-width:768px) {
+    .wrapper{
+        padding: 40px;
+    }
+}
+@media screen and (max-width:375px) {
+    .wrapper{
+        padding: 20px;
+    }
+}

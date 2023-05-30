@@ -1,0 +1,43 @@
+.delivery,.returns{
+    color:#141414;
+    margin-bottom: 20px;
+    .type{
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 32px;
+        color: #1d2d44;
+    }
+    .description{
+        margin: 0 0 5px 10px;
+        color: #2f2f2f;
+    }
+    .warning{
+        margin-top: 20px;
+        text-align: center;
+        font-weight: 500;
+        color: #CF000F;
+    }
+    .sub-title{
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .sub-type{
+        font-weight: 500;
+        line-height: 24px;
+        margin: 20px 0;
+    }
+    .list{
+        margin: 0 0 20px 20px;
+        li{
+           span{
+            font-size: 20px;
+            margin-right: 5px;
+           }
+        }
+    }
+    .note{
+        margin-top: 20px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+}

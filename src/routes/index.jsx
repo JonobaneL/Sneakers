@@ -5,6 +5,9 @@ import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 import Products from "../pages/Products/Products";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Checkout from "../pages/Checkout/Checkout";
+import ShippingReturns from "../pages/Help/ShippingReturns/ShippingReturns";
+import ContactUs from "../pages/Help/ContactUs/ContactUs";
+import PrivacyPolicy from "../pages/Help/PrivacyPolicy/PrivacyPolicy";
 
 export const publicRoutes = [
     {
@@ -34,6 +37,30 @@ export const publicRoutes = [
     {
         path:'/checkout',
         element:<Checkout/>
+    },
+    {
+        path:'/shipping-returns',
+        element:<ShippingReturns/>
+    },
+    {
+        path:'/payment-options',
+        element:<ShippingReturns/>
+    },
+    {
+        path:'/gift-cards',
+        element:<ShippingReturns/>
+    },
+    {
+        path:'/size-charts',
+        element:<ShippingReturns/>
+    },
+    {
+        path:'/contact-us',
+        element:<ContactUs/>
+    },
+    {
+        path:'/privacy-policy',
+        element:<PrivacyPolicy/>
     },
     {
         path:'*', 

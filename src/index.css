@@ -21,7 +21,7 @@ input{
   outline: none;
 }
 body{
-  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar {
@@ -38,10 +38,10 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .App{
-  /*під питанням ця властивість, знайти можливість пофіксити*/
-  /* height: 100vh;  */
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  /*під питанням ця властивість*/
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
 .App .content{
   flex: 1 1 auto;

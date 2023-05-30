@@ -7,17 +7,34 @@ import searchIcon from '../../images/dark-icons/search-icon.png'
 import BurgerButton from '../UI/burgerButton/BurgerButton';
 import { useShoppingCart } from '../../context/CartContext';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import DropDownMenu from '../UI/dropDownMenu/DropDownMenu';
 
 const Header = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)
     const [burgerMenu,setBurgerMenu] = useState(false);
+    const [dropMenu,setDropMenu] = useState(false)
     const {cartQuantity} = useShoppingCart();
     return (
         <div className={styles['header-wrapper']}>
             <div className={styles["header-top"]}>
                 <div className={styles.content}>
                     <ul className={styles.nav}>
-                        <li className={styles.nav__item}>Help</li>
+                        <li className={styles.nav__item} onMouseEnter={()=>setDropMenu(true)} onMouseLeave={()=>setDropMenu(false)}>
+                            Help
+                            <DropDownMenu triger={dropMenu}>
+                                <div className={styles['help-menu']}>
+                                    <p className={styles.title}>Help</p>
+                                    <ul className={styles.menu}>
+                                        <li><Link to='/shipping-returns'>Shipping & Returns</Link></li>
+                                        <li><Link to='/payment-options'>Payment Options</Link></li>
+                                        <li><Link to='/gift-cards'>Gift Cards</Link></li>
+                                        <li><Link to='/size-charts'>Shoe Size Charts</Link></li>
+                                        <li><Link to='/contact-us'>Contact Us</Link></li>
+                                        <li><Link to='/privacy-policy'>Privacy Policy</Link></li>
+                                    </ul>
+                                </div>
+                            </DropDownMenu>
+                        </li>
                         <li className={`${styles.nav__item} ${styles.line}`}>|</li>
                         <li className={styles.nav__item}>Join Us</li>
                         <li className={`${styles.nav__item} ${styles.line}`}>|</li>
