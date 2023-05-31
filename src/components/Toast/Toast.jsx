@@ -13,6 +13,7 @@ const Toast = ({type,open=false,closeHandler,children}) => {
     {name:"warning",color:"#FFBF00",icon:warningIcon},
     {name:"error",color:"#CF000F",icon:errorIcon},
    ]
+  
 const toastType = TYPES.find(item=>item.name === type);
    setTimeout(()=>{
     closeHandler()

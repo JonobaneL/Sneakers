@@ -9,7 +9,7 @@ import Rate from '../../components/UI/rate/Rate';
 import ColorSelect from '../../components/UI/colorSelect/ColorSelect';
 import SizeSelect from '../../components/UI/sizeSelect/SizeSelect';
 import { useShoppingCart } from '../../context/CartContext';
-import Toast from '../../components/Toast/Toast';
+import Toast from '../../components/ToastV2/Toast';
 
 
 const ProductDetails = () => {
@@ -120,7 +120,7 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <Toast type="success" open={isToastOpen} closeHandler={() => setToastOpen(true)}>Added to Cart</Toast>
+            <Toast type="success" title='Added to Cart' triger={isToastOpen} closeHandler={setToastOpen}/>
         </div>
     );
 };

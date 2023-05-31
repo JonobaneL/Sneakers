@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { useShoppingCart } from '../../context/CartContext';
 import CartItem from '../../components/CartItem/CartItem';
 import { getCouponDiscount } from '../../utils/getCouponDiscount';
-import Toast from '../../components/Toast/Toast';
+import Toast from '../../components/ToastV2/Toast';
 import { Link } from 'react-router-dom';
 import TotalSection from '../../components/TotalSection/TotalSection';
 import CInput from '../../components/UI/input/CInput';
@@ -40,7 +40,6 @@ const ShoppingCart = () => {
         setCartToast({type:'warning',content:"Coupon was deleted"})
         setToastOpen(true)
     }
-    console.log(window.screen.availWidth>768?true:false);
     return (
         <div className={styles['shopping-cart']}>
             <div className={styles.content}>
@@ -77,9 +76,7 @@ const ShoppingCart = () => {
                     :<h2 className={styles["empty-cart"]}>Your cart is empty</h2>
                 }
             </div>
-            <Toast type={CartToast.type} open={isToastOpen} closeHandler={() => setToastOpen(false)}>
-                {CartToast.content}
-            </Toast>
+            <Toast type={CartToast.type} title={CartToast.content} triger={isToastOpen} closeHandler={setToastOpen}/>
         </div>
     );
 };
