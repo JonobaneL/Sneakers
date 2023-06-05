@@ -3,13 +3,15 @@
     .messages{
         display: flex;
         flex-direction:column;
-        gap: 5px;
+        // gap: 5px;
         padding-left: 10px;
         margin-top: 5px;
+        height: 10px;
         position: relative;
         .messages__item{
             font-size: 12px;
-            color:#d43f21;
+            color:#CF000F;
+            font-weight: 500;
             position: absolute;
         }
     }

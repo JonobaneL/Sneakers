@@ -49,18 +49,56 @@ const Checkout = () => {
                             <div className={styles.newCustomer}>
                                 <div className={styles['customer-info']}>
                                         <ValidationErrorMessages durty={firstName.isDurty} errorMessages={firstName.currentErrors}>
-                                            <CInput value={firstName.value} onChange={e=>firstName.onChange(e)} onBlur={e=>firstName.onBlur(e)} id='firstName-fullBorder-50' placeholder='First name*' type='text' data-errors={firstName.isValid==false && firstName.isDurty}/>
+                                            <CInput 
+                                                value={firstName.value} 
+                                                onChange={e=>firstName.onChange(e)} 
+                                                onBlur={e=>firstName.onBlur(e)} 
+                                                id='firstName' 
+                                                mode='fullBorder' 
+                                                height='50' 
+                                                placeholder='First name*' 
+                                                type='text' 
+                                                valid={firstName.isValid==false && firstName.isDurty}
+                                            />
                                         </ValidationErrorMessages>
                                         <ValidationErrorMessages durty={lastName.isDurty} errorMessages={lastName.currentErrors}>
-                                            <CInput value={lastName.value} onChange={e=>lastName.onChange(e)} onBlur={e=>lastName.onBlur(e)} id='lastName-fullBorder-50' placeholder='Last name*' type='text' data-errors={lastName.isValid==false && lastName.isDurty}/>
+                                            <CInput 
+                                                value={lastName.value} 
+                                                onChange={e=>lastName.onChange(e)} 
+                                                onBlur={e=>lastName.onBlur(e)} 
+                                                id='lastName' 
+                                                placeholder='Last name*' 
+                                                mode='fullBorder'
+                                                height={50}
+                                                type='text' 
+                                                valid={lastName.isValid==false && lastName.isDurty}
+                                            />
                                         </ValidationErrorMessages>
                                     </div>
                                     <div className={styles['customer-contacts']}>
                                         <ValidationErrorMessages durty={email.isDurty} errorMessages={email.currentErrors}>
-                                            <CInput value={email.value} onChange={e=>email.onChange(e)} onBlur={e=>email.onBlur(e)} id='email-fullBorder-50' placeholder='Email*' type='email' name="email"  data-errors={email.isValid==false && email.isDurty}/>
+                                            <CInput 
+                                                value={email.value} 
+                                                onChange={e=>email.onChange(e)} 
+                                                onBlur={e=>email.onBlur(e)} 
+                                                id='email' 
+                                                placeholder='Email*' 
+                                                type='email' 
+                                                mode='fullBorder'
+                                                height={50}
+                                                valid={email.isValid==false && email.isDurty}/>
                                         </ValidationErrorMessages>
                                         <ValidationErrorMessages durty={phoneNumber.isDurty} errorMessages={phoneNumber.currentErrors}>
-                                            <CInput value={phoneNumber.value} onChange={e=>phoneNumber.onChange(e)} onBlur={e=>phoneNumber.onBlur(e)} id='phoneNumber-fullBorder-50' placeholder='Phone number*' type='tel'  data-errors={phoneNumber.isValid==false && phoneNumber.isDurty}/>
+                                            <CInput 
+                                                value={phoneNumber.value} 
+                                                onChange={e=>phoneNumber.onChange(e)} 
+                                                onBlur={e=>phoneNumber.onBlur(e)} 
+                                                id='phoneNumber' 
+                                                placeholder='Phone number*' 
+                                                type='tel' 
+                                                mode='fullBorder'
+                                                height={50} 
+                                                valid={phoneNumber.isValid==false && phoneNumber.isDurty}/>
                                         </ValidationErrorMessages>
                                     </div>
                                 </div>
@@ -124,19 +162,19 @@ const Checkout = () => {
                     </div>
                     <div className={styles.payment}>
                         <h2 className={styles['section-title']}>Payment</h2>
-                    <RadioList list={[
-                            {id:'opt1',label:'Payment upon receipt of goods',value:'upon-receipt'},
-                            {id:'opt2',label:'Credit or Debit Card',value:'by-card'},
-                            {id:'opt3',label:<img src={PayPalIcon} alt='PayPal' style={{width:'100px'}} />,value:'paypal'},
-                    ]}
-                    groupName='payment'
-                    >
-                        <></>
-                        <div className={styles['option-wrapper']}>
-                            <CreditCardFrom />
-                        </div>
-                        <></>
-                    </RadioList>
+                        <RadioList list={[
+                                {id:'opt1',label:'Payment upon receipt of goods',value:'upon-receipt'},
+                                {id:'opt2',label:'Credit or Debit Card',value:'by-card'},
+                                {id:'opt3',label:<img src={PayPalIcon} alt='PayPal' style={{width:'100px'}} />,value:'paypal'},
+                            ]}
+                            groupName='payment'
+                        >
+                            <></>
+                            <div className={styles['option-wrapper']}>
+                                <CreditCardFrom />
+                            </div>
+                            <></>
+                        </RadioList>
                     </div>
                 </form>
             </div>

@@ -171,7 +171,7 @@ const Filters = ({setData}) => {
                                 setSizeFilters([])
                             }}
                         >
-                            <SizeSelect  choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} theme={theme} type='multi'/>
+                            <SizeSelect  choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} type='multi'/>
                         </Accordion>
                         <Accordion 
                             header={

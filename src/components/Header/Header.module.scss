@@ -23,6 +23,8 @@ $icons-size:22px;
                 &__item{
                     font-size: 13px;
                     line-height: 40px;
+                    color:#141414;
+                    a{color: #141414;}
                     cursor: pointer;
                     &.line{
                         cursor: default;

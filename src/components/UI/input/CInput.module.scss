@@ -7,25 +7,15 @@ $main-color:#1D2D44;
     font-size: 15px;
     color: $main-color;
     background: transparent;
-    &[data-theme="white"]{
-        color: #fff !important;
-        border-bottom: 1px solid #fff;
-        &::placeholder{
-            color:#ffffffa9;
-        }
+    &.error{
         &.underline{
-            border-bottom: 1px solid #fff;
+            border-bottom: 1px solid $main-color;
         }
-    }
-    &[data-errors=true]{
         &.full-border{
-            border: 1px solid #d43f21;
+            border: 1px solid #CF000F;
             &:focus{
-                border: 1px solid #d43f21;
+                border: 1px solid #CF000F;
             }
-        }
-        &::placeholder{
-            color:#d43f21e3;
         }
     }
     &.underline{

@@ -38,7 +38,7 @@ const Header = () => {
                         <li className={`${styles.nav__item} ${styles.line}`}>|</li>
                         <li className={styles.nav__item}>Join Us</li>
                         <li className={`${styles.nav__item} ${styles.line}`}>|</li>
-                        <li className={styles.nav__item}>Sign In</li>
+                        <li className={styles.nav__item}><Link to='/sign-up'>Sign In</Link></li>
                     </ul>
                 </div>
             </div>

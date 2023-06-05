@@ -8,6 +8,8 @@ import Checkout from "../pages/Checkout/Checkout";
 import ShippingReturns from "../pages/Help/ShippingReturns/ShippingReturns";
 import ContactUs from "../pages/Help/ContactUs/ContactUs";
 import PrivacyPolicy from "../pages/Help/PrivacyPolicy/PrivacyPolicy";
+import { SignUp } from "../pages/SignUp/SignUp";
+import { LogIn } from "../pages/LogIn/LogIn";
 
 export const publicRoutes = [
     {
@@ -61,6 +63,14 @@ export const publicRoutes = [
     {
         path:'/privacy-policy',
         element:<PrivacyPolicy/>
+    },
+    {
+        path:'/sign-up',
+        element:<SignUp/>
+    },
+    {
+        path:'/log-in',
+        element:<LogIn/>
     },
     {
         path:'*', 

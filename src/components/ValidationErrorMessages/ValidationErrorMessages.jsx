@@ -1,11 +1,10 @@
 import styles from './ValidationErrorMessages.module.scss'
 
-
 const ValidationErrorMessages = ({children,durty,errorMessages}) => {
     return ( 
         <div className={styles.wrapper}>
             {children}
-            {durty?
+            {durty&&errorMessages.length>0?
                 <ul className={styles.messages}>
                     <li className={styles.messages__item}>{errorMessages[errorMessages.length-1]}</li>
                     {/* {errorMessages.map((item,index)=>

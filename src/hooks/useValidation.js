@@ -15,7 +15,8 @@ export const useValidation = (value='',validations,validationErrorMessages) =>{
         isEmpty:'Field is empty',
         minLength:'Not enough letters',
         maxLength:'Too many letters',
-        isEmail:'Enter email'
+        isEmail:'Enter email',
+        isMatch: `They don't match`
     }
     useEffect(()=>{
       for(const item in validations){
@@ -49,13 +50,20 @@ export const useValidation = (value='',validations,validationErrorMessages) =>{
                 addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages.isEmail||standart.isEmail)
             }
             break;
+          case 'isMatch':
+            if(value === validations[item]){
+              setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages.isMatch || standart.isMatch)))
+            }else{
+              addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages.isMatch || standart.isMatch)
+            }
+            break
           case 'isEmpty':
             if(value){
               setIsEmpty(false);
               setCurrentErrors(p=>p.filter(item=>item !== validationErrorMessages.isEmpty))
             }else{
               setIsEmpty(true)
-              setCurrentErrors(p=> [...p, validationErrorMessages.isEmpty])
+              setCurrentErrors([validationErrorMessages.isEmpty])
             }
           break;
         }

@@ -44,7 +44,14 @@ const CityForm = ({currentCity,setCity,closeHandler}) => {
             <div className={styles['location-search']}>
                 <p className={styles['location-search__title']}>Specify the settlement of Ukraine</p>
                 <SearchField data={locationResult} setChoosed={setChoosedCity} query={query} setQuery={setQuery} >
-                    <CInput  value={query} onChange={e=>setQuery(e.target.value)} id="location-fullBorder-40" placeholder="Choose your city"/>
+                    <CInput  
+                        value={query} 
+                        onChange={e=>setQuery(e.target.value)} 
+                        id="location" 
+                        mode='fullBorder'
+                        height={50}
+                        placeholder="Choose your city"
+                        />
                 </SearchField>
             </div>
             <div className={styles['apply-location']}>

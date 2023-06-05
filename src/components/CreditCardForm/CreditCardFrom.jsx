@@ -5,13 +5,28 @@ const CreditCardFrom = () => {
     return (
         <div className={styles['card-form']}>
             <div className={styles.number}>
-                <CInput id="cardNumber-fullBorder-50" placeholder="Card Number"/>
+                <CInput 
+                    id="cardNumber" 
+                    placeholder="Card Number"
+                    mode='fullBorder'
+                    height={50}
+                    />
             </div>
             <div className={styles.date}>
-                <CInput id="cardDate-fullBorder-50" placeholder="MM/YY"/>
+                <CInput 
+                    id="cardDate" 
+                    placeholder="MM/YY"
+                    mode='fullBorder'
+                    height={50}
+                    />
             </div>
             <div className={styles.cvv}>
-                <CInput id="cardCVV-fullBorder-50" placeholder="CVV"/>
+                <CInput 
+                    id="cardCVV" 
+                    placeholder="CVV"
+                    mode='fullBorder'
+                    height={50}
+                    />
             </div>
         </div>
     );
