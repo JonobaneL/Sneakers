@@ -8,20 +8,30 @@ import BurgerButton from '../UI/burgerButton/BurgerButton';
 import { useShoppingCart } from '../../context/CartContext';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import DropDownMenu from '../UI/dropDownMenu/DropDownMenu';
+import { useAuth } from '../../context/AuthContext';
 
 const Header = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)
     const [burgerMenu,setBurgerMenu] = useState(false);
-    const [dropMenu,setDropMenu] = useState(false)
+    const [helpDropMenu,setHelpDropMenu] = useState(false)
+    const [userDropMenu,setUserDropMenu] = useState(false)
     const {cartQuantity} = useShoppingCart();
+    const {currentUser,logout} = useAuth();
+    const handleLogout = async()=>{
+        try{
+            await logout();
+        }catch (err){
+            console.log(err)
+        }
+    }
     return (
         <div className={styles['header-wrapper']}>
             <div className={styles["header-top"]}>
                 <div className={styles.content}>
                     <ul className={styles.nav}>
-                        <li className={styles.nav__item} onMouseEnter={()=>setDropMenu(true)} onMouseLeave={()=>setDropMenu(false)}>
+                        <li className={styles.nav__item} onMouseEnter={()=>setHelpDropMenu(true)} onMouseLeave={()=>setHelpDropMenu(false)}>
                             Help
-                            <DropDownMenu triger={dropMenu}>
+                            <DropDownMenu triger={helpDropMenu}>
                                 <div className={styles['help-menu']}>
                                     <p className={styles.title}>Help</p>
                                     <ul className={styles.menu}>
@@ -36,9 +46,38 @@ const Header = () => {
                             </DropDownMenu>
                         </li>
                         <li className={`${styles.nav__item} ${styles.line}`}>|</li>
-                        <li className={styles.nav__item}>Join Us</li>
-                        <li className={`${styles.nav__item} ${styles.line}`}>|</li>
-                        <li className={styles.nav__item}><Link to='/sign-up'>Sign In</Link></li>
+                        {
+                            !currentUser && <>
+                                <li className={styles.nav__item}><Link to='/sign-up'>Join Us</Link></li>
+                                <li className={`${styles.nav__item} ${styles.line}`}>|</li>
+                            </> 
+                        }
+                        {
+                            !currentUser && <>
+                            <li className={styles.nav__item}><Link to='/log-in'>Sign In</Link></li>
+                        </> 
+                        }
+                        {
+                            currentUser && <li 
+                                className={styles.nav__item} 
+                                onMouseEnter={()=>setUserDropMenu(true)} 
+                                onMouseLeave={()=>setUserDropMenu(false)}
+                            >
+                                Hi, Boris
+                                <DropDownMenu triger={userDropMenu}>
+                                    <div className={styles['help-menu']}>
+                                        <p className={styles.title}>Accont</p>
+                                        <ul className={styles.menu}>
+                                            <li><Link to='/user-profile'>Profile</Link></li>
+                                            <li><Link to='/payment-options'>Orders</Link></li>
+                                            <li><Link to='/gift-cards'>Favorites</Link></li>
+                                            <li><p onClick={handleLogout}>Log Out</p></li>
+                                        </ul>
+                                    </div>
+                                </DropDownMenu>
+                            </li>
+                        }
+                        
                     </ul>
                 </div>
             </div>

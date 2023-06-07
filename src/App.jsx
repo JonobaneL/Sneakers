@@ -1,9 +1,9 @@
 import Footer from "./components/UI/footer/Footer"
 import Header from "./components/Header/Header"
 import { BrowserRouter } from "react-router-dom";
-import StoreRoute from "./components/StoreRoute";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
+import StoreRoute from "./routes/Routes";
 
 function App() {
   return (

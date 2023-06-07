@@ -30,7 +30,9 @@ const ToastItem = ({item,deleteHandler})=>{
         transition={{ type: "spring",duration:0.4 }}
         className={`${styles.toast__item} ${styles[item.type]}`}
         >
-            <img className={styles.icon} src={icon} alt={`${item.type}-icon`} />
+            {
+                item.type!=='none'&& <img className={styles.icon} src={icon} alt={`${item.type}-icon`} />
+            }
             {item.title}
             <div style={{animationDuration:`${item.autoCloseTime}s`}} className={`${styles.progress} ${styles[item.type]}`}/>
         </motion.li>

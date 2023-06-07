@@ -1,0 +1,19 @@
+.profile{
+    width: 100%;
+    padding: 50px 80px;
+    .content{
+        max-width: 1200px;
+        margin-inline:auto;
+        .log-out-btn{
+            padding: 10px 15px;
+            background: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1d2d44;
+            &:hover{
+                background: rgba($color: #5a82bb, $alpha: 0.1);
+            }
+        }
+    }
+}

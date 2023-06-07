@@ -1,24 +1,28 @@
 import React, { useState } from 'react'
 import styles from './SignUp.module.scss'
 import CInput from '../../components/UI/input/CInput'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { useInput } from '../../hooks/useInput'
 import ValidationErrorMessages from '../../components/ValidationErrorMessages/ValidationErrorMessages'
+import Toast from '../../components/ToastV2/Toast'
 
-export const SignUp = () => {
+const SignUp = () => {
     const { signUp } = useAuth();
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:"Email can't be blank",isEmail:"Provide a valid email address"})
     const password = useInput('',{isEmpty:true,minLength:6},{isEmpty:"Password can't be blank",minLength:"Password must has a least 6 characters"})
     const passwordConfirm = useInput('',{isEmpty:true,minLength:6,isMatch:password.value},{isEmpty:"Confirm password can't be blank",minLength:"Password must has a least 6 characters",isMatch:`Passwords don't match`})
     const [isLoading,setIsLoading]= useState(false);
+    const [error,setError] = useState(false);
+    const navigate = useNavigate();
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try{
             setIsLoading(true)
             await signUp(email.value,password.value)
+            navigate('/user-profile')
         }catch{
-
+            setError(true)
         }
         setIsLoading(false)
 
@@ -77,9 +81,11 @@ export const SignUp = () => {
                     >Sign Up</button>
             </form>
             <div className={styles.message}>
-                <p>Already have an account? <Link>Log In</Link></p>
+                <p>Already have an account? <Link to='/log-in'>Log In</Link></p>
             </div>
         </div>
+        <Toast type="error" title='Failed to create an account' triger={error} closeHandler={setError}/>
     </div>
   ) 
 }
+export default SignUp;

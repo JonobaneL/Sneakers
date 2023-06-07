@@ -8,7 +8,7 @@
     gap: 10px;
     height: fit-content;
     .toast__item{
-        width: 240px;
+        width: 280px;
         height: 60px;
         display: flex;
         align-items: center;
@@ -38,6 +38,9 @@
             }
             &.error{
                 background: #CF000F;
+            }
+            &.none{
+                background: #3e5c86;
             }
         }
     }

@@ -24,8 +24,10 @@ $icons-size:22px;
                     font-size: 13px;
                     line-height: 40px;
                     color:#141414;
-                    a{color: #141414;}
                     cursor: pointer;
+                    a{ 
+                        color: #141414; 
+                    }
                     &.line{
                         cursor: default;
                     }
@@ -45,9 +47,9 @@ $icons-size:22px;
             .menu{
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
                 li{
-                    a{
+                    p,a{
                         font-size: 15px;
                         font-weight: 600;
                         color:#9f9f9f;

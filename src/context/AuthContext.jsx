@@ -1,18 +1,6 @@
 import React,{createContext, useContext, useEffect, useState} from "react";
-// import {auth,createUser} from '../firebase'
-
-import {initializeApp} from 'firebase/app'
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
-
-const app = initializeApp({
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId:import.meta.env.VITE_FIREBASE_APP_ID
-})
-export const auth = getAuth();
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword,signOut } from "firebase/auth";
+import { auth } from '../firebase'
 
 const AuthContext = createContext({});
 
@@ -21,23 +9,37 @@ export const useAuth = ()=>{
 }
 
 export const AuthProvider = ({children})=>{
-    const [curentUser,setCurentUser] = useState({})
-
-    const signUp = (email,password)=>{
+    const [currentUser,setCurrentUser] = useState({})
+    const [isLoading,setIsLoading] = useState(true)
+    const signUp = (email,password) => {
         return createUserWithEmailAndPassword(auth,email,password)
     }
+    const login = (email,password) => {
+        return signInWithEmailAndPassword(auth,email,password)
+    }
+    const logout = () => {
+        return signOut(auth);
+    }
+    const resetPassword = email =>{
+        return sendPasswordResetEmail(auth,email);
+    }
     useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth,user => setCurentUser(user))
-        return unsubscribe
+        const unsubscribe = onAuthStateChanged(auth,user => {
+            setCurrentUser(user);
+            setIsLoading(false)
+        })
+        return unsubscribe;
     },[])
     const value = {
-        curentUser,
+        currentUser,
         signUp,
-
+        login,
+        logout,
+        resetPassword,
     }
     return (
         <AuthContext.Provider value={value}>
-            {children}
+            {!isLoading && children}
         </AuthContext.Provider>
     )
 }
