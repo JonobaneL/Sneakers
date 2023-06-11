@@ -11,6 +11,7 @@ export const useAuth = ()=>{
 export const AuthProvider = ({children})=>{
     const [currentUser,setCurrentUser] = useState({})
     const [isLoading,setIsLoading] = useState(true)
+    const [userDetails,setUserDetails] = useState({})
     const signUp = (email,password) => {
         return createUserWithEmailAndPassword(auth,email,password)
     }
@@ -36,6 +37,8 @@ export const AuthProvider = ({children})=>{
         login,
         logout,
         resetPassword,
+        setUserDetails,
+        userDetails,
     }
     return (
         <AuthContext.Provider value={value}>

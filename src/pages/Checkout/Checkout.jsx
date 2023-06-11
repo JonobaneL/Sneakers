@@ -35,6 +35,7 @@ const Checkout = () => {
     const novaposhtaOffices = getPostOffice(currentCity.id,'novaposhta')
     const [isCityModalOpen,setIsCityModalOpen] = useState(false);
     const validRadio = currentCity.id>0?false:true;
+    console.log(currentCity)
     const closeModalWindowHandler = ()=>{
         setIsCityModalOpen(false)
     }

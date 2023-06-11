@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styles from './Autocomplete.module.scss'
-const Autocomplete = ({children,data,query,setChoosed,setQuery}) => {
-    const [flag,setFlag] = useState(false)
+
+const Autocomplete = ({children,data,query,setChoosed=()=>{},setQuery}) => {
+    const [flag,setFlag] = useState(query.length>0?true:false)
     const fieldHandler = ()=>{
         setFlag(true)
     }
-
     return (
-        <div className={styles['autocomplete']}>
+        <div className={styles['autocomplete']} >
             <div tabIndex={1} onFocus={fieldHandler}>
                 {children}
             </div>

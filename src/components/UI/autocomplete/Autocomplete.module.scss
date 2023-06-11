@@ -23,5 +23,17 @@
                 transition: all 0.1s;
             }
         }
+        &::-webkit-scrollbar {
+            width: 5px;
+            margin-right: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #fff;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: #1d2d44;
+            border-radius: 6px;
+
+        }
     }
 }

@@ -15,6 +15,7 @@ export const useInput = (initialValue,validations,validationErrorMessages)=>{
       value,
       onChange,
       onBlur,
+      setValue,
       isDurty,
       ...valid
     }

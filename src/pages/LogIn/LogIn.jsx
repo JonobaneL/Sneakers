@@ -8,7 +8,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import Toast from '../../components/ToastV2/Toast';
 
 const LogIn = () => {
-    const { login } = useAuth();
+    const { login, } = useAuth();
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:"Email can't be blank",isEmail:"Provide a valid email address"})
     const password = useInput('',{isEmpty:true,minLength:6},{isEmpty:"Password can't be blank",minLength:"Password must has a least 6 characters"})
     const [isLoading,setIsLoading]= useState(false);

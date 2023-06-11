@@ -24,18 +24,12 @@
         max-height: 0;
         transition: all 0.3s;
         overflow-y: auto;
-        // margin: 10px 0;
         padding-inline: 5px;
-
-        
         &.opened{
             visibility: visible;
             opacity: 1;
             max-height: 400px;
             transition: all 0.3s;
-            // &.autoHeight{
-            //     max-height: fit-content;
-            // }
         }
         &.autoHeight{
             transition: all 0.3s;

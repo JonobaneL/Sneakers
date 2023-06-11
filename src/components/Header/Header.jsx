@@ -9,6 +9,9 @@ import { useShoppingCart } from '../../context/CartContext';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import DropDownMenu from '../UI/dropDownMenu/DropDownMenu';
 import { useAuth } from '../../context/AuthContext';
+// import { getUser } from '../../fireCloudAPI';
+import { useEffect } from 'react';
+import { getCurrentUser } from '../../fireCloudAPI';
 
 const Header = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)
@@ -17,6 +20,20 @@ const Header = () => {
     const [userDropMenu,setUserDropMenu] = useState(false)
     const {cartQuantity} = useShoppingCart();
     const {currentUser,logout} = useAuth();
+    const [details,setDetails] = useState({})
+    const getUser = async()=>{
+        try{
+            const response = await getCurrentUser(currentUser.uid)
+            setDetails(response.data())
+        }catch(err){
+            console.log(err)
+        }
+    }
+    useEffect(()=>{
+        if(currentUser){
+            getUser()
+        }
+    },[])
     const handleLogout = async()=>{
         try{
             await logout();
@@ -50,12 +67,12 @@ const Header = () => {
                             !currentUser && <>
                                 <li className={styles.nav__item}><Link to='/sign-up'>Join Us</Link></li>
                                 <li className={`${styles.nav__item} ${styles.line}`}>|</li>
-                            </> 
+                            </>
                         }
                         {
-                            !currentUser && <>
+                            !currentUser && (
                             <li className={styles.nav__item}><Link to='/log-in'>Sign In</Link></li>
-                        </> 
+                            )
                         }
                         {
                             currentUser && <li 
@@ -63,14 +80,14 @@ const Header = () => {
                                 onMouseEnter={()=>setUserDropMenu(true)} 
                                 onMouseLeave={()=>setUserDropMenu(false)}
                             >
-                                Hi, Boris
+                               <Link to='/user-profile/info'>Hi, {details.firstName}</Link> 
                                 <DropDownMenu triger={userDropMenu}>
                                     <div className={styles['help-menu']}>
                                         <p className={styles.title}>Accont</p>
                                         <ul className={styles.menu}>
-                                            <li><Link to='/user-profile'>Profile</Link></li>
-                                            <li><Link to='/payment-options'>Orders</Link></li>
-                                            <li><Link to='/gift-cards'>Favorites</Link></li>
+                                            <li><Link to='/user-profile/info'>Profile</Link></li>
+                                            <li><Link to='/user-profile/orders'>Orders</Link></li>
+                                            <li><Link to='/user-profile/favorites'>Favorites</Link></li>
                                             <li><p onClick={handleLogout}>Log Out</p></li>
                                         </ul>
                                     </div>

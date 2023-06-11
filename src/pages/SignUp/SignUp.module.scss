@@ -11,6 +11,10 @@
             .title{
                 text-align: center;
             }
+            .name-section{
+                display: flex;
+                gap: 10px;
+            }
             .submit-btn{
                 width: 100%;
                 height: 45px;
@@ -19,8 +23,15 @@
                 border-radius: 5px;
                 font-size: 15px;
                 cursor: pointer;
+                font-weight: 500;
+                box-shadow: 0px 8px 14px -7px #3e5c86;
+                transition: all 0.3s;
+                &:hover{
+                    background: #375177;
+                    transition: all 0.3s;
+                }
                 &:disabled{
-                    background-color: rgba(#3e5c86, 0.9);
+                    background-color: rgba(#3e5c86, 0.8);
                     color: #dfdfdf;
                     cursor: not-allowed;
                 }

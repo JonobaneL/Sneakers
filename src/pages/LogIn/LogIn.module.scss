@@ -18,9 +18,16 @@
                 color: #fff;
                 border-radius: 5px;
                 font-size: 15px;
+                font-weight: 500;
                 cursor: pointer;
+                box-shadow: 0px 8px 14px -7px #3e5c86;
+                transition: all 0.3s;
+                &:hover{
+                    background: #375177;
+                    transition: all 0.3s;
+                }
                 &:disabled{
-                    background-color: rgba(#3e5c86, 0.9);
+                    background-color: rgba(#3e5c86, 0.8);
                     color: #dfdfdf;
                     cursor: not-allowed;
                 }

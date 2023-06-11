@@ -6,22 +6,36 @@ import { useAuth } from '../../context/AuthContext'
 import { useInput } from '../../hooks/useInput'
 import ValidationErrorMessages from '../../components/ValidationErrorMessages/ValidationErrorMessages'
 import Toast from '../../components/ToastV2/Toast'
+import { addNewUser } from '../../fireCloudAPI'
+import Autocomplete from '../../components/UI/autocomplete/Autocomplete'
+import { findLocation } from '../../utils/searchLocation'
 
 const SignUp = () => {
     const { signUp } = useAuth();
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:"Email can't be blank",isEmail:"Provide a valid email address"})
     const password = useInput('',{isEmpty:true,minLength:6},{isEmpty:"Password can't be blank",minLength:"Password must has a least 6 characters"})
+    const firstName = useInput('',{isEmpty:true},{isEmpty:"This field can't be blank"})
+    const lastName = useInput('',{isEmpty:true},{isEmpty:"This field can't be blank"})
+    const city = useInput('',{isEmpty:true},{isEmpty:"This field can't be blank"})
     const passwordConfirm = useInput('',{isEmpty:true,minLength:6,isMatch:password.value},{isEmpty:"Confirm password can't be blank",minLength:"Password must has a least 6 characters",isMatch:`Passwords don't match`})
     const [isLoading,setIsLoading]= useState(false);
+    const locationResponse = findLocation(city.value)
     const [error,setError] = useState(false);
     const navigate = useNavigate();
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try{
             setIsLoading(true)
-            await signUp(email.value,password.value)
+            const userResponce = await signUp(email.value,password.value)
+            await addNewUser({
+                id: userResponce.user.uid,
+                firstName: firstName.value,
+                lastName: lastName.value,
+                city: city.value
+            })
             navigate('/user-profile')
-        }catch{
+        }catch(err){
+            console.log(err)
             setError(true)
         }
         setIsLoading(false)
@@ -35,10 +49,38 @@ const SignUp = () => {
         <div className={styles.content}>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <h2 className={styles.title}>Sign Up</h2>
+                <div className={styles["name-section"]}>
+                    <ValidationErrorMessages durty={firstName.isDurty} errorMessages={firstName.currentErrors}>
+                        <CInput 
+                            value={firstName.value} 
+                            onChange={ e=> firstName.onChange(e)} 
+                            onBlur={ e => firstName.onBlur(e)} 
+                            id="firstName" 
+                            mode='fullBorder' 
+                            height='50' 
+                            placeholder="First Name" 
+                            type='text'
+                            valid={firstName.isDurty && firstName.currentErrors.length>0}
+                            />
+                    </ValidationErrorMessages>
+                    <ValidationErrorMessages durty={lastName.isDurty} errorMessages={lastName.currentErrors}>
+                        <CInput 
+                            value={lastName.value} 
+                            onChange={ e=> lastName.onChange(e)} 
+                            onBlur={ e => lastName.onBlur(e)} 
+                            id="lastName" 
+                            mode='fullBorder' 
+                            height='50' 
+                            placeholder="Last Name" 
+                            type='text'
+                            valid={lastName.isDurty && lastName.currentErrors.length>0}
+                            />
+                    </ValidationErrorMessages>
+                </div>
                 <ValidationErrorMessages durty={email.isDurty} errorMessages={email.currentErrors}>
                     <CInput 
                         value={email.value} 
-                        onChange={ e=> email.onChange(e)} 
+                        onChange={e => email.onChange(e)} 
                         onBlur={e => email.onBlur(e)} 
                         id="email" 
                         mode='fullBorder' 
@@ -48,6 +90,22 @@ const SignUp = () => {
                         valid={email.isDurty && email.currentErrors.length>0}
                         />
                 </ValidationErrorMessages>
+                <ValidationErrorMessages durty={city.isDurty} errorMessages={city.currentErrors}>
+                    <Autocomplete data={locationResponse} query={city.value} setQuery={city.setValue} >
+                        <CInput  
+                            value={city.value} 
+                            onChange={e=>city.onChange(e)} 
+                            id="location" 
+                            mode='fullBorder'
+                            onBlur={e => city.onBlur(e)}
+                            height={50}
+                            placeholder="Enter your city"
+                            valid={city.isDurty && city.currentErrors.length>0}
+
+                            />
+                    </Autocomplete>
+                </ValidationErrorMessages>
+
                 <ValidationErrorMessages durty={password.isDurty} errorMessages={password.currentErrors}>
                     <CInput 
                         value={password.value} 

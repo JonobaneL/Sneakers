@@ -12,8 +12,9 @@ import PrivacyPolicy from "../pages/Help/PrivacyPolicy/PrivacyPolicy";
 import SignUp  from "../pages/SignUp/SignUp";
 import LogIn from "../pages/LogIn/LogIn";
 import UserProfile from "../pages/UserProfile/UserProfile";
-import PrivateRoute from './PrivateRoute';
+import RequireAuth from './PrivateRoute';
 import PasswordReset from '../pages/PasswordReset/PasswordReset';
+import UserInfo from '../components/UserInfo/UserInfo';
 
 
 const StoreRoutes = () => {
@@ -34,9 +35,14 @@ const StoreRoutes = () => {
                 <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
                 <Route path='/sign-up' element={<SignUp/>}/>
                 <Route path='/log-in' element={<LogIn/>}/>
-                <Route path='/user-profile' element={<PrivateRoute/>}>
-                    <Route path='/user-profile' element={<UserProfile/>}/>
+                <Route path='/user-profile/*' element={<RequireAuth>
+                    <UserProfile />
+                </RequireAuth>}>
+                    <Route path='info' element={<UserInfo/>}/>
+                    <Route path='orders' element={<p>Orders Route</p>}/>
+                    <Route path='favorites' element={<p>Favorites Route</p>}/>
                 </Route>
+                    
                 <Route path='/password-reset' element={<PasswordReset/>} />
                 <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>

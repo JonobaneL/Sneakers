@@ -3,12 +3,13 @@ import styles from './CityForm.module.scss'
 import deliveryTruck from '../../images/delivery-truck.svg'
 import { popularCities } from '../../data/shipping-data';
 import CInput from '../UI/input/CInput';
-import SearchField from '../UI/autocomplete/Autocomplete';
+import Autocomplete from '../UI/autocomplete/Autocomplete';
 import { findLocation } from '../../utils/searchLocation';
 
 const CityForm = ({currentCity,setCity,closeHandler}) => {
     const [choosedCity,setChoosedCity] = useState(currentCity)
     const [query,setQuery] = useState(currentCity.name || '');
+    console.log(query)
     const [isValid,setIsValid] = useState(true)
     const locationResult = findLocation(query);
     const popularLocatinHandler = (item)=>{
@@ -43,7 +44,7 @@ const CityForm = ({currentCity,setCity,closeHandler}) => {
             </div>
             <div className={styles['location-search']}>
                 <p className={styles['location-search__title']}>Specify the settlement of Ukraine</p>
-                <SearchField data={locationResult} setChoosed={setChoosedCity} query={query} setQuery={setQuery} >
+                <Autocomplete data={locationResult} setChoosed={setChoosedCity} query={query} setQuery={setQuery} >
                     <CInput  
                         value={query} 
                         onChange={e=>setQuery(e.target.value)} 
@@ -52,7 +53,7 @@ const CityForm = ({currentCity,setCity,closeHandler}) => {
                         height={50}
                         placeholder="Choose your city"
                         />
-                </SearchField>
+                </Autocomplete>
             </div>
             <div className={styles['apply-location']}>
                 <button className={styles.apply__button}

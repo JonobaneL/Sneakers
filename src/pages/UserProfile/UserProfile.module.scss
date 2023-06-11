@@ -15,5 +15,40 @@
                 background: rgba($color: #5a82bb, $alpha: 0.1);
             }
         }
+        .tabs{
+            display: flex;
+            min-height: 100%;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+            .nav{
+                flex: 1 0 auto;
+                width: 160px;
+                background: rgb(245, 245, 245);
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+                padding: 10px 0;
+                display:flex;
+                flex-direction: column;
+                .nav__item,a{
+                    width: 100%;
+                    height: 50px;
+                    padding-left: 15px;
+                    line-height: 50px;
+                    cursor: pointer;
+                    color: #5b5b5b;
+                    &.active{
+                        background: #fff;
+                        color: #141414;
+                        box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
+                    }
+                }
+            }
+            .tab{
+                width: 100%;
+                height: max-content;
+                color: #141414;
+                padding: 30px;
+            }
+        }
     }
 }
