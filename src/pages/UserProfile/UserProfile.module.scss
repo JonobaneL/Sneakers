@@ -4,17 +4,6 @@
     .content{
         max-width: 1200px;
         margin-inline:auto;
-        .log-out-btn{
-            padding: 10px 15px;
-            background: none;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 500;
-            color: #1d2d44;
-            &:hover{
-                background: rgba($color: #5a82bb, $alpha: 0.1);
-            }
-        }
         .tabs{
             display: flex;
             min-height: 100%;
@@ -48,6 +37,29 @@
                 height: max-content;
                 color: #141414;
                 padding: 30px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1280px) {
+    .profile,.content,.tabs,nav{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width:768px) {
+    .profile{
+        padding: 40px;
+        .content{
+            .tabs{
+                .nav{
+                    width: 140px;
+                    &__item,a{
+                        height: 45px;
+                        line-height: 45px;
+                        font-size: 14px;
+                    }
+                }
             }
         }
     }

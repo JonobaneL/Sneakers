@@ -9,7 +9,6 @@ import { useShoppingCart } from '../../context/CartContext';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import DropDownMenu from '../UI/dropDownMenu/DropDownMenu';
 import { useAuth } from '../../context/AuthContext';
-// import { getUser } from '../../fireCloudAPI';
 import { useEffect } from 'react';
 import { getCurrentUser } from '../../fireCloudAPI';
 
@@ -37,6 +36,7 @@ const Header = () => {
     const handleLogout = async()=>{
         try{
             await logout();
+            setUserDropMenu(false)
         }catch (err){
             console.log(err)
         }

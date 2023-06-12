@@ -19,7 +19,7 @@ const LogIn = () => {
         try{
             setIsLoading(true)
             await login(email.value,password.value)
-            navigate('/user-profile')
+            navigate('/user-profile/info')
         }catch{
             setError(true)
         } 

@@ -4,6 +4,13 @@ import { getUser } from '../../fireCloudAPI';
 import { useAuth } from '../../context/AuthContext';
 import editIcon from '../../images/edit-icon.svg'
 
+const EditButton = ({children})=>{
+    return <button className={styles['edit-button']}>
+        <img src={editIcon} alt="Edit cart" />
+        {children}    
+    </button>
+}
+
 const UserInfo = () => {
     const { currentUser } = useAuth();
     const userInfo = getUser(currentUser.uid);
@@ -13,10 +20,9 @@ const UserInfo = () => {
     return (
         <div className={styles['user-info']}>
              <div className={styles['edit-section']}>
-                <button className={styles.edit}>
-                    <img src={editIcon} alt="Edit cart" />
-                    Edit
-                </button>
+                <EditButton>
+                    <p className={styles['btn-content']}>Edit</p>
+                </EditButton>
             </div>
             <ul className={styles.info}>
                 <li>
@@ -48,7 +54,9 @@ const UserInfo = () => {
             <div className={styles["payment-methods"]}>
                 <div className={styles.title}>
                     <h3>Payment Methods</h3>
-                    <button className={styles['add-btn']}>Add</button>
+                    <EditButton>
+                        <p className={styles['btn-content']}>Add</p>
+                    </EditButton>
                 </div>
                 {
                     paymentMethods.length
@@ -65,7 +73,9 @@ const UserInfo = () => {
             <div className={styles["delivery-addresses"]}>
                 <div className={styles.title}>
                     <h3 >Delivery Addresses</h3>
-                    <button className={styles['add-btn']}>Add</button>
+                    <EditButton>
+                        <p className={styles['btn-content']}>Add</p>
+                    </EditButton>
                 </div>
                 {
                     deliveryAddresses.length

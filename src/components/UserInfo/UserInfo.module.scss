@@ -1,5 +1,21 @@
+.edit-button{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background: none;
+    cursor:pointer;
+    img{
+        width: 15px;
+    }
+}
+
 .user-info{
     width: 100%;
+    .btn-content{
+        font-size: 15px;
+        font-weight: 500;
+        color: #292929;
+    }
     .info{
         display: flex;
         flex-direction: column;
@@ -20,20 +36,6 @@
         width: 100%;
         display: flex;
         justify-content: right;
-        // margin-bottom: 20px;
-        .edit{
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            background: none;
-            cursor:pointer;
-            font-size: 15px;
-            font-weight: 500;
-            color: #292929;
-            img{
-                width: 15px;
-            }
-        }
     }
     .payment-methods,.delivery-addresses{
         margin-top: 30px;
@@ -43,19 +45,41 @@
             justify-content: space-between;
             margin-bottom: 10px;
             .add-btn{
-                padding-inline:15px;
-                height: 40px;
+                display: flex;
+                gap: 5px;
+                align-items: center;
                 background: none;
-                font-size: 15px;
+                cursor:pointer;
+                font-size: 14px;
                 font-weight: 500;
                 color: #292929;
-                cursor: pointer;
-                transition: all 0.2s;
-                &:hover{
-                    background: rgba($color: #3e5c86, $alpha: 0.05);
-                    transition: all 0.2s;
+                img{
+                    width: 15px;
                 }
             }
         }
     }
+}
+
+@media screen and (max-width:1280px) {
+    .user-info{
+        .btn-content{
+            font-size: 14px;
+        }
+    }
+    
+}
+@media screen and (max-width:768px) {
+    .user-info{
+        .btn-content{
+            font-size: 13px;
+        }
+        .info{
+            font-size: 14px;
+        }
+        .payment-methods,.delivery-addresses{
+            font-size: 14px;
+        }
+    }
+    
 }

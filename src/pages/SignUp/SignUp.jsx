@@ -33,7 +33,7 @@ const SignUp = () => {
                 lastName: lastName.value,
                 city: city.value
             })
-            navigate('/user-profile')
+            navigate('/user-profile/info')
         }catch(err){
             console.log(err)
             setError(true)

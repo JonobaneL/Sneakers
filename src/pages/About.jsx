@@ -15,15 +15,27 @@ const About = () => {
     const chooseHandler = (value)=>{
         setChosed(value)
     }
+    const tabsRef = useRef()
+    const [isOpen,setIsOpen] = useState(false)
+    const [buttonPosition,setButtonPosition] = useState(0)
     return <div className={styles.about}>
         <div className={styles.content} >
-          <div className={styles.tabs}>
-                <ul className={styles.nav}>
+          <div ref={tabsRef}  className={styles.tabs} onMouseMove={e=>{
+            setButtonPosition(()=>{
+                const currentCursorPosition = e.pageY - tabsRef.current.offsetTop
+                if(currentCursorPosition>=430){
+                    return 430
+                }else return currentCursorPosition;
+            })
+            console.log(e.pageY - tabsRef.current.offsetTop)
+          }}>
+            <div className={`${styles.nav} ${isOpen?styles.active:''}`}  onMouseLeave={()=>setIsOpen(false)} onMouseEnter={()=>setIsOpen(true)}>
+                <ul className={styles.list}>
                     {
                         items.map((item,index)=>{
                             return <li
                             key={index}
-                            className={`${styles.nav__item} ${item==choosed?styles.active:''}`}
+                            className={`${styles.list__item} ${item==choosed?styles.active:''}`}
                             onClick={()=>{chooseHandler(item)}}
                             >
                                 {item}
@@ -32,10 +44,15 @@ const About = () => {
                     }
                    
                     <li 
-                        className={styles.nav__item}
+                        className={styles.list__item}
                         onClick={()=>navigate('/log-in')}
                         >Log Out</li>
                 </ul>
+                <div className={styles.opener} >
+                    <div className={styles.btn} style={{top:`${buttonPosition}px`}}></div>
+                </div>
+            </div>
+               
                 <div className={styles.items}>
                     {
                         items.map((item,index)=>{
