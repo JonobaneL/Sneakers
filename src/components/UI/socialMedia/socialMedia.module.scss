@@ -1,20 +1,33 @@
+@import '../../../styles/variables';
+
 .socialMedia{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
+    color: $clr-text;
     .title{
-        font-size: 18px;
-        line-height: 25px;
-    }
-    .media{
-        display: flex;
-        gap: 20px;
+        font-family: $ff-accent;
+        font-size: $fs-500;
+        font-weight: 500;
+        color: $clr-primary;
+        margin-right: 5px;
     }
     .media__item{
+        width: 22px;
+        height: 22px;
         img{
-            width: 20px;
+            width: 100%;
         }
         cursor: pointer;
     }
+}
+@media screen and (max-width:425px) {
+    .socialMedia{
+        .media__item{
+            width: 20px;
+            height: 20px;
+        }
+    }
+    
 }

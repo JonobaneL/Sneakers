@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './Header.module.scss'
 import { Link } from 'react-router-dom';
-import shoppingBag from '../../images/dark-icons/shopping-bag.png';
-import favoritesIcon from '../../images/favorites.svg'
-import searchIcon from '../../images/dark-icons/search-icon.png'
+import shoppingBag from '../../images/header-icons/shopping-bag.png';
+import favoritesIcon from '../../images/header-icons/favorites.svg'
+import searchIcon from '../../images/header-icons/search-icon.svg'
 import BurgerButton from '../UI/burgerButton/BurgerButton';
 import { useShoppingCart } from '../../context/CartContext';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
@@ -32,7 +32,7 @@ const Header = () => {
         if(currentUser){
             getUser()
         }
-    },[])
+    },[currentUser])
     const handleLogout = async()=>{
         try{
             await logout();

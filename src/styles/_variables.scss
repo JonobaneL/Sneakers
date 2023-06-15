@@ -1,0 +1,21 @@
+// Colors
+$clr-text:#08080c;
+$clr-secondary-text:#040605;
+$clr-surface:#fff;
+$clr-primary:#4c4f76;
+$clr-secondary:#e9eaf1;
+$clr-accent:#565a86;
+
+// Fonts
+$ff-base:'Montserrat', sans-serif;
+$ff-accent:'Barlow Condensed', sans-serif;
+
+// Font sizes
+$fs-200: clamp(0.63rem, calc(0.60rem + 0.10vw), 0.73rem);
+$fs-300: clamp(0.75rem, calc(0.73rem + 0.13vw), 0.88rem);
+$fs-400: clamp(0.90rem, calc(0.87rem + 0.15vw), 1.05rem);
+$fs-500: clamp(1.08rem, calc(1.04rem + 0.18vw), 1.26rem);
+$fs-600: clamp(1.30rem, calc(1.25rem + 0.22vw), 1.51rem);
+$fs-700: clamp(1.56rem, calc(1.50rem + 0.26vw), 1.81rem);
+$fs-800: clamp(1.87rem, calc(1.80rem + 0.31vw), 2.18rem);
+$fs-900: clamp(3.87rem, calc(3.74rem + 0.64vw), 4.51rem);

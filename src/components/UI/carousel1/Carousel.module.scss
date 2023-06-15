@@ -1,16 +1,16 @@
+@import '../../../styles/variables';
+
 .carousel{
     width: 100%;
     position: relative;
-    padding: 0 0 10px 0;
-    &::before{
-        content: '';
-        position: absolute;
-        width: 50%;
+    padding: 10px 80px 15px 80px;
+    .background{
+        width: 100%;
         height: 100%;
-        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
-        background: #3e5c86;
+        position: absolute;
+        top: 0;
         right: 0;
-        z-index: -1;
+        object-fit: cover;
     }
     .content{
         max-width: 1200px;
@@ -23,8 +23,11 @@
         "dots";
         .carousel_item{
             display: flex;
+            height: fit-content;
+            align-self: center;
             .title{
                 max-width: 600px;
+                align-self: center;
                 flex: 0 1 100%;
                 text-transform: uppercase;
                 display: flex;
@@ -32,47 +35,42 @@
                 justify-content: center;
                 container-type:inline-size;
                 &__season{
-                    font-size: clamp(10px,3cqi,14px);
-                    font-weight: 600;
+                    font-size: $fs-400;
+                    font-family: $ff-accent;
+                    font-weight: 500;
                     padding-left: 30px;
                     position: relative;
-                    color: #383838;
+                    color: $clr-accent;
                     &::before{
                         content: '';
                         position: absolute;
                         width: 25px;
                         height: 2px;
-                        background: #2f2f2f;
+                        background: $clr-accent;
                         left: 0;
                         top: 50%;
                     }
                 }
                 &__head{
+                    font-family: $ff-accent;
+                    color: transparent;
                     font-weight: 800;
-                    -webkit-text-stroke: 3px #1d2d44;
+                    -webkit-text-stroke: 2px $clr-primary;
+                    text-wrap:balance;
+                    letter-spacing: 2px;
                     line-height: 100%;
-                    color:transparent;
-                    word-break: break-word;
-                    max-height: 270px;
                     font-size: min(16cqi,90px);
                 }
                 &__description{
                     font-size: min(4cqi,16px);
-                    color: #2f2f2f;
-                    font-weight: 500;
-                    margin-top: 20px;
+                    color: $clr-accent;
+                    font-weight: 600;
+                    margin-top: 15px;
                 }
                 .discover{
+                    margin-top: 15px;
                     width: 180px;
-                    height: 60px;
-                    text-transform: uppercase;
-                    background: #3e5c86;
-                    font-size: clamp(10px,3cqi,14px);
-                    margin-top: 20px;
-                    letter-spacing: 0.5px;
-                    cursor: pointer;
-                    color: #fff;
-                    font-weight: 500;
+                    height: 50px;
                 }
             }
             .image{
@@ -105,7 +103,7 @@
                     width: 7px;
                     height: 7px;
                     border-radius: 50%;
-                    background: #898989;
+                    background: $clr-accent;
                     position: absolute;
                     top: 50%;
                     left: 50%;
@@ -113,10 +111,11 @@
                 }
                 cursor: pointer;
                 &.active,&:hover{
-                    border: 2px solid #1d2d44;
+                    border: 2px solid $clr-primary;
                     transition: all 0.5s;
                     &::before{
-                        background: #1d2d44;
+                        transition: all 0.5s;
+                        background: $clr-primary;
                     }
                 }
             }
@@ -124,16 +123,15 @@
     }
    
 }
-@media screen and (max-width:1360px) {
-    .carousel{
-        padding: 0 80px 10px 80px;
-    }
-}
+
 @media screen and (max-width:1140px) {
-    .carousel .content .carousel_item .title .discover{
-        width: 160px;
-        height: 45px;
-    }
+    .carousel .content .carousel_item .title{
+        
+        .discover{
+            width: 160px;
+            height: 45px;
+        }
+    } 
 }
 @media screen and (max-width:768px) {
     .carousel{
@@ -148,14 +146,6 @@
                         width:20px;
                         transform: translateY(-50%);
                     }
-                }
-                
-                &__head{
-                    -webkit-text-stroke: 2px #1d2d44;
-                }
-                .discover{
-                    width: 140px;
-                    height: 35px;
                 }
             }
             .dots_nav{
@@ -172,10 +162,8 @@
         
     }
 }
-@media screen and (max-width:425px) {
+@media screen and (max-width:450px) {
     .carousel{
-        background-image: url('../../../images/carousel-background.svg');
-        background-size: 130%;
         padding: 10px 40px;
         &::before{
             display: none;
@@ -192,13 +180,15 @@
                         }
                     }
                     &__head{
-                    font-size: min(15cqi,90px);
-                    -webkit-text-stroke-color:#fff;
-
+                        -webkit-text-stroke-color:#fff;
                     }
                     &__description{
                         margin-top: 15px;
                         color: #fff;
+                    }
+                    .discover{
+                        width: 150px;
+                        height: 40px;
                     }
                 }
                 .image{

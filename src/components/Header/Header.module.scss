@@ -1,3 +1,6 @@
+@use '../../styles/mixins';
+@import '../../styles/variables';
+
 $logo-font:'Bebas Neue', cursive;
 $icons-size:22px;
 
@@ -8,12 +11,13 @@ $icons-size:22px;
     z-index: 10;
     .header-top{
         height: 40px;
-        background:#f5f5f5;
-        padding-inline: 80px;
+        background:$clr-secondary;
+        @include mixins.wrapper-desktop;
+        padding-top: 0;
+        padding-bottom: 0;
         .content{
             height: 100%;
-            max-width: 1200px;
-            margin-inline: auto;
+            @include mixins.content;
             display: flex;
             align-items: center;
             justify-content: right;
@@ -21,12 +25,12 @@ $icons-size:22px;
                 display: flex;
                 gap: 10px;
                 &__item{
-                    font-size: 13px;
+                    font-size: $fs-300;
                     line-height: 40px;
-                    color:#141414;
+                    color:$clr-text;
                     cursor: pointer;
                     a{ 
-                        color: #141414; 
+                        color:$clr-text;
                     }
                     &.line{
                         cursor: default;
@@ -39,10 +43,12 @@ $icons-size:22px;
             width: 180px;
             line-height:100%;
             .title{
-                font-size: 16px;
+                font-size: 24px;
                 font-weight: 600;
+                font-family: $ff-accent;
                 line-height:100%;
                 margin-bottom: 15px;
+                color: $clr-accent;
             }
             .menu{
                 display: flex;
@@ -55,8 +61,7 @@ $icons-size:22px;
                         color:#9f9f9f;
                         transition: all 0.3s;
                         &:hover{
-                            color:#141414;
-                            transition: all 0.2s;
+                            color:$clr-text;
                         }
                     }
                 }
@@ -68,25 +73,24 @@ $icons-size:22px;
         height: 60px;
         background: #fff;
         box-shadow:0 4px 8px rgba(221, 221, 221, 0.5);
-        padding-inline: 80px;
+        @include mixins.wrapper-desktop;
+        padding-top: 0;
+        padding-bottom: 0;
         .content{
-            height: 100%;
-            max-width: 1200px;
+            @include mixins.content;
             margin-inline: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
             .logo{
-                align-self: center;
-                padding-top: 5px;
                 h1{
                     font-size: 35px;
-                    line-height: 100%;
-                    font-family: $logo-font;
-                    color: #3e5c86;
+                    line-height: 60px;
+                    font-family: $ff-accent;
+                    font-weight: 600;
+                    color: $clr-primary;
                 }
-               
             }
             .nav{
                 position: absolute;
@@ -99,7 +103,7 @@ $icons-size:22px;
                     cursor: pointer;
                     a{
                         font-size: 16px;
-                        color: #1d2d44;
+                        color: $clr-text;
                     }
                 }
             }
@@ -134,7 +138,7 @@ $icons-size:22px;
                 .search{
                     width: 180px;
                     height: 40px;
-                    background: #f5f5f5;
+                    background: $clr-secondary;
                     border-radius: 100px;
                     display: flex;
                     align-items: center;
@@ -155,8 +159,8 @@ $icons-size:22px;
                         justify-content: center;
                         background: none;
                         img{
-                            width: 20px;
-                            height: 20px;
+                            width: 26px;
+                            height: 26px;
                         }
                         cursor: pointer;
                         &:hover{
@@ -169,6 +173,7 @@ $icons-size:22px;
                         padding: 8px 5px;
                         background: transparent;
                         font-size: 15px;
+                        color: $clr-text;
                         &::placeholder{
                             font-size: 15px;
                         }
@@ -176,7 +181,7 @@ $icons-size:22px;
                 }
                 .cancel_btn{
                     cursor: pointer;
-                    color: #141414;
+                    color: $clr-text;
                     font-weight: 600;
                     font-size: 16px;
                     background: none;
@@ -241,12 +246,6 @@ $icons-size:22px;
 }
 
 @media screen and (max-width:425px) {
-    .header-wrapper .header-bottom{
-        padding-inline: 20px;
-    }
-}
-
-@media screen and (max-width:375px) {
     .header-wrapper .header-bottom{
         padding-inline: 20px;
     }

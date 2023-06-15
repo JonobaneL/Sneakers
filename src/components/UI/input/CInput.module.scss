@@ -1,15 +1,15 @@
-$main-color:#1D2D44;
+@import '../../../styles/variables';
 
 .input{
     width: 100%;
     height: 30px;
     padding: 0 10px;
-    font-size: 15px;
-    color: $main-color;
+    font-size: $fs-400;
+    color: $clr-primary;
     background: transparent;
     &.error{
         &.underline{
-            border-bottom: 1px solid $main-color;
+            border-bottom: 1px solid $clr-primary;
         }
         &.full-border{
             border: 1px solid #CF000F;
@@ -19,7 +19,7 @@ $main-color:#1D2D44;
         }
     }
     &.underline{
-        border-bottom: 1px solid $main-color;
+        border-bottom: 1px solid $clr-primary;
     }
     &.full-border{
         border-radius: 7px;

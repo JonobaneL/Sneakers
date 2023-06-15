@@ -7,20 +7,18 @@ import pinterest from '../../../images/socialMedia/pinterest.png'
 
 const SocialMedia = () => {
     return (
-        <div className={styles.socialMedia}>
-            <p className={styles.title}>FIND US IN </p>
-            <ul className={styles.media}>
-                <li className={styles.media__item}>
-                    <img src={facebook} alt="facebook" />
-                </li>
-                <li className={styles.media__item}>
-                    <img src={instagram} alt="instagram" />
-                </li>
-                <li className={styles.media__item}>
-                    <img src={pinterest} alt="pinterest" />
-                </li>  
-            </ul>
-        </div>
+        <ul className={styles.socialMedia}>
+            <li className={styles.title}>FIND US IN</li>
+            <li className={styles.media__item}>
+                <img src={facebook} alt="facebook" />
+            </li>
+            <li className={styles.media__item}>
+                <img src={instagram} alt="instagram" />
+            </li>
+            <li className={styles.media__item}>
+                <img src={pinterest} alt="pinterest" />
+            </li>  
+        </ul>
     );
 };
 

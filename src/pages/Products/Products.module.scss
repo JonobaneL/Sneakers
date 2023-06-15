@@ -1,42 +1,45 @@
+@use '../../styles/mixins';
+@import '../../styles/variables';
+
 .products{
-    padding:40px 80px;
+    @include mixins.wrapper-desktop;
     .content{
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 180px 1fr; 
-    grid-template-rows: auto 20px auto 10px 1fr; 
-    gap: 0 20px; 
-    grid-template-areas: 
-    "title title"
-    ". ."
-    "numberOf numberOf"
-    ". ."
-    "filters list"; 
+        @include mixins.content;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 180px 1fr; 
+        grid-template-rows: auto 20px auto 10px 1fr; 
+        gap: 0 20px; 
+        grid-template-areas: 
+        "title title"
+        ". ."
+        "numberOf numberOf"
+        ". ."
+        "filters list"; 
     
-    .title{
-        grid-area: title;
-        font-size: 34px;
-        font-weight: 500;
-        color: #1d2d44;
-        text-transform: capitalize;
+        .title{
+            grid-area: title;
+            font-size: $fs-800;
+            font-weight: 500;
+            color: $clr-primary;
+            font-family: $ff-accent;
+            text-transform: capitalize;
+        }
+        .nuberOfProducts{
+            grid-area:numberOf;
+            font-size: 15px;
+            color: $clr-text;
+        }
+        .filters{
+            grid-area: filters;
+        }
+        .list{
+            grid-area: list;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
     }
-    .nuberOfProducts{
-        grid-area:numberOf;
-        font-size: 15px;
-        color: #2f2f2f;
-    }
-    .filters{
-        grid-area: filters;
-    }
-    .list{
-        grid-area: list;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-    }
-}
 }
 @media screen and (max-width:1024px) {
     .products{
@@ -55,17 +58,15 @@
 }
 @media screen and (max-width:768px) {
     .products{
-        padding: 40px;
+       @include mixins.wrapper-tablet;
+       .content .nuberOfProducts{
+            font-size: 14px;
+       }
+
     }
 }
 @media screen and (max-width:375px) {
     .products{
-        padding: 30px 20px;
-        .content{
-            .title{
-                font-size: 28px;
-            }
-        }
-        
+       @include mixins.wrapper-mobile;
     }
 }

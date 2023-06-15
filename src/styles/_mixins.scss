@@ -1,0 +1,17 @@
+@import './variables';
+@mixin wrapper-desktop {
+    width: 100%;
+    padding: 50px 80px;
+}
+@mixin wrapper-tablet {
+    padding: 50px 40px;
+}
+@mixin wrapper-mobile {
+    padding: 40px 20px;
+}
+
+@mixin content{
+    max-width: 1200px;
+    margin-inline:auto;
+    color:$clr-text;
+}

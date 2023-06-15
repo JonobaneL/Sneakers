@@ -1,13 +1,15 @@
+@use '../../../styles/mixins';
+@import '../../../styles/variables';
+
 .footer{
-    width: 100%;
-    background: #3e5c86;
-    padding: 40px 80px;
-    border-top:2px solid #1d2d44 ;
+    @include mixins.wrapper-desktop;
+    background: $clr-surface;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-top:2px solid $clr-accent;
     .content{
-        max-width: 1200px;
-        height: 100%;
-        color: #fff;
-       
+        @include mixins.content;
+        font-size: $fs-400;
         .ruleList{
             display: flex;
             justify-content: center;
@@ -23,7 +25,7 @@
                     position: absolute;
                     width: 2px;
                     height: 100%;
-                    background: #fff;
+                    background: $clr-accent;
                     left: -10px;
                 }
                 &:first-child{
@@ -36,14 +38,6 @@
     }
 }
 
-@media only screen and (min-width: 1360px) {
-    .footer{
-        padding: 20px 0;
-        .content{
-            margin: 0 auto;
-        }
-    }
-}
 
 @media only screen and (max-width: 768px) {
     .footer{
@@ -54,7 +48,7 @@
     }
     
 }
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 425px) {
     .footer{
         padding: 20px 20px;
     }

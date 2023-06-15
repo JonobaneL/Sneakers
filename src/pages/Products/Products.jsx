@@ -13,12 +13,15 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const shownData = useToShow(data,limit,currentPage); 
     const totalCountPages = getTotalPagesCount(data.length,limit);
+    const titleEvent = ()=>{
+        return `${!male?'':male!=='kids'?`${male}'s`:`${male}'`} ${type}`
+    }
+    useEffect(()=>{
+      setCurrentPage(1)
+    },[type,male])
     return <div className={styles.products}>
             <div className={styles.content}>
-                  <h2 className={styles.title}>{male}
-                    {male=='men' ||male=='women'?`'s shoes`:null}
-                    {male=='kids'?`' shoes`:null}
-                  </h2>
+                  <h2 className={styles.title}>{titleEvent()}</h2>
                 <p className={styles.nuberOfProducts}> 
                   {(currentPage*limit)-limit+1}-{limit} of {data.length} products
                 </p>

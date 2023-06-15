@@ -1,0 +1,25 @@
+@import '../../../styles/variables';
+.primary,.secondary{
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 5px;
+    font-size: $fs-300;
+    cursor: pointer;
+}
+.primary{
+    background: $clr-primary;
+    color: #fff;
+    transition: transform ease 0.2s, box-shadow ease 0.2s;
+    &:hover{
+        transform: translate(0, -2px);
+        box-shadow: 0 20px 80px -10px $clr-primary;
+    }
+}
+.secondary{
+    background: $clr-secondary;
+    color: $clr-primary;
+    transition: transform ease 0.2s;
+    &:hover{
+        transform: translate(0, -2px);
+    }
+}

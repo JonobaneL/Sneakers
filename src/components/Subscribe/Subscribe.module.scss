@@ -1,50 +1,54 @@
+@use '../../styles/mixins';
+@import '../../styles/variables';
+
 .subscribe{
-    width: 100%;
-    padding: 50px 80px;
+    @include mixins.wrapper-desktop;
     .content{
-        max-width: 1200px;
+        @include mixins.content;
         display: flex;
         flex-direction: column;
         gap: 50px;
         .title{
             text-align: center;
-            color:#1d2d44;
             h2{
+                font-size: $fs-800;
+                font-weight: 500;
+                color: $clr-accent;
+                font-family: $ff-accent;
                 margin-bottom: 10px;
+            }
+            .sub-title{
+                font-size: $fs-400;
             }
         }
         .emailForm{
             width: 100%;
             display: flex;
-            align-self: center;
+            align-items: flex-end;
             gap:5px;
         }
         .singUpButton{ 
-            width: 150px;
-            height: 40px;
-            background: #3e5c86;
-            border: none;
-            color:#fff;
-            font-size: 15px;
+            flex: 1 0 auto;
+            width: 160px;
+            height: 45px;
         }
     }
 }
-@media only screen and (min-width: 1360px) {
-    .subscribe{
-        padding: 50px 0;
-        .content{
-            margin: 0 auto;
-        }
-    }
-}
+
 @media only screen and (max-width: 768px) {
     .subscribe{
-        padding: 50px 40px;
+        @include mixins.wrapper-tablet;
     }
     
 }
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 425px) {
     .subscribe{
-        padding: 50px 20px;
+        @include mixins.wrapper-mobile;
+        .content{
+            .singUpButton{
+                width: 140px;
+                height: 40px;
+            }
+        }
     }
 }

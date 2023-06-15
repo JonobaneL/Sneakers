@@ -1,10 +1,10 @@
+@use '../styles/mixins';
 .about{
-    width: 100%;
-    padding: 20px 80px;
+    // width: 100%;
+    // padding: 20px 80px;
+    @include mixins.wrapper-desktop;
     .content{
-        max-width: 1200px;
-        margin-inline: auto;
-        padding: 50px 0;
+        @include mixins.content;
         display: flex;
         justify-content: center;
         .tabs{
@@ -72,5 +72,15 @@
                 }
             }
         }
+    }
+}
+@media screen and (max-width:768px) {
+    .about{
+        @include mixins.wrapper-tablet
+    }
+}
+@media screen and (max-width:425px) {
+    .about{
+        @include mixins.wrapper-mobile
     }
 }

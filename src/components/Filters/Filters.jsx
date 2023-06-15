@@ -1,7 +1,8 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Filters.module.scss'
 import Select from "../UI/select/Select";
 import Accordion from "../UI/accordion/Accordion";
+import Button from "../UI/button/Button";
 import CheckBoxList from "../UI/checkBoxList/CheckBoxList";
 import { useNavigate, useParams } from "react-router-dom";
 import { getShoesFiltersData } from "../../utils/getShoesData";
@@ -17,12 +18,6 @@ import ClearButton from "../UI/clear-button/ClearButton";
 import { AnimatePresence,motion } from "framer-motion";
 import closeIcon from '../../images/cancel.svg'
 
-const ACCORDION_STYLES = {
-    display:'flex',
-    justifyContent:'space-between',
-    fontSize:'15px',
-    fontWeight:600
-}
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
 const Filters = ({setData}) => {
@@ -75,16 +70,20 @@ const Filters = ({setData}) => {
    
     return <div className={styles.filters}>
         <div className={styles["filters-nav"]}>
-            <button 
-                className={styles["filters-nav__opener"]}
+            <Button 
+                type='secondary' 
+                width="100px" 
+                height="30px" 
                 onClick={()=>{
                     setIsFiltersOptionsOpen(true);
                     document.body.style.overflowY='hidden'}
                 }
             >
-                Filter
-                <img src={filtersIcon} alt="" />
-            </button>
+                <div className={styles["filters-nav__opener"]}>
+                    Filter
+                    <img src={filtersIcon} alt="" />
+                </div>
+            </Button>
         </div>
         <AnimatePresence initial={false}>
             {
@@ -130,7 +129,7 @@ const Filters = ({setData}) => {
                             theme={theme}
                             autoHeight={true}
                             header={
-                                <div style={ACCORDION_STYLES}>
+                                <div className={styles.accordion}>
                                     Category
                                 </div>
                             }
@@ -145,7 +144,7 @@ const Filters = ({setData}) => {
                         </Accordion>
                         <Accordion
                             header={
-                                <div style={ACCORDION_STYLES}>
+                                <div className={styles.accordion}>
                                     Brands
                                     <ClearButton triger={brandFilters.length} handler={()=>setBrandFilters([])}/>
                                 </div>
@@ -154,13 +153,13 @@ const Filters = ({setData}) => {
                             <CheckBoxList theme={theme} data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
                         </Accordion>
                         
-                        <Accordion header={<div style={ACCORDION_STYLES}>Color</div>}>
+                        <Accordion header={<div className={styles.accordion}>Color</div>}>
                             <CheckBoxList theme={theme} data={shoesColor} handler={(value)=>setColorFilters(value)} checkedItems={colorFilters} colored={true} />
                         </Accordion>
                         <Accordion 
                             fixed={true} 
                             header={
-                                <div style={ACCORDION_STYLES}>
+                                <div className={styles.accordion}>
                                     Size
                                     <ClearButton triger={sizeFilters.length} handler={()=>setSizeFilters([])}/>
                                 </div>
@@ -175,7 +174,7 @@ const Filters = ({setData}) => {
                         </Accordion>
                         <Accordion 
                             header={
-                                <div style={ACCORDION_STYLES}>
+                                <div className={styles.accordion}>
                                     Material
                                     <ClearButton triger={materialFilters.length} handler={()=>setMaterialFilters([])}/>
                                 </div>
@@ -186,7 +185,7 @@ const Filters = ({setData}) => {
                         <Accordion  
                             autoHeight={true}
                             header={
-                                <div style={ACCORDION_STYLES}>
+                                <div className={styles.accordion}>
                                     Price
                                     <ClearButton triger={priceFilters.length} handler={()=>setPriceFilters([])}/>
                                 </div>
@@ -197,7 +196,7 @@ const Filters = ({setData}) => {
                         <Accordion
                             autoHeight={true}
                             header={
-                                <div style={ACCORDION_STYLES}>
+                                <div className={styles.accordion}>
                                     Percent Off
                                     <ClearButton triger={percentFilters.length} handler={()=>setPercentFilters([])}/>
                                 </div>
@@ -206,8 +205,8 @@ const Filters = ({setData}) => {
                             <CheckBoxList theme={theme} data={productPercentParams} handler={(value)=>setPercentFilters(value)} checkedItems={percentFilters} />
                         </Accordion>
                         <div className={styles["button-bar"]}>
-                            <button className={styles['button-bar__clear']} onClick={()=>clearEvent()}>Clear</button>
-                            <button onClick={()=>setIsFiltersOptionsOpen(false)} className={styles['button-bar__view']}>View results ({filteredData.length})</button>
+                            <Button type='secondary' height="45px" width="50%" onClick={()=>clearEvent()}>Clear</Button>
+                            <Button type='primary' height="45px" width="50%" onClick={()=>setIsFiltersOptionsOpen(false)}>View results ({filteredData.length})</Button>
                         </div>
                     </motion.div>
                 
