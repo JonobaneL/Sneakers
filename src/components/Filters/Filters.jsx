@@ -17,6 +17,7 @@ import { useSearch } from "../../hooks/useSearch";
 import ClearButton from "../UI/clear-button/ClearButton";
 import { AnimatePresence,motion } from "framer-motion";
 import closeIcon from '../../images/cancel.svg'
+import { Search } from "../UI/search/Search";
 
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
@@ -52,7 +53,7 @@ const Filters = ({setData}) => {
     const filteredData = useFiltered(shoes,male,sort,categoryFilters,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
     const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(!windowSize);
     const [searchQuery,setSearchQuery] = useState('');
-    const searchedBrands = useSearch(productBrands,searchQuery)
+    const searchedBrands = useSearch(productBrands,searchQuery,'name')
     const navigate = useNavigate()
     useEffect(()=>{
         setData(filteredData)
@@ -150,6 +151,8 @@ const Filters = ({setData}) => {
                                 </div>
                             }
                         >
+                            <Search initial={searchQuery} onChange={setSearchQuery}/>
+                            <br/>
                             <CheckBoxList theme={theme} data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
                         </Accordion>
                         
@@ -164,8 +167,8 @@ const Filters = ({setData}) => {
                                     <ClearButton triger={sizeFilters.length} handler={()=>setSizeFilters([])}/>
                                 </div>
                             }
-                            theme={theme} 
                             data={sizeFilters} 
+                            autoHeight={true}
                             handler={()=>{
                                 setSizeFilters([])
                             }}

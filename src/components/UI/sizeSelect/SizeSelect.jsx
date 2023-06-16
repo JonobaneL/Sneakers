@@ -4,7 +4,7 @@ import { size } from "../../../data/sizeList";
 import styles from './SizeSelect.module.scss';
 
 const SizeSelect = ({notAvailable='',choosed,handler,type}) => {
-    const sizes = size;
+    const sizes = [...size];
     const availableSizes = getAvailableSizes(sizes,notAvailable);
     const handelChange = (data)=>{
         if(type=='single'){

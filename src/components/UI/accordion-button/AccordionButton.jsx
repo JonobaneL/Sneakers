@@ -1,18 +1,9 @@
 import React from "react";
 import styles from './AccordionButton.module.scss'
 
-const AccordionButton = ({triger = null,handler,theme}) => {
-    const DARK_THEME={
-        background:"#0d1321"
-    }
-    const WHITE_THEME={
-        background:"#fff"
-    }
+const AccordionButton = ({triger = null,handler}) => {
     return ( 
-        <div onClick={e=>{handler();e.stopPropagation()}} className={`${styles.btn} ${triger?styles.opened:''}`}>
-            <div style={theme=="dark"?DARK_THEME:WHITE_THEME} className={styles.btnLine1}></div>
-            <div style={theme=="dark"?DARK_THEME:WHITE_THEME} className={styles.btnLine2}></div>
-        </div>
+        <div onClick={e=>{handler();e.stopPropagation()}} className={`${styles.btn} ${triger?styles.opened:''}`} />
      );
 }
  

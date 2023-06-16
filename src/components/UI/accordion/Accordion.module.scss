@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .accordion{
     width: 100%;
     border-bottom: 1px solid #b0b0b0;
@@ -6,11 +8,10 @@
         width: 100%;
         padding-inline: 5px;
         .title{
-            height: 40px;
-            display: flex;
+            min-height: 40px;
+            display: flex;  
             align-items: center;
             gap: 10px;
-            color: #1d2d44;
             .content{
                 width: 100%;
                 cursor: pointer;
@@ -19,25 +20,7 @@
     }
     &-body{
         width: 100%;
-        visibility: hidden;
-        opacity: 0;
-        max-height: 0;
-        transition: all 0.3s;
-        overflow-y: auto;
         padding-inline: 5px;
-        &.opened{
-            visibility: visible;
-            opacity: 1;
-            max-height: 400px;
-            transition: all 0.3s;
-        }
-        &.autoHeight{
-            transition: all 0.3s;
-            &.opened{
-                transition: all 0.3s;
-                max-height: min-content;
-            }
-        }
         &::-webkit-scrollbar {
             width: 6px;
             margin-right: 5px;
@@ -46,12 +29,12 @@
             background: #fff;
         }
         &::-webkit-scrollbar-thumb {
-            background: #3e5c86;
+            background: $clr-accent;
             border-radius: 6px;
 
         }
         &::-webkit-scrollbar-thumb:hover {
-            background: #334d70;
+            background: $clr-primary;
         }
     }
 }

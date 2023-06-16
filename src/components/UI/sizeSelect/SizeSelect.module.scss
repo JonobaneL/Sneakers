@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .size-select{
     width: 100%;
     display: flex;
@@ -6,20 +8,21 @@
     .size-item{
         width: 45px;
         height: 45px;
-        font-size: 16px;
+        font-size: $fs-400;
         font-weight: 400;
-        color: #1d2d44;
+        color: $clr-text;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.2s;
         cursor: pointer;
-        border: 1px solid #3e5c86;
+        background: $clr-secondary;
+        border-radius: 5px;
         input{
             appearance: none;
         }
         &.active, &:hover{
-            background-color: #3e5c86;
+            background-color: $clr-accent;
             color:#ffffff;
         }
        &.disabled{
