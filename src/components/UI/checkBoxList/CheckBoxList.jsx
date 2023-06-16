@@ -8,7 +8,7 @@ const CheckBoxItem = ({item,checkedItems,event,color})=>{
     const iconColor = getContrast(color)
     const checkboxStyles={
         background:color,
-        border:color=="#ffffff"?"1px solid rgba(62, 92, 118,0.8)":'none',
+        border:color=="#ffffff"?"1px solid rgb(76, 79, 118)":'none',
     }
    
     return <li 

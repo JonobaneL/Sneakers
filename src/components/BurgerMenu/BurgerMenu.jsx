@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom'
 import styles from './BurgerMenu.module.scss'
 import { Link } from 'react-router-dom';
-import shoppingBag from '../../images/dark-icons/shopping-bag.png';
+import shoppingBag from '../../images/header-icons/shopping-bag.png';
+import favoritesIcon from '../../images/header-icons/favorites.svg';
 import helpIcon from '../../images/help-icon.svg';
 import { useShoppingCart } from '../../context/CartContext';
 import { AnimatePresence, motion } from 'framer-motion';
+import Button from '../UI/button/Button';
 
 const BurgerMenu = ({isOpen,closeHandler}) => {
     if(!isOpen) {
@@ -19,12 +21,10 @@ const BurgerMenu = ({isOpen,closeHandler}) => {
     }
     const wrapperVariants = {
         enter:{
-            background:'rgba(18, 18, 18, 0.36)',
             backdropFilter: 'blur(4px)'
         },
         exit:{
             backdropFilter:'blur(0)',
-            background:'none',
         }
     }
     const menuVariants = {
@@ -71,12 +71,26 @@ const BurgerMenu = ({isOpen,closeHandler}) => {
                         <div className={styles.user}>
                             Become a Sneakers Member for the best products, inspiration.
                             <div className={styles["button-nav"]}>
-                                <button className={styles['button-nav__item']}>Join Us</button>    
-                                <button className={styles['button-nav__item']}>Sign In</button>    
+                                <Button type='primary' width='50%' height='40px'>
+                                    <span className={styles['button-nav__item']}>
+                                        Join Us
+                                    </span>
+                                </Button>    
+                                <Button type='secondary' width='50%' height='40px'>
+                                    <span className={styles['button-nav__item']}>
+                                        Sign In
+                                    </span>
+                                </Button>    
                             </div> 
                         </div>
                         <div className={styles["additional-nav"]}>
-                            <Link to={'/shopping-cart'}>
+                        <Link to={'/shopping-cart'} onClick={closeMenu}>
+                                <div className={styles['additional-nav__item']}>
+                                    <img src={favoritesIcon} alt="favorites" />
+                                    Favorites
+                                </div>
+                            </Link>
+                            <Link to={'/shopping-cart'} onClick={closeMenu}>
                                 <div className={styles['additional-nav__item']}>
                                     <img src={shoppingBag} alt="shopping-bag" />
                                     Bag
@@ -90,7 +104,7 @@ const BurgerMenu = ({isOpen,closeHandler}) => {
                                     
                                 </div>
                             </Link>
-                            <Link to={'/'}>
+                            <Link to={'/'} onClick={closeMenu}>
                                 <div className={styles['additional-nav__item']}>
                                     <img src={helpIcon} alt="help" />
                                     Help

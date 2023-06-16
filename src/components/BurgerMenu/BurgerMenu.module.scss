@@ -1,3 +1,4 @@
+@import '../../styles/variables';
 .burger-wrapper{
     position: fixed;
     left: 0;
@@ -5,6 +6,7 @@
     bottom: 0;
     top:0;
     z-index: 100;
+    background:rgba(18, 18, 18, 0.36);
     .burger-menu{
         position: absolute;
         bottom: 0;
@@ -19,7 +21,6 @@
             background: none;
             position: relative;
             width: 22px;
-            // height: 16px;
             padding: 8px 0;
             display: block;
             margin-right: 0;
@@ -28,7 +29,7 @@
                 content: '';
                 width: 100%;
                 height: 2px;
-                background: #1D2D44;
+                background: $clr-primary;
                 position: absolute;
                 left: 0;
             }
@@ -55,7 +56,7 @@
                 a{
                     font-size: 22px;
                     font-weight: 500;
-                    color: #1d2d44;
+                    color: $clr-primary;
                 }
             }
         }
@@ -70,20 +71,8 @@
                 gap:10px;
                 margin-top: 10px;
                 &__item{
-                    padding-inline: 25px;
-                    border-radius: 30px;
-                    height: 40px;
-                    color: #1D2D44;
-                    background: none;
-                    border: 1.5px solid #CACACB;
-                    cursor: pointer;
                     font-weight: 500;
-                    font-size: 16px;
-                    &:first-child{
-                        background: #1D2D44;
-                        color:#fff;
-                        border:none;
-                    }
+                    font-size: 14px;
                 }
             }
         }

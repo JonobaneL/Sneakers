@@ -8,22 +8,21 @@
     .size-item{
         width: 45px;
         height: 45px;
-        font-size: $fs-400;
-        font-weight: 400;
+        font-size: clamp(14px,14px + 0.15vw,16px);
         color: $clr-text;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        text-align: center;
+        line-height: 45px;
         transition: all 0.2s;
         cursor: pointer;
         background: $clr-secondary;
         border-radius: 5px;
+        border: 1px solid rgba($clr-accent,0.2);
         input{
             appearance: none;
         }
         &.active, &:hover{
             background-color: $clr-accent;
-            color:#ffffff;
+            color:#EBEBEB;
         }
        &.disabled{
             background: linear-gradient(to left top,transparent calc(49% - 1px),rgba(124,135,142,.5) calc(50% - 1px),rgba(124,135,142,.5) calc(49% + 1px),transparent calc(50% + 1px)) no-repeat 0 0/100% 42px;

@@ -10,10 +10,10 @@
         gap: 10px;
         cursor: pointer;
         .checkbox-indicator{
-            width: 26px;
-            height: 26px;
-            border-radius:2px;
-            min-width:26px;
+            width: 25px;
+            height: 25px;
+            border-radius:3px;
+            min-width:25px;
             position: relative;
             .checkbox-mark{
                 position: absolute;
@@ -25,7 +25,7 @@
             }
         }
         .list-title{
-            font-size: 15px;
+            font-size: clamp(14px,14px + 0.12vw,15px);
         }
         &.active{
             .checkbox-mark{

@@ -2,7 +2,7 @@
 .listItem{
     width: 100%;
     color: $clr-text;
-    font-size: $fs-300;
+    font-size: 14px;
     .mainItem{
         display: flex;
         align-items: center;
@@ -33,7 +33,7 @@
         width: 30px;
         flex: 0 0 30px;
         text-align: center;
-        font-size: $fs-500;
+        font-size: $fs-700;
         color: $clr-accent;
         transition: all 0.2s;
         &.active{

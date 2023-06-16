@@ -31,6 +31,14 @@ $icons-size:22px;
                     cursor: pointer;
                     a{ 
                         color:$clr-text;
+                        display: flex;
+                        align-items: center;
+                        .user-icon{
+                            margin-left: 5px;
+                            vertical-align: baseline;
+                            width: $icons-size;
+                            height: $icons-size;
+                        }
                     }
                     &.line{
                         cursor: default;
@@ -105,6 +113,7 @@ $icons-size:22px;
                         font-size: 16px;
                         color: $clr-text;
                     }
+                    
                 }
             }
             .button-nav{
@@ -115,7 +124,7 @@ $icons-size:22px;
                     position: relative;
                     .cart-quantity{
                         position: absolute;
-                        background: #1D2D44;
+                        background: $clr-primary;
                         top:-8px;
                         right: -8px;
                         font-size: 12px;

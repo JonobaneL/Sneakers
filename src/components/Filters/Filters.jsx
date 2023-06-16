@@ -127,7 +127,6 @@ const Filters = ({setData}) => {
                         />
                         <Accordion 
                             fixed={true}
-                            theme={theme}
                             autoHeight={true}
                             header={
                                 <div className={styles.accordion}>
@@ -153,11 +152,11 @@ const Filters = ({setData}) => {
                         >
                             <Search initial={searchQuery} onChange={setSearchQuery}/>
                             <br/>
-                            <CheckBoxList theme={theme} data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
+                            <CheckBoxList data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
                         </Accordion>
                         
                         <Accordion header={<div className={styles.accordion}>Color</div>}>
-                            <CheckBoxList theme={theme} data={shoesColor} handler={(value)=>setColorFilters(value)} checkedItems={colorFilters} colored={true} />
+                            <CheckBoxList data={shoesColor} handler={(value)=>setColorFilters(value)} checkedItems={colorFilters} colored={true} />
                         </Accordion>
                         <Accordion 
                             fixed={true} 
@@ -173,7 +172,7 @@ const Filters = ({setData}) => {
                                 setSizeFilters([])
                             }}
                         >
-                            <SizeSelect  choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} type='multi'/>
+                            <SizeSelect choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} type='multi'/>
                         </Accordion>
                         <Accordion 
                             header={
@@ -183,7 +182,7 @@ const Filters = ({setData}) => {
                                 </div>
                             }
                             >
-                            <CheckBoxList theme={theme} data={productMaterials} handler={(value)=>setMaterialFilters(value)} checkedItems={materialFilters} />
+                            <CheckBoxList data={productMaterials} handler={(value)=>setMaterialFilters(value)} checkedItems={materialFilters} />
                         </Accordion>
                         <Accordion  
                             autoHeight={true}
@@ -194,7 +193,7 @@ const Filters = ({setData}) => {
                                 </div>
                             }
                             >
-                            <CheckBoxList theme={theme} data={productPriceParams} handler={(value)=>setPriceFilters(value)} checkedItems={priceFilters} />
+                            <CheckBoxList data={productPriceParams} handler={(value)=>setPriceFilters(value)} checkedItems={priceFilters} />
                         </Accordion>
                         <Accordion
                             autoHeight={true}
@@ -205,7 +204,7 @@ const Filters = ({setData}) => {
                                 </div>
                             }
                         >
-                            <CheckBoxList theme={theme} data={productPercentParams} handler={(value)=>setPercentFilters(value)} checkedItems={percentFilters} />
+                            <CheckBoxList data={productPercentParams} handler={(value)=>setPercentFilters(value)} checkedItems={percentFilters} />
                         </Accordion>
                         <div className={styles["button-bar"]}>
                             <Button type='secondary' height="45px" width="50%" onClick={()=>clearEvent()}>Clear</Button>

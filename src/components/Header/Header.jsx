@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Header.module.scss'
 import { Link } from 'react-router-dom';
 import shoppingBag from '../../images/header-icons/shopping-bag.png';
+import userIcon from '../../images/header-icons/user-icon.svg';
 import favoritesIcon from '../../images/header-icons/favorites.svg'
 import searchIcon from '../../images/header-icons/search-icon.svg'
 import BurgerButton from '../UI/burgerButton/BurgerButton';
@@ -80,7 +81,9 @@ const Header = () => {
                                 onMouseEnter={()=>setUserDropMenu(true)} 
                                 onMouseLeave={()=>setUserDropMenu(false)}
                             >
-                               <Link to='/user-profile/info'>Hi, {details.firstName}</Link> 
+                               <Link to='/user-profile/info'>Hi, {details.firstName} 
+                                    <img className={styles['user-icon']} src={userIcon} alt='user'/>
+                               </Link> 
                                 <DropDownMenu triger={userDropMenu}>
                                     <div className={styles['help-menu']}>
                                         <p className={styles.title}>Accont</p>
