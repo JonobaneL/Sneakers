@@ -14,7 +14,7 @@ const Pagination = ({total, current, changePage}) => {
                     >
                         {item}
                     </div>
-                    )
+                )
             }
         </div>
     );

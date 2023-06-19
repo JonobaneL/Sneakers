@@ -9,6 +9,8 @@ import Toast from '../../components/ToastV2/Toast'
 import { addNewUser } from '../../fireCloudAPI'
 import Autocomplete from '../../components/UI/autocomplete/Autocomplete'
 import { findLocation } from '../../utils/searchLocation'
+import Button from '../../components/UI/button/Button'
+
 
 const SignUp = () => {
     const { signUp } = useAuth();
@@ -132,11 +134,15 @@ const SignUp = () => {
                         valid={passwordConfirm.isDurty && passwordConfirm.currentErrors.length>0}
                         />
                 </ValidationErrorMessages>
-                <button 
-                    className={styles['submit-btn']} 
-                    type='submit' 
+                <Button
+                    width='100%'
+                    height='45px'
+                    mode='primary'
+                    type='submit'
                     disabled={isFormValid([email.isValid,password.isValid,passwordConfirm.isValid],isLoading)}
-                    >Sign Up</button>
+                >
+                    Sign Up
+                </Button>
             </form>
             <div className={styles.message}>
                 <p>Already have an account? <Link to='/log-in'>Log In</Link></p>

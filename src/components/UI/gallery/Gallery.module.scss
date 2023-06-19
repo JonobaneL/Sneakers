@@ -1,7 +1,6 @@
+@import '../../../styles/variables';
 .gallery{
     width: 100%;
-    // display: flex;
-    // align-items: flex-start;
     gap: 20px;
     display: grid;
     grid-template-columns: 60px 1fr;
@@ -48,7 +47,7 @@
                 content: '';
                 width: 100%;
                 height: 2px;
-                background: #1d2d44;
+                background: $clr-primary;
                 position: absolute;
                 bottom: -5px;
                 transition: all 0.2s;
@@ -95,7 +94,7 @@
                 &::before{
                     width: 100%;
                     height: 15px;
-                    background: #1d2d44;
+                    background: $clr-accent;
                     position: absolute;
                     top:0;
                     transition: all 0.2s;

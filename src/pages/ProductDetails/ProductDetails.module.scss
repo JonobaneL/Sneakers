@@ -1,8 +1,10 @@
+@import '../../styles/variables';
+
 .product-details{
     width: 100%;
     .back{
         width: 100%;
-        background: #3E5C76;
+        background: $clr-accent;
         padding: 0 80px;
         .content{
             max-width:1200px;
@@ -99,19 +101,6 @@
                 }
                 .add-button{
                     grid-area: button;
-                    height: 45px;
-                    width: 200px;
-                    background: #3E5C86;
-                    border: none;
-                    color: #fff;
-                    font-size: 15px;
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    transition: all 0.2s;
-                    cursor: pointer;
-                    &:hover{
-                        background: #1d2d44;
-                    }
                 }
             }
             .product-description{
@@ -230,11 +219,6 @@
                     }
                     .product-price{
                         font-size: 20px;
-                    }
-                    .add-button{
-                        width: 180px;
-                        height: 40px;
-                        font-size: 14px;
                     }
                 }
                 .product-description{

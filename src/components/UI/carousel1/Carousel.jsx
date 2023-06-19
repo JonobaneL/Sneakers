@@ -5,6 +5,7 @@ import waveMobile from '../../../images/wave-mobile.svg'
 import { AnimatePresence, wrap,motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Button from '../button/Button';
+
 const Carousel = ({data,dots=true}) => {
    
     const [page,setPage]=useState(0)
@@ -99,7 +100,7 @@ const Carousel = ({data,dots=true}) => {
                                     custom={3}
                                     className={styles.discover}
                                     >
-                                        <Button width='100%' height='100%' type='primary'>discover now</Button>
+                                        <Button width='100%' height='100%' mode='primary'>discover now</Button>
                                 </motion.div>
                             </Link>
                         </div>

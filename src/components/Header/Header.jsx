@@ -144,7 +144,7 @@ const Header = () => {
                             </>
                         }
                         <BurgerButton visible={burgerMenu} setVisible={setBurgerMenu} />
-                        <BurgerMenu isOpen={burgerMenu} closeHandler={setBurgerMenu}/>
+                        <BurgerMenu user={details} isOpen={burgerMenu} closeHandler={setBurgerMenu}/>
                     </div>
                 </div>
                 

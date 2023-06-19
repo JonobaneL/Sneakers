@@ -6,6 +6,7 @@ import CInput from '../../components/UI/input/CInput';
 import ValidationErrorMessages from '../../components/ValidationErrorMessages/ValidationErrorMessages';
 import { Link,useNavigate } from 'react-router-dom';
 import Toast from '../../components/ToastV2/Toast';
+import Button from '../../components/UI/button/Button'
 
 const LogIn = () => {
     const { login, } = useAuth();
@@ -60,13 +61,15 @@ const LogIn = () => {
                         valid={password.isDurty && password.currentErrors.length>0}
                     />
                 </ValidationErrorMessages>
-                <button 
-                    className={styles['submit-btn']} 
-                    type='submit' 
+                <Button 
+                    mode='primary' 
+                    width='100%' 
+                    height='45px'
+                    type='submit'
                     disabled={isFormValid([email.isValid,password.isValid],isLoading)}
                 >
                     Log In
-                </button>
+                </Button>
             </form>
             <div className={styles.message}>
                <Link to='/password-reset'>Forgot Password?</Link>

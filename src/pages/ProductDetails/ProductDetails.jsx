@@ -10,6 +10,7 @@ import ColorSelect from '../../components/UI/colorSelect/ColorSelect';
 import SizeSelect from '../../components/UI/sizeSelect/SizeSelect';
 import { useShoppingCart } from '../../context/CartContext';
 import Toast from '../../components/ToastV2/Toast';
+import Button from '../../components/UI/button/Button'
 
 
 const ProductDetails = () => {
@@ -70,10 +71,17 @@ const ProductDetails = () => {
                             <p className={styles.blockTitle}>Size:   <span hidden className={styles.warringMessage} ref={warning_ref}>Please select a size</span></p>
                             <SizeSelect notAvailable={currentProduct.nAvailable} choosed={productColor} handler={(data)=>setProductColor(data)} type='single'/>
                         </div>
-                        <button 
-                            onClick={addHandler} 
-                            className={styles['add-button']}
-                        >Add to cart</button>
+                        
+                        <div className={styles['add-button']}>
+                        <Button 
+                            width='100%'
+                            heigh="45px"
+                            mode="primary"
+                            onClick={addHandler}
+                            >
+                            Add to cart
+                        </Button>
+                        </div>
                     </div>
                     <div className={styles["product-description"]}>
                         <h2 className={styles.title}>Details</h2>

@@ -15,7 +15,7 @@ const Subscribe = () => {
                     height={40}
                     placeholder="E-mail"/>
                     <div className={styles.singUpButton}>
-                        <Button type='primary'width='100%' height='100%'>SING UP</Button>
+                        <Button mode='primary'width='100%' height='100%'>SING UP</Button>
                     </div>
                 </div>
             </div>
