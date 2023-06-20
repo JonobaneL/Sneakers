@@ -1,7 +1,7 @@
 import React,{useRef, useState} from "react";
 import styles from './Gallery.module.scss'
 import { AnimatePresence,motion,wrap } from 'framer-motion'
-import arrowIcon from '../../../images/back-icon.svg'
+import arrowIcon from '../../../images/gallery-arrow.svg'
 
 const Gallery = ({images}) => {
     const [selected,setSelected] = useState(0);
@@ -33,12 +33,11 @@ const Gallery = ({images}) => {
                     })
                 }
             </ul>
-            <button 
+            <button
                 onClick={()=>paginate(-1)}
                 className={`${styles.arrow} ${styles.left}`}
             >
-                {/* <img src={arrowIcon} alt="left-arrow" />  */}
-                &#8249;
+                <img src={arrowIcon} alt="left-arrow" className={styles.icon} /> 
             </button>
             <div className={styles.gallery}>
                 <AnimatePresence initial={false} mode='wait'>
@@ -61,8 +60,7 @@ const Gallery = ({images}) => {
                 onClick={()=>paginate(1)}
                 className={`${styles.arrow} ${styles.right}`}
             >
-                {/* <img src={arrowIcon} alt="right-arrow" />  */}
-                &#8250;
+                <img src={arrowIcon} alt="left-arrow" className={styles.icon} /> 
             </button>
         </div>
     );

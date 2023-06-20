@@ -40,7 +40,6 @@
                 color: $clr-text;
                 display: grid;
                 grid-template-rows: auto 20px auto 5px auto 20px auto 20px auto 30px 45px 1fr; 
-                // gap: 0px 0px; 
                 grid-template-areas: 
                 "name"
                 "."
@@ -192,10 +191,15 @@
 @media screen and (max-width:768px) {
     .product-details{
         .back{
-            padding: 0 40px;
+            @include mixins.wrapper-tablet;
+            padding-top: 0;
+            padding-bottom: 0;
+            .content{
+                height:40px;
+            }
         }
         .details{
-            padding: 0 40px;
+            @include mixins.wrapper-tablet;
             .content{
                 .product-info{
                     margin-top: 20px;
@@ -208,7 +212,13 @@
 }
 @media screen and (max-width:425px) {
     .product-details{
+        .back{
+            @include mixins.wrapper-mobile;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
         .details{
+            @include mixins.wrapper-mobile;
             .content{
                 .product-info{
                     .product-name{
@@ -224,16 +234,6 @@
                     }
                 }
             }
-        }
-    }
-}
-@media screen and (max-width:375px) {
-    .product-details{
-        .back{
-            padding: 0 20px;
-        }
-        .details{
-            padding: 0 20px;
         }
     }
 }
