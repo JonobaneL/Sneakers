@@ -1,7 +1,9 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
 import { useNavigate } from 'react-router-dom'
-
+import { shoes } from '../data/shoes'
+import Gallery from '../components/UI/gallery/Gallery'
+import { AnimatePresence,motion } from 'framer-motion'
 
 const About = () => {
     const [choosed,setChosed] = useState('Profile')
@@ -15,10 +17,19 @@ const About = () => {
     const chooseHandler = (value)=>{
         setChosed(value)
     }
+    const galleryVariant = {
+        hidden:{
+            opacity:0,
+        },
+        visible:{
+            opacity:1,
+        }
+    }
     const [isOpen,setIsOpen] = useState(false)
+    const [selected,setSelected] = useState(0)
     return <div className={styles.about}>
         <div className={styles.content} >
-          <div  className={styles.tabs}>
+          {/* <div  className={styles.tabs}>
             <div className={`${styles.nav}`}>
                 <ul className={styles.list}>
                     {
@@ -55,7 +66,53 @@ const About = () => {
                         })
                     }
                 </div>
-          </div>
+          </div> */}
+            {/* <Gallery images={shoes[0].colors[0].images}/> */}
+            <div className={styles.test}>
+                <div className={styles['gallery-wrapper']}>
+                    <ul className={styles.nav}>
+                        {
+                            shoes[0].colors[0].images.map((item,index)=>{
+                                return <li 
+                                    key={index} 
+                                    className={`${styles.nav__item} ${selected==index?styles.active:''}`}
+                                    onClick={()=>setSelected(index)}
+                                >
+                                    <img src={item} alt={`nav-item-${index}`} />
+                                </li>
+                            })
+                        }
+                    </ul>
+                    <div className={styles.gallery}>
+                        <AnimatePresence initial={false} mode='wait'>
+                            <motion.img 
+                                key={selected}
+                                initial='hidden'
+                                animate='visible'
+                                exit='hidden'
+                                variants={galleryVariant}
+                                transition={{
+                                    opacity: { duration: 0.15 }
+                                }}
+                                className={styles.gallery__item}
+                                src={shoes[0].colors[0].images[selected]} 
+                                alt={`img-${selected}`} 
+                                />
+                        </AnimatePresence>
+                    </div>
+                </div>
+                <div className={styles.text}>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt cumque tempora eveniet et consectetur qui voluptatibus nobis nam suscipit. Aspernatur inventore minus ullam saepe sit repudiandae, architecto quas doloribus vero?
+                    Saepe quasi quidem laborum recusandae placeat ratione esse iusto atque? Quae amet in dignissimos expedita recusandae, asperiores quis voluptatum saepe reiciendis provident quam corrupti, illo laboriosam corporis voluptates obcaecati accusamus.
+                    Illum consequatur soluta quibusdam ea possimus quae magni perspiciatis ipsum rem est eum ipsam consequuntur dicta, deleniti suscipit impedit esse autem atque velit beatae distinctio fugit quidem numquam? Natus, dolor!
+                    Ullam at culpa error omnis, officiis, eos iure consectetur repudiandae accusamus esse fuga beatae quibusdam sed officia quis? Fugit labore ullam dolorum debitis quibusdam consectetur delectus nulla fuga cupiditate assumenda.
+                    Voluptatem voluptates vel unde quibusdam! Quia laborum corporis repudiandae vitae assumenda maxime odit voluptates impedit reiciendis autem. Consequatur adipisci quo beatae, a mollitia incidunt in deserunt tempora vel explicabo esse.
+                    Tempore dolorem facilis quia, veniam error nobis delectus enim hic nulla veritatis, ut tempora tenetur neque beatae quae maiores fuga, nemo iure excepturi! Nihil unde vel eveniet dolor, suscipit possimus?
+                    Inventore, eius aperiam cupiditate suscipit facilis eaque earum odio illum tenetur rem magni enim minima. Soluta nam nostrum magni deserunt, eveniet, doloribus sequi velit asperiores consequatur fugiat omnis totam ipsa.
+                    Illo vitae eum animi, sequi quaerat ipsa nam aspernatur adipisci enim alias quo quisquam cupiditate, magni distinctio esse nisi! Ad repellendus hic, quod nisi quas earum placeat! Saepe, commodi quis?
+                </div>
+            </div>
+            
         </div>
     </div>;
 }

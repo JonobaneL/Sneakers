@@ -140,13 +140,11 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
                                     
                                 </div>
                             </Link>
-                            <Link to={'/'} onClick={()=>setHelpMenu(true)}>
-                                <div className={styles['additional-nav__item']}>
+                                <div className={styles['additional-nav__item']} onClick={()=>setHelpMenu(true)}>
                                     <img src={helpIcon} alt="help" />
                                     <p>Help</p>
                                     <img className={styles.arrow} src={arrow} alt='arrow'/>
                                 </div>
-                            </Link>
                         </div>
                     </motion.div>
                     <AnimatePresence>

@@ -1,108 +1,122 @@
 @import '../../../styles/variables';
-.gallery{
+.gallery-wrapper{
     width: 100%;
-    gap: 20px;
     display: grid;
     grid-template-columns: 60px 1fr;
-    grid-template-areas: 
-        "nav slides";
-    align-items:start;
-    .slides{
-        grid-area: slides;
-        max-width: 620px;
-        width: 100%;
-        position: relative;
-        .defaultSet{
-            width: 100%;
-            opacity: 0;
-        }
-        .slide{
-            position: absolute;
-            width: 100%;
-            visibility: hidden;
-            transition: all 0.2s;
-            left: 0;
-            &.active{
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-    }
-    .gallery-navigation{
-        grid-area:nav;
-        width: 60px;
+    grid-template-areas: "nav gallery";
+    column-gap: 40px;
+    position: sticky;
+    // position: relative;
+
+    top: 120px;
+    .nav{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         gap: 15px;
-        .nav__item {
+        grid-area: nav;
+        &__item{
             position: relative;
-            width: 60px;
-            cursor: pointer;
             img{
-                width: 100%;
+                width:60px;
+                height: 60px;
             }
             &::before{
-                content: '';
-                width: 100%;
-                height: 2px;
-                background: $clr-primary;
+                content:'';
                 position: absolute;
-                bottom: -5px;
-                transition: all 0.2s;
-                opacity: 0;
+                width: 0;
+                height: 2px;
+                background: $clr-accent;
+                bottom: 0;
+                transition: width 0.2s ease-in-out;
             }
-            &.active, &:hover{
-                &::before{
-                    opacity: 1;
-                }
-            }
-        }
-        
-    }
-}
-@media screen and (max-width:768px) {
-    .gallery{
-       grid-template-columns: 1fr;
-       grid-template-rows:1fr 60px;
-       grid-template-areas:
-       "slides"
-       "nav";
-       .gallery-navigation{
-            width: 100%;
-            height: 60px;
-            flex-direction:row;
-       }
-    }
-}
-@media screen and (max-width:450px) {
-    .gallery{
-        grid-template-rows:1fr 30px;
-        .gallery-navigation{
-            height: 30px;
-            gap: 10px;
-
-            .nav__item{
-                width: 15px;
-                height: 15px;
-                background: #748cab;
-                border-radius: 50%;
-                img{
-                    display: none;
-                }
+            &.active,&:hover{
                 &::before{
                     width: 100%;
-                    height: 15px;
-                    background: $clr-accent;
-                    position: absolute;
-                    top:0;
-                    transition: all 0.2s;
-                    opacity: 0; 
-                    border-radius: 50%;
                 }
-               
+            }
+        }
+    }
+    .gallery{
+        max-height: 500px;
+        max-width: 500px;
+        grid-area: gallery;
+        &__item{
+            height: 100%;
+           width:100%;
+            object-fit: contain;
+        }
+    }
+}
+@media screen and (max-width:925px) {
+    .gallery-wrapper{
+        grid-template-columns:1fr;
+        grid-template-areas: "gallery";
+        justify-items: center;
+        .nav{
+            display: none;
+        }
+        .arrow{
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba($clr-accent,0.5);
+            border-radius:50%;
+           font-size: 20px;
+           
+            &.left{
+                left: 0;
+            }
+            &.right{
+                right:0;
+                
             }
         }
     }
 }
+
+// @media screen and (max-width:768px) {
+//     .gallery{
+//        grid-template-columns: 1fr;
+//        grid-template-rows:1fr 60px;
+//        grid-template-areas:
+//        "slides"
+//        "nav";
+//        .gallery-navigation{
+//             width: 100%;
+//             height: 60px;
+//             flex-direction:row;
+//        }
+//     }
+// }
+// @media screen and (max-width:450px) {
+//     .gallery{
+//         grid-template-rows:1fr 30px;
+//         .gallery-navigation{
+//             height: 30px;
+//             gap: 10px;
+
+//             .nav__item{
+//                 width: 15px;
+//                 height: 15px;
+//                 background: #748cab;
+//                 border-radius: 50%;
+//                 img{
+//                     display: none;
+//                 }
+//                 &::before{
+//                     width: 100%;
+//                     height: 15px;
+//                     background: $clr-accent;
+//                     position: absolute;
+//                     top:0;
+//                     transition: all 0.2s;
+//                     opacity: 0; 
+//                     border-radius: 50%;
+//                 }
+               
+//             }
+//         }
+//     }
+// }

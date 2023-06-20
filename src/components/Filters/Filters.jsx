@@ -72,7 +72,7 @@ const Filters = ({setData}) => {
     return <div className={styles.filters}>
         <div className={styles["filters-nav"]}>
             <Button 
-                type='secondary' 
+                mode='secondary' 
                 width="100px" 
                 height="30px" 
                 onClick={()=>{

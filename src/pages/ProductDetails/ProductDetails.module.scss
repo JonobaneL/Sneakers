@@ -1,3 +1,4 @@
+@use '../../styles/mixins';
 @import '../../styles/variables';
 
 .product-details{
@@ -5,29 +6,29 @@
     .back{
         width: 100%;
         background: $clr-accent;
-        padding: 0 80px;
+        @include mixins.wrapper-desktop;
+        padding-top: 0;
+        padding-bottom: 0;
         .content{
-            max-width:1200px;
-            margin:0 auto;
+            @include mixins.content;
             height: 50px;
             display: flex;
             align-items: center;
             .back__icon{
-                width: 30px;
+                width: 24px;
             }
             .back__title{
                 color: #fff;
-                font-size: 15px;
+                font-size: $fs-300;
                 cursor: pointer;
             }
         }
     }
     .details{
         width: 100%;
-        padding: 0 80px;
+        @include mixins.wrapper-desktop;
         .content{
-            max-width:1200px;
-            margin:40px auto;
+            @include mixins.content;
             display:grid;
             grid-template-columns: 1fr 380px; 
             grid-template-rows: auto auto auto;
@@ -36,10 +37,10 @@
             "description description"
             "commonInfo commonInfo"; 
             .product-info{
-                color: #1d2d44;
+                color: $clr-text;
                 display: grid;
                 grid-template-rows: auto 20px auto 5px auto 20px auto 20px auto 30px 45px 1fr; 
-                gap: 0px 0px; 
+                // gap: 0px 0px; 
                 grid-template-areas: 
                 "name"
                 "."
@@ -55,8 +56,8 @@
                 "."
                 ; 
                 .blockTitle{
-                    font-size: 16px;
-                    font-weight: 600;
+                    font-size: $fs-400;
+                    font-weight: 500;
                     line-height: 35px;
                 }
                 .product-name{
@@ -64,12 +65,13 @@
                     line-height: 38px;
                     font-weight: 800;
                     grid-area: name;
+                    color: #2f2f2f;
                 }
                 .product-price{
                     display: flex;
                     gap: 10px;
                     align-items: end;
-                    font-size: 22px;
+                    font-size: 20px;
                     grid-area: price;
 
                     .price__discount,.price{
@@ -106,7 +108,7 @@
             .product-description{
                 grid-area: description;
                 color: #1d2d44;
-                border-top:1px solid #3E5C76;
+                border-top:1px solid $clr-accent;
                 .title{
                     font-size: 28px;
                     font-weight: 600;
@@ -166,14 +168,11 @@
             .content{
                 column-gap: 40px;
                 grid-template-columns: 1fr 300px; 
-                .product-description{
-                   margin-top: 20px;
-                }
             }
         }
     }
 }
-@media screen and (max-width:1024px) {
+@media screen and (max-width:925px) {
     .product-details{
         .details{
             .content{
@@ -185,9 +184,7 @@
                 "description"
                 "."
                 "commonInfo"; 
-                .image{
-                    justify-self: center;
-                }
+                
             }
         }
     }

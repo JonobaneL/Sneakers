@@ -1,4 +1,5 @@
 @use '../styles/mixins';
+@import '../styles/variables';
 .about{
     // width: 100%;
     // padding: 20px 80px;
@@ -6,7 +7,7 @@
     .content{
         @include mixins.content;
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         .tabs{
             width: 100%;
             display: flex;
@@ -82,5 +83,71 @@
 @media screen and (max-width:425px) {
     .about{
         @include mixins.wrapper-mobile
+    }
+}
+.test{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    // justify-content: center;
+    justify-content: space-betwee;
+    .text{
+        flex: 1 0 auto;
+        width: 380px;
+        font-size: 16px;
+        line-height: 30px;
+    }
+}
+@media screen and (max-width:1023px) {
+    .test{
+        flex-wrap: wrap;
+    }
+    .gallery-wrapper{
+        position: static !important;
+    }
+}
+.gallery-wrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    column-gap: 40px;
+    position: sticky;
+    // left: 0;
+    top: 120px;
+    // grid-template-rows: 1fr;
+    .nav{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        &__item{
+            position: relative;
+            img{
+                width:60px;
+                height: 60px;
+            }
+            &::before{
+                content:'';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                background: $clr-accent;
+                bottom: 0;
+                transition: width 0.2s ease-in-out;
+            }
+            &.active,&:hover{
+                &::before{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .gallery{
+        max-height: 500px;
+        max-width: 500px;
+        &__item{
+            height: 100%;
+           width:100%;
+            object-fit: contain;
+        }
     }
 }
