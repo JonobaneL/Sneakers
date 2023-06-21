@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styles from './Select.module.scss'
-import arrow from '../../../images/down-arrow.png'
+import arrow from '../../../images/down-arrow.svg'
 const Select = ({placeholder, params,getData,type='underLineType',height='40px',disabled=[]}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectValue, setSelectValue] = useState({})
@@ -18,7 +18,7 @@ const Select = ({placeholder, params,getData,type='underLineType',height='40px',
             <div className={`${styles.selectField} ${styles[type]}`} style={{height:height}} onClick={()=>{setIsOpen(!isOpen)}}  >
                 <p>{selectValue.value||<span className={styles.placeholder}>{placeholder}</span>}</p>
                 <button className={`${styles.arrow} ${isOpen?styles.active:''}`}>
-                    <img src={arrow} alt="" />
+                    <img src={arrow} alt="arrow" />
                 </button>
             </div>
             <div className={`${styles.options} ${isOpen?styles.active:''}`} >

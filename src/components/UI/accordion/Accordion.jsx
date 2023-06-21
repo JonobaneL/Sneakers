@@ -3,7 +3,7 @@ import AccordionButton from '../accordion-button/AccordionButton';
 import styles from './Accordion.module.scss'
 import { motion,AnimatePresence } from 'framer-motion';
 
-const Accrodion = ({header,children,fixed=false,autoHeight=false,theme='dark'}) => {
+const Accrodion = ({header,children,fixed=false,autoHeight=false}) => {
     const [isOpen,setIsOpen] = useState(fixed||false)
     const openAccordion = ()=>{
         if(!fixed){
@@ -34,7 +34,7 @@ const Accrodion = ({header,children,fixed=false,autoHeight=false,theme='dark'}) 
                         {header}
                     </div>
                     {
-                        !fixed && <AccordionButton theme={theme} handler={openAccordion} triger={isOpen}/>
+                        !fixed && <AccordionButton handler={openAccordion} triger={isOpen}/>
                     }
                 </div>
                 

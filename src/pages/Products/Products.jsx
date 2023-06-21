@@ -11,7 +11,7 @@ const Products = () => {
     const [data,setData] = useState([]);
     const limit = 12;
     const [currentPage, setCurrentPage] = useState(1);
-    const shownData = useToShow(data,limit,currentPage); 
+    const shownData = useToShow(data,limit,currentPage);
     const totalCountPages = getTotalPagesCount(data.length,limit);
     const titleEvent = ()=>{
         return `${!male?'':male!=='kids'?`${male}'s`:`${male}'`} ${type}`

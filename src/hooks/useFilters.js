@@ -143,6 +143,5 @@ export const useToShow = (data,limit,current=1)=>{
     const response = useMemo(()=>{
         return data.filter((_,index)=>index>=((current*limit)-limit)&&index<(current*limit));
     },[data,current]) 
-    
     return response;
 }

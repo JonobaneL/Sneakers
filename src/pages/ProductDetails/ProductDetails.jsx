@@ -101,12 +101,12 @@ const ProductDetails = () => {
                         {id:'3',name:"Guarantee"}]
                     }>
                         <div className={styles.tab}>
-                            <span className={styles['sub-title']}>Fast delivery 1-3 days</span>
-                            <p>Delivery of orders placed before 15:00 takes 1-3 days (delivery time depends on your location).Shipping orders every day!</p>
-                            <span className={styles['sub-title']}>Free delivery by Novaya Poshta</span>
-                            <p>When ordering from 150$ and full payment by card, product delivery is free.</p>
-                            <span className={styles['sub-title']}>Courier delivery</span>
-                            <p>Courier delivery in your city is possible for a partial prepayment.</p>
+                            <div className={styles['title']}>Fast delivery 1-3 days</div>
+                            <p className={styles['sub-title']}>Delivery of orders placed before 15:00 takes 1-3 days (delivery time depends on your location).Shipping orders every day!</p>
+                            <div className={styles['title']}>Free delivery by Novaya Poshta</div>
+                            <p className={styles['sub-title']}>When ordering from 150$ and full payment by card, product delivery is free.</p>
+                            <div className={styles['title']}>Courier delivery</div>
+                            <p className={styles['sub-title']}>Courier delivery in your city is possible for a partial prepayment.</p>
                         </div>
                         <div className={styles.tab}>
                             <ul className={styles.payments}>

@@ -4,6 +4,9 @@
     column-gap: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
+    &.empty{
+        background: red;
+    }
     .warning{
         width: 100%;
         text-align: center;

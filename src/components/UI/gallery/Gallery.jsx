@@ -40,21 +40,25 @@ const Gallery = ({images}) => {
                 <img src={arrowIcon} alt="left-arrow" className={styles.icon} /> 
             </button>
             <div className={styles.gallery}>
-                <AnimatePresence initial={false} mode='wait'>
-                    <motion.img 
-                        key={pageIndex}
-                        initial='hidden'
-                        animate='visible'
-                        exit='hidden'
-                        variants={galleryVariant}
-                        transition={{
-                            opacity: { duration: 0.15 }
+                 <motion.div className={styles.gallery__line} animate={{
+                            x: `-${pageIndex * 100}%`,
                         }}
-                        className={styles.gallery__item}
-                        src={images[pageIndex]} 
-                        alt={`img-${pageIndex}`} 
-                        />
-                </AnimatePresence>
+                        transition={{
+                            x:{duration:0}
+                        }}
+                        >
+                            {
+                                images.map((item,index)=>{
+                                    return <img 
+                                        className={styles.gallery__item} 
+                                        src={item} 
+                                        alt={`nav-item-${index}`}
+                                        key={index}
+                                        loading="lazy"
+                                        />
+                                })
+                            }
+                        </motion.div>
             </div>
             <button 
                 onClick={()=>paginate(1)}

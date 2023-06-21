@@ -111,10 +111,6 @@
     display: grid;
     grid-template-columns: 60px 1fr;
     column-gap: 40px;
-    position: sticky;
-    // left: 0;
-    top: 120px;
-    // grid-template-rows: 1fr;
     .nav{
         display: flex;
         flex-direction: column;
@@ -144,10 +140,18 @@
     .gallery{
         max-height: 500px;
         max-width: 500px;
-        &__item{
-            height: 100%;
-           width:100%;
-            object-fit: contain;
+        overflow: hidden;
+        // bloc{
+        //     height: 100%;
+        //    width:100%;
+        //     object-fit: contain;
+        // }
+        .block1{
+            display: flex;
+            align-items: center;
+            .b_img{
+                width: 100%;
+            }
         }
     }
 }

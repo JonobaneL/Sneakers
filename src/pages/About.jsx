@@ -26,7 +26,7 @@ const About = () => {
         }
     }
     const [isOpen,setIsOpen] = useState(false)
-    const [selected,setSelected] = useState(0)
+    const [selected,setSelected] = useState(2)
     return <div className={styles.about}>
         <div className={styles.content} >
           {/* <div  className={styles.tabs}>
@@ -67,7 +67,6 @@ const About = () => {
                     }
                 </div>
           </div> */}
-            {/* <Gallery images={shoes[0].colors[0].images}/> */}
             <div className={styles.test}>
                 <div className={styles['gallery-wrapper']}>
                     <ul className={styles.nav}>
@@ -84,8 +83,26 @@ const About = () => {
                         }
                     </ul>
                     <div className={styles.gallery}>
-                        <AnimatePresence initial={false} mode='wait'>
-                            <motion.img 
+                        <motion.div className={styles.block1} animate={{
+                            x: `-${selected * 100}%`,
+                        }}
+                        transition={{
+                            x:{duration:0}
+                        }}
+                        >
+                            {
+                                shoes[0].colors[0].images.map((item,index)=>{
+                                    return <img 
+                                        className={styles.b_img} 
+                                        src={item} 
+                                        alt={`nav-item-${index}`}
+                                        key={index}
+                                        />
+                                })
+                            }
+                        </motion.div>
+                        {/* <AnimatePresence initial={false} mode='wait'> */}
+                            {/* <motion.img 
                                 key={selected}
                                 initial='hidden'
                                 animate='visible'
@@ -97,8 +114,8 @@ const About = () => {
                                 className={styles.gallery__item}
                                 src={shoes[0].colors[0].images[selected]} 
                                 alt={`img-${selected}`} 
-                                />
-                        </AnimatePresence>
+                                /> */}
+                        {/* </AnimatePresence> */}
                     </div>
                 </div>
                 <div className={styles.text}>

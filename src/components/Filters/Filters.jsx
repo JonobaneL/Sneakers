@@ -155,7 +155,13 @@ const Filters = ({setData}) => {
                             <CheckBoxList data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
                         </Accordion>
                         
-                        <Accordion header={<div className={styles.accordion}>Color</div>}>
+                        <Accordion 
+                            header={
+                                <div className={styles.accordion}>
+                                    Color
+                                    <ClearButton triger={colorFilters.length} handler={()=>setColorFilters([])}/>
+                                </div>}
+                        >
                             <CheckBoxList data={shoesColor} handler={(value)=>setColorFilters(value)} checkedItems={colorFilters} colored={true} />
                         </Accordion>
                         <Accordion 
@@ -166,7 +172,6 @@ const Filters = ({setData}) => {
                                     <ClearButton triger={sizeFilters.length} handler={()=>setSizeFilters([])}/>
                                 </div>
                             }
-                            data={sizeFilters} 
                             autoHeight={true}
                             handler={()=>{
                                 setSizeFilters([])
