@@ -18,7 +18,7 @@ export const useSearchParamsState = ({name,serialize=String,deserialize=(v)=>v})
     const location = useLocation();
     const navigate = useNavigate();
     const [value, setValue] = useState([])
-    useLayoutEffect(()=>{ //як варіань але треба тестити
+    useLayoutEffect(()=>{ //як варіант але треба тестити
       setValue(()=>{
         const tmpValue = deserialize(getSearchParam(location.search,name));
         return tmpValue;

@@ -5,7 +5,7 @@ const ProductsList = ({data}) => {
     const list = [];
 
     return (
-        <div className={`${styles["shoes-list"]} ${data.length==0?'empty':''}`}>
+        <div className={`${styles["products-list"]} ${data.length==0?'empty':''}`}>
             {data.length>0?
             data.map(item=>
                 <ProductsItem key={item.id} item={item}/>

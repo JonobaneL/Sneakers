@@ -9,7 +9,7 @@
         height: 40px;
         display: flex;
         align-items: center;
-        font-size: $fs-400;
+        font-size: min($fs-400,15px);
         font-weight: 500;
         justify-content: center;
         border: 1px solid rgba($clr-accent,0.2);

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import styles from './ShoppingCart.module.scss'
-import { useRef } from 'react';
 import { useShoppingCart } from '../../context/CartContext';
 import CartItem from '../../components/CartItem/CartItem';
 import { getCouponDiscount } from '../../utils/getCouponDiscount';
@@ -8,6 +7,7 @@ import Toast from '../../components/ToastV2/Toast';
 import { Link } from 'react-router-dom';
 import TotalSection from '../../components/TotalSection/TotalSection';
 import CInput from '../../components/UI/input/CInput';
+import Button from '../../components/UI/button/Button';
 const ShoppingCart = () => {
     const {shoppingCart,setCartDiscount,cartDiscount} = useShoppingCart()
     const [CartToast,setCartToast]=useState({
@@ -49,6 +49,7 @@ const ShoppingCart = () => {
                         <div className={styles.products}>
                             <div className={styles['products-title']}>
                                 <p>Added Items</p>
+                                <div></div>
                                 <p className={styles['title-size']}>Size</p>
                                 <p className={styles['title-color']}>Color</p>
                                 <p className={styles['title-quantity']}>Quantity</p>
@@ -63,14 +64,34 @@ const ShoppingCart = () => {
                         <div className={styles.total}>
                             <h4 className={styles['coupon-title']}>Have a coupon?</h4>
                             <div className={styles.coupon}>
-                                <CInput id="coupon-fullBorder-40" placeholder="Coupon code" ref={couponRef} />
-                                <button onClick={couponHandler} className={styles['apply-coupon']}>Apply</button>
+                                <CInput 
+                                    id="coupon"
+                                    placeholder="Coupon code" 
+                                    ref={couponRef}
+                                />
+                                <div className={styles['apply-coupon']}>
+                                    <Button
+                                        mode='primary'
+                                        height='40px'
+                                        width='75px'
+                                        onClick={couponHandler}
+                                    >Apply</Button>
+                                </div>
+                                
                             </div>
                                 <TotalSection shippingSection={false} />
                                 {
                                    cartDiscount? <p onClick={removeCoupon} className={styles['coupon-remove']}>Remove coupon</p>:null
                                 }
-                                <Link to='/checkout'><button className={styles['checkout-btn']}>Proceed to Checkout</button></Link>
+                                <Link to='/checkout'>
+                                    {/* <button className={styles['checkout-btn']}>Proceed to Checkout</button> */}
+                                    <Button
+                                        mode='primary'
+                                        height='40px'
+                                        width='100%'
+                                        onClick={couponHandler}
+                                    >Proceed to Checkout</Button>
+                                </Link>
                         </div>
                     </>
                     :<h2 className={styles["empty-cart"]}>Your cart is empty</h2>

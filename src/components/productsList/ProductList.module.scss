@@ -1,4 +1,4 @@
-.shoes-list{
+.products-list{
     width: 100%;
     row-gap: 30px;
     column-gap: 20px;
@@ -15,19 +15,19 @@
     }
 }
 @media screen and (min-width:1360px) {
-    .shoes-list{
+    .products-list{
         column-gap: 30px;
         row-gap: 40px;
     }
 }
 @media screen and (min-width:1023px) and (max-width:1199px) {
-    .shoes-list{
+    .products-list{
         column-gap: 30px;
         row-gap: 40px;
     }
 }
 @media screen and (max-width:768px) {
-    .shoes-list{
+    .products-list{
         grid-template-columns: repeat(auto-fill,minmax(170px,1fr));
         column-gap: 10px;
     }

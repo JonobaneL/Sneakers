@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .burger{display: none;}
 @media only screen and (width < 1000px) {
     .burger{
@@ -8,7 +10,7 @@
         span{
             width: 100%;
             height: 2px;
-            background: #1D2D44;
+            background: $clr-primary;
             position: absolute;
             top: 50%;
             transform: translateY(-45%);
@@ -18,7 +20,7 @@
             content: '';
             width: 100%;
             height: 2px;
-            background: #1D2D44;
+            background: $clr-primary;
             position: absolute;
             transition: all 0.3s ease 0s;
         }
