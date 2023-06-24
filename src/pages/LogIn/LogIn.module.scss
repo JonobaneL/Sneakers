@@ -6,17 +6,12 @@
     .content{
         max-width:450px;
         margin-inline:auto;
-        .form{
-            display: flex;
-            flex-direction:column;
-            gap: 20px;
-            .title{
-                text-align: center;
-                font-family:$ff-accent;
-                font-size: $fs-700;
-                font-weight: 500;
-                color: $clr-primary;
-            }
+        .title{
+            text-align: center;
+            font-family:$ff-accent;
+            font-size: $fs-700;
+            font-weight: 500;
+            color: $clr-primary;
         }
         .message{
             margin-top:20px;

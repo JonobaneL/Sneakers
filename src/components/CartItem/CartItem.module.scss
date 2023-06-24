@@ -1,3 +1,4 @@
+@import '../../styles/variables';
 $standart-btn:30px;
 $min-btn:25px;
 $standart-image:120px;
@@ -10,8 +11,8 @@ $min-image:100px;
     grid-template-areas: "image name size color quantity total remove";
     grid-template-rows: 120px;
     align-items: center;
-    border-bottom: 1px solid #3e5c7866;
-    color: #1d2d44;
+    border-bottom: 1px solid rgba($color: $clr-primary, $alpha: 0.5);
+    color: $clr-text;
     .product-image{
         width: 100%;
         grid-area: image;
@@ -20,9 +21,10 @@ $min-image:100px;
     .product-name{
         grid-area: name;
         font-weight: 400;
-        font-size: 1.1rem;
+        font-size: max(15px,$fs-400);
         line-height: 26px;
         margin:10px 20px 10px 15px;
+        text-wrap:balance;
     }
     .product-size{
         grid-area: size;
@@ -38,19 +40,14 @@ $min-image:100px;
         display: flex;
         align-items: center;
         .btn{
-            width: $standart-btn;
-            height: $standart-btn;
-            font-size: 20px;
+            font-size: $fs-500;
             font-weight: 600;
-            color: #1d2d44;
-            border: 1px solid #1d2d44;
-            background: none;
-            cursor: pointer;
         }
         .quantity{
-            width: 50px;
+            width: 45px;
+            font-size: min($fs-400,15px);
             text-align: center;
-            line-height: $standart-btn;
+            line-height: 30px;
         }
     }
     .product-total{
@@ -59,11 +56,11 @@ $min-image:100px;
     }
     .parameter{
         display: none;
-        font-size: 15px;
+        font-size:min($fs-400,15px);
         margin-right: 5px;
     }
     .details{
-        font-size: 15px;
+        font-size: min($fs-400,15px)
     }
     .remove-product{
         width: $min-btn;
@@ -76,16 +73,7 @@ $min-image:100px;
 @media screen and (max-width:1180px) {
     .cart-item{
         grid-template-columns: $min-image minmax(200px,1.8fr) 0.8fr 1fr 1fr 1fr 25px;
-
-        .details{
-            font-size: 14px;
-        }
         .product-quantity{
-            .btn{
-                width: $min-btn;
-                height: $min-btn;
-                font-size: 18px;
-            }
             .quantity{
                 line-height: $min-btn;
             }
@@ -102,7 +90,6 @@ $min-image:100px;
             "image size color quantity quantity";
         .product-name{
             margin-left: 10px;
-            font-size: 1rem;
         }
         .product-total{
             padding-left: 10px;
@@ -118,8 +105,7 @@ $min-image:100px;
             padding-left: 10px;
         }
         .product-color{
-            padding-right: 10px;
-            padding-left: 10px;
+            padding-inline: 10px;
         }
     }
 }
@@ -135,12 +121,9 @@ $min-image:100px;
             "image quantity ."
             ". . .";
     }
-   
+    
     .product-quantity{
         padding-left: 10px;
-    }
-    .product-size,.product-color,.product-quantity{
-        align-self: self-start;
     }
 }
 @media screen and (max-width:424px) {
@@ -152,15 +135,8 @@ $min-image:100px;
         "color color color"
         "size quantity ."
         ". . .";
+        .product-size{
+            align-self: center;
     }
-    .details{
-        font-size: 13px !important;
-    }
-   
-    .product-total, .parameter{
-        font-size: 14px !important;
-    }
-    .product-name{
-        font-size: 0.9rem !important;
     }
 }

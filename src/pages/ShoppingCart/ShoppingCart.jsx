@@ -24,6 +24,7 @@ const ShoppingCart = () => {
             setToastOpen(true)
             return
         }
+        
         if(discount_res==null){
             setCartToast({type:'error',content:"Coupon not found"})
             couponRef.current.value=''
@@ -48,7 +49,7 @@ const ShoppingCart = () => {
                     ?<>
                         <div className={styles.products}>
                             <div className={styles['products-title']}>
-                                <p>Added Items</p>
+                                <span>Added Items</span>
                                 <div></div>
                                 <p className={styles['title-size']}>Size</p>
                                 <p className={styles['title-color']}>Color</p>
@@ -83,15 +84,17 @@ const ShoppingCart = () => {
                                 {
                                    cartDiscount? <p onClick={removeCoupon} className={styles['coupon-remove']}>Remove coupon</p>:null
                                 }
-                                <Link to='/checkout'>
-                                    {/* <button className={styles['checkout-btn']}>Proceed to Checkout</button> */}
-                                    <Button
-                                        mode='primary'
-                                        height='40px'
-                                        width='100%'
-                                        onClick={couponHandler}
-                                    >Proceed to Checkout</Button>
-                                </Link>
+                                <div className={styles.checkout}>
+                                    <Link to='/checkout'>
+                                        <Button
+                                            mode='primary'
+                                            height='40px'
+                                            width='100%'
+                                            onClick={couponHandler}
+                                        >Proceed to Checkout</Button>
+                                    </Link>
+                                </div>
+                                
                         </div>
                     </>
                     :<h2 className={styles["empty-cart"]}>Your cart is empty</h2>

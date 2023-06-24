@@ -1,0 +1,16 @@
+.customer{
+    .new-customer,.regular-customer{
+        padding: 10px 0 20px 0;
+        display: flex;
+        flex-direction:column;
+        gap: 20px;
+        .customer-info,.customer-contacts{
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+    }
+    }
+    .log-in-customer{
+        width: 400px;
+    }
+}

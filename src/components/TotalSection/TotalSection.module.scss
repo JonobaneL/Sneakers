@@ -1,3 +1,4 @@
+@import '../../styles/variables';
 .total{
     width: 100%;
     display: flex;
@@ -6,19 +7,19 @@
     padding: 15px 0;
     border-bottom: 1px solid #b0b0b0;
     border-top: 1px solid #b0b0b0;
-    font-size: 15px;
-    color: #474747;
+    font-size: min($fs-400,15px);
+    color: $clr-text;
     &__item{
         display: flex;
         justify-content: space-between;
         .price{
-            color: #2f2f2f;
+            color: $clr-text;
             font-weight: 500;
         }
         .shipping__details{
             width: 130px;
             text-align: right;
-            color: #2f2f2f;
+            color: $clr-text;
             font-weight: 500;
         }
     }

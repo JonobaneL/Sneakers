@@ -4,7 +4,7 @@
     width: 100%;
     height: 30px;
     padding: 0 10px;
-    font-size: $fs-400;
+    font-size: min($fs-400,15px);
     color: $clr-primary;
     background: transparent;
     &.error{
