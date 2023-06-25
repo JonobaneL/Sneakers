@@ -1,5 +1,5 @@
 .customer{
-    .new-customer,.regular-customer{
+    .customer-form{
         padding: 10px 0 20px 0;
         display: flex;
         flex-direction:column;
@@ -8,9 +8,16 @@
             display: grid;
             gap: 20px;
             grid-template-columns: 1fr 1fr;
+        }
     }
+    .loader{
+        width: 100%;
+        padding-top: 30px;
+        display: flex;
+        justify-content: center;
     }
     .log-in-customer{
         width: 400px;
+        padding-top: 10px;
     }
 }

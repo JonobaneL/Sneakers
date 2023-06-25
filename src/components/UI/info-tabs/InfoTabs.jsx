@@ -1,17 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 import styles from './InfoTabs.module.scss'
-const InfoTabs = ({titles,children}) => {
-    const [currentTab,setCurretTab] = useState(0)
+const InfoTabs = ({titles,children,initial=0,disabled=[]}) => {
+    const [currentTab,setCurretTab] = useState(initial)
     return (
         <div className={styles["info-tabs"]}>
             <div className={styles["tabs-nav"]}>
-                {titles.map((item,index)=>
-                    <div 
-                        key={item.id} 
-                        className={`${styles["nav-item"]} ${index==currentTab?styles.active:''}`}
-                        onClick={()=>setCurretTab(index)}
-                        >{item.name}</div>
+                {titles.map((item,index)=>{
+                    const validItem = !disabled.includes(index);
+                    return <div 
+                            key={index} 
+                            className={`${styles["nav-item"]} ${index==currentTab?styles.active:''} ${!validItem?styles.disabled:''}`}
+                            onClick={()=>{
+                                if(validItem) setCurretTab(index)
+                            }}
+                        >{item}</div>}
                     )}
             </div>
             <div className={styles["tabs-content"]}>

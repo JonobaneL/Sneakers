@@ -33,6 +33,14 @@
                     display: block;
                 }
             }
+            &.disabled{
+                &:hover{
+                    color: rgba($color: $clr-text, $alpha: 0.5);
+                    &::before{
+                        display: none;
+                    }
+                }
+            }
         }
     }
     .tabs-content{

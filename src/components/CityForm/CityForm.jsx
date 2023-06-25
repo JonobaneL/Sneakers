@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react';
 import styles from './CityForm.module.scss'
-import deliveryTruck from '../../images/delivery-truck.svg'
 import { popularCities } from '../../data/shipping-data';
 import CInput from '../UI/input/CInput';
 import Autocomplete from '../UI/autocomplete/Autocomplete';
-import { findLocation } from '../../utils/searchLocation';
+import Button from '../UI/button/Button';
 
-const CityForm = ({currentCity,setCity,closeHandler}) => {
+const CityForm = ({currentCity,setCity,applyCallback}) => {
     const [choosedCity,setChoosedCity] = useState(currentCity)
     const [query,setQuery] = useState(currentCity.name || '');
-    console.log(query)
     const [isValid,setIsValid] = useState(true)
-    const locationResult = findLocation(query);
     const popularLocatinHandler = (item)=>{
         if(item.id!==choosedCity.id) {
             setChoosedCity(item);
@@ -20,7 +17,7 @@ const CityForm = ({currentCity,setCity,closeHandler}) => {
     }
     const applyButtonHandler = ()=>{
         setCity(choosedCity);
-        closeHandler();
+        applyCallback();
     }
     useEffect(()=>{
        if(choosedCity.id !== currentCity.id) setIsValid(false)
@@ -28,7 +25,6 @@ const CityForm = ({currentCity,setCity,closeHandler}) => {
     return (
         <div className={styles.location}>
             <div className={styles.advertisement}>
-                <img src={deliveryTruck} alt="delivery-truck" />
                 We deliver orders all over Ukraine!
             </div>
             <div className={styles["popular-locations"]}>
@@ -44,22 +40,23 @@ const CityForm = ({currentCity,setCity,closeHandler}) => {
             </div>
             <div className={styles['location-search']}>
                 <p className={styles['location-search__title']}>Specify the settlement of Ukraine</p>
-                <Autocomplete data={locationResult} setChoosed={setChoosedCity} query={query} setQuery={setQuery} >
+                <Autocomplete query={query} setQuery={setQuery} >
                     <CInput  
                         value={query} 
                         onChange={e=>setQuery(e.target.value)} 
                         id="location" 
                         mode='fullBorder'
-                        height={50}
+                        height={45}
                         placeholder="Choose your city"
                         />
                 </Autocomplete>
             </div>
             <div className={styles['apply-location']}>
-                <button className={styles.apply__button}
-                 disabled={isValid}
-                 onClick={applyButtonHandler}
-                >Apply</button>
+                <Button 
+                    mode='primary'
+                    disabled={isValid}
+                    onClick={applyButtonHandler}
+                >Apply</Button>
             </div>
             <div className={styles["location-caption"]}>
                 Choosing a city will help provide up-to-date information about available delivery methods in your city! This will help save more free time for you!

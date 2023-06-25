@@ -60,6 +60,7 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
                         duration:0.2
                     }}
                     className={styles['wrapper']}
+                    onClick={closeMenu}
                 >
                     <motion.div 
                         initial='exit'
@@ -70,6 +71,7 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
                             duration:0.3,
                         }}
                         className={styles["burger-menu"]}
+                        onClick={e=>e.stopPropagation()}
                     >
                         
                         <button className={styles['close-btn']} onClick={closeMenu}></button>
@@ -158,6 +160,7 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
                                     duration:0.3,
                                 }}
                                 className={styles["burger-menu"]}
+                                onClick={e=>e.stopPropagation()}
                             >
                                 <div className={styles.all} onClick={()=>setUserMenu(false)}>
                                     <img className={styles.arrow} src={arrow} alt='arrow'/>
@@ -185,6 +188,7 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
                                     duration:0.3,
                                 }}
                                 className={styles["burger-menu"]}
+                                onClick={e=>e.stopPropagation()}
                             >
                                 <div className={styles.all} onClick={()=>setHelpMenu(false)}>
                                     <img className={styles.arrow} src={arrow} alt='arrow'/>

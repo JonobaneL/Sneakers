@@ -1,40 +1,36 @@
 import { useState } from 'react';
 import styles from './Autocomplete.module.scss'
+import { findLocation } from '../../../utils/searchLocation';
 
-const Autocomplete = ({children,data,query,setChoosed=()=>{},setQuery}) => {
-    const [flag,setFlag] = useState(query.length>0?true:false)
-    const fieldHandler = ()=>{
-        setFlag(true)
-    }
+const Autocomplete = ({children,query,setQuery}) => {
+    const [flag,setFlag] = useState(false);
+    const locations = findLocation(query)
+    console.log(children)
     return (
-        <div className={styles['autocomplete']} >
-            <div tabIndex={1} onFocus={fieldHandler}>
-                {children}
-            </div>
-            {
-                (query.length>0 && flag) && (
-                    <ul className={styles['autocomplete-result']}>
-                        {
-                            data.map(item=>
-                                <li
-                                    key={item.id}
-                                    className={styles['autocomplete-result__item']}
-                                    onClick={()=>{
-                                        setChoosed(item)
-                                        setQuery(item.name)
-                                        setFlag(false)
-                                    }} 
-                                >
-                                    {item.name}
-                                </li>
-                            )
-                        
-                        }
-                    </ul>
-                )
-            }
-            
+        <div 
+        className={styles.autocomplete} 
+        onClick={()=>setFlag(true)}
+        onBlur={e=>setFlag(false)}
+        >
+        <div className={styles.autocomplete__field}>
+          {children}
         </div>
+        {
+            (flag && query.length>0) && <ul className={styles['autocomplete-options']}>
+            {
+              locations.map(item=><li 
+                key={item.id}
+                className={styles['options__item']}
+                onMouseDown={e=>{
+                  setQuery(item.name);
+                }}
+              >
+                {item.name}
+              </li>)
+            }
+          </ul>
+        }
+      </div>
     );
 };
 

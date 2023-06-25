@@ -95,11 +95,7 @@ const ProductDetails = () => {
                         </ul>
                     </div>
                     <div className={styles["common-info"]}>
-                    <InfoTabs titles={
-                        [{id:'1',name:"Delivery"},
-                        {id:'2',name:"Payment"},
-                        {id:'3',name:"Guarantee"}]
-                    }>
+                    <InfoTabs titles={['Delivery',"Payment","Guarantee"]}>
                         <div className={styles.tab}>
                             <div className={styles['title']}>Fast delivery 1-3 days</div>
                             <p className={styles['sub-title']}>Delivery of orders placed before 15:00 takes 1-3 days (delivery time depends on your location).Shipping orders every day!</p>

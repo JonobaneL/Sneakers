@@ -8,10 +8,12 @@
         margin-inline:auto;
         .title{
             text-align: center;
-            font-family:$ff-accent;
-            font-size: $fs-700;
-            font-weight: 500;
-            color: $clr-primary;
+            // font-family:$ff-accent;
+            // font-size: $fs-700;
+            // font-weight: 500;
+            // color: $clr-primary;
+            @include mixins.page-title;
+            margin-bottom: 20px;
         }
         .message{
             margin-top:20px;

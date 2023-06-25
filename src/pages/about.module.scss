@@ -7,68 +7,27 @@
     .content{
         @include mixins.content;
         display: flex;
-        // justify-content: center;
-        .tabs{
-            width: 100%;
-            display: flex;
-            overflow: hidden;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-            .nav{
-                .list{
-                    background: #F3F3F3;
-                    flex: 0 1 auto;
-                    min-height: 450px;
-                    width: 180px;
-                    .list__item{
-                        width: 100%;
-                        height: 25%;
-                        padding-left: 14px;
-                        line-height: 60px;
-                        cursor: pointer;
-                        color: #2f2f2f;
-                        &.active{
-                            border-left: 3px solid #3e5c86;
-                            background: #fff;
-                            color: #141414;
-                            box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
-                        }
-                    }
-                }
-                .opener{
-                    display: flex;
-                    align-self: center;
-                    cursor: pointer;
-                    .btn{
-                        width: 30px;
-                        height: 30px;
-                        background: #c9c6cd;
-                        position: relative;
-                        border-top-right-radius: 5px;
-                        border-bottom-right-radius: 5px;
-                    }
-                }
-            }
-           
-            .items{
+        justify-content: center;
+        // height: 300px;
+        .autocomplete{
+            width: 400px;
+            position: relative;
+            height: 100%;
+            border: 1px solid red;
+            height: 45px;
+            &-options{
                 width: 100%;
-                height: 450px;
-                position: relative;
-                .item{
-                    position: absolute;
+                background: #fff;
+                position: absolute;
+                box-shadow:0 4px 8px rgba(221,221,221,.5);
+                .options__item{
                     width: 100%;
-                    // height: 100%;
-                    font-weight: 600;
-                    font-size: 25px;
-                    color: #141414;
-                    visibility: hidden;
-                    opacity: 0;
-                    padding: 15px 10px 15px 40px;
-                    .paragraph{
-                        font-size: 15px;
-                    }
-                    &.active{
-                        visibility: visible;
-                        opacity: 1;
+                    padding: 10px;
+                    font-size: $fs-300;
+                    &:hover{
+                        background: $clr-accent;
+                        color:#fff;
+                        transition: all 0.4s;
                     }
                 }
             }
@@ -83,75 +42,5 @@
 @media screen and (max-width:425px) {
     .about{
         @include mixins.wrapper-mobile
-    }
-}
-.test{
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    // justify-content: center;
-    justify-content: space-betwee;
-    .text{
-        flex: 1 0 auto;
-        width: 380px;
-        font-size: 16px;
-        line-height: 30px;
-    }
-}
-@media screen and (max-width:1023px) {
-    .test{
-        flex-wrap: wrap;
-    }
-    .gallery-wrapper{
-        position: static !important;
-    }
-}
-.gallery-wrapper{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    column-gap: 40px;
-    .nav{
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        &__item{
-            position: relative;
-            img{
-                width:60px;
-                height: 60px;
-            }
-            &::before{
-                content:'';
-                position: absolute;
-                width: 0;
-                height: 2px;
-                background: $clr-accent;
-                bottom: 0;
-                transition: width 0.2s ease-in-out;
-            }
-            &.active,&:hover{
-                &::before{
-                    width: 100%;
-                }
-            }
-        }
-    }
-    .gallery{
-        max-height: 500px;
-        max-width: 500px;
-        overflow: hidden;
-        // bloc{
-        //     height: 100%;
-        //    width:100%;
-        //     object-fit: contain;
-        // }
-        .block1{
-            display: flex;
-            align-items: center;
-            .b_img{
-                width: 100%;
-            }
-        }
     }
 }
