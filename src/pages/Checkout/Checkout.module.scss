@@ -3,7 +3,6 @@
 
 .checkout{
     width: 100%;
-    padding:40px 80px 60px 80px;
     @include mixins.wrapper-desktop;
     .content{
         @include mixins.content;
@@ -31,36 +30,10 @@
             flex-direction: column;
             gap: 20px;
         }
-        .cart{
-            width: 100%;
-            padding: 15px;
-            border:1px solid #ddd;
-            box-shadow:0 4px 8px rgba(221,221,221,.5);
-            border-radius:5px;
+        .cart,.bag{
+            
             .cart__title{
                 padding-bottom: 15px;
-            }
-            .order-total{
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                margin: 10px 0;
-                font-size: 15px;
-                color: #474747;
-                &__item{
-                    display: flex;
-                    justify-content: space-between;
-                    .price{
-                        color: #2f2f2f;
-                        font-weight: 500;
-                    }
-                    .shipping__details{
-                        width: 130px;
-                        text-align: right;
-                        color: #2f2f2f;
-                        font-weight: 500;
-                    }
-                }
             }
             .productList{
                 margin: 15px 0;
@@ -79,6 +52,19 @@
                 }
             }
         }
+        .cart{
+            width: 100%;
+            padding: 15px;
+            border:1px solid #ddd;
+            box-shadow:0 4px 8px rgba(221,221,221,.5);
+            border-radius:5px;
+        }
+        .bag{
+            .productList{
+                padding-bottom: 10px;
+                border-bottom: 1px solid #b0b0b0;
+            }
+        }
         .option-wrapper{
             padding: 10px 0;
         }
@@ -86,7 +72,26 @@
 }
 @media screen and (max-width:1024px) {
     .checkout .content{
-        grid-template-columns:1fr 300px;
+        grid-template-columns:1fr 320px;
         column-gap:40px;
+    }
+}
+@media screen and (max-width:900px) {
+    .checkout .content{
+        grid-template-columns:1fr;
+        column-gap:0;
+       .cart{
+        display: none;
+       }
+    }
+}
+@media screen and (max-width:768px) {
+    .checkout{
+        @include mixins.wrapper-tablet;
+    }
+}
+@media screen and (max-width:425px) {
+    .checkout{
+        @include mixins.wrapper-mobile;
     }
 }

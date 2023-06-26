@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import CheckoutCustomer from '../../components/CheckoutCustomer/CheckoutCustomer';
 import CheckoutShipping from '../../components/CheckoutShipping/CheckoutShipping';
+import Accrodion from '../../components/UI/accordion/Accordion';
 
 const Checkout = () => {
     const [currentCity,setCurrentCity] = useState({})
@@ -26,61 +27,30 @@ const Checkout = () => {
         <div className={styles.content}>
             <h1 className={styles.title}>Checkout</h1>
             <div className={styles["order-form"]}>
+                    <div className={styles.bag}>
+                        <Accrodion
+                            header={<h2 className={styles['section-title']}>In your bag</h2>}
+                            autoHeight={true}
+                        >
+                            <div className={styles.productList}>
+                                <Link to='/shopping-cart'>
+                                    <div className={styles.productList__edit}>
+                                        <img src={editIcon} alt="Edit cart" />
+                                        Edit
+                                    </div>
+                                </Link>
+                                <OrdreSummaryList/>
+                            </div>
+                            <TotalSection borders={false}/>
+
+                        </Accrodion>
+                    </div>
                     <div className={styles.customer}>
                         <h2 className={styles['section-title']}>Customer</h2>
                         <CheckoutCustomer firstName={firstName} lastName={lastName} email={email} phoneNumber={phoneNumber} />
                     </div>
                     <div className={styles.shipping}>
                         <h2 className={styles['section-title']}>Shipping</h2>
-                        {/* <div className={styles.city} onClick={()=>setIsCityModalOpen(true)}>
-                            <img className={styles.city__pointIcon} src={mapPoint} alt="Map point" />
-                            <p className={styles.city__name}>
-                                {
-                                currentCity.id?<>
-                                    Your city is<span className={styles.city__current}>{currentCity.name}</span>
-                                </>:'Choose your city'
-                                }
-                            </p>
-                            <button className={styles.city__arrow}>
-                                <img src={rightArrow} alt="" />
-                            </button>
-                            
-                        </div>
-                        <ModalWindow isOpen={isCityModalOpen} closeHandler={closeModalWindowHandler} title='Choose your city'>
-                            <CityForm currentCity={currentCity} setCity={setCurrentCity} closeHandler={closeModalWindowHandler}/>
-                        </ModalWindow>
-                        <RadioList 
-                            list={[
-                                {id:'opt1',label:'Pickup from Ukrposhta',value:'ukrposhta-prickup',disabled:validRadio},
-                                {id:'opt2',label:'Courier Ukrposhta',value:'ukrposhta-courier',disabled:validRadio},
-                                {id:'opt3',label:'Pickup from Nova Poshta',value:'novaposhta-prickup',disabled:validRadio},
-                                {id:'opt4',label:'Courier Nova Poshta',value:'novaposhta-courier',disabled:validRadio},
-                            ]}
-                            groupName='shipping'
-                        >
-                            <div className={styles['option-wrapper']} >
-                                <Select placeholder='Select a post office'
-                                params={ukrposhtaOffices.map(item=>{return {id:item.id,value:`${item.name}, ${item.street}`}})}
-                                getData={hadler}
-                                type='borderType'
-                                height='50px'
-                                />
-                            </div>
-                            <div className={styles['option-wrapper']} >
-                                <CustomerAddressForm />
-                            </div>
-                            <div className={styles['option-wrapper']} >
-                                <Select placeholder='Select a post office'
-                                params={novaposhtaOffices.map(item=>{return {id:item.id,value:`${item.name}, ${item.street}`}})}
-                                getData={hadler}
-                                type='borderType'
-                                height='50px'
-                                />
-                            </div>
-                            <div className={styles['option-wrapper']}>
-                                <CustomerAddressForm />
-                            </div>
-                        </RadioList> */}
                         <CheckoutShipping />
                     </div>
                     <div className={styles.payment}>

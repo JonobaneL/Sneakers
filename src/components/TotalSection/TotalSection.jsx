@@ -1,10 +1,10 @@
 import { useShoppingCart } from '../../context/CartContext';
 import styles from './TotalSection.module.scss'
 
-const TotalSection = ({shippingSection=true}) => {
+const TotalSection = ({shippingSection=true,borders=true}) => {
     const {cartSubTotal,cartDiscount,cartTotal} = useShoppingCart();
     return (
-        <ul className={styles.total}>
+        <ul className={`${styles.total} ${borders?styles.borders:''}`}>
            <li className={styles.total__item}>
                 Subtotal
                 <p className={styles.price}>${cartSubTotal}</p>

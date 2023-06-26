@@ -19,7 +19,7 @@
         }
         &__name{
             flex:1 1 100%;
-            font-size: $fs-300;
+            font-size: max($fs-300,12.5px);
             font-weight: 500;
             color: rgba($color: $clr-text, $alpha: 0.8);
             .city__current{

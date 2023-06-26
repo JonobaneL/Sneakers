@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .list{
     width: 100%;
     display: flex;
@@ -15,11 +17,13 @@
             
             .list-item__name{
                 font-weight: 500;
+                font-size: 14px;
                 padding-bottom: 3px;
+                text-wrap:balance;
             }
             p{
-                font-size: 15px;
-                color: #474747;
+                font-size: 14px;
+                color: rgba($color: $clr-text, $alpha: 0.7);
                 font-weight: 500;
             }
            

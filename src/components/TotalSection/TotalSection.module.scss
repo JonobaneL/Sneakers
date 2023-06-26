@@ -5,10 +5,12 @@
     flex-direction: column;
     gap: 5px;
     padding: 15px 0;
-    border-bottom: 1px solid #b0b0b0;
-    border-top: 1px solid #b0b0b0;
     font-size: min($fs-400,15px);
     color: $clr-text;
+    &.borders{
+        border-bottom: 1px solid #b0b0b0;
+        border-top: 1px solid #b0b0b0;
+    }
     &__item{
         display: flex;
         justify-content: space-between;

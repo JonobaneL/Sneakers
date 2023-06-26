@@ -21,8 +21,8 @@ const OrdreSummaryList = () => {
 
     return ( 
         <ul className={styles.list}>
-            {shoppingCart.map(item=>
-                <Item key={`${item.id}#${item.colorId}#${item.size}`} {...item} />
+            {shoppingCart.map((item,index)=>
+                <Item key={index} {...item} />
                 )}
         </ul>
      );
