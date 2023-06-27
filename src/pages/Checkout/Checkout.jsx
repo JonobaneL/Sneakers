@@ -18,6 +18,7 @@ const Checkout = () => {
     const hadler = (param)=>{
         console.log(param)
     }
+    const windowWidth = window.screen.availWidth;
     const firstName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const lastName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:'Please enter a valid email address',isEmail:'Please enter a valid email address'})
@@ -27,7 +28,9 @@ const Checkout = () => {
         <div className={styles.content}>
             <h1 className={styles.title}>Checkout</h1>
             <div className={styles["order-form"]}>
-                    <div className={styles.bag}>
+                {
+                    windowWidth<=900
+                    ?<div className={styles.bag}>
                         <Accrodion
                             header={<h2 className={styles['section-title']}>In your bag</h2>}
                             autoHeight={true}
@@ -45,6 +48,9 @@ const Checkout = () => {
 
                         </Accrodion>
                     </div>
+                    :null
+                }
+                    
                     <div className={styles.customer}>
                         <h2 className={styles['section-title']}>Customer</h2>
                         <CheckoutCustomer firstName={firstName} lastName={lastName} email={email} phoneNumber={phoneNumber} />

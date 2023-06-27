@@ -55,3 +55,11 @@
         padding-top: 10px;
     }
 }
+@media screen and (max-width:540px) {
+    .location {
+        .popular-locations{
+            grid-template-columns: repeat(2,auto);
+            grid-template-rows: repeat(3,auto);
+        }
+    }
+}

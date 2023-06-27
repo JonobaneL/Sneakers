@@ -10,16 +10,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    container-type: inline-size;
+
     .modal-window{
         width: min(600px,100%);
-        height: min-content;
+        // height: fit-content;
+        min-height: 360px;
         background: #fff;
         border-radius: 6px;
         position: absolute;
         padding: 15px;
         z-index: 110;
-        overflow: scroll;
-        container-type: inline-size;
+
         .modal-header{
             display: flex;
             align-items: center;
@@ -37,5 +39,14 @@
             }
         }
         
+    }
+}
+@container (width < 600px) {
+    .modal-wrapper{
+        // align-items: flex-end;
+        .modal-window{
+            min-height:80%; 
+            bottom:0;   
+        }
     }
 }
