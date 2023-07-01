@@ -11,7 +11,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import DropDownMenu from '../UI/dropDownMenu/DropDownMenu';
 import { useAuth } from '../../context/AuthContext';
 import { useEffect } from 'react';
-import { getCurrentUser } from '../../fireCloudAPI';
+import { getCurrentUser } from '../../fireAuthAPI';
 
 const Header = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)

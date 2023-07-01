@@ -22,7 +22,6 @@ const CheckoutShipping = () => {
     const hadler = (param)=>{
         console.log(param)
     }
-    console.log(ukrposhtaOffices)
   return (
     <div className={styles.shipping}>
         <div className={styles.city} onClick={()=>setIsCityModalOpen(true)}>

@@ -9,7 +9,7 @@
         justify-content: space-between;
         align-items: center;
         padding:0 5px;
-        font-size: 14px;
+        font-size: max($fs-300,13px);
         color: $clr-text;
         &.underLineType{
             border-bottom: 1px solid $clr-primary;
@@ -50,24 +50,24 @@
         overflow-x: auto;
         z-index: 5;
         &::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
             margin-right: 5px;
         }
         &::-webkit-scrollbar-track {
             background: #fff;
         }
         &::-webkit-scrollbar-thumb {
-            background: $clr-accent;
-            border-radius: 5px;
+            background: #b0b0b0;
+            border-radius: 4px;
 
         }
         &::-webkit-scrollbar-thumb:hover {
-            background: $clr-primary;
+            background: $clr-accent;
         }
         .options__item{
             padding: 10px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: max($fs-300,13px);
             &:hover{
                 background: rgba(29, 45, 68, 0.035);
             }

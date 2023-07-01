@@ -46,4 +46,3 @@ const Select = ({placeholder, params,getData,type='underLineType',height='40px',
 
 
 export default Select;
-//поправити селект(трохи переробити його) хоча вже ніби не треба нічого фіксити

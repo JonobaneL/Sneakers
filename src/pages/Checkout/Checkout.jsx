@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './Checkout.module.scss'
 import RadioList from '../../components/RadioList/RadioList';
-import { getPostOffice } from '../../utils/getPostOffice';
 import PayPalIcon from '../../images/PayPal-icon.svg'
 import CreditCardFrom from '../../components/CreditCardForm/CreditCardFrom';
 import OrdreSummaryList from '../../components/OrderSummaryList/OrderSummaryList';
@@ -50,7 +49,6 @@ const Checkout = () => {
                     </div>
                     :null
                 }
-                    
                     <div className={styles.customer}>
                         <h2 className={styles['section-title']}>Customer</h2>
                         <CheckoutCustomer firstName={firstName} lastName={lastName} email={email} phoneNumber={phoneNumber} />

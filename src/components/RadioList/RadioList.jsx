@@ -4,7 +4,17 @@ import styles from './RadioList.module.scss'
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 
 const RadioList = ({list,groupName,children}) => {
-    const [choosedItem,setChoosedItem] = useState()
+    const [choosedItem,setChoosedItem] = useState();
+    const optionVariants = {
+        visible:{
+            opacity:1,
+            height:'fit-content'
+        },
+        hidden:{
+            opacity:0,
+            height:0,
+        }
+    }
     return (
         <div className={styles['radio-list']}>
             <LayoutGroup>
@@ -18,22 +28,18 @@ const RadioList = ({list,groupName,children}) => {
                         <RadioButton id={item.id} name={groupName} value={item.value} onChange={e=>setChoosedItem(e.target.value)} disabled={item.disabled} />
                         {item.label}
                     </motion.label>
-                    <AnimatePresence mode='popLayout'>
+                    <AnimatePresence mode='wait' initial={false}>
                         {
                             choosedItem === item.value?<motion.div 
                             layout
-                            initial={{
-                            opacity:0,
-                            }}
-                            animate={{
-                            opacity:1,
-                            }}
-                            exit={{
-                                opacity:0,
-                            }}
+                            initial='hidden'
+                            animate='visible'
+                            exit='hidden'
+                            variants={optionVariants}
                             transition={{
                                 duration:0.3
                             }}
+
                             className={`${styles["option-body"]}`}>
                             {children[index]}
                         </motion.div>

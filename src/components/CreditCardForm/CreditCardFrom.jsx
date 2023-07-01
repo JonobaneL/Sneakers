@@ -9,7 +9,7 @@ const CreditCardFrom = () => {
                     id="cardNumber" 
                     placeholder="Card Number"
                     mode='fullBorder'
-                    height={50}
+                    height={45}
                     />
             </div>
             <div className={styles.date}>
@@ -17,7 +17,7 @@ const CreditCardFrom = () => {
                     id="cardDate" 
                     placeholder="MM/YY"
                     mode='fullBorder'
-                    height={50}
+                    height={45}
                     />
             </div>
             <div className={styles.cvv}>
@@ -25,7 +25,7 @@ const CreditCardFrom = () => {
                     id="cardCVV" 
                     placeholder="CVV"
                     mode='fullBorder'
-                    height={50}
+                    height={45}
                     />
             </div>
         </div>

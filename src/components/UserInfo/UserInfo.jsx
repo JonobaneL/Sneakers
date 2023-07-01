@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './UserInfo.module.scss'
-import { getUser } from '../../fireCloudAPI';
+import { getUser } from '../../fireAuthAPI';
 import { useAuth } from '../../context/AuthContext';
 import editIcon from '../../images/edit-icon.svg'
 

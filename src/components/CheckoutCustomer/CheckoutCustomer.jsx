@@ -5,7 +5,7 @@ import ValidationErrorMessages from '../ValidationErrorMessages/ValidationErrorM
 import InfoTabs from '../UI/info-tabs/InfoTabs';
 import { useAuth } from '../../context/AuthContext';
 import LogInForm from '../LogInForm/LogInForm'
-import { getCurrentUser } from '../../fireCloudAPI';
+import { getCurrentUser } from '../../fireAuthAPI';
 import Loader from '../UI/loader/Loader';
 
 const CheckoutCustomer = memo(({firstName,lastName,email,phoneNumber}) => {

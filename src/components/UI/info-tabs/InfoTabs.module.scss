@@ -15,7 +15,7 @@
             font-weight: 500;
             color: rgba($color: $clr-text, $alpha: 0.5);
             position: relative;
-            line-height: 20px;
+            // line-height: 20px;
             display: flex;
             align-items: center;
             cursor: pointer;
@@ -63,6 +63,9 @@
     .info-tabs{
         .tabs-nav{
             gap: 7px;
+            .nav-item{
+                padding-bottom: 5px;
+            }
         }
     }
 }
