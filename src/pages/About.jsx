@@ -1,56 +1,41 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
-import { useNavigate } from 'react-router-dom'
-import { shoes } from '../data/shoes'
-import { AnimatePresence, useAnimate, stagger,motion } from 'framer-motion'
-import { useLoaderAnimation } from '../hooks/useLoaderAnimation'
-import Loader from '../components/UI/loader/Loader'
-import CInput from '../components/UI/input/CInput'
-import { findLocation } from '../utils/searchLocation'
+import { getCategories } from '../firedbAPI';
+import Loader from '../components/UI/loader/Loader';
+import { useAsync } from '../hooks/useAsync';
 
 
 const About = () => {
-   const [query,setQuery] = useState('')
-   const locations = findLocation(query)
-   const [choosed,setChoosed] = useState({})
-   const [flag,setFlag] = useState(false);
-   const optionHandler = (e,item) =>{
-      setQuery(item.name);
-      setChoosed(item.id)
-   }
+    // const {isLoading,categories} = getCategories();
+    const isLoading =false
+    const arr=[
+      {id:'p1',name:'Sandals',parent_id:null},
+      {id:'p2',name:'Sneakers',parent_id:null},
+      {id:'p3',name:'Boat Shoe',parent_id:null},
+      {id:'p4',name:'Work Boots',parent_id:'p5'},
+      {id:'p5',name:'Boots',parent_id:null},
+      {id:'p6',name:'Hight Tops',parent_id:'p2'},
+      {id:'p7',name:'Athletic',parent_id:'p2'},
+      {id:'p8',name:'Chalse',parent_id:'p5'},
+    ]
+    const cat = useAsync(getCategories);
+    
     return <div className={styles.about}>
         <div className={styles.content} >
-          <div 
-            className={styles.autocomplete} 
-            onClick={()=>setFlag(true)}
-            onBlur={e=>setFlag(false)}
-            >
-            <div className={styles.autocomplete__field}>
-              <CInput 
-                value={query}
-                onChange={e=>setQuery(e.target.value)}
-                mode='fullBorder' 
-                height={45} 
-                placeholder="Choose your city" />
-            </div>
-            {
-                (flag && query.length>0) && <ul className={styles['autocomplete-options']}>
-                {
-                  locations.map(item=><li 
-                    key={item.id}
-                    className={styles['options__item']}
-                    onMouseDown={e=>{
-                      setQuery(item.name);
-                      setChoosed(item.id)
-                    }}
-                  >
-                    {item.name}
-                  </li>)
-                }
-              </ul>
-            }
-          </div>
-            <button onClick={()=>setQuery('Odesa')}>Odesa</button>
+        
+        {
+          isLoading?<Loader />
+          :<ul>
+          {
+            arr.map(item=>{
+              return <li key={item.id}>
+                {item.name}
+              </li>
+            })
+          }
+        </ul>
+        }
+          
         </div>
     </div>;
 }
