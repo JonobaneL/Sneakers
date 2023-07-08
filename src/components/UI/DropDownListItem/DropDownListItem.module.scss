@@ -11,6 +11,9 @@
         line-height: 24px;
         padding: 4px 5px;
         cursor: pointer;
+        p{
+            font-size: 14px;
+        }
     }
     .subList{
         width: 100%;
@@ -24,6 +27,9 @@
             padding: 4px 15px;
             line-height: 24px;
             cursor: pointer;
+            p{
+                font-size: 14px;
+            }
         }
     }
     .subList__item:hover,.mainItem:hover{

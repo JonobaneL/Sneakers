@@ -9,27 +9,18 @@
         display: flex;
         justify-content: center;
         // height: 300px;
-        .autocomplete{
-            width: 400px;
-            position: relative;
-            height: 100%;
-            border: 1px solid red;
-            height: 45px;
-            &-options{
-                width: 100%;
-                background: #fff;
-                position: absolute;
-                box-shadow:0 4px 8px rgba(221,221,221,.5);
-                .options__item{
-                    width: 100%;
-                    padding: 10px;
-                    font-size: $fs-300;
-                    &:hover{
-                        background: $clr-accent;
-                        color:#fff;
-                        transition: all 0.4s;
-                    }
-                }
+        .approved-filters{
+            display: flex;
+            flex-wrap:wrap;
+            width: 180px;
+            gap:5px;
+            &__item{
+                background: $clr-primary;
+                padding: 3px 4px;
+                border-radius: 4px;
+                color:#fff;
+                cursor: pointer;
+                font-weight: 500;
             }
         }
     }

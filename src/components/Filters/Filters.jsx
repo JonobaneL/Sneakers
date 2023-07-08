@@ -5,7 +5,6 @@ import Accordion from "../UI/accordion/Accordion";
 import Button from "../UI/button/Button";
 import CheckBoxList from "../UI/checkBoxList/CheckBoxList";
 import { useNavigate, useParams } from "react-router-dom";
-import { getShoesFiltersData } from "../../utils/getShoesData";
 import { useSearchParamsState } from "../../hooks/useSearchParamsState";
 import { shoesColor } from "../../data/shoesColor";
 import { useFiltered } from "../../hooks/useFilters";
@@ -18,6 +17,7 @@ import ClearButton from "../UI/clear-button/ClearButton";
 import { AnimatePresence,motion } from "framer-motion";
 import closeIcon from '../../images/cancel.svg'
 import { Search } from "../UI/search/Search";
+import { productsFilterParrams } from "../../utils/productsFilters";
 
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
@@ -42,8 +42,7 @@ const Filters = ({setData}) => {
         }
     }
     const {type,male} = useParams()
-    const [productCategories,productBrands,productMaterials,productSortParams,productPriceParams,productPercentParams] = getShoesFiltersData(male)
-
+    const {categories,brands,materials,sort_params,price_params,percent_params} = productsFilterParrams(male)
     const [categoryFilters,setCategoryFilters] = useSearchParamsState({name:"category",serialize:(data)=>data.join(">"), deserialize:(data)=>data?data.split(">"):[]})
     const [brandFilters,setBrandFilters] = useSearchParamsState({name:"brand", serialize:(data)=>data.join("-"), deserialize:FILTERS_DESERIALIZE})
     const [colorFilters,setColorFilters] = useSearchParamsState({name:"color", serialize:(data)=>data.join("-"), deserialize:FILTERS_DESERIALIZE})
@@ -55,7 +54,7 @@ const Filters = ({setData}) => {
     const filteredData = useFiltered(shoes,male,sort,categoryFilters,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
     const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(!windowSize);
     const [searchQuery,setSearchQuery] = useState('');
-    const searchedBrands = useSearch(productBrands,searchQuery,'name')
+    const searchedBrands = useSearch(brands,searchQuery,'name')
     const navigate = useNavigate()
     useEffect(()=>{
         setData(filteredData)
@@ -123,7 +122,7 @@ const Filters = ({setData}) => {
                         
                         <Select 
                             placeholder='Sort by'
-                            params={productSortParams}
+                            params={sort_params}
                             getData={(value)=>setSort(value)}
                             disabled={!sort?[1]:[]}
                         />
@@ -140,7 +139,7 @@ const Filters = ({setData}) => {
                                 handler={value=>{
                                     setCategoryFilters(value)
                                 }}
-                                data={productCategories}
+                                data={categories}
                                 seleted={categoryFilters}
                             />
                         </Accordion>
@@ -189,7 +188,7 @@ const Filters = ({setData}) => {
                                 </div>
                             }
                             >
-                            <CheckBoxList data={productMaterials} handler={(value)=>setMaterialFilters(value)} checkedItems={materialFilters} />
+                            <CheckBoxList data={materials} handler={(value)=>setMaterialFilters(value)} checkedItems={materialFilters} />
                         </Accordion>
                         <Accordion  
                             autoHeight={true}
@@ -200,7 +199,7 @@ const Filters = ({setData}) => {
                                 </div>
                             }
                             >
-                            <CheckBoxList data={productPriceParams} handler={(value)=>setPriceFilters(value)} checkedItems={priceFilters} />
+                            <CheckBoxList data={price_params} handler={(value)=>setPriceFilters(value)} checkedItems={priceFilters} />
                         </Accordion>
                         <Accordion
                             autoHeight={true}
@@ -211,11 +210,11 @@ const Filters = ({setData}) => {
                                 </div>
                             }
                         >
-                            <CheckBoxList data={productPercentParams} handler={(value)=>setPercentFilters(value)} checkedItems={percentFilters} />
+                            <CheckBoxList data={percent_params} handler={(value)=>setPercentFilters(value)} checkedItems={percentFilters} />
                         </Accordion>
                         <div className={styles["button-bar"]}>
-                            <Button type='secondary' height="45px" width="50%" onClick={()=>clearEvent()}>Clear</Button>
-                            <Button type='primary' height="45px" width="50%" onClick={()=>setIsFiltersOptionsOpen(false)}>View results ({filteredData.length})</Button>
+                            <Button mode='secondary' height="45px" width="50%" onClick={()=>clearEvent()}>Clear</Button>
+                            <Button mode='primary' height="45px" width="50%" onClick={()=>setIsFiltersOptionsOpen(false)}>View results ({filteredData.length})</Button>
                         </div>
                     </motion.div>
                 

@@ -1,6 +1,8 @@
 import {shoesCategories} from '../data/shoesCategories'
 import {shoesMaterial} from '../data/shoesMaterial'
 import {shoesBrands} from '../data/shoesBrands'
+import { useAsync } from '../hooks/useAsync'
+import { getCategories } from '../firedbAPI'
 
 const SORT_PARAMS = [
     {id:1,value:'Featured'},
@@ -22,6 +24,8 @@ const PERCENT_PARAMS = [
 ]
 
 export const getShoesFiltersData=(male)=>{
+    const [,,categories] = useAsync(getCategories,[],'firebase');
+    
     const shoesCategoriesResponse = shoesCategories.filter(item=>{
         if(item.male === male || item.male === 'all'){
             if(item["sub-category"]){

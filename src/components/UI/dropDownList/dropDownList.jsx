@@ -7,7 +7,7 @@ const DropDownList = memo(({handler, data,seleted}) => {
     const searchCategory = ()=>{
         if(seleted.length>0){
             const mainCategory = data.find(item=>seleted.includes(item.name))
-            const subCategory = mainCategory['sub-category']?.find(item=>seleted.includes(item.name))
+            const subCategory = mainCategory.children?.find(item=>seleted.includes(item.name))
             return subCategory?subCategory:mainCategory
         }else{
             return {id:1,name:''}

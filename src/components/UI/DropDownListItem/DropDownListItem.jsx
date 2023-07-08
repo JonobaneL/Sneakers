@@ -17,7 +17,7 @@ const DropDownListItem = ({data,getData,fixed=false}) => {
             onBlur={()=>!fixed&&setIsOpen(false)} 
             onClick={()=>{
                 if(!fixed){
-                    data["sub-category"]?
+                    data.children?
                     setIsOpen(prev=>!prev) 
                     :getData([data])
                 }
@@ -30,7 +30,7 @@ const DropDownListItem = ({data,getData,fixed=false}) => {
                      e.stopPropagation()
                      !fixed && getData([data])
                 }}>{data.name}</p>
-                {data["sub-category"]
+                {data.children
                     ?<span 
                         className={`${styles.arrow} ${isOpen?styles.active:' '}`}
                         >&#9662;</span>
@@ -39,14 +39,14 @@ const DropDownListItem = ({data,getData,fixed=false}) => {
             </div>
             <AnimatePresence initial={false}>
             {
-                (data["sub-category"] && isOpen)?
+                (data.children && isOpen)?
                     <motion.div
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
                         variants={subListVarianst}
                         className={`${styles.subList}`}>
-                        {data["sub-category"].map(item=>
+                        {data.children.map(item=>
                             <div 
                                 onClick={e=>{
                                     e.preventDefault();

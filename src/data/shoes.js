@@ -1,3 +1,19 @@
+// name
+// category
+// sub_category
+// brand
+// male
+// material
+// sizes
+// price
+// descripion
+//models
+
+// f_color
+// f_rate
+// p_image
+
+
 
 export const shoes = [
     {
