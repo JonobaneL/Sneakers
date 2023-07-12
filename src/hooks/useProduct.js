@@ -6,6 +6,8 @@ export const useProduct =(id,modelId)=>{
     const response = shoes.find(item=>item.id === id);
     const colorResponse = response.colors.find(item=>item.id === parseInt(modelId,10));
     const [isProductLoading,,product] = useAsync(()=>getProduct(id),[],'firebase')
+    const [isProductDetailsLoading,,productDetails] = useAsync(()=>getProductModel(id),[],'firebase')
+
     // const productResp
     return {
         id:product.id,
@@ -13,7 +15,7 @@ export const useProduct =(id,modelId)=>{
         brand:product.brand,
         price:product.price,
         descripion:product.descripion,
-        colorName:colorResponse.title,
+        colorName:productDetails.name,
         colors:product.models,
         images:colorResponse.images,
         rate:colorResponse.rate,
