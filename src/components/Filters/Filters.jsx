@@ -17,6 +17,7 @@ import { AnimatePresence,motion } from "framer-motion";
 import closeIcon from '../../images/cancel.svg'
 import { Search } from "../UI/search/Search";
 import { productsFilterParrams } from "../../utils/productsFilters";
+import {sizeList} from '../../data/sizeList'
 
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
@@ -177,7 +178,7 @@ const Filters = ({setData,loading}) => {
                                 setSizeFilters([])
                             }}
                         >
-                            <SizeSelect choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} type='multi'/>
+                            <SizeSelect sizes={sizeList} choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} type='multi'/>
                         </Accordion>
                         <Accordion 
                             header={

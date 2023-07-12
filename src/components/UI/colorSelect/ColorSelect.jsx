@@ -3,12 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import styles from './ColorSelect.module.scss'
 
 
-const ColorSelect = ({colors,poitedColor,locationState}) => {
-    const {id,colorId} =useParams()
-    const [selectedColor,setSelectedColor] = useState(colorId)
+const ColorSelect = ({models,poitedColor,locationState}) => {
+    const {id,modelId} =useParams()
+    const [selectedColor,setSelectedColor] = useState(modelId)
     return <div className={styles["color-select"]}>
         {
-            colors.map(item=>
+            models.map(item=>
                 <Link key={item.id} to={`/product/${id}/${item.id}`} state={locationState}>
                     <div 
                         className={`${styles.color__item} ${selectedColor == item.id?styles.active:''}`} 

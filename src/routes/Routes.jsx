@@ -22,7 +22,7 @@ const StoreRoutes = () => {
         <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/about' element={<About/>}/>
-                <Route path='/product/:id/:colorId' element={<ProductDetails/>}/>
+                <Route path='/product/:id/:modelId' element={<ProductDetails/>}/>
                 <Route path='/shopping-cart' element={<ShoppingCart/>}/>
                 <Route path='/:type' element={<Products/>}/>
                 <Route path='/:type/:male' element={<Products/>}/>

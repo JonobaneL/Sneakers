@@ -20,6 +20,12 @@ export const getProductModel = (id)=>{
     const productRef = doc(firebaseDB,'products_models',id);
     return getDoc(productRef);
 }
+export const getProductModels = (id)=>{
+    const productModelsRef = query(
+        collection(firebaseDB,'products_models'),
+        where('productID','==',id));
+    return getDocs(productModelsRef);
+}
 export const getProducts = (type='shoes',male='all')=>{
     if(male === "men" || male=='women' || male=='kids'){
         return getDocs(
