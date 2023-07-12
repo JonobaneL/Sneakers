@@ -3,23 +3,28 @@ import { useCallback, useEffect, useState } from "react"
 export const useAsync = (callback,dependencies = [],type='standard')=>{
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
-    const [value,setValue] = useState()
+    const [value,setValue] = useState([])
 
     const callbackMemorized = useCallback(()=>{
         setIsLoading(true);
         setError(undefined)
-        setValue(undefined)
+        // setValue([])
         callback()
             .then(data=>{
                 if(type=='standard'){
                     setValue(data)
                 }
                 else if(type=='firebase'){
-                    const response = [];
-                    data.forEach(item=>{
-                        response.push({ id:item.id,...item.data()})
-                    })
-                    setValue(response)
+                    if(data.forEach){
+                        const response = [];
+                        data.forEach(item=>{
+                            response.push({ id:item.id,...item.data()})
+                        })
+                        setValue(response)
+                    }else{
+                        setValue({id:data.id,...data.data()})
+                    }
+                   
                 }
             })
             .catch(setError)

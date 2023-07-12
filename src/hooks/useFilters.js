@@ -1,16 +1,9 @@
 import { useMemo } from "react"
 import { getFinalPrice } from "../utils/getFinalPrice"
 import { priceSort } from "../utils/priceSort"
-export const useShoesMale = (shoes,male='')=>{
-    const filterByMale = useMemo(()=>{
-        if(male.length>0){
-            return shoes.filter(item=>item.male==male||item.male=='all')
-        }else{
-            return shoes
-        }
-    },[shoes,male])
-    return filterByMale;
-}
+import { useAsync } from "./useAsync"
+import { getProducts } from "../firedbAPI"
+
 const useSort = (products,sortMethod) =>{
     const response = useMemo(()=>{
         if(sortMethod){
@@ -32,9 +25,9 @@ const useSort = (products,sortMethod) =>{
     },[products,sortMethod])
     return response;
 }
-export const useFiltered = (shoes,male,sortMethod,category=[],brand=[],color=[],price=[],percent=[],size=[],material=[])=>{
-   const maleFiltered = useShoesMale(shoes,male)
-   const sortRes = useSort(maleFiltered,sortMethod)
+export const useFiltered = (type,male,sortMethod,category=[],brand=[],color=[],price=[],percent=[],size=[],material=[])=>{
+   const [isLoading,,productsResponse] = useAsync(()=>getProducts(type,male),[type,male],'firebase')
+   const sortRes = useSort(productsResponse,sortMethod)
    const filteredCategories = useMemo(()=>{
         if(category.length>0){
            return sortRes.filter(item=>{
@@ -48,7 +41,6 @@ export const useFiltered = (shoes,male,sortMethod,category=[],brand=[],color=[],
         }else return sortRes
    },[sortRes,category])
 
-   const some = filteredCategories;
     const filteredBrand = useMemo(()=>{
         if(brand.length>0){
             return filteredCategories.filter(item=>
@@ -62,7 +54,7 @@ export const useFiltered = (shoes,male,sortMethod,category=[],brand=[],color=[],
         if(color.length>0){
             return filteredBrand.filter(item=>
                 {
-                    if(color.includes(item.filterColor))return item
+                    if(color.includes(item.f_color))return item
                 })
         }else return filteredBrand
     },[filteredBrand,color])
@@ -73,25 +65,25 @@ export const useFiltered = (shoes,male,sortMethod,category=[],brand=[],color=[],
                 switch(price_item){
                     case 'Under $30':
                         result.push(...filteredColor.filter(item=>{
-                            const fp = getFinalPrice(item.price,item.discount)
+                            const fp = getFinalPrice(item.price,item.f_discount)
                             if(fp>0 && fp<30) return item
                         }));
                         break;
                     case '$30 to $50':
                         result.push(...filteredColor.filter(item=>{
-                            const fp = getFinalPrice(item.price,item.discount)
+                            const fp = getFinalPrice(item.price,item.f_discount)
                             if(fp>=30 && fp<50) return item
                         }));
                         break;
                     case '$50 to $75':
                         result.push(...filteredColor.filter(item=>{
-                            const fp = getFinalPrice(item.price,item.discount)
+                            const fp = getFinalPrice(item.price,item.f_discount)
                             if(fp>=50 && fp<75) return item
                         }));
                         break;
                     case '$75+':
                         result.push(...filteredColor.filter(item=>{
-                            const fp = getFinalPrice(item.price,item.discount)
+                            const fp = getFinalPrice(item.price,item.f_discount)
                             if(fp>=75 && fp<500000) return item
                         }));
                         break;
@@ -108,13 +100,13 @@ export const useFiltered = (shoes,male,sortMethod,category=[],brand=[],color=[],
             percent.forEach(percent_item=>{
                 switch(percent_item){
                     case 'Up to 30%':
-                        result.push(...filteredColor.filter(item=>item.discount>0 && item.discount<30));
+                        result.push(...filteredColor.filter(item=>item.f_discount>0 && item.f_discount<30));
                         break;
                     case '30% to 50%':
-                        result.push(...filteredColor.filter(item=>item.discount>=30 && item.discount<50));
+                        result.push(...filteredColor.filter(item=>item.f_discount>=30 && item.f_discount<50));
                         break;
                     case '50%+':
-                        result.push(...filteredColor.filter(item=>item.discount>=50 && item.discount<=100));
+                        result.push(...filteredColor.filter(item=>item.f_discount>=50 && item.f_discount<=100));
                         break;
                 }
             })
@@ -123,20 +115,22 @@ export const useFiltered = (shoes,male,sortMethod,category=[],brand=[],color=[],
             }
             else return result;
     },[filteredPrice, percent])
+
     const fitleredSize = useMemo(()=>{
         if(size.length>0){
             return filteredPercent.filter(item=>{
-                if(size.some(size_item=>item.availableSize.includes(size_item))) return item
+                if(size.some(size_item=>item.sizes.includes(size_item))) return item
             });
         }
         else return filteredPercent
     },[filteredPercent,size])
+
     const filteredMaterial = useMemo(()=>{
         if(material.length>0){
             return fitleredSize.filter(item=>material.includes(item.material))
         }else return fitleredSize
     },[material,fitleredSize])
-    return filteredMaterial;
+    return [filteredMaterial,isLoading];
 }
 
 export const useToShow = (data,limit,current=1)=>{

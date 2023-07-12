@@ -14,8 +14,8 @@ import Button from '../../components/UI/button/Button'
 
 
 const ProductDetails = () => {
-    const {id,colorId} = useParams();
-    const currentProduct = useProduct(id,colorId)
+    const {id,modelId} = useParams();
+    const currentProduct = useProduct(id,modelId)
     const [poitedColor,setPointedColor] = useState(currentProduct.colorName)
     const warning_ref = useRef();
     const [productColor,setProductColor] = useState([])
@@ -27,7 +27,7 @@ const ProductDetails = () => {
         if(productColor.length==0){
             warning_ref.current.hidden = false;
         }else{
-            addToCart(id,...productColor,parseInt(colorId))
+            addToCart(id,...productColor,parseInt(modelId))
             setToastOpen(true)
         }
     }

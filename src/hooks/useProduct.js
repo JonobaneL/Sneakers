@@ -1,16 +1,20 @@
 import {shoes} from '../data/shoes'
+import { getProduct } from '../firedbAPI';
 import { getFinalPrice } from '../utils/getFinalPrice';
-export const useProduct =(id,colorId)=>{
+import { useAsync } from './useAsync';
+export const useProduct =(id,modelId)=>{
     const response = shoes.find(item=>item.id === id);
-    const colorResponse = response.colors.find(item=>item.id === parseInt(colorId,10));
+    const colorResponse = response.colors.find(item=>item.id === parseInt(modelId,10));
+    const [isProductLoading,,product] = useAsync(()=>getProduct(id),[],'firebase')
+    // const productResp
     return {
-        id:response.id,
-        name:response.name,
-        brand:response.brand,
-        price:response.price,
-        descripion:response.descripion,
+        id:product.id,
+        name:product.name,
+        brand:product.brand,
+        price:product.price,
+        descripion:product.descripion,
         colorName:colorResponse.title,
-        colors:response.colors,
+        colors:product.models,
         images:colorResponse.images,
         rate:colorResponse.rate,
         nAvailable: colorResponse.nAvailable,

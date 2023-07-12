@@ -8,7 +8,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSearchParamsState } from "../../hooks/useSearchParamsState";
 import { shoesColor } from "../../data/shoesColor";
 import { useFiltered } from "../../hooks/useFilters";
-import { shoes } from "../../data/shoes";
 import DropDownList from "../UI/dropDownList/dropDownList";
 import SizeSelect from "../UI/sizeSelect/SizeSelect";
 import filtersIcon from '../../images/filters.png' 
@@ -21,10 +20,9 @@ import { productsFilterParrams } from "../../utils/productsFilters";
 
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
-const Filters = ({setData}) => {
+const Filters = ({setData,loading}) => {
     const [sort,setSort] = useState()
     const windowSize = window.screen.availWidth<=1024;
-    const theme = "dark";
     const filtersWrapperVariants = {
         hidden:{
             opacity:0
@@ -51,13 +49,14 @@ const Filters = ({setData}) => {
     const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     
-    const filteredData = useFiltered(shoes,male,sort,categoryFilters,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
+    const [filteredData,isDataLoading] = useFiltered(type,male,sort,categoryFilters,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
     const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(!windowSize);
     const [searchQuery,setSearchQuery] = useState('');
     const searchedBrands = useSearch(brands,searchQuery,'name')
     const navigate = useNavigate()
     useEffect(()=>{
         setData(filteredData)
+        loading(isDataLoading);
     },[filteredData])
     const clearEvent = ()=>{
         setCategoryFilters([]);

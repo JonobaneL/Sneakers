@@ -1,9 +1,10 @@
+@import '../../styles/variables';
 .item{
     background-color: #fff;
     padding: 5px;
     text-align: center;
     font-size: 14px;
-    color:#1d2d44;
+    color:$clr-text;
     transition: all 0.4s;
     display: grid;
     row-gap: 4px;
@@ -25,11 +26,15 @@
     }
     .brand{
         font-size: 15px;
+        color:$clr-primary;
         font-weight: 600;
     }
     .price{
         display: flex;
         gap:10px;
+        p{
+            font-weight: 500;
+        }
         .price__discount{
             color: #a40000;
         }
@@ -41,7 +46,6 @@
 }
 @media screen and (min-width:1360px) {
     .item{
-        // width: 220px;
         font-size: 15px;
     }
 }
