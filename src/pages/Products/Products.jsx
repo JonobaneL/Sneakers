@@ -40,7 +40,7 @@ const Products = () => {
                 </>
                 }
                 {
-                  data.length==0 && <div className={styles.warning}>
+                  (data.length==0 && !isProductsLoading) && <div className={styles.warning}>
                     <h1>No Results</h1>
                     <h3>Try different filters</h3>
                   </div>
