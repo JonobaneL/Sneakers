@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getBrands, getCategories } from "../firedbAPI"
+import { getBrands, getCategories } from "../productFirebaseAPI"
 import { objectSort } from "./objectSort"
 import {shoesMaterial} from '../data/shoesMaterial'
 

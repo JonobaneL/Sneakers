@@ -1,13 +1,13 @@
-import { useShoppingCart } from '../../context/CartContext';
+import { useSelector } from 'react-redux';
 import styles from './TotalSection.module.scss'
 
 const TotalSection = ({shippingSection=true,borders=true}) => {
-    const {cartSubTotal,cartDiscount,cartTotal} = useShoppingCart();
+    const {cartDiscount,cartSubTotal,cartTotal} = useSelector(state=>state.cartReducer)
     return (
         <ul className={`${styles.total} ${borders?styles.borders:''}`}>
            <li className={styles.total__item}>
                 Subtotal
-                <p className={styles.price}>${cartSubTotal}</p>
+                <p className={styles.price}>${cartSubTotal.toFixed(2)}</p>
            </li>
            <li className={styles.total__item}>
                 Discount
@@ -21,7 +21,7 @@ const TotalSection = ({shippingSection=true,borders=true}) => {
            }
            <li className={styles.total__item}>
                 Total
-                <p className={styles.price}>${cartTotal()}</p>
+                <p className={styles.price}>${cartTotal}</p>
             </li> 
         </ul>
     );

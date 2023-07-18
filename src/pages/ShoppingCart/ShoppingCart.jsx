@@ -1,24 +1,40 @@
-import React, { useState,useRef } from 'react';
+import React, { useState,useRef, useEffect } from 'react';
 import styles from './ShoppingCart.module.scss'
-import { useShoppingCart } from '../../context/CartContext';
 import CartItem from '../../components/CartItem/CartItem';
-import { getCouponDiscount } from '../../utils/getCouponDiscount';
 import Toast from '../../components/ToastV2/Toast';
 import { Link } from 'react-router-dom';
 import TotalSection from '../../components/TotalSection/TotalSection';
 import CInput from '../../components/UI/input/CInput';
 import Button from '../../components/UI/button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchShoppingCart, setDiscount } from '../../redux/cartSlice';
+import Loader from '../../components/UI/loader/Loader';
+import { getCoupon } from '../../firebase/cartFirebaseAPI';
+import { useAuth } from '../../context/AuthContext';
+import { motion } from 'framer-motion';
 const ShoppingCart = () => {
-    const {shoppingCart,setCartDiscount,cartDiscount} = useShoppingCart()
+    const dispatch = useDispatch();
+    const {currentUser} = useAuth();
+    const cart = useSelector(state=>state.cartReducer);
+    console.log(cart)
     const [CartToast,setCartToast]=useState({
         type:"",
         content:"",
     })
+    // useEffect(()=>{
+    //     dispatch(fetchShoppingCart(currentUser.uid))
+    // },[])
     const [isToastOpen,setToastOpen] = useState(false)
     const couponRef = useRef({});
-    const couponHandler = ()=>{
-        const discount_res = getCouponDiscount(couponRef.current.value)
-        console.log(discount_res)
+    const couponHandler = async()=>{
+        let discount_res = null;
+        try{
+            const response = await getCoupon(couponRef.current.value)
+            response.forEach(item=>discount_res = item.data())
+        }
+        catch(err){
+            console.log(err)
+        }
         if(couponRef.current.value==''){
             setCartToast({type:'warning',content:"Enter coupon"})
             setToastOpen(true)
@@ -30,14 +46,14 @@ const ShoppingCart = () => {
             couponRef.current.value=''
         }
         else{
-            setCartDiscount(discount_res)
+            dispatch(setDiscount(discount_res.value))
             setCartToast({type:'success',content:"Coupon was added"})
             couponRef.current.value=''
         }
         setToastOpen(true)
     }
     const removeCoupon = ()=>{
-        setCartDiscount(0)
+        dispatch(setDiscount(0))
         setCartToast({type:'warning',content:"Coupon was deleted"})
         setToastOpen(true)
     }
@@ -45,9 +61,9 @@ const ShoppingCart = () => {
         <div className={styles['shopping-cart']}>
             <div className={styles.content}>
                 {
-                    shoppingCart.length>0
+                    cart.shoppingCart.length>0
                     ?<>
-                        <div className={styles.products}>
+                        <motion.div className={styles.products} layout>
                             <div className={styles['products-title']}>
                                 <span>Added Items</span>
                                 <div></div>
@@ -57,11 +73,12 @@ const ShoppingCart = () => {
                                 <p className={styles['title-total']}>Total</p>
                             </div>
                             {
-                                shoppingCart.map(item=>
-                                    <CartItem key={`${item.id}#${item.colorId}#${item.size}`} {...item}/>
-                                    )
+                                cart.isLoading?
+                                <Loader/>
+                                :cart.shoppingCart.map((item,index)=><CartItem key={index} {...item} />
+                                )
                             }
-                        </div>
+                        </motion.div>
                         <div className={styles.total}>
                             <h4 className={styles['coupon-title']}>Have a coupon?</h4>
                             <div className={styles.coupon}>
@@ -82,7 +99,7 @@ const ShoppingCart = () => {
                             </div>
                                 <TotalSection shippingSection={false} />
                                 {
-                                   cartDiscount? <p onClick={removeCoupon} className={styles['coupon-remove']}>Remove coupon</p>:null
+                                   cart.cartDiscount? <p onClick={removeCoupon} className={styles['coupon-remove']}>Remove coupon</p>:null
                                 }
                                 <div className={styles.checkout}>
                                     <Link to='/checkout'>

@@ -14,13 +14,17 @@ const ColorSelect = ({models,poitedColor,locationState}) => {
                         className={`${styles.color__item} ${selectedColor == item.id?styles.active:''}`} 
                         onMouseEnter={e=>{
                             e.preventDefault();
-                            poitedColor(item.title);
+                            poitedColor(item.name);
+                        }}
+                        onMouseLeave={e=>{
+                            e.preventDefault();
+                            poitedColor(selectedColor.name);
                         }}
                         onClick={e=>{
                             setSelectedColor(item.id)
                         }}
                         >
-                        <img src={item.images[1]} alt={item.title} />
+                        <img src={item.images[1]} alt={item.name} />
                     </div>
                 </Link>
                 )

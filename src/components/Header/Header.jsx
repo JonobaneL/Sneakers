@@ -6,19 +6,21 @@ import userIcon from '../../images/header-icons/user-icon.svg';
 import favoritesIcon from '../../images/header-icons/favorites.svg'
 import searchIcon from '../../images/header-icons/search-icon.svg'
 import BurgerButton from '../UI/burgerButton/BurgerButton';
-import { useShoppingCart } from '../../context/CartContext';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import DropDownMenu from '../UI/dropDownMenu/DropDownMenu';
 import { useAuth } from '../../context/AuthContext';
 import { useEffect } from 'react';
 import { getCurrentUser } from '../../fireAuthAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchShoppingCart } from '../../redux/cartSlice';
 
 const Header = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)
     const [burgerMenu,setBurgerMenu] = useState(false);
     const [helpDropMenu,setHelpDropMenu] = useState(false)
     const [userDropMenu,setUserDropMenu] = useState(false)
-    const {cartQuantity} = useShoppingCart();
+    const dispatch = useDispatch();
+    const {cartQuantity} = useSelector(state=>state.cartReducer)
     const {currentUser,logout} = useAuth();
     const [details,setDetails] = useState({})
     const getUser = async()=>{
@@ -33,6 +35,7 @@ const Header = () => {
         if(currentUser){
             getUser()
         }
+        dispatch(fetchShoppingCart(currentUser.uid))
     },[currentUser])
     const handleLogout = async()=>{
         try{

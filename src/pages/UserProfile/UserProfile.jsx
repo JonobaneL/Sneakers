@@ -40,10 +40,10 @@ const UserProfile = () => {
                             Favorites
                         </NavLink>
                     
-                        <li 
+                        <div 
                             className={styles.nav__item}
                             onClick={handleLogout}
-                            >Log Out</li>
+                            >Log Out</div>
                     </div>
                     <div className={styles.tab}>
                         <Outlet/>

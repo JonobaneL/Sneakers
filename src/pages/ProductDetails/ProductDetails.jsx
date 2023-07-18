@@ -8,28 +8,28 @@ import Gallery from '../../components/UI/gallery/Gallery';
 import Rate from '../../components/UI/rate/Rate';
 import ColorSelect from '../../components/UI/colorSelect/ColorSelect';
 import SizeSelect from '../../components/UI/sizeSelect/SizeSelect';
-import { useShoppingCart } from '../../context/CartContext';
 import Toast from '../../components/ToastV2/Toast';
 import Button from '../../components/UI/button/Button'
 import Loader from '../../components/UI/loader/Loader';
+import { useDispatch } from 'react-redux';
+import { asyncAddToCart } from '../../redux/cartSlice';
 
 
 const ProductDetails = () => {
     const {id,modelId} = useParams();
     const currentProduct = useProduct(id,modelId)
-    if(!currentProduct.isLoading&&currentProduct.currentModelName!==undefined) console.log(currentProduct)
     const [poitedColor,setPointedColor] = useState(currentProduct.currentModelName)
     const warning_ref = useRef();
-    const [productModel,setProductModel] = useState([])
-    const {addToCart} = useShoppingCart()
+    const [productSize,setProductSize] = useState([])
     const [isToastOpen,setToastOpen] = useState(false)
     const {state} = useLocation();
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const addHandler =()=>{
-        if(productModel.length==0){
+        if(productSize.length==0 && currentProduct.type!=='accessories'){
             warning_ref.current.hidden = false;
         }else{
-            addToCart(id,...productModel,parseInt(modelId))
+            dispatch(asyncAddToCart({productID:id,modelID:modelId,size:productSize.toString(),price:currentProduct.price,cost:currentProduct.cost}))
             setToastOpen(true)
         }
     }
@@ -67,13 +67,17 @@ const ProductDetails = () => {
                                 <Rate rateIndex={currentProduct.rate} width='100px' />
                             </div>
                             <div className={styles["product-color"]}>
-                                <p className={styles.blockTitle}>Color: {poitedColor}</p>
+                                <p className={styles.blockTitle}>Color: {!poitedColor?currentProduct.currentModelName:poitedColor}</p>
                                 <ColorSelect models={currentProduct.models} poitedColor={color=>setPointedColor(color)} locationState={state} />
                             </div>
-                            <div className={styles["product-size"]}>
-                                <p className={styles.blockTitle}>Size:   <span hidden className={styles.warringMessage} ref={warning_ref}>Please select a size</span></p>
-                                <SizeSelect sizes={currentProduct.sizes} choosed={productModel} handler={(size_data)=>setProductModel(size_data)} type='single'/>
-                            </div>
+                            {
+                                currentProduct.type !=='accessories'
+                                ?<div className={styles["product-size"]}>
+                                    <p className={styles.blockTitle}>Size:   <span hidden className={styles.warringMessage} ref={warning_ref}>Please select a size</span></p>
+                                    <SizeSelect sizes={currentProduct.sizes} choosed={productSize} handler={(size_data)=>setProductSize(size_data)} type='single'/>
+                                </div>
+                                :<div></div>
+                            }
                             
                             <div className={styles['add-button']}>
                             <Button 

@@ -1,9 +1,10 @@
+@use '../../styles/mixins';
+@import '../../styles/variables';
+
 .profile{
-    width: 100%;
-    padding: 50px 80px;
+    @include mixins.wrapper-desktop;
     .content{
-        max-width: 1200px;
-        margin-inline:auto;
+        @include mixins.content;
         .tabs{
             display: flex;
             min-height: 100%;
@@ -11,24 +12,46 @@
             box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
             .nav{
                 flex: 1 0 auto;
-                width: 160px;
-                background: rgb(245, 245, 245);
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
-                padding: 10px 0;
+                width: 180px;
+                background: $clr-secondary;
+                // border-top-left-radius: 10px;
+                // border-bottom-left-radius: 10px;
+                // padding: 10px 0;
                 display:flex;
                 flex-direction: column;
                 .nav__item,a{
                     width: 100%;
-                    height: 50px;
+                    height: 60px;
                     padding-left: 15px;
-                    line-height: 50px;
+                    line-height: 60px;
                     cursor: pointer;
                     color: #5b5b5b;
+                    font-size: min($fs-400,16px);
+                    position: relative;
+                    z-index: 3;
+                    &::before{
+                        content:'';
+                        width: 0;
+                        height: 100%;
+                        position: absolute;
+                        left: 0;
+                        background: $clr-primary;
+                        // visibility: hidden;
+                        // opacity: 0;
+                        z-index: -1;
+                    }
                     &.active{
-                        background: #fff;
-                        color: #141414;
+                        // background: $clr-primary;
+                        border-left:2px solid $clr-primary;
+                        color: #fff;
                         box-shadow: rgba(0, 0, 0, 0.45) 0px 20px 20px -20px;
+                        transition: box-shadow 0.6s;
+                        &::before{
+                            // visibility: visible;
+                            // opacity: 1;
+                            width: 100%;
+                            transition: all 0.4s;
+                        }
                     }
                 }
             }
@@ -62,5 +85,11 @@
                 }
             }
         }
+    }
+}
+@media screen and (max-width:1024px) {
+    .profile{
+        padding:40px 0;
+        // padding: 0;
     }
 }

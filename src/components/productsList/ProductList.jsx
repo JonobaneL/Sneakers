@@ -5,8 +5,8 @@ const ProductsList = ({data}) => {
     return (
         <div className={styles["products-list"]}>
             {
-            data.map(item=>
-                <ProductsItem key={item.id} item={item}/>
+            data.map((item,index)=>
+                <ProductsItem key={index} item={item}/>
                 )
             }
         </div>
