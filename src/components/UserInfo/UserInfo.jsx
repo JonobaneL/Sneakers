@@ -1,28 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './UserInfo.module.scss'
 import { getUser } from '../../fireAuthAPI';
 import { useAuth } from '../../context/AuthContext';
-import editIcon from '../../images/edit-icon.svg'
+import EditButton from '../UI/editButton/EditButton';
+import { useNavigate } from 'react-router-dom';
+import ModalWindow from '../ModalWindow/ModalWindow';
+import UserInfoSettings from '../UserInfoSettings/UserInfoSettings'
 
-const EditButton = ({children})=>{
-    return <button className={styles['edit-button']}>
-        <img src={editIcon} alt="Edit cart" />
-        {children}    
-    </button>
-}
 
 const UserInfo = () => {
     const { currentUser } = useAuth();
     const userInfo = getUser(currentUser.uid);
     const paymentMethods = [];
     const deliveryAddresses = [];
-
+    const navigate = useNavigate();
+    const [isModalOpen,setIsOpen] = useState(false)
     return (
         <div className={styles['user-info']}>
              <div className={styles['edit-section']}>
-                <EditButton>
-                    <p className={styles['btn-content']}>Edit</p>
-                </EditButton>
+                <EditButton onClick={()=>navigate('/user-profile/info-settings')}>Edit</EditButton>
+                <ModalWindow isOpen={isModalOpen} closeHandler={()=>setIsOpen(false)} title='Settings'>
+                    <UserInfoSettings />
+                </ModalWindow>
             </div>
             <ul className={styles.info}>
                 <li>

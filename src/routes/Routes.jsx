@@ -15,6 +15,8 @@ import UserProfile from "../pages/UserProfile/UserProfile";
 import RequireAuth from './PrivateRoute';
 import PasswordReset from '../pages/PasswordReset/PasswordReset';
 import UserInfo from '../components/UserInfo/UserInfo';
+import Favorites from '../components/Favorites/Favorites';
+import UserInfoSettings from '../components/UserInfoSettings/UserInfoSettings';
 
 
 const StoreRoutes = () => {
@@ -40,7 +42,8 @@ const StoreRoutes = () => {
                 </RequireAuth>}>
                     <Route path='info' element={<UserInfo/>}/>
                     <Route path='orders' element={<p>Orders Route</p>}/>
-                    <Route path='favorites' element={<p>Favorites Route</p>}/>
+                    <Route path='info-settings' element={<UserInfoSettings/>}/>
+                    <Route path='favorites' element={<RequireAuth><Favorites/></RequireAuth>}/>
                 </Route>
                     
                 <Route path='/password-reset' element={<PasswordReset/>} />

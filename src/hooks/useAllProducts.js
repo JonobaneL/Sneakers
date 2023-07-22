@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { getAllProductsModels, getProduct } from "../productFirebaseAPI";
+import { getAllProductsModels, getProduct } from "../firebase/productFirebaseAPI";
 
 
 const useAllProducts = (type,male) => {

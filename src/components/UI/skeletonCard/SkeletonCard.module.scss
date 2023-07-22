@@ -1,0 +1,42 @@
+.skeleton-card{
+    width: 200px;
+    .img{
+        aspect-ratio: 1/1;
+        width: 100%;
+        display: inline-block;
+        border-radius: 3px;
+        animation: skeleton 1s linear infinite alternate;
+    }
+    .text{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 4px;
+        .brand,.name,.rate,.price{
+            height: 15px;
+            animation: skeleton 1s linear infinite alternate;
+            border-radius: 3px;
+        }
+        .brand{
+            width: 40%;
+        }
+        .name{
+            width: 70%;
+        }
+        .rate{
+            width: 50%;
+        }
+        .price{
+            width: 40%;
+        }
+    }
+}
+@keyframes skeleton {
+    from{
+        background: #eeeeee;
+
+    }
+    to{
+        background: #cfcfcf;
+    }
+}

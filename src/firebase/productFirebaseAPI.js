@@ -1,4 +1,4 @@
-import { firebaseDB } from "./firebase";
+import { firebaseDB } from "../firebase";
 import { collection, getDocs, getDoc, doc,orderBy, query, where } from "firebase/firestore";
 
 const categoriesRef = collection(firebaseDB,'categories');

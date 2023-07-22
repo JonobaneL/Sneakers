@@ -39,7 +39,6 @@ const CartItem = ({productID,modelID,size,quantity}) => {
                     width={btnWidth}
                     height={btnWidth}
                     onClick={()=>{
-                        // console.log(productID,modelID,size)
                         dispatch(asyncIncreaseCartQuantity({productID,modelID,size}))
                     }}
                 ><span className={styles.btn}>+</span></Button>

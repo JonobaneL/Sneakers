@@ -40,7 +40,7 @@
             .product-info{
                 color: $clr-text;
                 display: grid;
-                grid-template-rows: auto 20px auto 5px auto 20px auto 20px auto 30px 45px 1fr; 
+                grid-template-rows: auto 20px auto 5px auto 20px auto 20px auto 30px auto 10px; 
                 grid-template-areas: 
                 "name"
                 "."
@@ -101,8 +101,21 @@
                         color: #a40000;
                     }
                 }
-                .add-button{
+                .button-bar{
                     grid-area: button;
+                    display: flex;
+                    flex-direction: column;
+                    gap:7px;
+                    .favorite__content{
+                        display: flex;
+                        align-items: center;
+                        justify-content:center;
+                        font-weight: 500;
+                        gap: 10px;
+                    }
+                    .heart-icon{
+                        width: 14px;
+                    }
                 }
             }
             .product-description{
@@ -207,7 +220,7 @@
             .content{
                 .product-info{
                     margin-top: 20px;
-                    grid-template-rows: auto 10px auto 5px auto 15px auto 20px auto 30px 45px 1fr; 
+                    grid-template-rows: auto 10px auto 5px auto 15px auto 20px auto 30px auto 10px; 
 
                 }
             }

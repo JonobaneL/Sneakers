@@ -1,4 +1,4 @@
-import { useShoppingCart } from '../../context/CartContext';
+import { useSelector } from 'react-redux';
 import { useProduct } from '../../hooks/useProduct';
 import styles from './OrderSummaryList.module.scss'
 
@@ -17,11 +17,11 @@ const Item = ({id,colorId,size,quantity}) =>{
 }
 
 const OrdreSummaryList = () => {
-    const {shoppingCart} = useShoppingCart();
+    const cart = useSelector(state=>state.cartReducer);
 
     return ( 
         <ul className={styles.list}>
-            {shoppingCart.map((item,index)=>
+            {cart.shoppingCart.map((item,index)=>
                 <Item key={index} {...item} />
                 )}
         </ul>

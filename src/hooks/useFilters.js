@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 import { getFinalPrice } from "../utils/getFinalPrice"
 import { priceSort } from "../utils/priceSort"
-import { useAsync } from "./useAsync"
-import { getAllProductsModels, getProduct,getProducts } from "../productFirebaseAPI"
 import useAllProducts from "./useAllProducts"
 
 const useSort = (products,sortMethod) =>{

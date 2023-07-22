@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { getCurrentUser } from '../../fireAuthAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchShoppingCart } from '../../redux/cartSlice';
+import { fetchFavorites } from '../../redux/favoritesSlice';
 
 const Header = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)
@@ -34,8 +35,9 @@ const Header = () => {
     useEffect(()=>{
         if(currentUser){
             getUser()
+            dispatch(fetchShoppingCart(currentUser.uid))
+            dispatch(fetchFavorites(currentUser.uid))
         }
-        dispatch(fetchShoppingCart(currentUser.uid))
     },[currentUser])
     const handleLogout = async()=>{
         try{
@@ -132,7 +134,7 @@ const Header = () => {
                         </div>
                         {
                             !isSearchOpen ? <>
-                            <Link to='/' className={styles.favorites}>
+                            <Link to='/user-profile/favorites' className={styles.favorites}>
                                 <img src={favoritesIcon} alt="favoritesIcon" />
                             </Link>
                             <Link to={'/shopping-cart'}>

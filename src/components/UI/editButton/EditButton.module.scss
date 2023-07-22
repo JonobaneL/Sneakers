@@ -1,0 +1,13 @@
+.edit-button{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background: none;
+    cursor:pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: #292929;
+    img{
+        width: 15px;
+    }
+}

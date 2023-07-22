@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 import styles from './CInput.module.scss'
 
-const CInput = forwardRef((params,ref) => {
-    const {mode,height,valid,...inputParams} = params;
+const CInput = forwardRef(({mode,height,valid,...inputParams},ref) => {
+    // const {mode,height,valid,...inputParams} = params;
     const inputHeight = height || '40';
     const inputType = mode || 'underline';
 

@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+.info-settings{
+    .info{
+        display: flex;
+        flex-direction: column;
+        li{
+            display: flex;
+            align-items: center;
+            height: 55px;
+            border-bottom: 1px solid rgba(#b0b0b0,0.3);
+            .field-name{
+                flex: 0 1 60%;
+                font-weight: 500;
+                color: $clr-text;
+                font-size: min($fs-400,15px);
+            }
+        }
+    }
+    .warning{
+        text-align: center;
+        margin-top: 20px;
+        font-weight: 500;
+        font-size: $fs-400;
+    }
+    .button-bar{
+        display: flex;
+        justify-content: right;
+        margin-top: 20px;
+        gap: 10px;
+    }
+}

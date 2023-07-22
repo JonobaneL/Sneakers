@@ -5,12 +5,12 @@ import { Link,useNavigate } from 'react-router-dom';
 import shoppingBag from '../../images/header-icons/shopping-bag.png';
 import favoritesIcon from '../../images/header-icons/favorites.svg';
 import helpIcon from '../../images/help-icon.svg';
-import { useShoppingCart } from '../../context/CartContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import Button from '../UI/button/Button';
 import { useAuth } from '../../context/AuthContext';
 import userIcon from '../../images/header-icons/user-icon.svg';
 import arrow from '../../images/right-arrow.svg';
+import { useSelector } from 'react-redux';
 
 
 const BurgerMenu = ({user,isOpen,closeHandler}) => {
@@ -19,7 +19,7 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
     }else{
         document.body.style.overflowY='hidden'
     }
-    const {cartQuantity} = useShoppingCart()
+    const {cartQuantity} = useSelector(state=>state.cartReducer)
     const {currentUser,logout} = useAuth();
     const [userMenu,setUserMenu] = useState(false)
     const [helpMenu,setHelpMenu] = useState(false)
@@ -139,7 +139,6 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
                                         </div>
                                         </>
                                     }
-                                    
                                 </div>
                             </Link>
                                 <div className={styles['additional-nav__item']} onClick={()=>setHelpMenu(true)}>

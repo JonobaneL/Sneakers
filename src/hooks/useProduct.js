@@ -1,4 +1,4 @@
-import { getProduct, getProductModels } from '../productFirebaseAPI';
+import { getProduct, getProductModels } from '../firebase/productFirebaseAPI';
 import { getFinalPrice } from '../utils/getFinalPrice';
 import { useAsync } from './useAsync';
 export const useProduct =(id,modelId)=>{
@@ -19,6 +19,7 @@ export const useProduct =(id,modelId)=>{
         sizes:currentModel.sizes||[],
         discount:currentModel.discount,
         type:currentModel.type,
+        male:product.male,
         cost:parseFloat(getFinalPrice(product.price,currentModel.discount)),
         isLoading:isProductModelsLoading
     }

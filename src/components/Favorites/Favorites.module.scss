@@ -1,0 +1,35 @@
+@import '../../styles/variables';
+.product{
+    position:relative;
+    .remove{
+        position:absolute;
+        top:0;
+        z-index:1;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all ease-in-out 0.3s;
+
+        &.active{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.favorites{
+   .edit-section{
+        display:flex;
+        justify-content:right;
+   } 
+   .list{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,200px);
+        gap: 10px;
+   }
+   .empty-list{
+        text-align: center;
+        line-height: 200px;
+   }
+}

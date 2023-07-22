@@ -31,14 +31,7 @@ const Products = () => {
                 <Filters setData={setData} loading={setProductsLoading} />
               </div>
               <div className={styles.list}>
-                { isProductsLoading
-                ?<div className={styles.loader}>
-                  <Loader/>
-                </div>
-                :<>
-                  <ProductsList data={shownData}/>
-                </>
-                }
+                  <ProductsList data={shownData} isLoading={isProductsLoading} />
                 {
                   (data.length==0 && !isProductsLoading) && <div className={styles.warning}>
                     <h1>No Results</h1>

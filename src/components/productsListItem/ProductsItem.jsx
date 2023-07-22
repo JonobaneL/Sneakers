@@ -2,13 +2,12 @@ import React from 'react';
 import Rate from '../UI/rate/Rate';
 import styles from './ProductsItem.module.scss'
 import { getFinalPrice } from '../../utils/getFinalPrice';
-import { Link, useParams } from 'react-router-dom';
-const ShoesItem = ({item}) => {
-    const {type,male} = useParams()
+import { Link } from 'react-router-dom';
+const ProductItem = ({item}) => {
     return (
-        <Link to={`/product/${item.productID}/${item.modelID}`} state={{type,male}}>
+        <Link to={`/product/${item.productID}/${item.modelID}`}>
         <div className={styles.item}>
-            <img src={item.images[1]} alt={item.name} />
+            <img src={item.images[1]} alt={item.name} loading='lazy' />
             <p className={styles.brand}>{item.brand}</p>
             <p className={styles.name}>{item.name}</p>
             {item.rate?<Rate rateIndex={item.rate} width='80px' />:''}
@@ -26,4 +25,4 @@ const ShoesItem = ({item}) => {
 };
 
 
-export default ShoesItem;
+export default ProductItem;

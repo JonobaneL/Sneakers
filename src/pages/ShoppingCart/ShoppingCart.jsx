@@ -1,4 +1,4 @@
-import React, { useState,useRef, useEffect } from 'react';
+import React, { useState,useRef } from 'react';
 import styles from './ShoppingCart.module.scss'
 import CartItem from '../../components/CartItem/CartItem';
 import Toast from '../../components/ToastV2/Toast';
@@ -7,23 +7,18 @@ import TotalSection from '../../components/TotalSection/TotalSection';
 import CInput from '../../components/UI/input/CInput';
 import Button from '../../components/UI/button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShoppingCart, setDiscount } from '../../redux/cartSlice';
+import { setDiscount } from '../../redux/cartSlice';
 import Loader from '../../components/UI/loader/Loader';
 import { getCoupon } from '../../firebase/cartFirebaseAPI';
-import { useAuth } from '../../context/AuthContext';
-import { motion } from 'framer-motion';
 const ShoppingCart = () => {
     const dispatch = useDispatch();
-    const {currentUser} = useAuth();
     const cart = useSelector(state=>state.cartReducer);
     console.log(cart)
     const [CartToast,setCartToast]=useState({
         type:"",
         content:"",
     })
-    // useEffect(()=>{
-    //     dispatch(fetchShoppingCart(currentUser.uid))
-    // },[])
+
     const [isToastOpen,setToastOpen] = useState(false)
     const couponRef = useRef({});
     const couponHandler = async()=>{
@@ -61,9 +56,11 @@ const ShoppingCart = () => {
         <div className={styles['shopping-cart']}>
             <div className={styles.content}>
                 {
-                    cart.shoppingCart.length>0
+                    cart.isLoading?
+                    <Loader/>
+                    :cart.shoppingCart.length>0
                     ?<>
-                        <motion.div className={styles.products} layout>
+                        <div className={styles.products}>
                             <div className={styles['products-title']}>
                                 <span>Added Items</span>
                                 <div></div>
@@ -73,12 +70,9 @@ const ShoppingCart = () => {
                                 <p className={styles['title-total']}>Total</p>
                             </div>
                             {
-                                cart.isLoading?
-                                <Loader/>
-                                :cart.shoppingCart.map((item,index)=><CartItem key={index} {...item} />
-                                )
+                                cart.shoppingCart.map((item)=><CartItem key={`${item.productID}${item.modelID}${item.size}`} {...item} />)
                             }
-                        </motion.div>
+                        </div>
                         <div className={styles.total}>
                             <h4 className={styles['coupon-title']}>Have a coupon?</h4>
                             <div className={styles.coupon}>

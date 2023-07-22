@@ -165,21 +165,26 @@ const Filters = ({setData,loading}) => {
                         >
                             <CheckBoxList data={shoesColor} handler={(value)=>setColorFilters(value)} checkedItems={colorFilters} colored={true} />
                         </Accordion>
-                        <Accordion 
-                            fixed={true} 
-                            header={
-                                <div className={styles.accordion}>
-                                    Size
-                                    <ClearButton triger={sizeFilters.length} handler={()=>setSizeFilters([])}/>
-                                </div>
-                            }
-                            autoHeight={true}
-                            handler={()=>{
-                                setSizeFilters([])
-                            }}
-                        >
-                            <SizeSelect sizes={sizeList} choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} type='multi'/>
-                        </Accordion>
+                        {
+                            type=='accessories'
+                            ?null
+                            :<Accordion 
+                                fixed={true} 
+                                header={
+                                    <div className={styles.accordion}>
+                                        Size
+                                        <ClearButton triger={sizeFilters.length} handler={()=>setSizeFilters([])}/>
+                                    </div>
+                                }
+                                autoHeight={true}
+                                handler={()=>{
+                                    setSizeFilters([])
+                                }}
+                            >
+                                <SizeSelect sizes={sizeList} choosed={sizeFilters} handler={(size_data)=>setSizeFilters(size_data)} type='multi'/>
+                            </Accordion>
+                        }
+                        
                         <Accordion 
                             header={
                                 <div className={styles.accordion}>

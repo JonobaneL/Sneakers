@@ -18,5 +18,4 @@ export const shoesColor = [,
     {id:19,name: 'Bronze', color:'linear-gradient(-220deg,#d1892c 12%,#f4b860 46%,#d1882b 83%)'},
     {id:20,name: 'Metallic', color:'linear-gradient(135deg, rgb(246, 240, 221) 0%, rgb(34, 31, 26) 100%)'},
     {id:21,name: 'Silver', color:'linear-gradient(318.08deg,#c4c4c4 4.84%,rgba(196,196,196,0) 100%)'},
-    // {id:22,name: 'Gold', color:'#000000'},
 ]
