@@ -15,11 +15,11 @@ import Button from '../../components/UI/button/Button'
 const SignUp = () => {
     const { signUp } = useAuth();
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:"Email can't be blank",isEmail:"Provide a valid email address"})
-    const password = useInput('',{isEmpty:true,minLength:6},{isEmpty:"Password can't be blank",minLength:"Password must has a least 6 characters"})
+    const password = useInput('',{isEmpty:true,minLength:6},{isEmpty:"Password can't be blank",minLength:"Password must has at least 6 characters"})
     const firstName = useInput('',{isEmpty:true},{isEmpty:"This field can't be blank"})
     const lastName = useInput('',{isEmpty:true},{isEmpty:"This field can't be blank"})
     const city = useInput('',{isEmpty:true},{isEmpty:"This field can't be blank"})
-    const passwordConfirm = useInput('',{isEmpty:true,minLength:6,isMatch:password.value},{isEmpty:"Confirm password can't be blank",minLength:"Password must has a least 6 characters",isMatch:`Passwords don't match`})
+    const passwordConfirm = useInput('',{isEmpty:true,minLength:6,isMatch:password.value},{isEmpty:"Confirm password can't be blank",minLength:"Password must has at least 6 characters",isMatch:`Passwords don't match`})
     const [isLoading,setIsLoading]= useState(false);
     const locationResponse = findLocation(city.value)
     const [error,setError] = useState(false);

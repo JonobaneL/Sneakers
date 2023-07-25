@@ -1,13 +1,4 @@
-.edit-button{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    background: none;
-    cursor:pointer;
-    img{
-        width: 15px;
-    }
-}
+@import '../../styles/variables';
 
 .user-info{
     width: 100%;
@@ -19,7 +10,7 @@
     .info{
         display: flex;
         flex-direction: column;
-        li{
+        .info__item{
             display: flex;
             align-items: center;
             height: 55px;
@@ -36,6 +27,11 @@
         width: 100%;
         display: flex;
         justify-content: right;
+    }
+    .loading{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
     }
     .payment-methods,.delivery-addresses{
         margin-top: 30px;

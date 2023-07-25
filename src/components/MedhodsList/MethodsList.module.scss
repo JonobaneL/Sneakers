@@ -1,0 +1,31 @@
+@import '../../styles/variables';
+
+.methods-list{
+    display: flex;
+    flex-direction:column;
+    gap: 10px;
+    .list__item{
+        height: 50px;
+        display: grid;
+        align-items: center;
+        background: $clr-secondary;
+        gap: 10px;
+        padding: 0 15px;
+        border-radius: 5px;
+        grid-template-columns: 12px 2fr 1fr 1fr 25px;
+        p{
+            font-size: min($fs-400,15px);
+            font-weight: 500;
+        }
+        .cvv{
+            font-size: 12px;
+            color: $clr-primary;
+        }
+        .delete{
+            width: 25px;
+            height: 25px;
+            background: none;
+            cursor: pointer;
+        }
+    }
+}

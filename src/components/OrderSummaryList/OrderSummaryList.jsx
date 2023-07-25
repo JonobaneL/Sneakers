@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import { useProduct } from '../../hooks/useProduct';
 import styles from './OrderSummaryList.module.scss'
 
-const Item = ({id,colorId,size,quantity}) =>{
-    const item = useProduct(id,colorId)
+const Item = ({productID,modelID,size,quantity,cost}) =>{
+    const item = useProduct(productID,modelID)
     return <li className={styles['list-item']}>
         <img className={styles['list-item__image']} src={item.images[1]} alt={item.name} />
         <div className={styles['list-item__info']}>
@@ -18,7 +18,7 @@ const Item = ({id,colorId,size,quantity}) =>{
 
 const OrdreSummaryList = () => {
     const cart = useSelector(state=>state.cartReducer);
-
+    console.log(cart)
     return ( 
         <ul className={styles.list}>
             {cart.shoppingCart.map((item,index)=>

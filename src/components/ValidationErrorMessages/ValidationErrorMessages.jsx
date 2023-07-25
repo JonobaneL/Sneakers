@@ -5,17 +5,11 @@ const ValidationErrorMessages = ({children,durty,errorMessages}) => {
         <div className={styles.wrapper}>
             {children}
             {durty&&errorMessages.length>0?
-                <ul className={styles.messages}>
-                    <li className={styles.messages__item}>{errorMessages[errorMessages.length-1]}</li>
-                    {/* {errorMessages.map((item,index)=>
-                        <li key={index} className={styles.messages__item}>
-                            {item}
-                        </li>
-                    )} */}
-                </ul>
+                <div className={styles.message}>
+                   {errorMessages[errorMessages.length-1]}
+                </div>
                 :null
             }
-            
         </div>
      );
 }

@@ -1,0 +1,10 @@
+.payment-methods{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top:20px;
+    .button-bar{
+        display: flex;
+        justify-content: right;
+    }
+}

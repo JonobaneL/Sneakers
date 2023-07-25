@@ -4,16 +4,27 @@
     .info{
         display: flex;
         flex-direction: column;
-        li{
+       .info__item{
             display: flex;
             align-items: center;
-            height: 55px;
+            height: 60px;
             border-bottom: 1px solid rgba(#b0b0b0,0.3);
             .field-name{
-                flex: 0 1 60%;
+                flex: 0 1 40%;
                 font-weight: 500;
                 color: $clr-text;
                 font-size: min($fs-400,15px);
+            }
+            .input{
+                flex: 0 1 60%;
+            }
+            &:last-child,&:nth-child(4){
+                height: 85px;
+                align-items: start;
+                padding-top:10px;
+                .field-name{
+                    line-height: 40px;
+                }
             }
         }
     }
