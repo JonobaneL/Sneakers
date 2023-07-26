@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import styles from './Select.module.scss'
 import arrow from '../../../images/down-arrow.svg'
-const Select = ({placeholder, params,getData,type='underLineType',height='40px',disabled=[]}) => {
+const Select = ({placeholder, params,getData,type='underLineType',height='40px',disabled=[],optionsHeight='200px'}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectValue, setSelectValue] = useState({})
    
     const selectOption = option =>{
         setSelectValue(option)
-        getData(option.id)
+        getData(option)
         setIsOpen(false)
     }
     const isOptionSelected=(option)=>{
@@ -21,7 +21,7 @@ const Select = ({placeholder, params,getData,type='underLineType',height='40px',
                     <img src={arrow} alt="arrow" />
                 </button>
             </div>
-            <div className={`${styles.options} ${isOpen?styles.active:''}`} >
+            <div style={{maxHeight:optionsHeight}} className={`${styles.options} ${isOpen?styles.active:''}`} >
                 <ul>
                     {
                         params.map(item=>

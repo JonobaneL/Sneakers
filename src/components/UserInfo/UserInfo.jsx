@@ -9,6 +9,7 @@ import PaymentMethods from '../PaymentMethods/PaymentMethods';
 import { useAsync } from '../../hooks/useAsync';
 import Loader from '../UI/loader/Loader'
 import MethodsList from '../MedhodsList/MethodsList';
+import AddressFrom from '../AddressForm/AddressFrom';
 
 
 const UserInfo = () => {
@@ -57,7 +58,7 @@ const UserInfo = () => {
                 <div className={styles.title}>
                     <h3>Payment Methods</h3>
                     <EditButton onClick={()=>setPaymentModal(true)}>Add</EditButton>
-                    <ModalWindow isOpen={paymentModal} closeHandler={()=>setPaymentModal(false)} title='Add Payment Method'>
+                    <ModalWindow width={400} isOpen={paymentModal} closeHandler={()=>setPaymentModal(false)} title='Add Payment Method'>
                         <PaymentMethods userID={currentUser.uid} closeHandler={()=>setPaymentModal(false)} triger={()=>setFormTriger(p=>!p)}/>
                     </ModalWindow>
                 </div>
@@ -70,11 +71,11 @@ const UserInfo = () => {
             <div className={styles["delivery-addresses"]}>
                 <div className={styles.title}>
                     <h3 >Delivery Addresses</h3>
-                    <EditButton>
+                    <EditButton onClick={()=>setAddressModal(true)}>
                         <p className={styles['btn-content']}>Add</p>
                     </EditButton>
-                    <ModalWindow isOpen={addressModal} closeHandler={()=>setAddressModal(false)} title='Add Delivery Address'>
-                        
+                    <ModalWindow width={400} isOpen={addressModal} closeHandler={()=>setAddressModal(false)} title='Add Delivery Address'>
+                        <AddressFrom city={userInfo.city} userID={currentUser.uid} closeHandler={()=>setAddressModal(false)}/>
                     </ModalWindow>
                 </div>
                 {

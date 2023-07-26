@@ -19,7 +19,7 @@ const CheckoutShipping = () => {
     const closeModalWindowHandler = ()=>{
         setIsCityModalOpen(false)
     }
-    const hadler = (param)=>{
+    const handler = (param)=>{
         console.log(param)
     }
   return (
@@ -63,7 +63,7 @@ const CheckoutShipping = () => {
                 <div className={styles['option-wrapper']} >
                     <Select placeholder='Select a post office'
                     params={novaposhtaOffices.map(item=>{return {id:item.id,value:`${item.name}, ${item.street}`}})}
-                    getData={hadler}
+                    getData={handler}
                     type='borderType'
                     height='50px'
                     />

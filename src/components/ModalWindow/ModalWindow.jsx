@@ -3,7 +3,7 @@ import styles from './ModalWindow.module.scss'
 import closeIcon from '../../images/cancel.svg'
 import { AnimatePresence,motion } from 'framer-motion';
 
-const ModalWindow = ({children,isOpen,closeHandler,title}) => {
+const ModalWindow = ({children,isOpen,closeHandler,title,width}) => {
     if(isOpen) {
         document.body.style.overflowY='hidden'
     }else{
@@ -29,6 +29,7 @@ const ModalWindow = ({children,isOpen,closeHandler,title}) => {
                             initial={{
                                 opacity:0,
                                 translateY:300,
+                                width: Math.min(width,window.screen.availWidth)
                             }}
                             animate={{
                                 opacity:1,

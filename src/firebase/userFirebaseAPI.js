@@ -26,3 +26,9 @@ export const updatePaymentMethods = (props)=>{
         payment_methods:props.methods
     })
 }
+export const addDeliveryAddress = (props)=>{
+    const userRef = doc(firebaseDB,'users',props.uid);
+    return updateDoc(userRef,{
+        delivery_addresses:arrayUnion(props.address)
+    })
+}
