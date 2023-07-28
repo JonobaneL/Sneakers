@@ -10,6 +10,7 @@ import { useAsync } from '../../hooks/useAsync';
 import Loader from '../UI/loader/Loader'
 import MethodsList from '../MedhodsList/MethodsList';
 import AddressFrom from '../AddressForm/AddressFrom';
+import AddressesList from '../AddressesList/AddressesList';
 
 
 const UserInfo = () => {
@@ -79,15 +80,9 @@ const UserInfo = () => {
                     </ModalWindow>
                 </div>
                 {
-                    deliveryAddresses.length
-                    ?<ul>
-                        {deliveryAddresses.map(item=><li>
-                            {item}
-                        </li>)}
-                    </ul>
-                    :<div className={styles.notice}>
-                        <p>You currently don’t have any saved delivery addresses. Add a address here to be prefilled for quicker checkout.</p>
-                    </div>
+                    isLoading?
+                    <div className={styles.loading}><Loader /></div>
+                    :<AddressesList addresses={userInfo.delivery_addresses}/>
                 }
             </div>
         </div>

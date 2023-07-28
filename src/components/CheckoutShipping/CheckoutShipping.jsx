@@ -52,7 +52,7 @@ const CheckoutShipping = () => {
                 <div className={styles['option-wrapper']} >
                     <Select placeholder='Select a post office'
                     params={ukrposhtaOffices.map(item=>{return {id:item.id,value:`${item.name}, ${item.street}`}})}
-                    getData={hadler}
+                    getData={handler}
                     type='borderType'
                     height='45px'
                     />

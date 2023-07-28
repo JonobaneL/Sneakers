@@ -9,7 +9,6 @@ const CityForm = ({currentCity,setCity,applyCallback}) => {
     const [choosedCity,setChoosedCity] = useState(currentCity)
     const [query,setQuery] = useState(currentCity.name || '');
     const windowWidth = window.screen.availWidth<=425;
-    console.log(windowWidth)
     const [isValid,setIsValid] = useState(true)
     const popularLocatinHandler = (item)=>{
         if(item.id!==choosedCity.id) {

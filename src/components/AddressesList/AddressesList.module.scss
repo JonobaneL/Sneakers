@@ -1,0 +1,41 @@
+@import '../../styles/variables';
+
+.addresses-list{
+    display: flex;
+    flex-direction:column;
+    gap: 10px;
+    .list__item{
+        display: grid;
+        align-items: center;
+        background: $clr-secondary;
+        gap: 10px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        grid-template-columns: 12px 2fr 60px;
+        p{
+            font-size: min($fs-400,15px);
+            // font-weight: 500;
+            line-height: 150%;
+        }
+        .button-bar{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            .delete{
+                width: 25px;
+                height: 25px;
+                background: none;
+                cursor: pointer;
+            }
+            .edit-btn{
+                background: none;
+                text-decoration: underline;
+                font-weight: 600;
+                font-size: 14px;
+                color: $clr-primary;
+                cursor: pointer;
+            }
+        }
+        
+    }
+}

@@ -5,6 +5,7 @@ import { findLocation } from '../../../utils/searchLocation';
 const Autocomplete = ({children,query,setQuery}) => {
     const [flag,setFlag] = useState(false);
     const locations = findLocation(query)
+    // console.log(locations)
     return (
         <div 
         className={styles.autocomplete} 
