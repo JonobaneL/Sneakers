@@ -12,20 +12,50 @@
         gap: 10px;
         padding: 0 15px;
         border-radius: 5px;
-        grid-template-columns: 12px 2fr 1fr 1fr 25px;
+        grid-template-columns: auto 2fr 1fr 1fr auto;
         p{
-            font-size: min($fs-400,15px);
-            font-weight: 500;
+            font-size: $fs-300;
         }
         .cvv{
             font-size: 12px;
             color: $clr-primary;
         }
         .delete{
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             background: none;
             cursor: pointer;
         }
     }
+}
+@media screen and (width <= 480px) {
+    .methods-list{
+        .list__item{
+            height: auto;
+            padding: 10px 15px;
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: auto auto auto;
+            grid-template-areas: 
+            "index cartNumber delete"
+            ". date delete"
+            ". cvvNumber delete"
+            ;
+            row-gap: 5px;
+        }
+        .index{
+            grid-area: index;
+        }
+        .cart-number{
+            grid-area: cartNumber;
+        }
+        .date{
+            grid-area: date;
+        }
+        .cvv{
+            grid-area: cvvNumber;
+        }
+        .delete{
+            grid-area: delete;
+        }
+    }  
 }

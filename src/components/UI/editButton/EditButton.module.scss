@@ -11,3 +11,8 @@
         width: 15px;
     }
 }
+@media screen and (width <= 768px) {
+    .edit-button{
+        font-size: 14px;
+    }
+}

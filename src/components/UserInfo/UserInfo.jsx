@@ -19,7 +19,6 @@ const UserInfo = () => {
     const [isLoading,,userInfo] = useAsync(()=>getCurrentUser(currentUser.uid),[formTriger],'firebase')
     const [paymentModal,setPaymentModal] = useState(false);
     const [addressModal,setAddressModal] = useState(false);
-    const deliveryAddresses = [];
     const navigate = useNavigate();
    
     return (
@@ -76,13 +75,13 @@ const UserInfo = () => {
                         <p className={styles['btn-content']}>Add</p>
                     </EditButton>
                     <ModalWindow width={400} isOpen={addressModal} closeHandler={()=>setAddressModal(false)} title='Add Delivery Address'>
-                        <AddressFrom city={userInfo.city} userID={currentUser.uid} closeHandler={()=>setAddressModal(false)}/>
+                        <AddressFrom city={userInfo.city} userID={currentUser.uid} closeHandler={()=>setAddressModal(false)} triger={()=>setFormTriger(p=>!p)}/>
                     </ModalWindow>
                 </div>
                 {
                     isLoading?
                     <div className={styles.loading}><Loader /></div>
-                    :<AddressesList addresses={userInfo.delivery_addresses}/>
+                    :<AddressesList addresses={userInfo.delivery_addresses} userId={currentUser.uid} triger={()=>setFormTriger(p=>!p)}/>
                 }
             </div>
         </div>

@@ -56,7 +56,16 @@
         }
     }
 }
-
+@media screen and (width > 1280px) {
+    .user-info{
+        .payment-methods,.delivery-addresses{
+            font-size: 14px;
+        }
+        .info__item{
+            font-size: 14px;
+        }
+    }
+}
 @media screen and (max-width:1280px) {
     .user-info{
         .btn-content{
@@ -65,16 +74,11 @@
     }
     
 }
+
 @media screen and (max-width:768px) {
     .user-info{
         .btn-content{
             font-size: 13px;
-        }
-        .info{
-            font-size: 14px;
-        }
-        .payment-methods,.delivery-addresses{
-            font-size: 14px;
         }
     }
     

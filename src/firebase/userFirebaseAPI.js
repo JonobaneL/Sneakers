@@ -32,3 +32,9 @@ export const addDeliveryAddress = (props)=>{
         delivery_addresses:arrayUnion(props.address)
     })
 }
+export const updateDeliveryAddresses = (uid,addresses)=>{
+    const userRef = doc(firebaseDB,'users',uid);
+    return updateDoc(userRef,{
+        delivery_addresses: addresses
+    })
+}

@@ -114,7 +114,7 @@ const ProductDetails = () => {
                                     >
                                     <div className={styles.favorite__content} >
                                         Favorite 
-                                        <img className={styles['heart-icon']} src={inFavorites<=0?heartIcon:fullHeartIcon} alt="heart" />
+                                        <img className={styles['heart-icon']} src={inFavorites<0?heartIcon:fullHeartIcon} alt="heart" />
                                     </div>
                                 </Button>
                             </div>
@@ -123,7 +123,7 @@ const ProductDetails = () => {
                             <h2 className={styles.title}>Details</h2>
                             <p>{currentProduct.descripion[0]}</p>
                             <ul className={styles.advantages}>
-                                {currentProduct.descripion.map((item,index)=>
+                                {currentProduct.descripion[1].split('. ').map((item,index)=>
                                     index!=0
                                     ?<li key={index}>{item}</li>
                                     :null

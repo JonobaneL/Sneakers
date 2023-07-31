@@ -2,7 +2,13 @@ import React from 'react';
 import styles from './UserProfile.module.scss'
 import { useAuth } from '../../context/AuthContext';
 import { Outlet, useNavigate,NavLink } from 'react-router-dom';
-
+import userIconD from '../../images/header-icons/user-icon.svg'
+import userIconW from '../../images/user-iconw.svg'
+import heartIconD from '../../images/heart-icon.svg'
+import heartIconW from '../../images/heart-iconw.svg'
+import listIconD from '../../images/list-icon.svg'
+import listIconW from '../../images/list-iconw.svg'
+import logOutIcon from '../../images/log-out-icon.svg'
 const setActiveLink = ({isActive})=> isActive?styles.active:''
 
 const UserProfile = () => {
@@ -25,25 +31,34 @@ const UserProfile = () => {
                             className={setActiveLink}
                             to='info'
                         >
-                            Profile
+                            <p>Profile</p>
+                            <img className={styles['dark-icon']} src={userIconD} alt="info" />
+                            <img className={styles['white-icon']} src={userIconW} alt="info" />
                         </NavLink>
                         <NavLink 
                             className={setActiveLink}
                             to='orders'
                         >
-                            Orders
+                            <p>Orders </p>
+                            <img className={styles['dark-icon']} src={listIconD} alt="orders" />
+                            <img className={styles['white-icon']} src={listIconW} alt="orders" />
                         </NavLink>
                         <NavLink 
                             className={setActiveLink}
                             to='favorites'
                         >
-                            Favorites
+                            <p>Favorites</p>
+                            <img className={styles['dark-icon']} src={heartIconD} alt="favorites" />
+                            <img className={styles['white-icon']} src={heartIconW} alt="favorites" />
                         </NavLink>
                     
                         <div 
                             className={styles.nav__item}
                             onClick={handleLogout}
-                            >Log Out</div>
+                        >
+                            <p>Log Out</p>
+                            <img className={styles['dark-icon']} src={logOutIcon} alt="log-out" />
+                        </div>
                     </div>
                     <div className={styles.tab}>
                         <Outlet/>

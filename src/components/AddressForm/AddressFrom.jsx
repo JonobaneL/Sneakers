@@ -10,13 +10,12 @@ import { getPostOffice } from '../../utils/getPostOffice';
 import { addDeliveryAddress } from '../../firebase/userFirebaseAPI';
 import { findLocation } from '../../utils/searchLocation';
 
-const AddressFrom = ({city,userID,closeHandler}) => {
+const AddressFrom = ({city,userID,closeHandler,triger}) => {
     const address = useInput('',{isEmpty:true},{isEmpty:'Please enter your address'})
     const appartment = useInput('',{isEmpty:true},{isEmpty:'Please enter your appartment'})
     const [company,setCompany] = useState('');
     const currentCity = findLocation(city);
     const postalOffices = getPostOffice(currentCity[0].id,company);
-    console.log(postalOffices)
     const [postalOffice,setPostalOffice] = useState('')
     const [tabIndex,setTabIndex] = useState(0);
     const addAddress = async(e)=>{
@@ -27,12 +26,14 @@ const AddressFrom = ({city,userID,closeHandler}) => {
                     addDeliveryAddress({
                         uid:userID,
                         address:{
+                            idaddressID: `address${Date.now()}`,
                             company:company,
                             address:address.value,
                             appartment:appartment.value
                         }
                     })
                     closeHandler();
+                    triger();
                 }catch(err){
                     console.log(err)
                 }
@@ -43,11 +44,13 @@ const AddressFrom = ({city,userID,closeHandler}) => {
                     addDeliveryAddress({
                         uid:userID,
                         address:{
+                            addressID: `address${Date.now()}`,
                             company:company,
                             postal_office:postalOffice
                         }
                     })
                     closeHandler();
+                    triger();
                 }catch(err){
                     console.log(err)
                 }

@@ -29,8 +29,8 @@ const MethodsList = ({methods,userId,triger}) => {
             {methods.map((item,index)=>{
             return <li key={index} className={styles.list__item}>
                 <p className={styles.index}>{index+1}.</p>
-                <p>{item.cartNumber.match(/.{0,4}/g)?.join(' ')}</p>
-                <p>{item.date}</p>
+                <p className={styles['cart-number']}>{item.cartNumber.match(/.{0,4}/g)?.join(' ')}</p>
+                <p className={styles.date}>{item.date}</p>
                 <span className={styles.cvv}>&#10033;&#10033;&#10033;</span>
                 <button className={styles.delete} onClick={()=>deleteMethod(item.methodID)}>
                     <img src={closeIcon} alt="close" />
