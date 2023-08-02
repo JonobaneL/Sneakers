@@ -16,10 +16,12 @@ const UserInfoSettings = () => {
     const userInfo = getUser(currentUser.uid);
     const emailRef = useRef();
     const phoneRef = useRef();
+    const windowSize = window.screen.availWidth<425?true:false;
     
     const password = useInput('',{minLength:6},{minLength:"Password must has at least 6 characters"});
     const confirmPassword = useInput('',{minLength:6,isMatch:password.value},{minLength:"Password must has at least 6 characters",isMatch:`Passwords don't match`});
-    const [city, setCity] = useState('')
+    const [city, setCity] = useState('');
+
     const navigate = useNavigate();
     useEffect(()=>{
         if(userInfo.city){
@@ -57,7 +59,12 @@ const UserInfoSettings = () => {
                         Email:
                     </div>
                     <div className={styles.input}>
-                        <CInput ref={emailRef} height='50' mode='fullBorder' defaultValue={currentUser.email}  />
+                        <CInput 
+                            ref={emailRef} 
+                            height={`${windowSize?'40':'50'}`}
+                            mode='fullBorder' 
+                            defaultValue={currentUser.email}  
+                        />
                     </div>
                 </li>
                 <li className={styles.info__item}>
@@ -65,11 +72,16 @@ const UserInfoSettings = () => {
                         Phone:
                     </div>
                     <div className={styles.input}>
-                        <CInput ref={phoneRef} height='50' mode='fullBorder' defaultValue={userInfo.phone}
-                        onChange={(e)=>{
-                            const {value} = e.target;
-                            e.target.value = normilzeNumber(value)
-                        }}  />
+                        <CInput 
+                            ref={phoneRef} 
+                            height={`${windowSize?'40':'50'}`}
+                            mode='fullBorder' 
+                            defaultValue={userInfo.phone}
+                            onChange={(e)=>{
+                                const {value} = e.target;
+                                e.target.value = normilzeNumber(value)
+                            }}  
+                        />
                     </div>
                 </li>
                 <li className={styles.info__item}>
@@ -78,7 +90,12 @@ const UserInfoSettings = () => {
                     </div>
                     <div className={styles.input}>
                         <Autocomplete data={locationResponse} query={city} setQuery={setCity}>
-                            <CInput mode='fullBorder' height='50' value={city} onChange={e=>setCity(e.target.value)} />
+                            <CInput 
+                                mode='fullBorder' 
+                                height={`${windowSize?'40':'50'}`}
+                                value={city} 
+                                onChange={e=>setCity(e.target.value)} 
+                            />
                         </Autocomplete> 
                     </div>
                 </li>
@@ -94,7 +111,7 @@ const UserInfoSettings = () => {
                                 placeholder="Leave blank to keep the same"
                                 onChange={ e => password.onChange(e)}
                                 onBlur={ e => password.onBlur(e)}
-                                height='50'
+                                height={`${windowSize?'40':'50'}`}
                                 valid={password.isDurty && password.currentErrors.length>0}
                             />
                         </ValidationErrorMessages>
@@ -112,7 +129,7 @@ const UserInfoSettings = () => {
                                 placeholder="Leave blank to keep the same"
                                 onChange={e=>confirmPassword.onChange(e)}
                                 onBlur={e=>confirmPassword.onBlur(e)}
-                                height='50'
+                                height={`${windowSize?'40':'50'}`}
                                 valid={confirmPassword.isDurty && confirmPassword.currentErrors.length>0}
                             />
                         </ValidationErrorMessages>
@@ -125,12 +142,12 @@ const UserInfoSettings = () => {
             <div className={styles['button-bar']}>
                 <Button 
                     mode='secondary' 
-                    width='120px'
+                    width={`${windowSize?'100%':'120px'}`}
                     onClick={()=>navigate('/user-profile/info')}
                 >Cancel</Button>
                 <Button 
                     mode='primary' 
-                    width='120px'
+                    width={`${windowSize?'100%':'120px'}`}
                     onClick={applyHandler}
                 >Apply</Button>
             </div>

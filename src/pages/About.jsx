@@ -10,61 +10,22 @@ import Button from '../components/UI/button/Button';
 import { getAllProductsModels, getProduct } from '../firebase/productFirebaseAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, fetchFavorites } from '../redux/favoritesSlice';
+import { signUp1, signUp2 } from '../redux/authSlice';
 
 
 const About = () => {
-    const [data,setData] = useState([]);
-    const getData = ()=>{
-      fetch( 'https://jsonplaceholder.typicode.com/photos?_page=0&_limit=10')
-      .then(response=>response.json())
-      .then(arr=>setData(arr))
-    }
-    useEffect(()=>{
-      setTimeout(()=>{
-        getData()
-      },2000)
-      return ()=>{
-        clearTimeout()
-      }
-    },[])
-    console.log(data)
+  const dispatch = useDispatch();
+  const user1 = useSelector(state=>state.authReducer)
+  const handler = ()=>{
+    dispatch(signUp2({email:'kdaflkflkdlf@gmail.com',password:'dffsfsfsfdf'}))
+  }
+  console.log(user1)
     return <div className={styles.about}>
         <div className={styles.content} >
-          {/* <div className={styles["skeleton-card"]}>
-              <div className={styles.skeleton__img}/>
-              <div className={styles.skeleton__title}>
-                <div className={styles.line}/>
-                <div className={styles.line}/>
-              </div>
-          </div> */}
-         
-          {true?
-           <div className={styles.list}>
-          {    Array(10).fill(1).map((_,index)=>{
-                  return <div key={index} className={styles["skeleton-card"]}>
-                            <div className={styles.skeleton__img}/>
-                            <div className={styles.skeleton__title}>
-                              <div className={styles.brand}/>
-                              <div className={styles.name}/>
-                              <div className={styles.rate}/>
-                              <div className={styles.price}/>
-                            </div>
-                          </div>
-              })}
-          </div>
-          :<div className={styles.list}>
-            {
-              data.map((item,index)=>{
-                
-                return <div key={index} className={styles.card}>
-                  <img src={item.url} alt="index" />
-                  <h3>{item.title}</h3>
-                </div>
-                })
-              }
-            </div>
-          }
-          
+         <button
+         style={{height:'100px'}}
+         onClick={handler}
+         >Sing Up</button>
           
         </div>
     </div>;

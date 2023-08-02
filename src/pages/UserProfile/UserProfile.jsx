@@ -9,6 +9,8 @@ import heartIconW from '../../images/heart-iconw.svg'
 import listIconD from '../../images/list-icon.svg'
 import listIconW from '../../images/list-iconw.svg'
 import logOutIcon from '../../images/log-out-icon.svg'
+
+
 const setActiveLink = ({isActive})=> isActive?styles.active:''
 
 const UserProfile = () => {

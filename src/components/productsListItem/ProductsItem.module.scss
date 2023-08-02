@@ -3,7 +3,6 @@
     background-color: #fff;
     padding: 5px;
     text-align: center;
-    // font-size: 14px;
     color:$clr-text;
     transition: all 0.4s;
     display: grid;
@@ -24,13 +23,17 @@
         justify-self: center;
     }
     .brand{
-        font-size: 15px;
+        font-size: min($fs-400,15px);
         color:$clr-primary;
         font-weight: 600;
+    }
+    .name{
+        font-size: 14px;
     }
     .price{
         display: flex;
         gap:10px;
+        font-size: min($fs-400,15px);
         p{
             font-weight: 500;
         }
@@ -43,8 +46,8 @@
         }
     }
 }
-@media screen and (min-width:1360px) {
-    .item{
-        font-size: 15px;
-    }
-}
+// @media screen and (min-width:1360px) {
+//     .item{
+//         font-size: 15px;
+//     }
+// }

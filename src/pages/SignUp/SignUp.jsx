@@ -33,7 +33,10 @@ const SignUp = () => {
                 id: userResponce.user.uid,
                 firstName: firstName.value,
                 lastName: lastName.value,
-                city: city.value
+                city: city.value,
+                phone:null,
+                payment_methods:[],
+                delivery_addresses:[],
             })
             navigate('/user-profile/info')
         }catch(err){

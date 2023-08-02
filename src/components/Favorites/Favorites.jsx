@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styles from './Favorites.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import EditButton from '../UI/editButton/EditButton';
-import Loader from '../UI/loader/Loader';
 import { useProduct } from '../../hooks/useProduct';
 import Button from '../UI/button/Button'
 import ProductItem from '../productsListItem/ProductsItem';
 import { removeFromFavorites } from '../../redux/favoritesSlice';
+import SkeletonCard from '../UI/skeletonCard/SkeletonCard';
 
 const Product = ({item,triger})=>{
     const dispatch = useDispatch();
@@ -21,7 +21,6 @@ const Product = ({item,triger})=>{
                     onClick={()=>dispatch(removeFromFavorites(item))}
                 >Remove</Button>
             </div>
-            
             <ProductItem item={{...product,productID:item.productID,modelID:item.modelID}}/>
         </div>
     )
@@ -38,7 +37,7 @@ const Favorites = () => {
             </div>
             {
                 isLoading
-                ?<Loader/>
+                ?Array(5).fill(1).map((_,index)=><SkeletonCard key={index}/>)
                 :favorites.length>0
                     ?<div className={styles.list}>
                         {

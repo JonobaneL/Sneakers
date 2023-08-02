@@ -30,6 +30,13 @@
    }
    .empty-list{
         text-align: center;
-        line-height: 200px;
+        margin: 100px 0;
    }
+}
+@media screen and (width <= 425px) {
+    .favorites{
+        .list{
+            justify-content: center;
+        }
+     }
 }

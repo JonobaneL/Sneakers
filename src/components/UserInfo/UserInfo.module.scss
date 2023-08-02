@@ -16,6 +16,7 @@
             height: 55px;
             color:#2f2f2f;
             border-bottom: 1px solid rgba(#b0b0b0,0.3);
+            font-size: max($fs-300,12.5px);
             .field-name{
                 flex: 0 1 30%;
                 font-weight: 500;
@@ -72,7 +73,6 @@
             font-size: 14px;
         }
     }
-    
 }
 
 @media screen and (max-width:768px) {
@@ -81,5 +81,11 @@
             font-size: 13px;
         }
     }
-    
+}
+@media screen and (max-width:425px) {
+    .user-info .info{
+        .info__item{
+            justify-content: space-between;
+        }
+    }
 }
