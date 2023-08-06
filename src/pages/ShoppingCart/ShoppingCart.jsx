@@ -30,7 +30,7 @@ const ShoppingCart = () => {
         catch(err){
             console.log(err)
         }
-        if(couponRef.current.value==''){
+        if(couponRef.current?.value==''){
             setCartToast({type:'warning',content:"Enter coupon"})
             setToastOpen(true)
             return

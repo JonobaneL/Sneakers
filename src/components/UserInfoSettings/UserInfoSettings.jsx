@@ -10,22 +10,25 @@ import { findLocation } from '../../utils/searchLocation';
 import { useNavigate } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import ValidationErrorMessages from '../ValidationErrorMessages/ValidationErrorMessages';
+import { formatPhoneNumber } from '../../utils/formatPhoneNumber';
 
 const UserInfoSettings = () => {
     const {currentUser, updateUserEmail, updateUserPassword} = useAuth();
     const userInfo = getUser(currentUser.uid);
     const emailRef = useRef();
-    const phoneRef = useRef();
     const windowSize = window.screen.availWidth<425?true:false;
-    
+    const phoneNumber = useInput(userInfo.phone||'',{minLength:12},{minLength:"Please enter your number"})
     const password = useInput('',{minLength:6},{minLength:"Password must has at least 6 characters"});
     const confirmPassword = useInput('',{minLength:6,isMatch:password.value},{minLength:"Password must has at least 6 characters",isMatch:`Passwords don't match`});
     const [city, setCity] = useState('');
-
     const navigate = useNavigate();
     useEffect(()=>{
         if(userInfo.city){
             setCity(userInfo.city)
+        }
+        if(userInfo.phone){
+            const number = formatPhoneNumber(userInfo.phone)
+            phoneNumber.setValue(number)
         }
     },[userInfo])
     const locationResponse = findLocation(city)
@@ -34,8 +37,8 @@ const UserInfoSettings = () => {
         if(emailRef.current.value !== currentUser.email){
             promises.push(updateUserEmail(emailRef.current.value))
         }
-        if(phoneRef.current.value !== userInfo.phone){
-            promises.push(updateUserPhone({uid:currentUser.uid,phone:phoneRef.current.value}))
+        if(phoneNumber.value !== formatPhoneNumber(userInfo.phone)){
+            promises.push(updateUserPhone({uid:currentUser.uid,phone:phoneNumber.value}))
         }
         if(city !== userInfo.city){
             promises.push(updateUserCity({uid:currentUser.uid,city:city}))
@@ -44,13 +47,9 @@ const UserInfoSettings = () => {
         if(confirmPassword.currentErrors.length===0){
             promises.push(updateUserPassword(confirmPassword.value))
         }
-        Promise.all(promises).then(()=>console.log('success'))
+        Promise.all(promises).then(()=>navigate('/user-profile/info'))
         .catch(err=>console.log(err))
     }
-    const normilzeNumber = (value)=>{
-        return value.replace(/\s/g,'').match(/.{1,4}/g)?.join(' ').substring(0,17)|| ' '
-    }
-   
     return (
         <div className={styles['info-settings']}>
              <ul className={styles.info}>
@@ -73,14 +72,15 @@ const UserInfoSettings = () => {
                     </div>
                     <div className={styles.input}>
                         <CInput 
-                            ref={phoneRef} 
                             height={`${windowSize?'40':'50'}`}
                             mode='fullBorder' 
-                            defaultValue={userInfo.phone}
+                            value={phoneNumber.value}
                             onChange={(e)=>{
-                                const {value} = e.target;
-                                e.target.value = normilzeNumber(value)
+                                const number = formatPhoneNumber(e.target.value)
+                                phoneNumber.setValue(number)
                             }}  
+                            onBlur={ e => phoneNumber.onBlur(e)}
+                            valid={phoneNumber.isDurty && phoneNumber.currentErrors.length>0}
                         />
                     </div>
                 </li>

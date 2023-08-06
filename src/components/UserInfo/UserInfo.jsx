@@ -11,8 +11,6 @@ import Loader from '../UI/loader/Loader'
 import MethodsList from '../MedhodsList/MethodsList';
 import AddressFrom from '../AddressForm/AddressFrom';
 import AddressesList from '../AddressesList/AddressesList';
-import { useSelector } from 'react-redux';
-
 
 const UserInfo = () => {
     const { currentUser } = useAuth();
@@ -21,8 +19,6 @@ const UserInfo = () => {
     const [paymentModal,setPaymentModal] = useState(false);
     const [addressModal,setAddressModal] = useState(false);
     const navigate = useNavigate();
-    const user1 = useSelector(state=>state.authReducer)
-    console.log(user1)
     return (
         <div className={styles['user-info']}>
              <div className={styles['edit-section']}>

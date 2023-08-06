@@ -20,7 +20,7 @@ const CheckoutCustomer = memo(({firstName,lastName,email,phoneNumber}) => {
             firstName.setValue(response.data().firstName)
             lastName.setValue(response.data().lastName)
             email.setValue(currentUser.email)
-            phoneNumber.setValue(response.data().phoneNumber || '')
+            phoneNumber.setValue(response.data().phone || '')
             setIsLoading(false)
         }
         catch(err){
