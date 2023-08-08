@@ -4,24 +4,28 @@
     display: flex;
     flex-direction:column;
     gap: 10px;
+    width: 100%;
     .list__item{
-        display: grid;
-        align-items: start;
-        background: $clr-secondary;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #CACACB;
         gap: 10px;
         padding: 10px 15px;
         border-radius: 5px;
-        grid-template-columns: auto 1fr auto;
+        cursor: pointer;
         p{
-            font-size: $fs-300;
+            font-size: max($fs-300,13.5px);
             line-height: 150%;
         }
         .delete{
             align-self: center;
             width: 20px;
             height: 20px;
+            flex: 0 0 20px;
             background: none;
             cursor: pointer;
+            
         }
     }
 }

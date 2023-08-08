@@ -26,7 +26,7 @@ const AddressFrom = ({city,userID,closeHandler,triger}) => {
                     addDeliveryAddress({
                         uid:userID,
                         address:{
-                            idaddressID: `address${Date.now()}`,
+                            addressID: `address${Date.now()}`,
                             company:company,
                             address:address.value,
                             appartment:appartment.value

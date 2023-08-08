@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './MethodsList.module.scss'
 import closeIcon from '../../images/cancel.svg'
 import { updatePaymentMethods } from '../../firebase/userFirebaseAPI';
 
-const MethodsList = ({methods,userId,triger}) => {
+const MethodsList = ({
+    methods,
+    userId,
+    triger=()=>{},
+    callback=()=>{}}) => {
     if(methods.length==0){
         return (
             <div className={styles.notice}>
                 <p>You currently don’t have any saved payment methods. Add a method here to be prefilled for quicker checkout.</p>
             </div>
         )
+    }
+    const [activeMethod,setActiveMethod] = useState('');
+    const methodHandler = (method)=>{
+        if(activeMethod!==method.methodID){
+            setActiveMethod(method.methodID);
+            callback(method)
+        }
     }
     const deleteMethod = async(methodID)=>{
         const filteredMethods = methods.filter(item=>item.methodID !== methodID);
@@ -27,14 +38,22 @@ const MethodsList = ({methods,userId,triger}) => {
     return (
         <ul className={styles['methods-list']}>
             {methods.map((item,index)=>{
-            return <li key={index} className={styles.list__item}>
-                <p className={styles.index}>{index+1}.</p>
+            return <li 
+                    key={index} 
+                    className={`${styles.list__item} ${activeMethod==item.methodID?styles.active:''}`}
+                    onClick={()=>methodHandler(item)}
+                    >
                 <p className={styles['cart-number']}>{item.cartNumber.match(/.{0,4}/g)?.join(' ')}</p>
                 <p className={styles.date}>{item.date}</p>
                 <span className={styles.cvv}>&#10033;&#10033;&#10033;</span>
-                <button className={styles.delete} onClick={()=>deleteMethod(item.methodID)}>
-                    <img src={closeIcon} alt="close" />
-                </button>
+                {
+                    !triger
+                    ?null
+                    :<button className={styles.delete} onClick={()=>deleteMethod(item.methodID)}>
+                        <img src={closeIcon} alt="close" />
+                    </button>
+                }
+                
             </li>})}
         </ul>
     );

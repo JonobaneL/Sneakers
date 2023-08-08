@@ -2,11 +2,6 @@
 
 .user-info{
     width: 100%;
-    .btn-content{
-        font-size: 15px;
-        font-weight: 500;
-        color: #292929;
-    }
     .info{
         display: flex;
         flex-direction: column;
@@ -28,6 +23,7 @@
         width: 100%;
         display: flex;
         justify-content: right;
+        grid-area: edit;
     }
     .loading{
         display: flex;
@@ -36,49 +32,35 @@
     }
     .payment-methods,.delivery-addresses{
         margin-top: 30px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 40% 60%;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+        "edit edit"
+        "title content";
+        row-gap: 10px;
         .title{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            .add-btn{
-                display: flex;
-                gap: 5px;
-                align-items: center;
-                background: none;
-                cursor:pointer;
-                font-size: 14px;
-                font-weight: 500;
-                color: #292929;
-                img{
-                    width: 15px;
-                }
-            }
+            grid-area: title;
+        }
+        .section-content{
+            grid-area: content;
         }
     }
-}
-@media screen and (width > 1280px) {
-    .user-info{
-        .payment-methods,.delivery-addresses{
-            font-size: 14px;
-        }
-        .info__item{
-            font-size: 14px;
-        }
-    }
-}
-@media screen and (max-width:1280px) {
-    .user-info{
-        .btn-content{
-            font-size: 14px;
-        }
-    }
+    
 }
 
-@media screen and (max-width:768px) {
+@media screen and (width <= 610px) {
     .user-info{
-        .btn-content{
-            font-size: 13px;
+        .delivery-addresses,.payment-methods{
+            grid-template-columns: 60% 40%;
+            grid-template-areas: 
+            "title edit"
+            "content content";
+            row-gap: 8px;
+            .title{
+                align-self: center;
+            }
         }
     }
 }

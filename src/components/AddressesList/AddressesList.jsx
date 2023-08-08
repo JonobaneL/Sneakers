@@ -27,7 +27,6 @@ const AddressesList = ({addresses,userId,triger}) => {
             {
                 addresses.map((item,index)=>{
                     return <li key={index} className={styles.list__item}>
-                        <p>{index+1}.</p>
                         <div>
                             <p>{item.company==='novaposhta'?'Nova Poshta':'Ukr Poshta'}</p>
                             {

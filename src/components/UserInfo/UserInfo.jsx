@@ -53,34 +53,42 @@ const UserInfo = () => {
             </ul>
            
             <div className={styles["payment-methods"]}>
+                <div className={styles["edit-section"]}>
+                    <EditButton onClick={()=>setPaymentModal(true)}>Add</EditButton>
+                </div>
                 <div className={styles.title}>
                     <h3>Payment Methods</h3>
-                    <EditButton onClick={()=>setPaymentModal(true)}>Add</EditButton>
-                    <ModalWindow width={400} isOpen={paymentModal} closeHandler={()=>setPaymentModal(false)} title='Add Payment Method'>
-                        <PaymentMethods userID={currentUser.uid} closeHandler={()=>setPaymentModal(false)} triger={()=>setFormTriger(p=>!p)}/>
-                    </ModalWindow>
                 </div>
-                {
-                    isLoading?<div className={styles.loading}><Loader /></div>
-                    :<MethodsList methods={userInfo.payment_methods} userId={currentUser.uid} triger={()=>setFormTriger(p=>!p)} />
-                }
+                <div className={styles["section-content"]}>
+                    {
+                        isLoading?<div className={styles.loading}><Loader /></div>
+                        :<MethodsList methods={userInfo.payment_methods} userId={currentUser.uid} triger={()=>setFormTriger(p=>!p)} />
+                    }
+                </div>
+                
+                <ModalWindow width={400} isOpen={paymentModal} closeHandler={()=>setPaymentModal(false)} title='Add Payment Method'>
+                    <PaymentMethods userID={currentUser.uid} closeHandler={()=>setPaymentModal(false)} triger={()=>setFormTriger(p=>!p)}/>
+                </ModalWindow>
             </div>
             
             <div className={styles["delivery-addresses"]}>
+                <div className={styles["edit-section"]}>
+                    <EditButton onClick={()=>setAddressModal(true)}>Add</EditButton>
+                </div>
                 <div className={styles.title}>
-                    <h3 >Delivery Addresses</h3>
-                    <EditButton onClick={()=>setAddressModal(true)}>
-                        <p className={styles['btn-content']}>Add</p>
-                    </EditButton>
-                    <ModalWindow width={400} isOpen={addressModal} closeHandler={()=>setAddressModal(false)} title='Add Delivery Address'>
+                        <h3 >Delivery Addresses</h3>
+                </div>
+                <div className={styles["section-content"]}>
+                    {
+                        isLoading?
+                        <div className={styles.loading}><Loader /></div>
+                        :<AddressesList addresses={userInfo.delivery_addresses} userId={currentUser.uid} triger={()=>setFormTriger(p=>!p)}/>
+                    }
+                </div>
+               
+                 <ModalWindow width={400} isOpen={addressModal} closeHandler={()=>setAddressModal(false)} title='Add Delivery Address'>
                         <AddressFrom city={userInfo.city} userID={currentUser.uid} closeHandler={()=>setAddressModal(false)} triger={()=>setFormTriger(p=>!p)}/>
                     </ModalWindow>
-                </div>
-                {
-                    isLoading?
-                    <div className={styles.loading}><Loader /></div>
-                    :<AddressesList addresses={userInfo.delivery_addresses} userId={currentUser.uid} triger={()=>setFormTriger(p=>!p)}/>
-                }
             </div>
         </div>
     );
