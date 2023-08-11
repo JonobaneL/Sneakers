@@ -13,7 +13,6 @@ const Select = ({placeholder, params,getData,type='underLineType',height='40px',
     const isOptionSelected=(option)=>{
         return option.id === selectValue.id
     }
-    var i = 0;
     const handler = ()=>{
         setIsOpen(p=>!p);
     }

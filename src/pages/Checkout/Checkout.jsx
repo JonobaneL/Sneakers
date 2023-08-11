@@ -103,7 +103,7 @@ const Checkout = () => {
                         callback={value=>console.log(value)}
                     >
                         <></>
-                        <div className={`${styles['payment-option']} ${(!userInfo || cardUse)?styles.active:''}`}>
+                        <div className={styles['payment-option']}>
                             {
                                 userInfo?.payment_methods&&<><div className={styles.list}>
                                         <MethodsList 
@@ -118,8 +118,10 @@ const Checkout = () => {
                                     >Use Another Card</p>
                                     </>
                             }
-                            <div className={styles['card-form']}>
-                                <CreditCardFrom cardData={cardData} callback={setCardData} />
+                            <div className={`${styles['card-form']} ${cardUse?styles.active:''}`}>
+                                <div className={styles["card-form__content"]}>
+                                    <CreditCardFrom cardData={cardData} callback={setCardData} />
+                                </div>
                             </div>
                         </div>
                         <></>

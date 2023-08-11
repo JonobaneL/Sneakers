@@ -21,8 +21,10 @@ const RadioList = ({list,groupName,callback,children}) => {
                         <RadioButton id={item.id} name={groupName} value={item.value} onChange={e=>buttonHandler(e)} disabled={item.disabled} />
                         {item.label}
                     </label>
-                    <div className={styles["option-body"]}>
-                        {children[index]}
+                    <div className={styles["wrapper"]}>
+                        <div className={styles["option-body"]}>
+                            {children[index]}
+                        </div>
                     </div>
                 </div>
             )}

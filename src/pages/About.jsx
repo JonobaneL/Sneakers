@@ -15,42 +15,16 @@ const About = () => {
             className={styles.btn}
                 onClick={()=>setIsOpen(p=>!p)}
             >Open</button>
-            <form>
-                <div className={styles.wrapper}>
-                    <div className={`${styles.item} ${choosedItem=='Payment upon receipt of goods'?styles.active:''}`}>
-                        <label className={styles.item__label}>
-                            <RadioButton id='item01' name='items' value='Payment upon receipt of goods' onChange={e=>setChoosedItem(e.target.value)}  />
-                            Payment upon receipt of goods
-                        </label>
-                    </div>
-                    <div className={`${styles.item} ${choosedItem=='Credit or Debit Card'?styles.active:''}`}>
-                        <label className={styles.item__label}>
-                            <RadioButton id='item02' name='items' value='Credit or Debit Card' onChange={e=>setChoosedItem(e.target.value)}  />
-                            Credit or Debit Card
-                        </label>
-                        <div className={styles["item-body"]}>
-                            <div className={styles.body__wrapper}>
-                                <CInput mode='fullBorder' height='50' placeholder='Card Number'/>
-                                <CInput mode='fullBorder' height='50' placeholder='MM/YY'/>
-                                <CInput mode='fullBorder' height='50' placeholder='CVV'/>
-                            </div>
+            <div className={styles.wrapper}>
+                <div className={styles.block}>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita natus blanditiis at culpa assumenda? Neque cum distinctio, quod nam autem ratione error placeat est natus itaque, veniam tempore, debitis ullam?
+                    Quisquam praesentium sed deleniti veritatis tempore atque quo, quam error illo distinctio vitae totam ipsa quis perspiciatis accusantium. Accusamus facere culpa nemo nobis voluptates reiciendis saepe eum corrupti, neque consequuntur.</p>
+                    
+                    <div className={styles.section}>
+                        <div className={styles["section-header"]} onClick={()=>setIsOpen(p=>!p)}>Select</div>
+                        <div className={`${styles["section-body"]} ${isOpen?styles.active:''}`}>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam ipsam sunt id delectus, corrupti expedita exercitationem quasi quisquam, quaerat odit necessitatibus atque quibusdam mollitia ad aliquid facilis optio perspiciatis. Nihil.
                         </div>
-                    </div>
-                    <div className={`${styles.item} ${choosedItem=='PayPal'?styles.active:''}`}>
-                        <label className={styles.item__label}>
-                            <RadioButton id='item03' name='items' value='PayPal' onChange={e=>setChoosedItem(e.target.value)}  />
-                            PayPal
-                        </label>
-                    </div>
-                </div>
-            </form>
-            
-            <div style={{border:'1px solid #b1b1b1',padding:'20px'}}>
-                <div className={`${styles.card} ${isOpen?styles.active:''}`}>
-                    <div className={styles["card-header"]}>Card Header</div>
-                    <div className={styles["card-body"]}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ut inventore velit vitae molestiae explicabo veritatis distinctio odit alias quod, saepe, praesentium, architecto non fuga repellat magnam soluta. Neque, facilis.
-                        Dicta earum tenetur neque nihil quia odio architecto aut! Maxime laborum dolorem voluptate alias cumque culpa dicta at corrupti magnam laboriosam sed temporibus, assumenda molestias nostrum, aspernatur dignissimos tempora! Necessitatibus!
                     </div>
                 </div>
             </div>
