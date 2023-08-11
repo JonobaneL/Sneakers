@@ -18,7 +18,6 @@ const Item = ({productID,modelID,size,quantity,cost}) =>{
 
 const OrdreSummaryList = () => {
     const cart = useSelector(state=>state.cartReducer);
-    console.log(cart)
     return ( 
         <ul className={styles.list}>
             {cart.shoppingCart.map((item,index)=>

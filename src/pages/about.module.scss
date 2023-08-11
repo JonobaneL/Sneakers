@@ -7,72 +7,69 @@
     .content{
         @include mixins.content;
         display: flex;
-        flex-direction: column;
-        // justify-content: center;
+        justify-content: center;
+        gap:10px;
+        align-self: flex-start;
         // height: 300px;
-        .list{
-            display: grid;
-            grid-template-columns: repeat(auto-fit,200px);
-            gap: 10px;
-            .card{
-                width: 200px;
-                img{
-                    width: 100%;
+        .btn{
+            width: 160px;
+            height: 50px;
+        }
+        .wrapper{
+            width: 500px;
+            display: flex;
+            flex-direction:column;
+            gap:5px;
+            .item{
+                display: grid;
+                grid-template-rows: auto 0fr;
+                transition: grid-template-rows 0.3s ease-out;
+                padding: 10px 5px;
+                border-radius: 5px;
+                &__label{
+                    display: flex;
+                    gap: 5px;
+                    align-items:center;
+                    cursor: pointer;
+                }
+                &-body{
+                    overflow: hidden;
+                    // opacity: 0;
+                    .body__wrapper{
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                }
+                &.active{
+                    grid-template-rows: auto 1fr;
+                    outline: 1px solid #b1b1b1;
+                    .item-body{
+                    }
                 }
             }
         }
-        
-    }
-}
-.skeleton-card{
-    width: 200px;
-    .skeleton__img{
-        aspect-ratio: 1/1;
-        width: 100%;
-        display: inline-block;
-        border-radius: 3px;
-        animation: skeleton 1s linear infinite alternate;
-    }
-    .skeleton__title{
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 4px;
-        .brand,.name,.rate,.price{
-            height: 15px;
-            animation: skeleton 1s linear infinite alternate;
-            border-radius: 3px;
+        .card{
+            width: 500px;
+            padding: 15px;
+            display: grid;
+            grid-template-rows: auto 0fr;
+            transition: grid-template-rows 0.3s ease-out;
+            border: 1px solid #b1b1b1;
+            border-radius:5px;
+            &.active{
+                grid-template-rows:auto 1fr;
+            }
+            .card-header{
+                font-weight: 500;
+                font-size:18px;
+            }
+            .card-body{
+                font-size: 15px;
+                line-height:140%;
+                overflow: hidden;
+            }
         }
-        .brand{
-            width: 40%;
-        }
-        .name{
-            width: 70%;
-        }
-        .rate{
-            width: 50%;
-        }
-        .price{
-            width: 40%;
-        }
-    }
-}
-@keyframes skeleton {
-    from{
-        background: #eeeeee;
-
-    }
-    to{
-        background: #cfcfcf;
-    }
-}
-@media screen and (max-width:768px) {
-    .about{
-        @include mixins.wrapper-tablet
-    }
-}
-@media screen and (max-width:425px) {
-    .about{
-        @include mixins.wrapper-mobile
     }
 }

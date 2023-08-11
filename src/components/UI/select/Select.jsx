@@ -13,9 +13,13 @@ const Select = ({placeholder, params,getData,type='underLineType',height='40px',
     const isOptionSelected=(option)=>{
         return option.id === selectValue.id
     }
+    var i = 0;
+    const handler = ()=>{
+        setIsOpen(p=>!p);
+    }
     return (
         <div tabIndex={0} className={styles.select} onBlur={()=>setIsOpen(false)}>
-            <div className={`${styles.selectField} ${styles[type]}`} style={{height:height}} onClick={()=>{setIsOpen(!isOpen)}}  >
+            <div className={`${styles.selectField} ${styles[type]}`} style={{height:height}} onClick={handler}  >
                 <p>{selectValue.value||<span className={styles.placeholder}>{placeholder}</span>}</p>
                 <button className={`${styles.arrow} ${isOpen?styles.active:''}`}>
                     <img src={arrow} alt="arrow" />

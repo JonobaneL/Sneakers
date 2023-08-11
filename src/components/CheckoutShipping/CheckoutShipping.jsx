@@ -10,12 +10,15 @@ import Select from '../UI/select/Select';
 import CustomerAddressForm from '../CustomerAddress/CustomerAddressForm';
 
 
-const CheckoutShipping = () => {
-    const [currentCity,setCurrentCity] = useState({})
+const CheckoutShipping = ({city}) => {
+    const [currentCity,setCurrentCity] = useState(city||{})
     const ukrposhtaOffices = getPostOffice(currentCity.id,'ukrposhta')
     const novaposhtaOffices = getPostOffice(currentCity.id,'novaposhta')
     const [isCityModalOpen,setIsCityModalOpen] = useState(false);
     const validRadio = currentCity.id>0?false:true;
+    console.log(city)
+    console.log(currentCity)
+    console.log(novaposhtaOffices)
     const closeModalWindowHandler = ()=>{
         setIsCityModalOpen(false)
     }
@@ -42,19 +45,20 @@ const CheckoutShipping = () => {
         </ModalWindow>
             <RadioList 
                 list={[
-                    {id:'opt1',label:'Pickup from Ukrposhta',value:'ukrposhta-prickup',disabled:validRadio},
-                    {id:'opt2',label:'Courier Ukrposhta',value:'ukrposhta-courier',disabled:validRadio},
-                    {id:'opt3',label:'Pickup from Nova Poshta',value:'novaposhta-prickup',disabled:validRadio},
-                    {id:'opt4',label:'Courier Nova Poshta',value:'novaposhta-courier',disabled:validRadio},
+                    {id:'opt1',label:'Pickup from Ukrposhta',value:'Pickup from Ukrposhta',disabled:validRadio},
+                    {id:'opt2',label:'Courier Ukrposhta',value:'Courier Ukrposhta',disabled:validRadio},
+                    {id:'opt3',label:'Pickup from Nova Poshta',value:'Pickup from Nova Poshta',disabled:validRadio},
+                    {id:'opt4',label:'Courier Nova Poshta',value:'Courier Nova Poshta',disabled:validRadio},
                 ]}
                 groupName='shipping'
+                callback={value=>console.log(value)}
             >
                 <div className={styles['option-wrapper']} >
                     <Select placeholder='Select a post office'
-                    params={ukrposhtaOffices.map(item=>{return {id:item.id,value:`${item.name}, ${item.street}`}})}
-                    getData={handler}
-                    type='borderType'
-                    height='45px'
+                        params={ukrposhtaOffices.map(item=>{return {id:item.id,value:`${item.name}, ${item.street}`}})}
+                        getData={handler}
+                        type='borderType'
+                        height='45px'
                     />
                 </div>
                 <div className={styles['option-wrapper']} >

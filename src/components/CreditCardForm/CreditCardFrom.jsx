@@ -1,7 +1,7 @@
 import CInput from '../UI/input/CInput';
 import styles from './CreaditCardForm.module.scss'
 
-const CreditCardFrom = () => {
+const CreditCardFrom = ({cardData,callback}) => {
     return (
         <div className={styles['card-form']}>
             <div className={styles.number}>
@@ -10,6 +10,8 @@ const CreditCardFrom = () => {
                     placeholder="Card Number"
                     mode='fullBorder'
                     height={45}
+                    value={cardData.cartNumber}
+                    onChange={e=>callback({...cardData,cartNumber:e.target.value})}
                     />
             </div>
             <div className={styles.date}>
@@ -18,6 +20,8 @@ const CreditCardFrom = () => {
                     placeholder="MM/YY"
                     mode='fullBorder'
                     height={45}
+                    value={cardData.date}
+                    onChange={e=>callback({...cardData,date:e.target.value})}
                     />
             </div>
             <div className={styles.cvv}>
@@ -26,6 +30,8 @@ const CreditCardFrom = () => {
                     placeholder="CVV"
                     mode='fullBorder'
                     height={45}
+                    value={cardData.cvvNumber}
+                    onChange={e=>callback({...cardData,cvvNumber:e.target.value})}
                     />
             </div>
         </div>

@@ -5,7 +5,7 @@ import { updatePaymentMethods } from '../../firebase/userFirebaseAPI';
 
 const MethodsList = ({
     methods,
-    userId,
+    userId='1',
     triger=()=>{},
     callback=()=>{}}) => {
     if(methods.length==0){

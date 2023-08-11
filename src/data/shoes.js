@@ -156,7 +156,7 @@ export const shoes = [
         descripion:[
             "The Men's Dr. Martens Hardie II Chelsea Boot is built to handle anything anytime!",
             "Leather upper in a chelsea boot style with a round toe",
-            "Slip-on entry",
+            "Slip-on ent    ry",
             "Dual elastic goring for easy slip-on entry",
             "Heel pull tab",
             "Moisture-wicking lining with a padded insole",

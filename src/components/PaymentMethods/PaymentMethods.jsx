@@ -5,21 +5,12 @@ import Button from '../UI/button/Button';
 import { useInput } from '../../hooks/useInput';
 import ValidationErrorMessages from '../ValidationErrorMessages/ValidationErrorMessages';
 import { addPaymentMethod } from '../../firebase/userFirebaseAPI';
+import { normilizeDate, normilzeCardNumber } from '../../utils/normalizeMethods';
 
 const PaymentMethods = ({userID,closeHandler,triger}) => {
     const cartNumber = useInput('',{isEmpty:true,minLength:16},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
     const date = useInput('',{isEmpty:true,minLength:5},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
     const cvvNumber = useInput('',{isEmpty:true,minLength:3},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
-    const normilzeCardNumber = (value)=>{
-        const card = value.replace(/\s/g,'').match(/.{0,4}/g)?.join(' ').substring(0,19)|| ''
-        cartNumber.setValue(card.replace(/\s/g,''));
-        return card;
-    }
-    const normilizeDate = (value)=>{
-        const nValue = value.replace(/\s/g,'').match(/(\d{1,2})/g)?.join('/').substring(0,5) || '';
-        date.setValue(nValue);
-        return nValue;
-    }
     const saveHandler = async()=>{
         try{
             await addPaymentMethod({
