@@ -15,41 +15,5 @@
             width: 160px;
             height: 50px;
         }
-        .wrapper{
-            .block{
-                width: 500px;
-                display: grid;
-                grid-template-rows: auto 1fr;
-                .section{
-                    width: 100%;
-                    position: relative;
-                    &-header{
-                        width: 100%;
-                        height: 50px;
-                        background: #b1b1b0;
-                        line-height: 40px;
-                        font-size: 16px;
-                        padding: 5px 10px;
-                    }
-                    &-body{
-                        padding: 10px;
-                        line-height: 130%;
-                        visibility:hidden;
-                        opacity: 0;
-                        position: absolute;
-                        background: #fff;
-                        border:1px solid #2f2f2f;
-                        top:40px;
-                        transition: all 0.4s ease-in-out;
-                        &.active{
-                            visibility:visible;
-                            opacity: 1;
-                            top:50px;
-                            z-index: 5;
-                        }
-                    }
-                }
-            }
-        }
     }
 }

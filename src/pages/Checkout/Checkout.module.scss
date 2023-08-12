@@ -35,14 +35,17 @@
                     flex: 1 0 auto;
                 }
                 .another{
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: $clr-primary;
-                    text-decoration:underline;
-                    cursor: pointer;
-                    text-align: right;
+                    display: flex;
+                    justify-content:right;
                     max-width: 500px;
                     margin-top: 10px;
+                    p{
+                        cursor: pointer;
+                        text-decoration:underline;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: $clr-primary;
+                    }
                 }
                 .card-form{
                     display: grid;

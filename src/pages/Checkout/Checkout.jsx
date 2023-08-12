@@ -15,21 +15,34 @@ import EditButton from '../../components/UI/editButton/EditButton';
 import { useAuth } from '../../context/AuthContext';
 import { getUser } from '../../fireAuthAPI';
 import MethodsList from '../../components/MedhodsList/MethodsList';
-import CInput from '../../components/UI/input/CInput';
 import AddressesList from '../../components/AddressesList/AddressesList';
 
 const Checkout = () => {
-    const [currentCity,setCurrentCity] = useState({})
     const {currentUser} = useAuth();
     const userInfo = getUser(currentUser?.uid?currentUser.uid:'user')
     const windowWidth = window.screen.availWidth;
+
     const firstName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const lastName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:'Please enter a valid email address',isEmail:'Please enter a valid email address'})
     const phoneNumber = useInput('',{isEmpty:true},{isEmpty:'Please enter your phone number'})
     const [cardUse,setCardUse] = useState(false);
     const [addressUse,setAddressUse] = useState(false);
-    const [cardData,setCardData] = useState({cartNumber:'',date:'',cvvNumber:''})
+    const [cardData,setCardData] = useState({cartNumber:'',date:'',cvv:''})
+    const [addressData,setAddressData] = useState({address:'',appartment:''});
+    const [paymentMethod,setPaymentMethod] = useState('')
+    const orderHandler=()=>{
+        console.log({
+            firstName:firstName.value,
+            lastName:lastName.value,
+            email:email.value,
+            phoneNumber:phoneNumber.value,
+            shipping:addressData,
+            paymentMethod:paymentMethod,
+
+        })
+    }
+
     return <div className={styles.checkout}>
         <div className={styles.content}>
             <h1 className={styles.title}>Checkout</h1>
@@ -65,16 +78,21 @@ const Checkout = () => {
                                 <AddressesList 
                                     addresses={userInfo.delivery_addresses} 
                                     triger={false}
-                                    callback={value=>console.log(value)}
+                                    callback={value=>setAddressData(value)}
                                 />
                             </div>
-                            <p
-                                className={styles.another}
-                                onClick={()=>setAddressUse(p=>!p)}
-                            >Use Another Address</p>
+                            <div className={styles.another}>
+                                <p
+                                    onClick={()=>{
+                                        setAddressData({address:'',appartment:''})
+                                        setAddressUse(true);
+                                    }}
+                                >Use Another Address</p>
+                            </div>
+                            
                         </>
                         :<>
-                            <CheckoutShipping city={userInfo?.city_1} />
+                            <CheckoutShipping city={userInfo?.city_1} address={addressData} onChange={setAddressData} />
                             {
                                 currentUser&&<div className={styles["button-bar"]}>
                                     <Button 
@@ -88,9 +106,6 @@ const Checkout = () => {
                             
                         </>
                     }
-                    {/* {
-                        addressUse&&<CheckoutShipping />
-                    } */}
                 </div>
                 <div className={styles.payment}>
                     <h2 className={styles['section-title']}>Payment</h2>
@@ -100,7 +115,7 @@ const Checkout = () => {
                             {id:'paypal',label:<img src={PayPalIcon} alt='PayPal' style={{width:'100px'}} />,value:'PayPal'},
                         ]}
                         groupName='payment'
-                        callback={value=>console.log(value)}
+                        callback={value=>setPaymentMethod(value)}
                     >
                         <></>
                         <div className={styles['payment-option']}>
@@ -109,13 +124,15 @@ const Checkout = () => {
                                         <MethodsList 
                                             methods={userInfo.payment_methods} 
                                             triger={false} 
-                                            callback={value=>console.log(value)}
+                                            callback={value=>setCardData(value)}
                                         />
                                     </div>
-                                    <p
-                                        className={styles.another}
-                                        onClick={()=>setCardUse(p=>!p)}
-                                    >Use Another Card</p>
+                                    <div className={styles.another}>
+                                        <p
+                                            onClick={()=>setCardUse(p=>!p)}
+                                        >Use Another Card</p>
+                                    </div>
+                                   
                                     </>
                             }
                             <div className={`${styles['card-form']} ${cardUse?styles.active:''}`}>
@@ -132,6 +149,7 @@ const Checkout = () => {
                         mode='primary'
                         width='160px'
                         height='45px'
+                        onClick={orderHandler}
                     >Place Order</Button>
                 </div>
             </div>

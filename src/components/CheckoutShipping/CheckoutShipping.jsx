@@ -10,15 +10,12 @@ import Select from '../UI/select/Select';
 import CustomerAddressForm from '../CustomerAddress/CustomerAddressForm';
 
 
-const CheckoutShipping = ({city}) => {
+const CheckoutShipping = ({city,address,onChange}) => {
     const [currentCity,setCurrentCity] = useState(city||{})
     const ukrposhtaOffices = getPostOffice(currentCity.id,'ukrposhta')
     const novaposhtaOffices = getPostOffice(currentCity.id,'novaposhta')
     const [isCityModalOpen,setIsCityModalOpen] = useState(false);
     const validRadio = currentCity.id>0?false:true;
-    console.log(city)
-    console.log(currentCity)
-    console.log(novaposhtaOffices)
     const closeModalWindowHandler = ()=>{
         setIsCityModalOpen(false)
     }
@@ -45,13 +42,13 @@ const CheckoutShipping = ({city}) => {
         </ModalWindow>
             <RadioList 
                 list={[
-                    {id:'opt1',label:'Pickup from Ukrposhta',value:'Pickup from Ukrposhta',disabled:validRadio},
-                    {id:'opt2',label:'Courier Ukrposhta',value:'Courier Ukrposhta',disabled:validRadio},
-                    {id:'opt3',label:'Pickup from Nova Poshta',value:'Pickup from Nova Poshta',disabled:validRadio},
-                    {id:'opt4',label:'Courier Nova Poshta',value:'Courier Nova Poshta',disabled:validRadio},
+                    {id:'opt1',label:'Pickup from Ukrposhta',value:'Ukr Poshta1',disabled:validRadio},
+                    {id:'opt2',label:'Courier Ukrposhta',value:'Ukr Poshta2',disabled:validRadio},
+                    {id:'opt3',label:'Pickup from Nova Poshta',value:'Nova Poshta1',disabled:validRadio},
+                    {id:'opt4',label:'Courier Nova Poshta',value:'Nova Poshta2',disabled:validRadio},
                 ]}
                 groupName='shipping'
-                callback={value=>console.log(value)}
+                callback={value=>onChange(current=>{return {...current,company:value.slice(0,-1)}})}
             >
                 <div className={styles['option-wrapper']} >
                     <Select placeholder='Select a post office'
@@ -62,7 +59,7 @@ const CheckoutShipping = ({city}) => {
                     />
                 </div>
                 <div className={styles['option-wrapper']} >
-                    <CustomerAddressForm />
+                    <CustomerAddressForm address={address} onChange={onChange} />
                 </div>
                 <div className={styles['option-wrapper']} >
                     <Select placeholder='Select a post office'
@@ -73,7 +70,7 @@ const CheckoutShipping = ({city}) => {
                     />
                 </div>
                 <div className={styles['option-wrapper']}>
-                    <CustomerAddressForm />
+                    <CustomerAddressForm address={address} onChange={onChange} />
                 </div>
             </RadioList>
     </div>

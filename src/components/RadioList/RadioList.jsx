@@ -2,7 +2,11 @@ import { useState } from 'react';
 import RadioButton from '../UI/radioButton/RadioButton';
 import styles from './RadioList.module.scss'
 
-const RadioList = ({list,groupName,callback,children}) => {
+const RadioList = ({
+    list,
+    groupName,
+    callback=()=>{},
+    children}) => {
     const [choosedItem,setChoosedItem] = useState();
     const buttonHandler = (e)=>{
         setChoosedItem(e.target.value)
@@ -10,6 +14,7 @@ const RadioList = ({list,groupName,callback,children}) => {
             callback(e.target.value)
         }
     }
+    
     return (
         <div className={styles['radio-list']}>
             {list.map((item,index)=>
@@ -22,7 +27,7 @@ const RadioList = ({list,groupName,callback,children}) => {
                         {item.label}
                     </label>
                     <div className={styles["wrapper"]}>
-                        <div className={styles["option-body"]}>
+                        <div className={`${styles["option-body"]} ${choosedItem === item.value?styles.active:''}`}>
                             {children[index]}
                         </div>
                     </div>

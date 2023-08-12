@@ -30,8 +30,8 @@ const CreditCardFrom = ({cardData,callback}) => {
                     placeholder="CVV"
                     mode='fullBorder'
                     height={45}
-                    value={cardData.cvvNumber}
-                    onChange={e=>callback({...cardData,cvvNumber:e.target.value})}
+                    value={cardData.cvv}
+                    onChange={e=>callback({...cardData,cvv:e.target.value})}
                     />
             </div>
         </div>
