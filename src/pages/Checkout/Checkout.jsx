@@ -39,7 +39,7 @@ const Checkout = () => {
             phoneNumber:phoneNumber.value,
             shipping:addressData,
             paymentMethod:paymentMethod,
-
+            card:cardData,
         })
     }
 
@@ -115,12 +115,16 @@ const Checkout = () => {
                             {id:'paypal',label:<img src={PayPalIcon} alt='PayPal' style={{width:'100px'}} />,value:'PayPal'},
                         ]}
                         groupName='payment'
-                        callback={value=>setPaymentMethod(value)}
+                        callback={value=>{
+                            setPaymentMethod(value)
+                            setCardData({cartNumber:'',date:'',cvv:''})
+                        
+                        }}
                     >
                         <></>
                         <div className={styles['payment-option']}>
                             {
-                                userInfo?.payment_methods&&<><div className={styles.list}>
+                                (userInfo?.payment_methods && !cardUse)?<><div className={styles.list}>
                                         <MethodsList 
                                             methods={userInfo.payment_methods} 
                                             triger={false} 
@@ -129,17 +133,29 @@ const Checkout = () => {
                                     </div>
                                     <div className={styles.another}>
                                         <p
-                                            onClick={()=>setCardUse(p=>!p)}
+                                            onClick={()=>{
+                                                setCardUse(p=>!p)
+                                                setCardData({cartNumber:'',date:'',cvv:''})
+                                            }}
                                         >Use Another Card</p>
                                     </div>
-                                   
-                                    </>
+                                </>
+                                :<><div className={`${styles['card-form']} ${cardUse?styles.active:''}`}>
+                                        <CreditCardFrom cardData={cardData} callback={setCardData} />
+                                    </div>
+                                    {
+                                        currentUser&&<div className={styles["button-bar"]}>
+                                            <Button 
+                                                mode='secondary'
+                                                width='140px'
+                                                height='45px' 
+                                                onClick={()=>setCardUse(false)}   
+                                            >Cancel</Button>
+                                        </div>
+                                    }
+                                </>
                             }
-                            <div className={`${styles['card-form']} ${cardUse?styles.active:''}`}>
-                                <div className={styles["card-form__content"]}>
-                                    <CreditCardFrom cardData={cardData} callback={setCardData} />
-                                </div>
-                            </div>
+                            
                         </div>
                         <></>
                     </RadioList>

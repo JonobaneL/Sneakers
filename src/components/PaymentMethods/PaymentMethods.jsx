@@ -5,7 +5,7 @@ import Button from '../UI/button/Button';
 import { useInput } from '../../hooks/useInput';
 import ValidationErrorMessages from '../ValidationErrorMessages/ValidationErrorMessages';
 import { addPaymentMethod } from '../../firebase/userFirebaseAPI';
-import { normilizeDate, normilzeCardNumber } from '../../utils/normalizeMethods';
+import { normilizeDate,normilzeCardNumber } from '../../utils/normalizeMethods';
 
 const PaymentMethods = ({userID,closeHandler,triger}) => {
     const cartNumber = useInput('',{isEmpty:true,minLength:16},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
@@ -17,7 +17,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
                 uid:userID,
                 method:{
                     methodID: `method${Date.now()}`,
-                    cartNumber:cartNumber.value,
+                    cartNumber:cartNumber.value.replace(/\s/g,''),
                     date:date.value,
                     cvv:cvvNumber.value,
                 }
@@ -28,6 +28,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
             console.log(err.message)
         }
     }
+
     const isFormValid = (params)=>{
         return params.includes(false)?true:false;
     }
@@ -41,7 +42,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
                     maxLength="20"
                     onChange={e=>{
                         const {value} = e.target;
-                        e.target.value = normilzeCardNumber(value)
+                        e.target.value = normilzeCardNumber(value,cartNumber.setValue)
                     }}
                     onBlur={e=>cartNumber.onBlur(e)}
                     valid={cartNumber.isDurty && cartNumber.currentErrors.length>0}
@@ -55,7 +56,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
                     maxLength="5"
                     onChange={e=>{
                         const {value} = e.target;
-                        e.target.value = normilizeDate(value)
+                        e.target.value = normilizeDate(value,date.setValue)
                     }}
                     onBlur={e=>date.onBlur(e)}
                     valid={date.isDurty && date.currentErrors.length>0}

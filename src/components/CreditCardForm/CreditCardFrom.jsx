@@ -1,3 +1,4 @@
+import { normilizeDate, normilzeCardNumber } from '../../utils/normalizeMethods';
 import CInput from '../UI/input/CInput';
 import styles from './CreaditCardForm.module.scss'
 
@@ -11,7 +12,10 @@ const CreditCardFrom = ({cardData,callback}) => {
                     mode='fullBorder'
                     height={45}
                     value={cardData.cartNumber}
-                    onChange={e=>callback({...cardData,cartNumber:e.target.value})}
+                    onChange={e=>{
+                        const {value} = e.target;
+                        e.target.value = normilzeCardNumber(value,number=>callback({...cardData,cartNumber:number}))
+                    }}
                     />
             </div>
             <div className={styles.date}>
@@ -21,7 +25,10 @@ const CreditCardFrom = ({cardData,callback}) => {
                     mode='fullBorder'
                     height={45}
                     value={cardData.date}
-                    onChange={e=>callback({...cardData,date:e.target.value})}
+                    onChange={e=>{
+                        const {value} = e.target;
+                        e.target.value = normilizeDate(value,date=>callback({...cardData,date:date}))
+                    }}
                     />
             </div>
             <div className={styles.cvv}>
@@ -31,6 +38,7 @@ const CreditCardFrom = ({cardData,callback}) => {
                     mode='fullBorder'
                     height={45}
                     value={cardData.cvv}
+                    maxLength="3"
                     onChange={e=>callback({...cardData,cvv:e.target.value})}
                     />
             </div>

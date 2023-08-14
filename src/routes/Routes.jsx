@@ -17,6 +17,7 @@ import PasswordReset from '../pages/PasswordReset/PasswordReset';
 import UserInfo from '../components/UserInfo/UserInfo';
 import Favorites from '../components/Favorites/Favorites';
 import UserInfoSettings from '../components/UserInfoSettings/UserInfoSettings';
+import OrderInfo from '../pages/OrderInfo/OrderInfo';
 
 
 const StoreRoutes = () => {
@@ -45,8 +46,9 @@ const StoreRoutes = () => {
                     <Route path='info-settings' element={<UserInfoSettings/>}/>
                     <Route path='favorites' element={<RequireAuth><Favorites/></RequireAuth>}/>
                 </Route>
-                    
-                <Route path='/password-reset' element={<PasswordReset/>} />
+                
+                <Route path='/password-reset' element={<RequireAuth><PasswordReset/></RequireAuth>} />
+                <Route path='/order-info' element={<OrderInfo/>}/>
                 <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
     );

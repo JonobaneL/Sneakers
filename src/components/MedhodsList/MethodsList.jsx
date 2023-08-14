@@ -41,7 +41,9 @@ const MethodsList = ({
             return <li 
                     key={index} 
                     className={`${styles.list__item} ${activeMethod==item.methodID?styles.active:''}`}
-                    onClick={()=>methodHandler(item)}
+                    onClick={()=>{
+                        if(!triger) methodHandler(item)
+                    }}
                     >
                 <p className={styles['cart-number']}>{item.cartNumber.match(/.{0,4}/g)?.join(' ')}</p>
                 <p className={styles.date}>{item.date}</p>

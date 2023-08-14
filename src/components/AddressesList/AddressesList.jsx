@@ -40,7 +40,9 @@ const AddressesList = ({
                     return <li 
                         key={index} 
                         className={`${styles.list__item} ${activeAddress==item.addressID?styles.active:''}`}
-                        onClick={()=>addressHandler(item)}
+                        onClick={()=>{
+                           if(!triger) addressHandler(item)
+                        }}
                         >
                         <div>
                             <p>{item.company==='novaposhta'?'Nova Poshta':'Ukr Poshta'}</p>
