@@ -67,7 +67,7 @@ const AddressFrom = ({city,userID,closeHandler,triger}) => {
                         {id:1,value:"Ukr Poshta"},
                         {id:2,value:"Nova Poshta"},
                     ]}
-                    getData={(value)=>value.id==1?setCompany('ukrposhta'):setCompany('novaposhta')}
+                    getData={(value)=>setCompany(value.value)}
                     type='borderType'
                     height='45px'
                 />
