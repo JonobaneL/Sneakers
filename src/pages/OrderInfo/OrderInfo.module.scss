@@ -13,7 +13,7 @@
         align-items: center;
         justify-content: center;
         h1{
-            font-size: $fs-900;
+            font-size: $fs-950;
             font-weight: 800;
             text-transform: uppercase;
             text-align: center;
@@ -54,22 +54,27 @@
                 }
             }
             .order-details{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
+                // display: flex;
+                // flex-wrap: wrap;
+                // justify-content: center;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                grid-template-areas: 
+                'cart order'
+                'summary summary';
                 row-gap: 10px;
                 margin-top: 40px;
-                // box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
                 padding: 20px;
                 border-radius: 3px;
                 .column{
                     flex: 1 0 50%;
-                // border: 1px solid red;
-
+                    padding-top: 20px;
                     &:first-child{
-                        padding-top: 20px;
+                        grid-area: cart;
                         position: relative;
+                        padding-right: 2px;
                         &::after{
                             width: 1px;
                             background: #b0b0b0;
@@ -81,10 +86,15 @@
                             position: absolute;
                         }
                     }
+                    &:last-child{
+                        grid-area: order;
+                    }
                     .details-title{
                         font-size: $fs-500;
                         font-weight: 500;
-                        line-height: 60px;
+                        line-height: 140%;
+                        margin-bottom: 20px;
+
                         text-align: center;
                     }
                     .shipping, .payment{
@@ -111,10 +121,9 @@
                             
                         }
                     }
-                    
                 }
                 .summary{
-                    flex: 1 0 100%;
+                    grid-area: summary;
                 }
             }
         }
@@ -122,25 +131,59 @@
     
     
 }
-@media screen and (width <= 768px) {
+@media screen and (width < 768px) {
     .order-info{
         .title{
             height: 240px;
             h1{
-                font-size: $fs-800;
+                font-size: $fs-900;
             }
         }
         .wrapper{
             @include mixins.wrapper-tablet;
-            .content .message .message__button{
-                width: 180px;
+            .content{
+                .message .message__button{
+                    width: 180px;
+                }
+                .order-details{
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(auto,3);
+                    grid-template-areas: 
+                    "order"
+                    "cart"
+                    "summary";
+                    align-items: center;
+                    .column{
+                        &__wrapper{
+                            width: fit-content;
+                            margin: 0 auto;
+                        }
+                        &:first-child{
+                            &::after{
+                                display: none;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 }
 @media screen and (width <= 425px) {
-    .order-info .wrapper{
-        @include mixins.wrapper-mobile
+    .order-info{
+        .title{
+            h1{
+                font-size: $fs-850;
+            }
+        }
+        .wrapper{
+            @include mixins.wrapper-mobile
+        }
     }
+     
+}
+@media screen and (width < 375px) {
+   
+     
 }
 

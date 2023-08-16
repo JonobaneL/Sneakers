@@ -37,6 +37,20 @@ export const asyncRemoveFromCart = createAsyncThunk(
         }
     }
 )
+export const clearCart = createAsyncThunk(
+    'cart/clearCart',
+    async(_,{dispatch,rejectWithValue,getState})=>{
+        dispatch(clearCartAction())
+        const state = getState();
+        try{
+            await(updateCart({cartID:state.cartReducer.cartID,cart:state.cartReducer.shoppingCart}))
+        }catch(err){
+            console.log(err);
+            rejectWithValue();
+        }
+    }
+)
+//clear method is ready to use
 export const asyncIncreaseCartQuantity = createAsyncThunk(
     'cart/removeFromCart',
     async (product,{dispatch,rejectWithValue,getState})=>{
@@ -118,6 +132,11 @@ const cartSlice = createSlice({
             state.cartDiscount = action.payload;
         }  
     },
+    clearCartAction(state){
+        state.shoppingCart = []
+        state.cartID = 'standart';
+        state.cartDiscount = 0;
+    },
     extraReducers:(builder)=>{
         builder
         .addCase(fetchShoppingCart.pending,(state)=>{
@@ -137,6 +156,6 @@ const cartSlice = createSlice({
         })
     }
 })
-export const { setDiscount,increaseCartQuantity,decreaseCartQuantity,addToCart,removeFromCart } = cartSlice.actions
+export const { setDiscount,increaseCartQuantity,decreaseCartQuantity,addToCart,removeFromCart,clearCartAction } = cartSlice.actions
 
 export default cartSlice.reducer;

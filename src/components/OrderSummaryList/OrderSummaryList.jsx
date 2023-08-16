@@ -4,7 +4,7 @@ import styles from './OrderSummaryList.module.scss'
 
 const Item = ({productID,modelID,size,quantity}) =>{
     const item = useProduct(productID,modelID)
-    console.log(item)
+    // console.log(item)
     return <li className={styles['list-item']}>
         <img className={styles['list-item__image']} src={item.images[1]} alt={item.name} />
         <div className={styles['list-item__info']}>

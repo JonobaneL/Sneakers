@@ -41,7 +41,9 @@ const OrderInfo = () => {
                     </div>
                     <div className={styles['order-details']}>
                         <div className={styles.column}>
-                            <OrdreSummaryList/>
+                            <div className={styles.column__wrapper}>
+                                <OrdreSummaryList/>
+                            </div>
                         </div>
                         <div className={styles.column}>
                             <h2 className={styles["details-title"]}>
