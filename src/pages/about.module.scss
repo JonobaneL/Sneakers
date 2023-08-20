@@ -5,15 +5,154 @@
     // padding: 20px 80px;
     @include mixins.wrapper-desktop;
     .content{
-        @include mixins.content;
+        // @include mixins.content;
         display: flex;
         justify-content: center;
         gap:10px;
-        align-self: flex-start;
-        // height: 300px;
+        .wrapper{
+        @include mixins.content;
+            width: 100%;
+            // border: 1px solid red;
+            height:60px;
+            display: grid;
+            grid-template-columns: auto 2fr auto 1fr 11.5rem 0.2fr auto 0fr;
+            align-items: center;
+            grid-template-areas: 'logo . text . search . button-bar cancel';
+            transition: grid-template-columns 0.4s ease-in-out;
+            &.active{
+                grid-template-columns: auto 1fr 0fr 0fr 36rem 1fr 0fr 100px;
+                .nav{
+                    opacity: 0;
+                }
+               
+            }
+            .b{
+                grid-area: logo;
+                width: 130px;
+                height: 100%;
+                background: #b1b0b1;
+            }
+            .cancel{
+                overflow: hidden;
+                grid-area: cancel;
+                width: 100%;
+                height: 100%;
+                color: $clr-text;
+                font-weight: 600;
+                font-size: 16px;
+                background: none;
+            }
+            .nav{
+                grid-area: text;
+                display: flex;
+                gap: 25px;
+                overflow: hidden;
+                opacity: 1;
+                transition: opacity 0.2s ease-in-out;
+                &__item{
+                    cursor: pointer;
+                    a{
+                        font-size: 15px;
+                        color: $clr-text;
+                    }
+                }
+            }
+            .button-bar{
+                grid-area:button-bar;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                overflow: hidden;
+                button{
+                    background: #b1b0b1;
+                    width: 25px;
+                    height: 25px;
+                    &:first-child{
+                        background: blueviolet;
+                    }
+                }
+            }
+        }
+        .search-wrapper{
+            grid-area: search;
+            height: 40px;
+            background:$clr-secondary;
+            border-radius: 100px;
+            display: flex;
+            border-radius: 100px;
+            overflow: hidden;
+            align-items: center;
+            padding-right: 7px;
+            .search__btn{
+                flex: 1 0 auto;
+                width: 40px;
+                height: 40px;
+                padding: 7px;
+                background:$clr-secondary;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.1s ease-in;
+                &:hover{
+                    background: #e5e5e5;
+                }
+            }
+            .search__field{
+                width: 100%;
+                background:$clr-secondary;
+                font-size: 14px;
+            }
+        }
+
         .btn{
             width: 160px;
             height: 50px;
+        }
+    }
+}
+
+
+@media screen and (width <= 768px) {
+    .about{
+        @include mixins.wrapper-tablet;
+        .content .wrapper{
+            grid-template-columns: auto 2fr 2.5rem 0fr auto 0fr;
+            grid-template-areas: 'logo . search . button-bar cancel';
+            &.active{
+                grid-template-columns: auto 1.5fr 20rem 1fr 0fr 100px;
+                .search__btn{
+                    background:$clr-secondary;
+                }
+            }
+            .nav{
+                display: none;
+            }
+            .search__btn{
+                background:none;
+            }
+        }
+    }
+}
+@media screen and (width <= 425px) {
+    .about{
+        @include mixins.wrapper-mobile;
+        .content .wrapper{
+            grid-template-columns: auto 2fr 2.5rem 0fr auto 0fr;
+            grid-template-areas: 'logo . search . button-bar cancel';
+            &.active{
+                grid-template-columns: 0fr 1.5fr 3fr 1fr 0fr 100px;
+                .search__btn{
+                    background:$clr-secondary;
+                }
+            }
+            .b{
+                overflow: hidden;
+            }
+            .nav{
+                display: none;
+            }
+            .search__btn{
+                background: transparent;
+            }
         }
     }
 }

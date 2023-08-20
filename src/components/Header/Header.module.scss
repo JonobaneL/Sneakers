@@ -86,12 +86,36 @@ $icons-size:22px;
         padding-bottom: 0;
         .content{
             @include mixins.content;
-            margin-inline: auto;
-            display: flex;
+            display: grid;
+            // grid-template-columns: auto 2fr auto 1fr 11.5rem 0.2fr auto 0fr;
+            grid-template-columns: auto 2fr auto 1fr auto 0.2fr auto 0fr;
+            grid-template-areas: 'logo . nav . search . button-bar cancel';
             align-items: center;
-            justify-content: space-between;
-            position: relative;
+            transition: grid-template-columns 0.4s ease-in;
+            &.search{
+                // grid-template-columns: auto 1fr 0fr 0fr 30rem 1fr 0fr 60px;
+                grid-template-columns: auto 1fr auto 0fr auto 1fr 0fr 60px;
+                // transition: grid-template-columns 0.5s ease-in;
+                
+                .nav{
+                    opacity: 0;
+                    width: 0;
+                    transition: width 0.2s 0.3s
+                                opacity 0.2s;
+                }
+                .search{
+                    width: 30rem;
+                    // transition: width 0.4s ease-in 0.6s;
+                }
+                .button-nav{
+                    opacity: 0;
+                }
+                .cancel_btn{
+                    opacity: 1;
+                }
+            }
             .logo{
+                grid-area: logo;
                 h1{
                     font-size: 35px;
                     line-height: 60px;
@@ -101,12 +125,15 @@ $icons-size:22px;
                 }
             }
             .nav{
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
+                width: fit-content;
+                grid-area: nav;
                 display: flex;
                 align-items: center;
                 gap: 25px;
+                opacity: 1;
+                overflow: hidden;
+                transition: opacity 0.2s ease-out 0.2s;
+
                 &__item{
                     cursor: pointer;
                     a{
@@ -116,10 +143,55 @@ $icons-size:22px;
                     
                 }
             }
-            .button-nav{
+            .search{
+                grid-area: search;
+                // max-width: 11.5rem;
+                width: 11.5rem;
+                height: 40px;
+                background: $clr-secondary;
+                border-radius: 100px;
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                transition: width 0.3s ease-in 0.5s;
+
+                &__btn{
+                    width: 40px;
+                    height: 40px;
+                    flex: 1 0 40px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: $clr-secondary;
+                    img{
+                        width: 26px;
+                        height: 26px;
+                    }
+                    cursor: pointer;
+                    &:hover{
+                        background: #e5e5e5;
+                    }
+                }
+                &__field{
+                    width: 100%;
+                    height: 40px;
+                    padding: 8px 5px;
+                    background: transparent;
+                    font-size: 14px;
+                    color: $clr-text;
+                    &::placeholder{
+                        font-size: 14px;
+                    }
+                }
+            }
+            .button-nav{
+                grid-area: button-bar;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                opacity: 1;
+                overflow: hidden;
+                transition: opacity 0.2s ease-in-out;
                 .bag{
                     position: relative;
                     .cart-quantity{
@@ -144,96 +216,43 @@ $icons-size:22px;
                     width: $icons-size;
                     height: $icons-size;
                 }
-                .search{
-                    width: 180px;
-                    height: 40px;
-                    background: $clr-secondary;
-                    border-radius: 100px;
-                    display: flex;
-                    align-items: center;
-                    &.active{
-                        position: absolute;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 600px;
-                        transition: all 0.4s;
-                    }
-                    &__btn{
-                        width: 40px;
-                        height: 40px;
-                        flex: 1 0 40px;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background: none;
-                        img{
-                            width: 26px;
-                            height: 26px;
-                        }
-                        cursor: pointer;
-                        &:hover{
-                            background: #e5e5e5;
-                        }
-                    }
-                    &__field{
-                        width: 100%;
-                        height: 40px;
-                        padding: 8px 5px;
-                        background: transparent;
-                        font-size: 15px;
-                        color: $clr-text;
-                        &::placeholder{
-                            font-size: 15px;
-                        }
-                    }
-                }
-                .cancel_btn{
-                    cursor: pointer;
-                    color: $clr-text;
-                    font-weight: 600;
-                    font-size: 16px;
-                    background: none;
-                }
+                
+                
+            }
+            .cancel_btn{
+                grid-area: cancel;
+                cursor: pointer;
+                color: $clr-text;
+                font-weight: 600;
+                font-size: 16px;
+                background: none;
+                opacity: 0;
+                overflow: hidden;
+                transition: opacity 0.2s ease-in-out;
             }
         }
         
     }
-}
-@media screen and (max-width:1024px) {
-    .header-wrapper .header-bottom .content .nav{
-        transform: translateX(-60%);
-    }   
 }
 @media screen and (width < 1000px) {
     .header-wrapper .header-top{
         display: none;
     }
     .header-wrapper .header-bottom .content {
+        grid-template-columns: auto 2fr auto 1fr 2.5rem 0.03fr auto 0fr;
+
         .nav{
             display: none;
         } 
-        .button-nav {
-            .search{
-                width: 30px;
-                background: #fff;
-                &__field{
-                    visibility: hidden;
-                    opacity: 0;
-                }
-                &__btn{
-                    width: 20px;
-                }
-                &.active{
-                    width: 450px;
-                    background: #f5f5f5;
-                    .search__field{
-                        visibility: visible;
-                        opacity: 1;
-                        transition: all 0,5 ;
-                    }
-                }
+        &.search{
+            .search .search__btn{
+                    background-color: $clr-secondary;
             }
+        }
+        .search .search__btn{
+            background-color: #fff;
+        }
+        .button-nav {
             .favorites{
                 display: none;
             }

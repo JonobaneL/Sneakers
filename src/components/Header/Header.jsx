@@ -108,13 +108,12 @@ const Header = () => {
             </div>
             
             <div className={styles["header-bottom"]}>
-                <div className={styles.content}>
+                <div className={`${styles.content} ${isSearchOpen?styles.search:''}`}>
                     <div className={styles.logo}>
                         <Link to={`/`}>
                             <h1>SNEAKERS</h1>
                         </Link>
                     </div>
-                    { !isSearchOpen && <>
                         <ul className={styles.nav}>
                             <li className={styles.nav__item}><Link to={`/shoes/men`}> Men</Link></li>
                             <li className={styles.nav__item}><Link to={`/shoes/women`}> Women</Link></li>
@@ -122,35 +121,26 @@ const Header = () => {
                             <li className={styles.nav__item}><Link to={`/accessories`}> Accessories</Link></li>
                             <li className={styles.nav__item}><Link to={`/sale`}> Sale</Link></li>
                         </ul>
-                    </>
-                    }
-                    
-                    <div className={styles["button-nav"]}>
-                        <div className={`${styles.search} ${isSearchOpen?styles.active:''}`}>
+                    {/* <div className={`${styles.search} ${isSearchOpen?styles.active:''}`}>
                             <button className={styles.search__btn} onClick={()=>setIsSearchOpen(true)}>
                                 <img src={searchIcon} alt="search-icon" />
                             </button>
-                            <input className={styles.search__field} type="text" placeholder='Search' />
-                        </div>
-                        {
-                            !isSearchOpen ? <>
-                            <Link to='/user-profile/favorites' className={styles.favorites}>
-                                <img src={favoritesIcon} alt="favoritesIcon" />
-                            </Link>
-                            <Link to={'/shopping-cart'}>
-                                <div className={styles.bag}>
-                                    <img src={shoppingBag} alt="shopping-bag" />
-                                    {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
-                                </div>
-                            </Link>
-                            </>
-                            :<>
-                            <button className={styles.cancel_btn} onClick={()=>setIsSearchOpen(false)}>Cancel</button>
-                            </>
-                        }
+                            <input className={styles.search__field} type="text" placeholder='Search...' onFocus={()=>setIsSearchOpen(true)} />
+                        </div> */}
+                    <div className={styles["button-nav"]}>
+                        <Link to='/user-profile/favorites' className={styles.favorites}>
+                            <img src={favoritesIcon} alt="favoritesIcon" />
+                        </Link>
+                        <Link to={'/shopping-cart'}>
+                            <div className={styles.bag}>
+                                <img src={shoppingBag} alt="shopping-bag" />
+                                {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
+                            </div>
+                        </Link>
                         <BurgerButton visible={burgerMenu} setVisible={setBurgerMenu} />
                         <BurgerMenu user={details} isOpen={burgerMenu} closeHandler={setBurgerMenu}/>
                     </div>
+                    <button className={styles.cancel_btn} onClick={()=>setIsSearchOpen(false)}>Cancel</button>
                 </div>
                 
             </div>
