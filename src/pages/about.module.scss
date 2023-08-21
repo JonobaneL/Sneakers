@@ -6,7 +6,7 @@
     @include mixins.wrapper-desktop;
     .content{
         // @include mixins.content;
-        display: flex;
+        // display: flex;
         justify-content: center;
         gap:10px;
         .wrapper{
@@ -61,9 +61,9 @@
     height: 60px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    border:1px solid red;
-    // display: grid;
+    // justify-content: space-between;
+    // border:1px solid red;
+    gap:10px;
     .logo{
         font-family:$ff-accent;
         font-size: 35px;
@@ -72,6 +72,9 @@
     }
     .nav{
         display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
         gap:25px;
         &__item{
             a{
@@ -81,6 +84,7 @@
         }
     }
     .button-bar{
+        width: 70px;
         display:flex;
         gap:15px;
         button{
@@ -99,6 +103,7 @@
     .search-wrapper{
         height: 40px;
         background:$clr-secondary;
+        // flex: 1 0 auto;
         display: flex;
         border-radius: 100px;
         overflow: hidden;
@@ -122,6 +127,13 @@
             background:$clr-secondary;
             font-size: 14px;
         }
+    }
+    .cancel{
+        grid-area: cancel;
+        background:none;
+        font-size:15px;
+        font-weight: 500;
+        width: 70px;
     }
 }
 
