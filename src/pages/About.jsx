@@ -6,128 +6,50 @@ import { getUser } from '../fireAuthAPI';
 import RadioList from '../components/RadioList/RadioList';
 import RadioButton from '../components/UI/radioButton/RadioButton';
 import searchIcon from '../images/header-icons/search-icon.svg'
+import userIcon from '../images/header-icons/user-icon.svg';
+import favoritesIcon from '../images/header-icons/favorites.svg'
+import shoppingBag from '../images/header-icons/shopping-bag.png';
+
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
+import { useSelector } from 'react-redux';
 const About = () => {
     const searchRef = useRef('')
-    const [isOpen,setIsOpen] = useState(false)
+    const [isOpen,setIsOpen] = useState(false);
+    const {cartQuantity} = useSelector(state=>state.cartReducer)
+
     const searchAnimate = {
 
     }
     const searchInitial = {
         
     }
+    const widthTriger = window.screen.availWidth < 1000;
     return <div className={styles.about}>
         <div className={styles.content} >
-            
-            {/* <motion.div
-            layout
-            className={styles.header}>
-                <div className={styles.logo}>SNEAKERS</div>
-                    <motion.ul 
-                        animate={isOpen?navVariants:initialNav}
-                        layout
-                        transition={{
-                           duration:1 
-                        }}
-                        className={styles.nav}>
-                        <li className={styles.nav__item}><Link to={`/shoes/men`}> Men</Link></li>
-                        <li className={styles.nav__item}><Link to={`/shoes/women`}> Women</Link></li>
-                        <li className={styles.nav__item}><Link to={`/shoes/kids`}> Kids</Link></li>
-                        <li className={styles.nav__item}><Link to={`/accessories`}> Accessories</Link></li>
-                        <li className={styles.nav__item}><Link to={`/sale`}> Sale</Link></li>
-                    </motion.ul>
-                
-                
-                <motion.div
-                initial={{
-                    display:'flex',
-                    justifyContent:'center'
-                }}
-                animate={isOpen?{
-                    width:'100%',
-                }:{
-                    width:'fit-content'
-                }}
-                   
-                >
-                <motion.div 
-                animate={!isOpen?initialSearch:searchVariants}
-                transition={{
-                    duration:1,
-                }}
-                   className={styles["search-wrapper"]}
-                   onClick={()=>setIsOpen(true)}
-               >
-                   <button className={styles.search__btn} onClick={()=>controls.start(searchVariants)}>
-                       <img src={searchIcon} alt="search" />
-                   </button>
-                   <input onFocus={()=>setIsOpen(true)} className={styles.search__field} ref={searchRef} type="text" placeholder='Search...' />
-               </motion.div>
-
-                </motion.div>
-                
-                <AnimatePresence>
-                    {
-                        !isOpen ?<motion.div 
-                            initial={{
-                                opacity:1,
-                            }}
-                            exit={{
-                                opacity:0,
-                            }}
-                            className={styles["button-bar"]}>
-                            <button></button>
-                            <button></button>
-                        </motion.div>
-                        :<motion.button
-                        initial={{
-                            opactiy:1
-                        }}
-                        animaty={{
-                            opacity:0
-                        }}
-                        exit={{
-                            opacity:1
-                        }}
-                            onClick={()=>setIsOpen(false)}
-                            className={styles.cancel}>
-                            Cancel
-                        </motion.button>
-                    }
-                </AnimatePresence>
-            </motion.div> */}
             <button onClick={()=>setIsOpen(p=>!p)}>Open</button>
             <br/>
-
+            {/* <div className={styles.header}>
            
-            <div className={styles.header}>
-            {/* <div style={{
-                width:'130px',
-                height:'60px',
-                background:'gray',
-                flex:'1 0 auto'
-            }} /> */}
             <div className={styles.logo}>SNEAKERS</div>
             <motion.ul
             className={styles.nav}
                 initial={{
-                    height:60,
                     width:'100%',
+                }}
+                animate={isOpen?{
+                    width:0,
+                    opacity:0,
+                    paddingLeft:0,
                     transition:{
                         duration:0.4,
                     }
-                }}
-                animate={!isOpen?{
+                }:{
                     width:'100%',
+                    opacity:1,
                     transition:{
                         duration:0.4,
                         delay:0.3,
-                    }
-                }:{
-                    width:0,
-                    transition:{
-                        duration:0.4,
                     }
                 }}
                 >
@@ -137,12 +59,8 @@ const About = () => {
                     <li className={styles.nav__item}><Link to={`/accessories`}> Accessories</Link></li>
                     <li className={styles.nav__item}><Link to={`/sale`}> Sale</Link></li>
                 </motion.ul>
-            <motion.div className="wrapper"
+            <motion.div className={styles["search-wrapper"]}
                 initial={{
-                    display:'flex',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    height:60,
                     width:'20%',
                 }}
                 animate={isOpen?{
@@ -159,13 +77,12 @@ const About = () => {
                 }}
             >
                 <motion.div
-                initial={{
-                    background:'blue',
-                    width:'12rem',
-                    height:60,
-                }}
+                className={styles.search}
+                // initial={{
+                //     width:widthTriger?'2.5rem':'12rem',
+                // }}
                 animate={isOpen?{
-                    width:'20rem',
+                    width:widthTriger?'20rem':'30rem',
                     transition:{
                         duration:0.5,
                         delay:0.5
@@ -177,66 +94,68 @@ const About = () => {
                     }
                 }}
                 
-                />
+                >
+                    <button className={styles.search__btn} onClick={()=>setIsOpen(true)}>
+                        <img src={searchIcon} alt="search" />
+                    </button>
+                    <input onFocus={()=>setIsOpen(true)} className={styles.search__field} ref={searchRef} type="text" placeholder='Search...' />
+                </motion.div>
             </motion.div>
-                <motion.div
-                        initial={{
-                            background:'black',
-                            height:60,
-                            flex:'1 0 auto',
-                            width:'60px',
-                            transition:{
-                                duration:0.4,
-                            }
-                        }}
-                        animate={!isOpen?{
-                            width:'60px',
-                            transition:{
-                                duration:0.4,
-                                delay:0.3,
-                            }
-                        }:{
-                            width:0,
-                            transition:{
-                                duration:0.4,
-                            }
-                        }}
-
-                ></motion.div>
-                <motion.div
-                        initial={{
-                            background:'blueviolet',
-                            height:60,
-                            width:'70px',
-                            flex:'1 0 auto',
-                            transition:{
-                                duration:0.4,
-                            }
-                        }}
-                        animate={isOpen?{
-                            width:'70px',
-                            transition:{
-                                duration:0.4,
-                                delay:0.3,
-                            }
-                        }:{
-                            width:0,
-                            transition:{
-                                duration:0.4,
-                            }
-                        }}
-
-                ></motion.div>
-            {/* <motion.div
-                initial={{
-                    border:'1px solid green',
-                    height:60,
-                    width:'100%',
+            <motion.div
+            className={styles['button-nav']}
+                animate={!isOpen?{
+                    width:'65px',
+                    marginLeft:'10px',
+                    transition:{
+                        duration:0.4,
+                        delay:0.3,
+                    }
+                }:{
+                    width:0,
+                    marginLeft:'0', 
+                    transition:{
+                        duration:0.4,
+                    }
                 }}
-                
-            className="section">
-            </motion.div> */}
-            </div>
+            >
+                <Link to='/user-profile/favorites' className={styles.favorites}>
+                    <img src={favoritesIcon} alt="favoritesIcon" />
+                </Link>
+                <Link to={'/shopping-cart'}>
+                    <div className={styles.bag}>
+                        <img src={shoppingBag} alt="shopping-bag" />
+                        {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
+                    </div>
+                </Link>
+            </motion.div>
+            <motion.div
+            className={styles.cancel}
+                animate={isOpen?{
+                    width:'131px',
+                    transition:{
+                        duration:0.4,
+                        delay:0.3,
+                    }
+                }:{
+                    width:0,
+                    transition:{
+                        duration:0.4,
+                    }
+                }}
+            ><p onClick={()=>setIsOpen(false)}>
+            Cancel
+            </p></motion.div>
+          
+            </div> */}
+            <motion.div layout transition={{
+                duration:0.5,
+            }}
+            className={`${styles.block} ${isOpen?styles.active:''}`}>
+            <motion.div layout transition={{
+                duration:0.3,
+                delay:1
+            }} className={styles.child}></motion.div>
+            </motion.div>
         </div>
     </div>;
 }

@@ -1,0 +1,147 @@
+@use '../../styles/mixins';
+@import '../../styles/variables';
+.header{
+    background: #fff;
+    box-shadow:0 4px 8px rgba(221, 221, 221, 0.5);
+    @include mixins.wrapper-desktop;
+    padding-top: 0;
+    padding-bottom: 0;
+    .content{
+        @include mixins.content;
+        display: flex;
+        align-items: center;
+        height: 60px;
+        .logo{
+            h1{
+                font-size: 35px;
+                line-height: 60px;
+                font-family: $ff-accent;
+                font-weight: 600;
+                color: $clr-primary;
+            }
+        }
+        .nav{
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            justify-content: center;
+            overflow: hidden;
+            &__item{
+                cursor: pointer;
+                a{
+                    font-size: 15px;
+                    color: $clr-text;
+                }
+            }
+        }
+        .button-nav{
+            height: 100%;
+            display: flex;
+            align-items:center;
+            gap:10px;
+            overflow: hidden;
+            flex:1 0 auto;
+            width: 65px;
+            margin-left:10px;
+            .bag{
+                position: relative;
+                .cart-quantity{
+                    position: absolute;
+                    background: $clr-primary;
+                    top:-8px;
+                    right: -8px;
+                    font-size: 12px;
+                    color: #fff;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    line-height: 12px;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-left: 1px;
+                }
+            }
+            img{
+                width: 22px;
+                height: 22px;
+            }
+        }
+        .search-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            // flex: 1 0 auto;
+            .search{
+                height:40px;
+                background:$clr-secondary;
+                border-radius: 100px;
+                padding-right: 7px;
+                display: flex;
+                overflow: hidden;
+                .search__btn{
+                    flex: 1 0 auto;
+                    width: 40px;
+                    height: 40px;
+                    padding: 7px;
+                    background:$clr-secondary;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    transition: all 0.1s ease-in;
+                    &:hover{
+                        background: #e5e5e5;
+                    }
+                }
+                .search__field{
+                    width: 100%;
+                    background:$clr-secondary;
+                    font-size: 14px;
+                }
+            }
+        }
+        .cancel{
+            width: 0;
+            width: 128px;
+            flex: 1 0 auto;
+            cursor: pointer;
+            color: $clr-text;
+            font-weight: 600;
+            font-size: 16px;
+            background: none;
+            overflow: hidden;
+            text-align: right;
+        }
+    }
+}
+@media screen and (width < 1024px) {
+    .header .content{
+        .nav{
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+    
+}
+@media screen and (width <= 768px) {
+    .header{
+        @include mixins.wrapper-tablet;
+        padding-top: 0;
+        padding-bottom: 0;
+        .content{
+            .logo{
+                h1{
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+}
+@media screen and (width <= 425px) {
+    .header{
+        @include mixins.wrapper-mobile;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}

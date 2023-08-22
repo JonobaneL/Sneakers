@@ -14,6 +14,7 @@ import { getCurrentUser } from '../../fireAuthAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchShoppingCart } from '../../redux/cartSlice';
 import { fetchFavorites } from '../../redux/favoritesSlice';
+import ButtomHeader from '../ButtomHeader/ButtomHeader';
 
 const Header = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)
@@ -107,7 +108,7 @@ const Header = () => {
                 </div>
             </div>
             
-            <div className={styles["header-bottom"]}>
+            {/* <div className={styles["header-bottom"]}>
                 <div className={`${styles.content} ${isSearchOpen?styles.search:''}`}>
                     <div className={styles.logo}>
                         <Link to={`/`}>
@@ -121,12 +122,12 @@ const Header = () => {
                             <li className={styles.nav__item}><Link to={`/accessories`}> Accessories</Link></li>
                             <li className={styles.nav__item}><Link to={`/sale`}> Sale</Link></li>
                         </ul>
-                    {/* <div className={`${styles.search} ${isSearchOpen?styles.active:''}`}>
+                    <div className={`${styles.search} ${isSearchOpen?styles.active:''}`}>
                             <button className={styles.search__btn} onClick={()=>setIsSearchOpen(true)}>
                                 <img src={searchIcon} alt="search-icon" />
                             </button>
                             <input className={styles.search__field} type="text" placeholder='Search...' onFocus={()=>setIsSearchOpen(true)} />
-                        </div> */}
+                        </div>
                     <div className={styles["button-nav"]}>
                         <Link to='/user-profile/favorites' className={styles.favorites}>
                             <img src={favoritesIcon} alt="favoritesIcon" />
@@ -143,7 +144,8 @@ const Header = () => {
                     <button className={styles.cancel_btn} onClick={()=>setIsSearchOpen(false)}>Cancel</button>
                 </div>
                 
-            </div>
+            </div> */}
+            <ButtomHeader />
         </div>
     );
 };
