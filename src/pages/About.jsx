@@ -13,6 +13,7 @@ import shoppingBag from '../images/header-icons/shopping-bag.png';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import BurgerMenu from '../components/BurgerMenu/BurgerMenu';
 const About = () => {
     const searchRef = useRef('')
     const [isOpen,setIsOpen] = useState(false);
@@ -37,58 +38,73 @@ const About = () => {
                 // justifyContent:'right'
             }}>
             <motion.div
-                initial={false}
-                animate={isOpen?{
-                    width:'100%',
-                    transition:{
-                        duration:0.3,
-                        delay:0.3
-                    }
-                }:{
-                    width:'12rem',
-                    transition:{
-                        delay:0.5,
-                        duration:0.5,
-                    }
+                initial={{
+                    width:'100%'
                 }}
+              
                 className={styles.block}>
             <motion.div 
                 initial={false}
                 animate={isOpen?{
-                    width:'20rem',
+                    width:'50%',
                     transition:{
                         duration:0.3,
-                        delay:0.9
+                        delay:0.4
                     }
                 }:{
-                    width:'12rem',
+                    width:'180px',
                     transition:{
                         duration:0.3,
                         delay:0
                     }
                 }}
                  className={styles.child}></motion.div>
+                  <motion.div className="t" style={{
+                        width:'100%',
+                        height:"80px",
+                        background:'green',
+                    }}
+                    animate={
+                        isOpen?{
+                            width:0,
+                        }:{
+                            width:'100%',
+                            transition:{
+                                duration:0.5,
+                                delay:0.5,
+                            }
+                        }
+                    }
+                />
             </motion.div>
-            <motion.div className="t" style={{
-                width:'300px',
-                height:"100px",
-                background:'green'
-            }}
-                initia={false}
-                animate={isOpen?{
-                    width:0,
-                    transition:{
-                        duration:0.3,
-                        // delay:0.1
-                    }
-                }:{
-                    width:'300px',
-                    transition:{
-                        duration:0.3,
-                        delay:0.5
-                    }
-                }}           
-            ></motion.div>
+                {/* <motion.div className="t" layout style={{
+                        width:'100%',
+                        height:"100px",
+                        background:'green',
+                        flex:'0 1 auto'
+                    }}
+                /> */}
+                
+            {/* <AnimatePresence initial={false} mode='wait'>
+                {
+                    !isOpen && <motion.div className="t" style={{
+                        width:'100%',
+                        height:"100px",
+                        background:'green'
+                    }}
+                        initial={{
+                            width:'100%'
+                        }}
+                        exit={{
+                            width:0,
+                        }} 
+                        transition={{
+                            duration:0.3
+                        }}     
+                    />
+                }
+            </AnimatePresence> */}
+            
             </div>
             {/* <motion.div
                 initial={false}
@@ -123,6 +139,7 @@ const About = () => {
                 }}
                  className={styles.child}></motion.div>
             </motion.div> */}
+        
         </div>
     </div>;
 }

@@ -41,6 +41,10 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
     const menuVariants = {
         enter:{
             right:0,
+            // transition:{
+            //     duration:0.8,
+            //             ease:[0.76, 0, 0.24, 1]
+            // }
         },
         exit:{
             right:-320,
@@ -56,9 +60,6 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
                     animate="enter"
                     exit='exit'
                     variants={wrapperVariants}
-                    transition={{
-                        duration:0.2
-                    }}
                     className={styles['wrapper']}
                     onClick={closeMenu}
                 >
@@ -68,7 +69,8 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
                         exit='exit'
                         variants={menuVariants}
                         transition={{
-                            duration:0.3,
+                            duration:0.6,
+                            ease:[0.76, 0, 0.24, 1]
                         }}
                         className={styles["burger-menu"]}
                         onClick={e=>e.stopPropagation()}

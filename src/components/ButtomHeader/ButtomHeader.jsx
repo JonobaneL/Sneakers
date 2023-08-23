@@ -6,6 +6,7 @@ import shoppingBag from '../../images/header-icons/shopping-bag.png';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 const navInitial = {
     width:'100%',
@@ -135,22 +136,12 @@ const ButtomHeader = () => {
 
                 <motion.div 
                     className={styles["search-wrapper"]}
-                    initial={false}
-                    // animate={isSearchOpen?'opened':'closed'}
-                    animate={isSearchOpen?{
+                    // initial={false}
+                    initial={{
                         width:'100%',
-                        flex:'0 1 auto',
-                        transition:{
-                            duration:0.4,
-                            delay:0.4
-                        }
-                    }:{
-                        width:'12rem',
-                        transition:{
-                            delay:0.5,
-                            duration:0.4,
-                        }
                     }}
+                    // animate={isSearchOpen?'opened':'closed'}
+                    
                     variants={searchWrapperVariants}
                     custom={widthTriger}
                 >
@@ -158,42 +149,30 @@ const ButtomHeader = () => {
                         className={styles.search}
                       
                         initial={false}
-                        // animate={isSearchOpen?{
-                        //     width:'30rem',
-                        //     transition:{
-                        //         duration:0.5,
-                        //         delay:0.5
-                        //     }
-                        // }:{
-                        //     width:'12rem',
-                        //     transition:{
-                        //         duration:0.2,
-                                
-                        //     }
-                        // }}
                         animate={isSearchOpen?{
-                            width:'20rem',
+                            width:'30rem',
                             transition:{
-                                duration:0.3,
-                                delay:1
+                                duration:0.5,
+                                delay:0.5
                             }
                         }:{
                             width:'12rem',
                             transition:{
-                                duration:0.3,
-                                delay:0
+                                duration:0.2,
+                                
                             }
                         }}
-                        onClick={()=>setIsSearchOpen(true)}
+                       
+                        // onClick={()=>setIsSearchOpen(true)}
                     >
-                        {/* <button className={styles.search__btn} onClick={()=>setIsSearchOpen(true)}>
+                        <button className={styles.search__btn} onClick={()=>setIsSearchOpen(true)}>
                             <img src={searchIcon} alt="search" />
                         </button>
-                        <input  onFocus={()=>setIsSearchOpen(true)} className={styles.search__field} ref={searchRef} type="text" placeholder='Search...' /> */}
+                        <input  onFocus={()=>setIsSearchOpen(true)} className={styles.search__field} ref={searchRef} type="text" placeholder='Search...' />
                     </motion.div>
                 </motion.div>
 
-                {/* <motion.div
+                <motion.div
                     className={styles['button-nav']}
                     animate={!isSearchOpen?{
                         width:'65px',
@@ -219,7 +198,7 @@ const ButtomHeader = () => {
                             {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
                         </div>
                     </Link>
-                </motion.div> */}
+                </motion.div>
 
                 <motion.button
                     className={styles.cancel}
