@@ -22,6 +22,7 @@ const navAnimate = {
     paddingLeft:0,
     transition:{
         duration:0.4,
+        // delay:0.5
     }
 }
 const searchWrapperInitial = {
@@ -37,19 +38,19 @@ const searchWrapperAnimate = {
         delay:0.3
     }
 }
-const searchInitial = {
-    width:'100%',
-    transition:{
-        duration:0.4,
-    }
-}
-const searchAnimate = {
-    width:'30rem',
-    transition:{
-        duration:0.5,
-        delay:0.5
-    }
-}
+// const searchInitial = {
+//     width:'100%',
+//     transition:{
+//         duration:0.4,
+//     }
+// }
+// const searchAnimate = {
+//     width:'30rem',
+//     transition:{
+//         duration:0.5,
+//         delay:0.5
+//     }
+// }
 // попробувати зробити так мб заканає
 // const variant = {
 //     closed:(screenWidth)=>{
@@ -82,10 +83,35 @@ const searchAnimate = {
 //         } 
 //     }
 // }
+const searchWrapperVariants = {
+    closed:(screenWidth)=>{
+        if(screenWidth < 1024){
+            return {
+                width:'10%',
+                transition:{
+                    duration:0.4,
+                    delay:0.3
+                }
+            }
+        }else return {
+            width:'12rem',
+            transition:{
+                duration:0.4,
+                delay:0.3
+            }
+        }
+    },
+    opened:{
+        width:'100%',
+        transition:{ 
+            duration:0.4,
+        }
+    }
+}
 const ButtomHeader = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false)
     const {cartQuantity} = useSelector(state=>state.cartReducer)
-    const widthTriger = window.screen.availWidth < 1000;
+    const widthTriger = window.screen.availWidth;
     const searchRef = useRef();
     return (
         <div className={styles.header}>
@@ -110,35 +136,64 @@ const ButtomHeader = () => {
                 <motion.div 
                     className={styles["search-wrapper"]}
                     initial={false}
-                    animate={isSearchOpen?searchWrapperInitial:searchWrapperAnimate}
+                    // animate={isSearchOpen?'opened':'closed'}
+                    animate={isSearchOpen?{
+                        width:'100%',
+                        flex:'0 1 auto',
+                        transition:{
+                            duration:0.4,
+                            delay:0.4
+                        }
+                    }:{
+                        width:'12rem',
+                        transition:{
+                            delay:0.5,
+                            duration:0.4,
+                        }
+                    }}
+                    variants={searchWrapperVariants}
+                    custom={widthTriger}
                 >
                     <motion.div
                         className={styles.search}
-                        // initial={{
-                        //     width:'12rem',
-                        // }}
+                      
                         initial={false}
+                        // animate={isSearchOpen?{
+                        //     width:'30rem',
+                        //     transition:{
+                        //         duration:0.5,
+                        //         delay:0.5
+                        //     }
+                        // }:{
+                        //     width:'12rem',
+                        //     transition:{
+                        //         duration:0.2,
+                                
+                        //     }
+                        // }}
                         animate={isSearchOpen?{
-                            width:'30rem',
+                            width:'20rem',
                             transition:{
-                                duration:0.5,
-                                delay:0.5
+                                duration:0.3,
+                                delay:1
                             }
                         }:{
                             width:'12rem',
                             transition:{
-                                duration:0.2,
+                                duration:0.3,
+                                delay:0
                             }
                         }}
+                        onClick={()=>setIsSearchOpen(true)}
                     >
-                        <button className={styles.search__btn} onClick={()=>setIsSearchOpen(true)}>
+                        {/* <button className={styles.search__btn} onClick={()=>setIsSearchOpen(true)}>
                             <img src={searchIcon} alt="search" />
                         </button>
-                        <input  onFocus={()=>setIsSearchOpen(true)} className={styles.search__field} ref={searchRef} type="text" placeholder='Search...' />
+                        <input  onFocus={()=>setIsSearchOpen(true)} className={styles.search__field} ref={searchRef} type="text" placeholder='Search...' /> */}
                     </motion.div>
                 </motion.div>
 
-                <motion.div
+                {/* <motion.div
                     className={styles['button-nav']}
                     animate={!isSearchOpen?{
                         width:'65px',
@@ -164,12 +219,13 @@ const ButtomHeader = () => {
                             {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
                         </div>
                     </Link>
-                </motion.div>
+                </motion.div> */}
 
                 <motion.button
                     className={styles.cancel}
+                    initial={false}
                     animate={isSearchOpen?{
-                        width:'131px',
+                        width:128,
                         transition:{
                             duration:0.4,
                             delay:0.3,

@@ -69,17 +69,20 @@
             }
         }
         .search-wrapper{
+            width: fit-content;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
-            // flex: 1 0 auto;
+            border:1px solid red;
+            // flex: 0 1 auto;
             .search{
                 height:40px;
                 background:$clr-secondary;
                 border-radius: 100px;
                 padding-right: 7px;
                 display: flex;
+                width: 12rem;
                 overflow: hidden;
                 .search__btn{
                     flex: 1 0 auto;

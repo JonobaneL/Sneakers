@@ -144,20 +144,15 @@
     }
 }
 .block{
-    width: 200px;
     background:red;
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    &.active{
-        width: 600px;
-        .child{
-            width: 400px;
-        }
-    }
+    width: fit-content;
+    
     .child{
-        width: 200px;
+        width: 12rem;
         height: 70px;
         background:blue;
     }
