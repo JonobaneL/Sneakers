@@ -8,7 +8,7 @@
     padding-bottom: 0;
     .content{
         @include mixins.content;
-        display: flex;
+        display: grid;
         align-items: center;
         height: 60px;
         .logo{
@@ -26,7 +26,6 @@
             gap: 25px;
             justify-content: center;
             overflow: hidden;
-            flex: 1 1 auto;
             &__item{
                 cursor: pointer;
                 a{
@@ -41,8 +40,6 @@
             align-items:center;
             gap:10px;
             overflow: hidden;
-            flex:1 0 auto;
-            width: 65px;
             margin-left:10px;
             .bag{
                 position: relative;
@@ -70,20 +67,17 @@
             }
         }
         .search-wrapper{
-            width: fit-content;
             display: flex;
             align-items: center;
-            justify-content: center;
             height: 100%;
-            // border:1px solid red;
-            // flex: 0 1 auto;
+            width: 100%;
             .search{
                 height:40px;
                 background:$clr-secondary;
                 border-radius: 100px;
                 padding-right: 7px;
                 display: flex;
-                width: 12rem;
+                width: 100%;
                 overflow: hidden;
                 .search__btn{
                     flex: 1 0 auto;
@@ -106,9 +100,6 @@
             }
         }
         .cancel{
-            width: 0;
-            width: 128px;
-            flex: 1 0 auto;
             cursor: pointer;
             color: $clr-text;
             font-weight: 600;
@@ -116,6 +107,7 @@
             background: none;
             overflow: hidden;
             text-align: right;
+            width: 100%;
         }
     }
 }

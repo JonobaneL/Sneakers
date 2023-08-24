@@ -30,115 +30,49 @@ const About = () => {
         <div className={styles.content} >
             <button onClick={()=>setIsOpen(p=>!p)}>Open</button>
             <br/>
-            <div className="wrapper" style={{
-                width:'100%',
-                height:'100px',
-                display:'flex',
-                gap:'10px',
-                // justifyContent:'right'
-            }}>
-            <motion.div
-                initial={{
-                    width:'100%'
-                }}
-              
-                className={styles.block}>
+            <br/>
+            <br/>
             <motion.div 
                 initial={false}
                 animate={isOpen?{
-                    width:'50%',
+                    gridTemplateColumns:'auto 0fr 1fr 0px 130px',
                     transition:{
-                        duration:0.3,
-                        delay:0.4
+                        duration:0.8,
+                        ease:[0.76, 0, 0.24, 1]
                     }
                 }:{
-                    width:'180px',
+                    gridTemplateColumns:'auto 4fr 1fr auto 0px',
                     transition:{
-                        duration:0.3,
-                        delay:0
+                        duration:0.8,
+                        ease:[0.76, 0, 0.24, 1]
                     }
                 }}
-                 className={styles.child}></motion.div>
-                  <motion.div className="t" style={{
-                        width:'100%',
-                        height:"80px",
-                        background:'green',
-                    }}
-                    animate={
-                        isOpen?{
-                            width:0,
-                        }:{
-                            width:'100%',
-                            transition:{
-                                duration:0.5,
-                                delay:0.5,
-                            }
+
+                className={styles.wrapper}
+            >
+                <div className={styles.b1}></div>
+                <div className={styles.b2}></div>
+                <motion.div
+                    animate={isOpen?{
+                        paddingInline:'20%',
+                        transition:{
+                            delay:0.4
                         }
-                    }
-                />
+                    }:{
+                        paddingInline:0,
+                        transition:{
+                            delay:0.3
+                        }
+                    }}
+                className={styles.b3}>
+                    <motion.div
+                     className={styles.child}></motion.div>
+                </motion.div>
+                <div className={styles.b4}></div>
+                <div className={styles.b5}></div>
             </motion.div>
-                {/* <motion.div className="t" layout style={{
-                        width:'100%',
-                        height:"100px",
-                        background:'green',
-                        flex:'0 1 auto'
-                    }}
-                /> */}
-                
-            {/* <AnimatePresence initial={false} mode='wait'>
-                {
-                    !isOpen && <motion.div className="t" style={{
-                        width:'100%',
-                        height:"100px",
-                        background:'green'
-                    }}
-                        initial={{
-                            width:'100%'
-                        }}
-                        exit={{
-                            width:0,
-                        }} 
-                        transition={{
-                            duration:0.3
-                        }}     
-                    />
-                }
-            </AnimatePresence> */}
+           
             
-            </div>
-            {/* <motion.div
-                initial={false}
-                animate={isOpen?{
-                    width:'100%',
-                    transition:{
-                        duration:0.3,
-                        delay:0
-                    }
-                }:{
-                    width:'12rem',
-                    transition:{
-                        delay:0.5,
-                        duration:0.5,
-                    }
-                }}
-                className={styles.block}>
-            <motion.div 
-                initial={false}
-                animate={isOpen?{
-                    width:'20rem',
-                    transition:{
-                        duration:0.3,
-                        delay:0.5
-                    }
-                }:{
-                    width:'12rem',
-                    transition:{
-                        duration:0.3,
-                        delay:0
-                    }
-                }}
-                 className={styles.child}></motion.div>
-            </motion.div> */}
         
         </div>
     </div>;

@@ -10,7 +10,6 @@
         justify-content: center;
         gap:10px;
         .wrapper{
-        @include mixins.content;
             width: 100%;
         }
         .btn{
@@ -19,145 +18,47 @@
         }
     }
 }
-.header{
-    width: 100%;
+.wrapper{
+    @include mixins.content;
+    display: grid;
+    // grid-template-areas: 'logo . nav search . button cancel';
+    background: #b0b0b0;
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // gap:10px;
-    .logo{
-        font-family:$ff-accent;
-        font-size: 35px;
-        font-weight: 700;
-        color:$clr-primary;
+    .b1{
+        // grid-area: logo;
+        width: 130px;
+        background: blue;
     }
-    .nav{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        gap:25px;
-        height: 100%;
-        padding-left:80px;
-        &__item{
-            a{
-                color:#000;
-                font-size:15px;
-            }
-        }
+    .b2{
+        // grid-area: nav;
+        width: 100%;
+        background: red;
     }
-    .button-nav{
-        height: 100%;
-        display: flex;
-        align-items:center;
-        gap:10px;
-        overflow: hidden;
-        flex:1 0 auto;
-        width: 65px;
-        margin-left:10px;
-        .bag{
-            position: relative;
-            .cart-quantity{
-                position: absolute;
-                background: $clr-primary;
-                top:-8px;
-                right: -8px;
-                font-size: 12px;
-                color: #fff;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                line-height: 12px;
-                font-weight: 600;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding-left: 1px;
-            }
-        }
-        img{
-            width: 22px;
-            height: 22px;
-        }
-    }
-    .search-wrapper{
+    .b3{
+        width: 100%;
+        background: green; 
         display: flex;
         align-items: center;
-        justify-content: center;
-        height: 100%;
-        .search{
-            height:40px;
-            background:$clr-secondary;
-            border-radius: 100px;
-            padding-right: 7px;
-            display: flex;
-            overflow: hidden;
-            .search__btn{
-                flex: 1 0 auto;
-                width: 40px;
-                height: 40px;
-                padding: 7px;
-                background:$clr-secondary;
-                border-radius: 50%;
-                cursor: pointer;
-                transition: all 0.1s ease-in;
-                &:hover{
-                    background: #e5e5e5;
-                }
-            }
-            .search__field{
-                width: 100%;
-                background:$clr-secondary;
-                font-size: 14px;
-            }
+        // justify-content: center;
+        // grid-template-areas: '. child .';
+        .child{
+            width: 100%;
+            height: 40px;
+            background: yellow;
         }
     }
-    .cancel{
-        height: 100%;
-        width: 0;
-        flex: 1 0 auto;
+    .b4{
+        // width: 70px;
+        background: violet;
         overflow: hidden;
-        display: flex;
-        align-items:center;
-        justify-content: right;
-        p{
-            cursor: pointer;
-            font-size:15px;
-            font-weight: 500;
-        }
     }
-}
-@media screen and (width < 1000px) {
-    .header{
-        .search-wrapper{
-            .search{
-                background-color: #fff;
-            .search__btn{
-                background: none;
-            }
-            }
-        }
-        .nav{
-            // display: none
-        }
+    .b5{
+        // width: 130px;
+        background: blueviolet;
     }
-}
-.block{
-    background:red;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    // justify-content: center;
-    width: fit-content;
-    
-    .child{
-        width: 180px;
-        flex: 0 1 auto;
-        height: 70px;
-        background:blue;
-    }
-}
+
+}    
+
 @media screen and (width <= 768px) {
     .about{
         @include mixins.wrapper-tablet;
