@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './BurgerButton.module.scss'
-const BurgerButton = ({visible,setVisible}) => {
-    
+const BurgerButton = ({onChange}) => {
     return (
-        <div className={`${styles.burger} ${visible?styles.activ:''}`} onClick={()=>setVisible(prev=>!prev)}>
+        <div className={styles.burger} onClick={()=>onChange(prev=>!prev)}>
               <span></span>
         </div>
     );

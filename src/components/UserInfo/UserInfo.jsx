@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './UserInfo.module.scss'
-import { getCurrentUser } from '../../fireAuthAPI';
+import { getCurrentUser } from '../../firebase/fireAuthAPI';
 import { useAuth } from '../../context/AuthContext';
 import EditButton from '../UI/editButton/EditButton';
 import { useNavigate } from 'react-router-dom';

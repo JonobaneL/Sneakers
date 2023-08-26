@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .burger{display: none;}
-@media only screen and (width < 1000px) {
+@media only screen and (width < 1024px) {
     .burger{
         display: block;
         width: 22px;
@@ -30,18 +30,6 @@
         &::after{
             bottom:0;
         }
-        &.active{
-            &::before{
-                transform: rotate(45deg);
-                top: 7px;
-            }
-            &::after{
-                transform: rotate(-45deg);
-                bottom: 7px;
-            }
-            span{
-                transform: scale(0);
-            }
-        }
+        
     }
 }

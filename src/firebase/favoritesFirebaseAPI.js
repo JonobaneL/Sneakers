@@ -1,4 +1,4 @@
-import { firebaseDB } from "../firebase";
+import { firebaseDB } from "./firebase";
 import { collection, doc, getDocs, query, updateDoc, where } from "@firebase/firestore"
 
 export const getFavorites = (userId)=>{

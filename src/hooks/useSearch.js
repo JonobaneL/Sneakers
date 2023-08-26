@@ -11,3 +11,14 @@ export const useSearch =(data,query,searchField) =>{
     },[data,apiQuery])
     return searchedData;
 }
+// export const useAsyncSearch =(data,query,searchField) =>{
+//     const [apiQuery, setApiQuery]=useState('')
+//     useEffect(()=>{
+//         const time = setTimeout(()=>setApiQuery(query),500);
+//         return ()=>clearTimeout(time)
+//     },[query])
+//     const searchedData = useMemo(()=>{
+//         return data.filter(item=> item[searchField].toLowerCase().includes(apiQuery.toLowerCase()))
+//     },[data,apiQuery])
+//     return searchedData;
+// }

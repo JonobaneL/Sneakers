@@ -55,6 +55,7 @@ const Filters = ({setData,loading}) => {
     const [searchQuery,setSearchQuery] = useState('');
     const searchedBrands = useSearch(brands,searchQuery,'name')
     const navigate = useNavigate()
+    console.log(categoryFilters)
     useEffect(()=>{
         setData(filteredData)
         loading(isDataLoading);
@@ -135,13 +136,13 @@ const Filters = ({setData,loading}) => {
                                 </div>
                             }
                             >
-                            <DropDownList 
+                            {/* <DropDownList 
                                 handler={value=>{
                                     setCategoryFilters(value)
                                 }}
                                 data={categories}
                                 seleted={categoryFilters}
-                            />
+                            /> */}
                         </Accordion>
                         <Accordion
                             header={

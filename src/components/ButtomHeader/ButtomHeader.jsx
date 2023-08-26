@@ -1,91 +1,55 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './ButtomHeader.module.scss'
 import searchIcon from '../../images/header-icons/search-icon.svg'
 import favoritesIcon from '../../images/header-icons/favorites.svg'
 import shoppingBag from '../../images/header-icons/shopping-bag.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
-
-const navVariants = {
-    opened:{
-        opacity:1,
-    },
-    closed:{
-        opacity:0,
-    }
-}
-const headerVariants={
-    opened:(screenWidth)=>{
-        if(screenWidth > 1024){
-            return {
-                gridTemplateColumns:'auto 0fr 1fr 0px 128px',
-                transition:{
-                    duration:0.8,
-                    ease:[0.76, 0, 0.24, 1]
-                }
-            }
-        }
-        else{
-            return {
-                gridTemplateColumns:'auto 0fr 1.5fr 0px 128px',
-                transition:{
-                    duration:0.8,
-                    ease:[0.76, 0, 0.24, 1]
-                }
-            }
-        }
-    },
-    closed:()=>{
-        // if(screenWidth > 1024){
-            return {
-                gridTemplateColumns:'auto 4fr 1fr 70px 0px',
-                transition:{
-                    duration:0.8,
-                    ease:[0.76, 0, 0.24, 1]
-                }
-            }
-        }
-    //     else{
-    //         return {
-    //             gridTemplateColumns:'auto 0fr 1.5fr 0px 108px',
-    //             transition:{
-    //                 duration:0.8,
-    //                 ease:[0.76, 0, 0.24, 1]
-    //             }
-    //         }
-    //     }
-    // }
-}
+import BurgerButton from '../UI/burgerButton/BurgerButton';
+import { useAsync } from '../../hooks/useAsync';
+import { useAuth } from '../../context/AuthContext';
+import { getCurrentUser } from '../../firebase/fireAuthAPI';
+import {headerVariants, logoVarints, navVariants, searchWrapperVariants, searchVariants} from '../../utils/buttomHeaderVariants'
+import { getCategories } from '../../firebase/productFirebaseAPI';
+import { searchEngine } from '../../utils/searchEngine';
 
 const ButtomHeader = () => {
-    const [isSearchOpen,setIsSearchOpen] = useState(false)
+    const [isSearchOpen,setIsSearchOpen] = useState(false);
+    const [burgerMenu,setBurgerMenu] = useState(false);
     const {cartQuantity} = useSelector(state=>state.cartReducer)
+    const { currentUser } = useAuth();
+    const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser.uid),[],'firebase')
+
     const widthTriger = window.screen.availWidth;
-    const searchRef = useRef();
+    const [searchQuery,setSearchQuery] = useState('');
+    const searchResults = searchEngine(searchQuery)
+    const navigate = useNavigate()
+     
     return (
         <div className={styles.header}>
             <motion.div
-             animate={isSearchOpen?'opened':{
-                gridTemplateColumns:'auto 4fr 1fr 70px 0px',
-                transition:{
-                    duration:0.8,
-                    ease:[0.76, 0, 0.24, 1]
-                }
-            }}
-            variants={headerVariants}
-            custom={widthTriger}
-             className={styles.content}>
-                <div className={styles.logo}>
+                animate={isSearchOpen?'opened':'closed'}
+                variants={headerVariants}
+                custom={widthTriger}
+                className={styles.content}
+            >
+                <motion.div 
+                    className={styles.logo}
+                    initial={false}
+                    animate={!isSearchOpen?'visible':'hidden'}
+                    variants={logoVarints}
+                    custom={widthTriger}
+                >
                     <Link to={`/`}>
                         <h1>SNEAKERS</h1>
                     </Link>
-                </div>
+                </motion.div>
                 <motion.ul
                     className={styles.nav}
                     initial={false}
-                    animate={isSearchOpen?'closed':'opened'}
+                    animate={!isSearchOpen?'visible':'hidden'}
                     variants={navVariants}
                 >
                     <li className={styles.nav__item}><Link to={`/shoes/men`}> Men</Link></li>
@@ -98,74 +62,87 @@ const ButtomHeader = () => {
                 <motion.div 
                     className={styles["search-wrapper"]}
                     initial={false}
-                    animate={isSearchOpen?{
-                        paddingInline:'20%',
-                        transition:{
-                            delay:0.4
-                        }
-                    }:{
-                        paddingInline:0,
-                        transition:{
-                            delay:0.3
-                        }
-                    }}
+                    animate={isSearchOpen?'opened':'closed'}
+                    variants={searchWrapperVariants}
+                    custom={widthTriger}
                 >
                     <motion.div
                         className={styles.search}
+                        initial={false}
+                        animate={isSearchOpen?'opened':'closed'}
+                        variants={searchVariants}
+                        custom={widthTriger}
                     >
                         <button className={styles.search__btn} onClick={()=>setIsSearchOpen(true)}>
                             <img src={searchIcon} alt="search" />
                         </button>
-                        <input  onFocus={()=>setIsSearchOpen(true)} className={styles.search__field} ref={searchRef} type="text" placeholder='Search...' />
+                        <input  
+                            className={styles.search__field} 
+                            type="text" 
+                            placeholder='Search...'
+                            value={searchQuery}
+                            onChange={e=>setSearchQuery(e.target.value)}
+                            onFocus={()=>setIsSearchOpen(true)} 
+                            />
                     </motion.div>
                 </motion.div>
 
                 <motion.div
                     className={styles['button-nav']}
+                    initial={false}
                     animate={!isSearchOpen?{
-                        width:'65px',
                         marginLeft:'10px',
-                        transition:{
-                            duration:0.4,
-                            delay:0.3,
-                        }
                     }:{
-                        width:0,
                         marginLeft:'0', 
-                        transition:{
-                            duration:0.4,
-                        }
+                    }}
+                    transition={{
+                        duration:0.8
                     }}
                 >
-                    <Link to='/user-profile/favorites' className={styles.favorites}>
+                    {
+                        (widthTriger >= 1024)&&<Link to='/user-profile/favorites' className={styles.favorites}>
                         <img src={favoritesIcon} alt="favoritesIcon" />
                     </Link>
+                    }
+                    
                     <Link to={'/shopping-cart'}>
                         <div className={styles.bag}>
                             <img src={shoppingBag} alt="shopping-bag" />
                             {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
                         </div>
                     </Link>
+                   
+                    <BurgerButton onChange={setBurgerMenu} />
+                    <BurgerMenu user={userInfo} isOpen={burgerMenu} closeHandler={setBurgerMenu}/>
                 </motion.div>
 
-                <motion.button
+                <button
                     className={styles.cancel}
-                    // initial={false}
-                    // animate={isSearchOpen?{
-                    //     width:128,
-                    //     transition:{
-                    //         duration:0.4,
-                    //         delay:0.3,
-                    //     }
-                    // }:{
-                    //     width:0,
-                    //     transition:{
-                    //         duration:0.4,
-                    //     }
-                    // }}
                     onClick={()=>setIsSearchOpen(false)}
-                >Cancel</motion.button>
+                >Cancel</button>
             </motion.div>
+            <div className={`${styles["search-results"]} ${(isSearchOpen && searchQuery.length>0)?styles.active:''}`}>
+                <div className={styles['search-content']}>
+                    <div className={styles.categories}>
+                        <div className={styles.title}>
+                            Search by category
+                        </div>
+                        <div className={styles['category-list']}>
+                            {
+                                searchResults.map(item=>{
+                                    if(item.parent===null){
+                                        return <div onClick={()=>navigate({
+                                            pathname: '/shoes/men',
+                                            search: `?category=${item.name}`,
+                                          })} className={styles.list__item} key={item.id}>{item.name}</div>
+                                    }
+                                })
+                            }
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     );
 };

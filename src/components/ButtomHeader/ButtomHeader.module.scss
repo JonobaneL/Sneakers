@@ -6,12 +6,14 @@
     @include mixins.wrapper-desktop;
     padding-top: 0;
     padding-bottom: 0;
+    position: relative;
     .content{
         @include mixins.content;
         display: grid;
         align-items: center;
         height: 60px;
         .logo{
+            overflow: hidden;
             h1{
                 font-size: 35px;
                 line-height: 60px;
@@ -38,9 +40,9 @@
             height: 100%;
             display: flex;
             align-items:center;
-            gap:10px;
+            gap:15px;
             overflow: hidden;
-            margin-left:10px;
+            width: 100%;
             .bag{
                 position: relative;
                 .cart-quantity{
@@ -84,7 +86,8 @@
                     width: 40px;
                     height: 40px;
                     padding: 7px;
-                    background:$clr-secondary;
+                    // background:$clr-secondary;
+                    background:none;
                     border-radius: 50%;
                     cursor: pointer;
                     transition: all 0.1s ease-in;
@@ -110,6 +113,47 @@
             width: 100%;
         }
     }
+    .search-results{
+        content:'';
+        width: 100%;
+        opacity: 0;
+        min-height: 200px;
+        background: #fff;
+        position:absolute;
+        border: 1px solid red;
+        left:0;
+        right: 0;
+        @include mixins.wrapper-desktop;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        &.active{
+            opacity:1;
+        }
+        .search-content{
+            @include mixins.content;
+            .categories{
+                max-height: 160px;
+                overflow: hidden;
+                .title{
+                    border-bottom: 1px solid #b0b0b0;
+                    font-size: $fs-400;
+                    font-weight: 500;
+                    color: $clr-primary;
+                    padding-bottom:7px;
+                    margin-bottom: 10px;
+                }
+                .category-list{
+                    display: flex;
+                    flex-direction:column;
+                    gap:8px;
+                    .list__item{
+                        color: $clr-text;
+                    }
+                }
+            }
+        }
+        
+    }
 }
 @media screen and (width < 1024px) {
     .header .content{
@@ -130,6 +174,9 @@
                 h1{
                     font-size: 30px;
                 }
+            }
+            .search-wrapper .search{
+                padding: 0
             }
         }
     }

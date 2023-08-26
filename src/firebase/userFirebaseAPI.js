@@ -1,5 +1,5 @@
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { firebaseDB } from "../firebase";
+import { firebaseDB } from "./firebase";
 
 
 export const updateUserCity = (props)=>{

@@ -1,41 +1,26 @@
 import React, { useState } from 'react';
 import styles from './Header.module.scss'
 import { Link } from 'react-router-dom';
-import shoppingBag from '../../images/header-icons/shopping-bag.png';
 import userIcon from '../../images/header-icons/user-icon.svg';
-import favoritesIcon from '../../images/header-icons/favorites.svg'
-import searchIcon from '../../images/header-icons/search-icon.svg'
-import BurgerButton from '../UI/burgerButton/BurgerButton';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import DropDownMenu from '../UI/dropDownMenu/DropDownMenu';
 import { useAuth } from '../../context/AuthContext';
 import { useEffect } from 'react';
-import { getCurrentUser } from '../../fireAuthAPI';
-import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentUser } from '../../firebase/fireAuthAPI';
+import { useDispatch } from 'react-redux';
 import { fetchShoppingCart } from '../../redux/cartSlice';
 import { fetchFavorites } from '../../redux/favoritesSlice';
 import ButtomHeader from '../ButtomHeader/ButtomHeader';
+import { useAsync } from '../../hooks/useAsync';
 
 const Header = () => {
-    const [isSearchOpen,setIsSearchOpen] = useState(false)
-    const [burgerMenu,setBurgerMenu] = useState(false);
     const [helpDropMenu,setHelpDropMenu] = useState(false)
     const [userDropMenu,setUserDropMenu] = useState(false)
     const dispatch = useDispatch();
-    const {cartQuantity} = useSelector(state=>state.cartReducer)
     const {currentUser,logout} = useAuth();
-    const [details,setDetails] = useState({})
-    const getUser = async()=>{
-        try{
-            const response = await getCurrentUser(currentUser.uid)
-            setDetails(response.data())
-        }catch(err){
-            console.log(err)
-        }
-    }
+    const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser.uid),[],'firebase')
+   
     useEffect(()=>{
         if(currentUser){
-            getUser()
             dispatch(fetchShoppingCart(currentUser.uid))
             dispatch(fetchFavorites(currentUser.uid))
         }
@@ -87,7 +72,7 @@ const Header = () => {
                                 onMouseEnter={()=>setUserDropMenu(true)} 
                                 onMouseLeave={()=>setUserDropMenu(false)}
                             >
-                               <Link to='/user-profile/info'>Hi, {details.firstName} 
+                               <Link to='/user-profile/info'>Hi, {userInfo.firstName} 
                                     <img className={styles['user-icon']} src={userIcon} alt='user'/>
                                </Link> 
                                 <DropDownMenu triger={userDropMenu}>
@@ -107,44 +92,6 @@ const Header = () => {
                     </ul>
                 </div>
             </div>
-            
-            {/* <div className={styles["header-bottom"]}>
-                <div className={`${styles.content} ${isSearchOpen?styles.search:''}`}>
-                    <div className={styles.logo}>
-                        <Link to={`/`}>
-                            <h1>SNEAKERS</h1>
-                        </Link>
-                    </div>
-                        <ul className={styles.nav}>
-                            <li className={styles.nav__item}><Link to={`/shoes/men`}> Men</Link></li>
-                            <li className={styles.nav__item}><Link to={`/shoes/women`}> Women</Link></li>
-                            <li className={styles.nav__item}><Link to={`/shoes/kids`}> Kids</Link></li>
-                            <li className={styles.nav__item}><Link to={`/accessories`}> Accessories</Link></li>
-                            <li className={styles.nav__item}><Link to={`/sale`}> Sale</Link></li>
-                        </ul>
-                    <div className={`${styles.search} ${isSearchOpen?styles.active:''}`}>
-                            <button className={styles.search__btn} onClick={()=>setIsSearchOpen(true)}>
-                                <img src={searchIcon} alt="search-icon" />
-                            </button>
-                            <input className={styles.search__field} type="text" placeholder='Search...' onFocus={()=>setIsSearchOpen(true)} />
-                        </div>
-                    <div className={styles["button-nav"]}>
-                        <Link to='/user-profile/favorites' className={styles.favorites}>
-                            <img src={favoritesIcon} alt="favoritesIcon" />
-                        </Link>
-                        <Link to={'/shopping-cart'}>
-                            <div className={styles.bag}>
-                                <img src={shoppingBag} alt="shopping-bag" />
-                                {cartQuantity==0?null:<div className={styles['cart-quantity']}>{cartQuantity}</div>}
-                            </div>
-                        </Link>
-                        <BurgerButton visible={burgerMenu} setVisible={setBurgerMenu} />
-                        <BurgerMenu user={details} isOpen={burgerMenu} closeHandler={setBurgerMenu}/>
-                    </div>
-                    <button className={styles.cancel_btn} onClick={()=>setIsSearchOpen(false)}>Cancel</button>
-                </div>
-                
-            </div> */}
             <ButtomHeader />
         </div>
     );

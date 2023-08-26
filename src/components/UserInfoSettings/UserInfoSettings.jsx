@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './UserInfoSettings.module.scss'
 import { useAuth } from '../../context/AuthContext'
-import { getUser} from '../../fireAuthAPI';
+import { getUser} from '../../firebase/fireAuthAPI';
 import {updateUserCity, updateUserPhone } from '../../firebase/userFirebaseAPI'
 import CInput from '../UI/input/CInput';
 import Button from '../UI/button/Button';

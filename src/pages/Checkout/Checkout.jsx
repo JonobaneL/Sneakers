@@ -13,7 +13,7 @@ import Accrodion from '../../components/UI/accordion/Accordion';
 import Button from '../../components/UI/button/Button';
 import EditButton from '../../components/UI/editButton/EditButton';
 import { useAuth } from '../../context/AuthContext';
-import { getUser } from '../../fireAuthAPI';
+import { getUser } from '../../firebase/fireAuthAPI';
 import MethodsList from '../../components/MedhodsList/MethodsList';
 import AddressesList from '../../components/AddressesList/AddressesList';
 

@@ -2,7 +2,7 @@ import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
 import CInput from '../components/UI/input/CInput';
 import { useAuth } from '../context/AuthContext';
-import { getUser } from '../fireAuthAPI';
+import { getUser } from '../firebase/fireAuthAPI';
 import RadioList from '../components/RadioList/RadioList';
 import RadioButton from '../components/UI/radioButton/RadioButton';
 import searchIcon from '../images/header-icons/search-icon.svg'
