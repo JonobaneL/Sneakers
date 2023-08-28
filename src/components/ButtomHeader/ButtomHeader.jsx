@@ -3,7 +3,7 @@ import styles from './ButtomHeader.module.scss'
 import searchIcon from '../../images/header-icons/search-icon.svg'
 import favoritesIcon from '../../images/header-icons/favorites.svg'
 import shoppingBag from '../../images/header-icons/shopping-bag.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
@@ -12,8 +12,7 @@ import { useAsync } from '../../hooks/useAsync';
 import { useAuth } from '../../context/AuthContext';
 import { getCurrentUser } from '../../firebase/fireAuthAPI';
 import {headerVariants, logoVarints, navVariants, searchWrapperVariants, searchVariants} from '../../utils/buttomHeaderVariants'
-import { getCategories } from '../../firebase/productFirebaseAPI';
-import { searchEngine } from '../../utils/searchEngine';
+import SearchResults from '../SearchResults/SearchResults';
 
 const ButtomHeader = () => {
     const [isSearchOpen,setIsSearchOpen] = useState(false);
@@ -24,8 +23,6 @@ const ButtomHeader = () => {
 
     const widthTriger = window.screen.availWidth;
     const [searchQuery,setSearchQuery] = useState('');
-    const searchResults = searchEngine(searchQuery)
-    const navigate = useNavigate()
      
     return (
         <div className={styles.header}>
@@ -118,31 +115,13 @@ const ButtomHeader = () => {
 
                 <button
                     className={styles.cancel}
-                    onClick={()=>setIsSearchOpen(false)}
+                    onClick={()=>{
+                        setIsSearchOpen(false)
+                        setSearchQuery('')
+                    }}
                 >Cancel</button>
             </motion.div>
-            <div className={`${styles["search-results"]} ${(isSearchOpen && searchQuery.length>0)?styles.active:''}`}>
-                <div className={styles['search-content']}>
-                    <div className={styles.categories}>
-                        <div className={styles.title}>
-                            Search by category
-                        </div>
-                        <div className={styles['category-list']}>
-                            {
-                                searchResults.map(item=>{
-                                    if(item.parent===null){
-                                        return <div onClick={()=>navigate({
-                                            pathname: '/shoes/men',
-                                            search: `?category=${item.name}`,
-                                          })} className={styles.list__item} key={item.id}>{item.name}</div>
-                                    }
-                                })
-                            }
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+            <SearchResults isOpen={isSearchOpen} onChange={setIsSearchOpen} query={searchQuery} onChangeQuery={setSearchQuery}/>
         </div>
     );
 };

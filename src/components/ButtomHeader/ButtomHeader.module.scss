@@ -86,7 +86,6 @@
                     width: 40px;
                     height: 40px;
                     padding: 7px;
-                    // background:$clr-secondary;
                     background:none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -120,7 +119,7 @@
         min-height: 200px;
         background: #fff;
         position:absolute;
-        border: 1px solid red;
+        // border: 1px solid red;
         left:0;
         right: 0;
         @include mixins.wrapper-desktop;

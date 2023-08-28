@@ -41,17 +41,13 @@ const BurgerMenu = ({user,isOpen,closeHandler}) => {
     const menuVariants = {
         enter:{
             right:0,
-            // transition:{
-            //     duration:0.8,
-            //             ease:[0.76, 0, 0.24, 1]
-            // }
         },
         exit:{
             right:-320,
         }
     }
     return ReactDom.createPortal(
-        <AnimatePresence mode='sync'>
+        <AnimatePresence mode='sync' initial={false}>
             {
                 isOpen && <>
                 <motion.div 
