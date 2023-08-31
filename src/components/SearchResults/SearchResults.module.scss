@@ -1,6 +1,8 @@
 @use '../../styles/mixins';
 @import '../../styles/variables';
 
+$min-cols: 2;
+$max-cols: 5;
 .wrapper{
     position: fixed;
     left: 0;
@@ -10,17 +12,69 @@
     z-index: 2;
     background:rgba(18, 18, 18, 0.36);
     padding-top: 100px;
+    overflow-y: auto;
     .search-results{
         @include mixins.wrapper-desktop;
         padding-top: 20px;
-        padding-bottom: 20px;
         width: 100%;
         background: #fff;
         .content{
             @include mixins.content;
+            .warning-message{
+                width: 100%;
+                text-align: center;
+                padding: 40px 0;
+                span{
+                    font-size: $fs-500;
+                    font-weight: 500;
+                }
+                p{
+                    padding-top: 10px;
+                    font-size:$fs-400;
+                }
+            }
+            .products{
+                width: 100%;
+                @include mixins.gridMixin($min-cols, $max-cols, 160px, 10px, 20px);
+                .product{
+                    width: 100%;
+                    max-width: 220px;
+                    flex: 0 1 auto;
+                    cursor: pointer;
+                    color: $clr-text;
+                    img{
+                        width: 100%;
+                        aspect-ratio: 1/1;
+                    }
+                    .name{
+                        font-weight: 500;
+                        line-height: 140%;
+                        text-wrap:balance;
+                    }
+                    .type{
+                        color: #2f2f2f;
+                        text-transform: capitalize;
+                        margin-bottom: 10px;
+                    }
+                    .price{
+                        display: flex;
+                        gap:10px;
+                        p{
+                            font-weight: 500;
+                        }
+                        .price__discount{
+                            color: #a40000;
+                        }
+                        .price__disabled{
+                            color: #2f2f2f;
+                            text-decoration: line-through;
+                        }
+                    }
+                }
+            }
             .categories{
-                max-height: 160px;
-                overflow: hidden;
+                margin-top: 25px;
+                
                 .title{
                     border-bottom: 1px solid #b0b0b0;
                     font-size: 14px;
@@ -33,6 +87,8 @@
                     display: flex;
                     flex-direction:column;
                     gap:8px;
+                    max-height: 120px;
+                    overflow: hidden;
                     .list__item{
                         cursor: pointer;
                         color: #2f2f2f;
@@ -43,8 +99,30 @@
     }
 
 }
-@media screen and (width <= 768px) {
+@media screen and (width < 1024px) {
     .wrapper{
-        padding-top:60px
+        padding-top:60px;
+    }
+}
+@media screen and (width <= 768px) {
+    .wrapper .search-results{
+        @include mixins.wrapper-tablet;
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+}
+@media screen and (width <= 425px) {
+    .wrapper{
+        padding-top:60px;
+        .search-results{
+            @include mixins.wrapper-mobile;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            .content .products{
+                // gap:10px;
+                @include mixins.gridMixin($min-cols, $max-cols, 135px, 10px, 10px);
+    
+            }
+        }
     }
 }

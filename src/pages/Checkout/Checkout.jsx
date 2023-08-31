@@ -5,7 +5,7 @@ import PayPalIcon from '../../images/PayPal-icon.svg'
 import CreditCardFrom from '../../components/CreditCardForm/CreditCardFrom';
 import OrdreSummaryList from '../../components/OrderSummaryList/OrderSummaryList';
 import TotalSection from '../../components/TotalSection/TotalSection';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import CheckoutCustomer from '../../components/CheckoutCustomer/CheckoutCustomer';
 import CheckoutShipping from '../../components/CheckoutShipping/CheckoutShipping';
@@ -16,6 +16,8 @@ import { useAuth } from '../../context/AuthContext';
 import { getUser } from '../../firebase/fireAuthAPI';
 import MethodsList from '../../components/MedhodsList/MethodsList';
 import AddressesList from '../../components/AddressesList/AddressesList';
+import { useSelector } from 'react-redux';
+import { addNewOrder } from '../../firebase/ordersFirebaseAPI';
 
 const Checkout = () => {
     const {currentUser} = useAuth();
@@ -31,16 +33,40 @@ const Checkout = () => {
     const [cardData,setCardData] = useState({cartNumber:'',date:'',cvv:''})
     const [addressData,setAddressData] = useState({address:'',appartment:''});
     const [paymentMethod,setPaymentMethod] = useState('')
-    const orderHandler=()=>{
-        console.log({
-            firstName:firstName.value,
-            lastName:lastName.value,
-            email:email.value,
-            phoneNumber:phoneNumber.value,
-            shipping:addressData,
-            paymentMethod:paymentMethod,
-            card:cardData,
-        })
+    const cart = useSelector(state=>state.cartReducer);
+    const [isOrderLoading,setIsOrderLoading]= useState(false);
+    const navigate = useNavigate();
+    // console.log(shoppingCart)
+    const orderHandler= async() =>{
+        const orderID = currentUser?`U${Date.now()}`:`A${Date.now()}`
+        try{
+            setIsOrderLoading(true)
+            await addNewOrder({
+                orderID:orderID,
+                userID:currentUser?currentUser.uid:`anonym`,
+                firstName:firstName.value,
+                lastName:lastName.value,
+                email:email.value,
+                phoneNumber:phoneNumber.value,
+                shipping:addressData,
+                paymentMethod:paymentMethod,
+                card:cardData,
+                userCart:{
+                    shoppingCart:cart.shoppingCart,
+                    cartQuantity:cart.cartQuantity,
+                    cartSubTotal:cart.cartSubTotal,
+                    cartTotal:cart.cartTotal,
+                    cartDiscount:cart.cartDiscount
+                },
+            })
+            navigate(`/order-info/${orderID}`)
+        }catch(err){
+            console.log(err)
+        }
+        finally{
+            setIsOrderLoading(false)
+        }
+        
     }
 
     return <div className={styles.checkout}>
@@ -58,7 +84,8 @@ const Checkout = () => {
                                 <Link to='/shopping-cart'>
                                     <EditButton>Edit</EditButton>
                                 </Link>
-                                <OrdreSummaryList/>
+                                {!cart.isLoading?<OrdreSummaryList cart={cart.shoppingCart} />:null}
+                                
                             </div>
                             <TotalSection borders={false}/>
 
@@ -165,6 +192,7 @@ const Checkout = () => {
                         mode='primary'
                         width='160px'
                         height='45px'
+                        disabled={isOrderLoading}
                         onClick={orderHandler}
                     >Place Order</Button>
                 </div>

@@ -88,7 +88,7 @@ const cartSlice = createSlice({
         cartSubTotal:0,
         cartDiscount:0,
         cartTotal:0,
-        isLoading:false
+        isLoading:true
     },
     reducers:{
         addToCart(state,action) {

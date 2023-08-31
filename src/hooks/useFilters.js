@@ -34,8 +34,8 @@ export const useFiltered = (type,male,sortMethod,category=[],brand=[],color=[],p
                 if(category.includes(item.category) && category.length==1){
                     return item
                 }
-                else if(category.includes(item.category) && category.length>1){
-                    if(category.includes(item['sub-category'])) return item
+                else if(category.includes(item.category) && category.includes(item['sub_category'])){
+                    return item
                 }
             })
             }else return sortRes

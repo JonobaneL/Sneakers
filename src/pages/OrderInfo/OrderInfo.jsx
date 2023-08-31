@@ -1,23 +1,17 @@
 import React from 'react';
 import styles from './OrderInfo.module.scss';
 import Button from '../../components/UI/button/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import OrdreSummaryList from '../../components/OrderSummaryList/OrderSummaryList';
-import { useSelector } from 'react-redux';
 import TotalSection from '../../components/TotalSection/TotalSection';
-const order = {
-    card:{methodID: 'method1691579698519', cartNumber: '8798237598743985', cvv: '324', date: '12/26'},
-    email:"fedun.andri@mail.com",
-    firstName: "Andriy",
-    lastName: "Fedun",
-    paymentMethod: "Credit or Debit Card",
-    phoneNumber: "098 1234 454",
-    shipping:{company: 'Ukr Poshta', appartment:7, address: 'Богдана Хмельницького 3', addressID: 'address1690821178624'},
-}
+import { useAsync } from '../../hooks/useAsync';
+import { getOrder } from '../../firebase/ordersFirebaseAPI';
+
 const OrderInfo = () => {
     const navigate = useNavigate()
-    const cart = useSelector(state=>state.cartReducer)
-    console.log(cart)
+    const {orderID} = useParams();
+    const [isLoading,,orderInfo] = useAsync(()=>getOrder(orderID),[],'firebase')
+    console.log(orderInfo)
     return (
         <div className={styles['order-info']}>
             <div className={styles.title}>
@@ -28,7 +22,7 @@ const OrderInfo = () => {
                     <div className={styles.message}>
                         <h2 className={styles.message__title}>Thank you!</h2>
                         <p className={styles.message__content}>
-                            We are getting started on your order right away, and you will recive an order confirmation email to <span className={styles.message__email}>{order.email}</span>. In the meantime, explore the latest fashion and get inspired by new trends.
+                            We are getting started on your order right away, and you will recive an order confirmation email to <span className={styles.message__email}>{orderInfo.email}</span>. In the meantime, explore the latest fashion and get inspired by new trends.
                         </p>
                         <div className={styles.message__button}>
                             <Button
@@ -39,41 +33,49 @@ const OrderInfo = () => {
                             >Continue Shopping</Button>
                         </div>
                     </div>
-                    <div className={styles['order-details']}>
+                    {
+                        !isLoading?<div className={styles['order-details']}>
                         <div className={styles.column}>
                             <div className={styles.column__wrapper}>
-                                <OrdreSummaryList/>
+                                <OrdreSummaryList cart={orderInfo.userCart.shoppingCart}/>
                             </div>
                         </div>
                         <div className={styles.column}>
                             <h2 className={styles["details-title"]}>
-                                My Order #U{Date.now()}
+                                My Order {orderInfo.id}
                             </h2>
                             <div className={styles.shipping}>
                                 <h3>Shipping</h3>
-                                <p>{order.shipping.company}</p>
+                                <p>{orderInfo.shipping.company}</p>
                                 {
-                                order.shipping?.address?
-                                    <p>{order.shipping.address}, {order.shipping.appartment}</p>
-                                :<p>{order.shipping?.postOffice}</p>
+                                orderInfo.shipping?.address?
+                                    <p>{orderInfo.shipping.address}, {orderInfo.shipping.appartment}</p>
+                                :<p>{orderInfo.shipping?.postOffice}</p>
                                 }
                             </div>
                             <div className={styles.payment}>
                                 <h3>Payment</h3>
-                                <p>{order.paymentMethod}</p>
+                                <p>{orderInfo.paymentMethod}</p>
                                 {
-                                    order.card.cartNumber&&<div className={styles.card}>
-                                           <p>{order.card.cartNumber.match(/.{0,4}/g)?.join(' ')}</p>
-                                           <p>{order.card.date}</p>
+                                    orderInfo.card.cartNumber&&<div className={styles.card}>
+                                           <p>{orderInfo.card.cartNumber.match(/.{0,4}/g)?.join(' ')}</p>
+                                           <p>{orderInfo.card.date}</p>
                                     </div>
                                 }
                             </div>
                         </div>
                         
                         <div className={styles.summary}>
-                            <TotalSection/>
+                            <TotalSection
+                                total={orderInfo.userCart.cartTotal}
+                                subTotal={orderInfo.userCart.cartSubTotal}
+                                discount={orderInfo.userCart.cartDisocount}
+                            />
                         </div>
                     </div>
+                    :null
+                    }
+                    
                     
                 </div>
             </div>

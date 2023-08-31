@@ -3,7 +3,8 @@ import ReactDom from 'react-dom'
 import styles from './SearchResults.module.scss'
 import { AnimatePresence, motion } from 'framer-motion';
 import { searchEngine } from '../../utils/searchEngine';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { getFinalPrice } from '../../utils/getFinalPrice';
 
 const resultsVariants = {
     hidden:{
@@ -45,13 +46,20 @@ const wrapperVariants = {
 }
 
 const SearchResults = ({isOpen,onChange,query,onChangeQuery}) => {
-    const categoriesResult = searchEngine(query)
+    if(isOpen) {
+        document.body.style.overflowY='hidden'
+    }else{
+        document.body.style.overflowY='auto'
+    }
+    const [productsResult,categoriesResult] = searchEngine(query)
     const navigate = useNavigate()
     const wrapperHandler=()=>{
         onChangeQuery('')
         onChange(false)
     }    
-    
+    const titleEvent = (male,type)=>{
+        return `${!male?'':male!=='kids'?`${male}'s`:`${male}'`} ${type}`
+    }
     return ReactDom.createPortal(
         <AnimatePresence initial={false}>
             {
@@ -77,25 +85,59 @@ const SearchResults = ({isOpen,onChange,query,onChangeQuery}) => {
                         onClick={e=>e.stopPropagation()}
                     >
                         <div className={styles.content}>
-                            <div className={styles.categories}>
-                                <div className={styles.title}>
-                                    Search by category
-                                </div>
-                                <div className={styles['category-list']}>
+                            {
+                               (productsResult.length>0)?<div className={styles.products}>
                                     {
-                                        categoriesResult.map(item=>{
-                                            if(item.parent===null){
-                                                return <div onClick={()=>{
-                                                    navigate({ pathname: '/shoes/men', search: `?category=${item.name}`});
-                                                    onChange(false)
-                                                }
-                                            } 
-                                                className={styles.list__item} key={item.id}>{item.name}</div>
+                                        productsResult.map((item,index)=>{
+                                            if(index<=4) {
+                                                return <Link key={`${item.productID}/${item.modelID}`} to={`/product/${item.productID}/${item.modelID}`}>
+                                                <div  className={styles.product}>
+                                                    <img src={item.images[1]} alt={item.name} />
+                                                    <p className={styles.name}>{item.name}</p>
+                                                    <p className={styles.type}>{titleEvent(item.male,item.type)}</p>
+                                                    <div className={styles.price}>
+                                                        {(item.discount>0)?
+                                                                <p className={styles.price__discount}>${getFinalPrice(item.price,item.discount)}</p>
+                                                                : null
+                                                        }
+                                                        <p className={item.discount?styles.price__disabled:''}>${item.price}</p>
+
+                                                    </div>
+                                                </div>
+                                                </Link>
                                             }
                                         })
                                     }
                                 </div>
-                            </div>
+                                :categoriesResult.length===0?<div className={styles['warning-message']}>
+                                    <span>No Results</span>
+                                    <p>Try another words</p>
+                                </div>
+                                :null
+                            }
+                            
+                            {
+                                categoriesResult.length>0 && <div className={styles.categories}>
+                                    <div className={styles.title}>
+                                        Search by category
+                                    </div>
+                                    <div className={styles['category-list']}>
+                                        {
+                                            categoriesResult.map((item,index)=>{
+                                                if(item.parent===null){
+                                                    return <div onClick={()=>{
+                                                        navigate({ pathname: `/shoes/men?category=${item.name}`});
+                                                        onChange(false)
+                                                    }
+                                                } 
+                                                    className={styles.list__item} data-index={index} key={item.id}>{item.name}</div>
+                                                }
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            
                         </div>
                         
 

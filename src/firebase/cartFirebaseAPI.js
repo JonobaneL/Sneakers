@@ -1,5 +1,5 @@
 import { firebaseDB } from "./firebase";
-import { collection, doc, getDocs, query, updateDoc, where } from "@firebase/firestore"
+import { collection, doc, getDocs, query, updateDoc, where,setDoc } from "@firebase/firestore"
 
 export const getCart = (userID)=>{
     const cartQuery = query(

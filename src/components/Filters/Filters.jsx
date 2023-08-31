@@ -19,27 +19,30 @@ import { Search } from "../UI/search/Search";
 import { productsFilterParrams } from "../../utils/productsFilters";
 import {sizeList} from '../../data/sizeList'
 
+const filtersWrapperVariants = {
+    hidden:{
+        opacity:0
+    },
+    visible:{
+        opacity:1
+    }
+}
+const filtersOptionsVariants = {
+    hidden:{
+        y:1000,
+    },
+    visible:{
+        y:0
+    }
+}
+
+
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
 const Filters = ({setData,loading}) => {
     const [sort,setSort] = useState()
     const windowSize = window.screen.availWidth<=1024;
-    const filtersWrapperVariants = {
-        hidden:{
-            opacity:0
-        },
-        visible:{
-            opacity:1
-        }
-    }
-    const filtersOptionsVariants = {
-        hidden:{
-            y:1000,
-        },
-        visible:{
-            y:0
-        }
-    }
+   
     const {type,male} = useParams()
     const {categories,brands,materials,sort_params,price_params,percent_params} = productsFilterParrams(male)
     const [categoryFilters,setCategoryFilters] = useSearchParamsState({name:"category",serialize:(data)=>data.join(">"), deserialize:(data)=>data?data.split(">"):[]})
@@ -55,7 +58,6 @@ const Filters = ({setData,loading}) => {
     const [searchQuery,setSearchQuery] = useState('');
     const searchedBrands = useSearch(brands,searchQuery,'name')
     const navigate = useNavigate()
-    console.log(categoryFilters)
     useEffect(()=>{
         setData(filteredData)
         loading(isDataLoading);
@@ -135,14 +137,15 @@ const Filters = ({setData,loading}) => {
                                     Category
                                 </div>
                             }
-                            >
-                            {/* <DropDownList 
+                        >
+                            <DropDownList 
                                 handler={value=>{
                                     setCategoryFilters(value)
                                 }}
                                 data={categories}
                                 seleted={categoryFilters}
-                            /> */}
+                            />
+                            
                         </Accordion>
                         <Accordion
                             header={

@@ -17,11 +17,12 @@ const Item = ({productID,modelID,size,quantity}) =>{
     </li>
 }
 
-const OrdreSummaryList = () => {
-    const cart = useSelector(state=>state.cartReducer);
+const OrdreSummaryList = ({cart}) => {
+    const card = useSelector(state=>state.cartReducer)
+console.log(cart)
     return ( 
         <ul className={styles.list}>
-            {cart.shoppingCart.map((item,index)=>
+            {cart.map((item,index)=>
                 <Item key={index} {...item} />
                 )}
         </ul>

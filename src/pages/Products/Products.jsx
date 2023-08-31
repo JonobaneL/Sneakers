@@ -6,7 +6,6 @@ import ProductsList from "../../components/productsList/ProductList";
 import { useToShow } from "../../hooks/useFilters";
 import { getTotalPagesCount } from "../../utils/getPageCount";
 import Pagination from "../../components/UI/pagination/Pagination";
-import Loader from "../../components/UI/loader/Loader";
 const Products = () => {
     const {type,male} = useParams();
     const [data,setData] = useState([]);

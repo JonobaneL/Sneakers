@@ -13,7 +13,6 @@ import { getCoupon } from '../../firebase/cartFirebaseAPI';
 const ShoppingCart = () => {
     const dispatch = useDispatch();
     const cart = useSelector(state=>state.cartReducer);
-    console.log(cart)
     const [CartToast,setCartToast]=useState({
         type:"",
         content:"",
@@ -21,6 +20,7 @@ const ShoppingCart = () => {
 
     const [isToastOpen,setToastOpen] = useState(false)
     const couponRef = useRef({});
+
     const couponHandler = async()=>{
         let discount_res = null;
         try{
@@ -38,15 +38,16 @@ const ShoppingCart = () => {
         
         if(discount_res==null){
             setCartToast({type:'error',content:"Coupon not found"})
-            couponRef.current.value=''
+            couponRef.current.value = '';
         }
         else{
             dispatch(setDiscount(discount_res.value))
             setCartToast({type:'success',content:"Coupon was added"})
-            couponRef.current.value=''
+            couponRef.current.value = '';
         }
         setToastOpen(true)
     }
+
     const removeCoupon = ()=>{
         dispatch(setDiscount(0))
         setCartToast({type:'warning',content:"Coupon was deleted"})
@@ -56,7 +57,7 @@ const ShoppingCart = () => {
         <div className={styles['shopping-cart']}>
             <div className={styles.content}>
                 {
-                    cart.isLoading?
+                    cart.isLoading? //пофіксити
                     <Loader/>
                     :cart.shoppingCart.length>0
                     ?<>
@@ -91,7 +92,12 @@ const ShoppingCart = () => {
                                 </div>
                                 
                             </div>
-                                <TotalSection shippingSection={false} />
+                                <TotalSection 
+                                    shippingSection={false}
+                                    total={cart.cartTotal}
+                                    subTotal={cart.cartSubTotal}
+                                    discount={cart.cartDiscount}    
+                                />
                                 {
                                    cart.cartDiscount? <p onClick={removeCoupon} className={styles['coupon-remove']}>Remove coupon</p>:null
                                 }

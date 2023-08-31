@@ -48,7 +48,7 @@ const StoreRoutes = () => {
                 </Route>
                 
                 <Route path='/password-reset' element={<RequireAuth><PasswordReset/></RequireAuth>} />
-                <Route path='/order-info' element={<OrderInfo/>}/>
+                <Route path='/order-info/:orderID' element={<OrderInfo/>}/>
                 <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
     );

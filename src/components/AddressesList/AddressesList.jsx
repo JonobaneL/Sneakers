@@ -45,7 +45,8 @@ const AddressesList = ({
                         }}
                         >
                         <div>
-                            <p>{item.company==='novaposhta'?'Nova Poshta':'Ukr Poshta'}</p>
+                            {/* <p>{item.company==='novaposhta'?'Nova Poshta':'Ukr Poshta'}</p> */}
+                            <p>{item.company}</p>
                             {
                                 item.address && <>
                                     <p>Addres: {item.address}</p>
