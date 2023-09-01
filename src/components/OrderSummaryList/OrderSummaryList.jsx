@@ -4,7 +4,6 @@ import styles from './OrderSummaryList.module.scss'
 
 const Item = ({productID,modelID,size,quantity}) =>{
     const item = useProduct(productID,modelID)
-    // console.log(item)
     return <li className={styles['list-item']}>
         <img className={styles['list-item__image']} src={item.images[1]} alt={item.name} />
         <div className={styles['list-item__info']}>
@@ -18,13 +17,11 @@ const Item = ({productID,modelID,size,quantity}) =>{
 }
 
 const OrdreSummaryList = ({cart}) => {
-    const card = useSelector(state=>state.cartReducer)
-console.log(cart)
     return ( 
         <ul className={styles.list}>
-            {cart.map((item,index)=>
-                <Item key={index} {...item} />
-                )}
+            {
+                cart.map((item,index)=><Item key={index} {...item} />)
+            }
         </ul>
      );
 }

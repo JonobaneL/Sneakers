@@ -11,7 +11,6 @@ const OrderInfo = () => {
     const navigate = useNavigate()
     const {orderID} = useParams();
     const [isLoading,,orderInfo] = useAsync(()=>getOrder(orderID),[],'firebase')
-    console.log(orderInfo)
     return (
         <div className={styles['order-info']}>
             <div className={styles.title}>

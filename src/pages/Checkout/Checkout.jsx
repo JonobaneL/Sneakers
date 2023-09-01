@@ -16,8 +16,9 @@ import { useAuth } from '../../context/AuthContext';
 import { getUser } from '../../firebase/fireAuthAPI';
 import MethodsList from '../../components/MedhodsList/MethodsList';
 import AddressesList from '../../components/AddressesList/AddressesList';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNewOrder } from '../../firebase/ordersFirebaseAPI';
+import { clearCart } from '../../redux/cartSlice';
 
 const Checkout = () => {
     const {currentUser} = useAuth();
@@ -36,8 +37,9 @@ const Checkout = () => {
     const cart = useSelector(state=>state.cartReducer);
     const [isOrderLoading,setIsOrderLoading]= useState(false);
     const navigate = useNavigate();
-    // console.log(shoppingCart)
+    const dispatch = useDispatch();
     const orderHandler= async() =>{
+        const orderDate = new Date()
         const orderID = currentUser?`U${Date.now()}`:`A${Date.now()}`
         try{
             setIsOrderLoading(true)
@@ -51,6 +53,8 @@ const Checkout = () => {
                 shipping:addressData,
                 paymentMethod:paymentMethod,
                 card:cardData,
+                status:'ordered',
+                date:`${orderDate.getDate()}/${orderDate.getMonth()+1}/${orderDate.getFullYear()}`,
                 userCart:{
                     shoppingCart:cart.shoppingCart,
                     cartQuantity:cart.cartQuantity,
@@ -59,6 +63,7 @@ const Checkout = () => {
                     cartDiscount:cart.cartDiscount
                 },
             })
+            dispatch(clearCart());
             navigate(`/order-info/${orderID}`)
         }catch(err){
             console.log(err)
@@ -84,10 +89,15 @@ const Checkout = () => {
                                 <Link to='/shopping-cart'>
                                     <EditButton>Edit</EditButton>
                                 </Link>
-                                {!cart.isLoading?<OrdreSummaryList cart={cart.shoppingCart} />:null}
+                                <OrdreSummaryList cart={cart.shoppingCart}/>
                                 
                             </div>
-                            <TotalSection borders={false}/>
+                            <TotalSection 
+                                borders={false}
+                                total={cart.cartTotal}
+                                subTotal={cart.cartSubTotal}
+                                discount={cart.cartDiscount}
+                            />
 
                         </Accrodion>
                     </div>
@@ -199,14 +209,18 @@ const Checkout = () => {
             </div>
             <div className={styles.cart}>
                 <h3 className={styles['cart__title']}>Order Summary</h3>
-                <TotalSection/>
+                <TotalSection
+                    total={cart.cartTotal}
+                    subTotal={cart.cartSubTotal}
+                    discount={cart.cartDiscount}
+                />
                 <div className={styles.productList}>
                     <div className={styles.productList__edit}>
                         <Link to='/shopping-cart'>
                             <EditButton>Edit</EditButton>
                         </Link>
                     </div>
-                    <OrdreSummaryList/>
+                    <OrdreSummaryList cart={cart.shoppingCart} />
                 </div>
             </div>
         </div>

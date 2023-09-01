@@ -11,10 +11,10 @@ export const fetchShoppingCart = createAsyncThunk(
         return cart
     }
 )
-export const asyncAddToCart = createAsyncThunk(
+export const addToCart = createAsyncThunk(
     'cart/addToCart',
     async (product,{dispatch,rejectWithValue,getState})=>{
-        dispatch(addToCart(product))
+        dispatch(addToCartAction(product))
         const state = getState()
         try{
             await updateCart({cartID:state.cartReducer.cartID,cart:state.cartReducer.shoppingCart});
@@ -24,10 +24,10 @@ export const asyncAddToCart = createAsyncThunk(
         }
     }
 )
-export const asyncRemoveFromCart = createAsyncThunk(
+export const removeFromCart = createAsyncThunk(
     'cart/removeFromCart',
     async (product,{dispatch,rejectWithValue,getState})=>{
-        dispatch(removeFromCart(product))
+        dispatch(removeFromCartAction(product))
         const state = getState();
         try{
            await updateCart({cartID:state.cartReducer.cartID,cart:state.cartReducer.shoppingCart});
@@ -50,11 +50,10 @@ export const clearCart = createAsyncThunk(
         }
     }
 )
-//clear method is ready to use
-export const asyncIncreaseCartQuantity = createAsyncThunk(
-    'cart/removeFromCart',
+export const increaseCartQuantity = createAsyncThunk(
+    'cart/increaseCartQuantity',
     async (product,{dispatch,rejectWithValue,getState})=>{
-        dispatch(increaseCartQuantity(product))
+        dispatch(increaseCartQuantityAction(product))
         const state = getState();
         try{
            await updateCart({cartID:state.cartReducer.cartID,cart:state.cartReducer.shoppingCart});
@@ -64,10 +63,10 @@ export const asyncIncreaseCartQuantity = createAsyncThunk(
         }
     }
 )
-export const asyncDecreaseCartQuantity = createAsyncThunk(
-    'cart/removeFromCart',
+export const decreaseCartQuantity = createAsyncThunk(
+    'cart/decreaseCartQuantity',
     async (product,{dispatch,rejectWithValue,getState})=>{
-        dispatch(decreaseCartQuantity(product))
+        dispatch(decreaseCartQuantityAction(product))
         const state = getState();
         try{
            await updateCart({cartID:state.cartReducer.cartID,cart:state.cartReducer.shoppingCart});
@@ -91,10 +90,10 @@ const cartSlice = createSlice({
         isLoading:true
     },
     reducers:{
-        addToCart(state,action) {
+        addToCartAction(state,action) {
             state.shoppingCart.push({...action.payload,quantity:1})
         },
-        removeFromCart(state,action){
+        removeFromCartAction(state,action){
             const product = {...action.payload}
             state.shoppingCart = state.shoppingCart.filter(item=>{
                 if(item.productID!==product.productID || item.modelID!==product.modelID || item.size!==product.size){
@@ -102,7 +101,7 @@ const cartSlice = createSlice({
                 }
             })
         },
-        increaseCartQuantity(state,action){
+        increaseCartQuantityAction(state,action){
             const product = {...action.payload}
             state.shoppingCart = state.shoppingCart.map(item=>{
                 if(item.productID===product.productID && item.modelID===product.modelID && item.size===product.size){
@@ -112,7 +111,7 @@ const cartSlice = createSlice({
                 }
             })
         },
-        decreaseCartQuantity(state,action){
+        decreaseCartQuantityAction(state,action){
             const product = {...action.payload}
             const productResponse = state.shoppingCart.find(item=>item.productID===product.productID && item.modelID===product.modelID && item.size===product.size);
             if(productResponse?.quantity===1){
@@ -130,13 +129,14 @@ const cartSlice = createSlice({
         },
         setDiscount(state,action){
             state.cartDiscount = action.payload;
-        }  
+        },
+        clearCartAction(state){
+            state.shoppingCart = []
+            // state.cartID = 'standart';
+            state.cartDiscount = 0;
+        },  
     },
-    clearCartAction(state){
-        state.shoppingCart = []
-        state.cartID = 'standart';
-        state.cartDiscount = 0;
-    },
+    
     extraReducers:(builder)=>{
         builder
         .addCase(fetchShoppingCart.pending,(state)=>{
@@ -156,6 +156,6 @@ const cartSlice = createSlice({
         })
     }
 })
-export const { setDiscount,increaseCartQuantity,decreaseCartQuantity,addToCart,removeFromCart,clearCartAction } = cartSlice.actions
+export const { setDiscount,increaseCartQuantityAction,decreaseCartQuantityAction,addToCartAction,removeFromCartAction,clearCartAction } = cartSlice.actions
 
 export default cartSlice.reducer;

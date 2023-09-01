@@ -3,7 +3,7 @@ import { useProduct } from '../../hooks/useProduct';
 import removeIcon from '../../images/cancel.svg'
 import Button from '../../components/UI/button/Button';
 import { useDispatch } from 'react-redux';
-import { asyncDecreaseCartQuantity, asyncIncreaseCartQuantity, asyncRemoveFromCart } from '../../redux/cartSlice';
+import { decreaseCartQuantity, increaseCartQuantity, removeFromCart } from '../../redux/cartSlice';
 
 
 const CartItem = ({productID,modelID,size,quantity}) => {
@@ -30,7 +30,7 @@ const CartItem = ({productID,modelID,size,quantity}) => {
                     width={btnWidth}
                     height={btnWidth}
                     onClick={()=>{
-                        dispatch(asyncDecreaseCartQuantity({productID,modelID,size}))
+                        dispatch(decreaseCartQuantity({productID,modelID,size}))
                     }}
                 ><span className={styles.btn}>&#8722;</span></Button>
                 <p className={styles.quantity}>{quantity}</p>
@@ -39,13 +39,13 @@ const CartItem = ({productID,modelID,size,quantity}) => {
                     width={btnWidth}
                     height={btnWidth}
                     onClick={()=>{
-                        dispatch(asyncIncreaseCartQuantity({productID,modelID,size}))
+                        dispatch(increaseCartQuantity({productID,modelID,size}))
                     }}
                 ><span className={styles.btn}>+</span></Button>
             </div>
         
         <button className={styles["remove-product"]} onClick={()=>{
-            dispatch(asyncRemoveFromCart({productID,modelID,size}))
+            dispatch(removeFromCart({productID,modelID,size}))
         }}>
             <img src={removeIcon} alt="" />
         </button>

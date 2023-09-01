@@ -1,0 +1,50 @@
+@import '../../styles/variables';
+.orders{
+    .wrapper{
+        width: 100%;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+    }
+    .list-header{
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 20px;
+        align-items: center;
+        height: 50px;
+        padding:0 10px;
+        border-bottom: 1px solid #b0b0b0;
+        p{
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+    }
+    .month{
+        font-size: $fs-600;
+        font-weight: 600;
+        margin: 20px 10px;
+        color:$clr-primary
+    }
+    .orders-list{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap:7px;
+        .order{
+            width: 100%;
+            height:50px;
+            border-radius:5px;
+            display:grid;
+            align-items:center;
+            padding:0 10px;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            &__status{
+                text-transform: capitalize;
+            }
+            .arrow{
+                width: 20px;
+            }
+        }
+    }
+}
