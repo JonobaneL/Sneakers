@@ -11,6 +11,13 @@
         .empty-cart{
             text-align: center;
         }
+        .loader{
+            width: 100%;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .products{
             width: 100%;
             display: flex;

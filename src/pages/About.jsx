@@ -1,37 +1,53 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
-import CInput from '../components/UI/input/CInput';
-import { useAuth } from '../context/AuthContext';
-import { getUser } from '../firebase/fireAuthAPI';
-import RadioList from '../components/RadioList/RadioList';
-import RadioButton from '../components/UI/radioButton/RadioButton';
-import searchIcon from '../images/header-icons/search-icon.svg'
-import userIcon from '../images/header-icons/user-icon.svg';
-import favoritesIcon from '../images/header-icons/favorites.svg'
-import shoppingBag from '../images/header-icons/shopping-bag.png';
-
-import { Link } from 'react-router-dom';
-import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
-import { useSelector } from 'react-redux';
-import BurgerMenu from '../components/BurgerMenu/BurgerMenu';
-import OrdreSummaryList from '../components/OrderSummaryList/OrderSummaryList';
+import { useAsync } from '../hooks/useAsync';
+import { groupByObject } from '../utils/objectSort';
 const About = () => {
-    const searchRef = useRef('')
-    const [isOpen,setIsOpen] = useState(false);
-    const {cartQuantity} = useSelector(state=>state.cartReducer)
-
-    const searchAnimate = {
-
-    }
-    const searchInitial = {
-        
-    }
-    const widthTriger = window.screen.availWidth < 1000;
+    const orders = [
+        {   
+            orderID:'order1',
+            userName:'andri',
+            sortDate:'September 2023',
+            cart:[]
+        },
+        {   
+            orderID:'order2',
+            userName:'max',
+            sortDate:'October 2023',
+            cart:[]
+        },
+        {   
+            orderID:'order3',
+            userName:'petro',
+            sortDate:'September 2023',
+            cart:[]
+        },
+        {   
+            orderID:'order4',
+            userName:'andri',
+            sortDate:'August 2023',
+            cart:[]
+        },
+    ]
+    console.log(groupByObject(orders,'sortDate'))
+    const ordersRes = groupByObject(orders,'sortDate')
     return <div className={styles.about}>
         <div className={styles.content} >
-            <button onClick={()=>setIsOpen(p=>!p)}>Open</button>
-
-            <OrdreSummaryList cart={[{productID:'123',modelID:'fdf'}]} loader={false}/>
+            <button>Open</button>
+            {
+                Object.keys(ordersRes).map((key,index)=>{
+                    return <div key={index}>
+                        <h2>{key}</h2>
+                        <ul>
+                            {
+                                ordersRes[key].map((item,itemIndex)=>{
+                                    return <li key={itemIndex}>{item.orderID}</li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                })
+            }
             
         
         </div>

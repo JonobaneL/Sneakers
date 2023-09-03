@@ -26,3 +26,14 @@ export const objectSort = (arr)=>{
   })
     return results
   }
+
+export const groupByObject = (arr,key)=>{
+  const res = arr.reduce(
+    (cache,item)=>{
+      const prop = item[key];
+      if(prop in cache) return {...cache, [prop]:cache[prop].concat(item)}
+      else return {...cache,[prop]:[item]}
+    },{}
+  )
+  return res;
+}
