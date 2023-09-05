@@ -1,6 +1,5 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
-import { useAsync } from '../hooks/useAsync';
 import { groupByObject } from '../utils/objectSort';
 const About = () => {
     const orders = [
@@ -31,9 +30,32 @@ const About = () => {
     ]
     console.log(groupByObject(orders,'sortDate'))
     const ordersRes = groupByObject(orders,'sortDate')
+    useEffect(()=>{
+        const data = [
+            {
+                name:'Andri',
+                lastName:'Fedun'
+            },
+            {
+                name:'Andri1',
+                lastName:'Fedun2'
+            },
+            {
+                name:'Andri2',
+                lastName:'Fedun1'
+            },
+    ];
+        localStorage.removeItem('user')
+
+    },[])
+
     return <div className={styles.about}>
         <div className={styles.content} >
-            <button>Open</button>
+            <button
+                onClick={()=>{
+                    // console.log(JSON.parse(localStorage.getItem('user')))
+                }}
+            >Open</button>
             {
                 Object.keys(ordersRes).map((key,index)=>{
                     return <div key={index}>

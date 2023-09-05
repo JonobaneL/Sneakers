@@ -10,6 +10,7 @@ import { addNewUser } from '../../firebase/fireAuthAPI'
 import Autocomplete from '../../components/UI/autocomplete/Autocomplete'
 import { findLocation } from '../../utils/searchLocation'
 import Button from '../../components/UI/button/Button'
+import { createCart } from '../../firebase/cartFirebaseAPI'
 
 
 const SignUp = () => {
@@ -38,6 +39,7 @@ const SignUp = () => {
                 payment_methods:[],
                 delivery_addresses:[],
             })
+            await createCart(userResponce.user.uid)
             navigate('/user-profile/info')
         }catch(err){
             console.log(err)

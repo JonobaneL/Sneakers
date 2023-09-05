@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { getUserOrders } from '../../firebase/ordersFirebaseAPI';
 import Loader from '../UI/loader/Loader';
 import rightArrow from '../../images/right-arrow.svg'
+import { groupByObject } from '../../utils/objectSort';
 
 const UserOrders = () => {
     const {currentUser} = useAuth()
@@ -12,6 +13,9 @@ const UserOrders = () => {
     console.log(userOrders)
     const orderDate = Date.now()
     console.log(orderDate)
+    if(!isLoading){
+        groupByObject(userOrders)
+    }
 
     return (
         <div className={styles.orders}>

@@ -17,7 +17,7 @@ const Header = () => {
     const [userDropMenu,setUserDropMenu] = useState(false)
     const dispatch = useDispatch();
     const {currentUser,logout} = useAuth();
-    const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser.uid),[],'firebase')
+    const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser?.uid||'s'),[],'firebase')
    
     useEffect(()=>{
         if(currentUser){

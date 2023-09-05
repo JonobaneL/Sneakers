@@ -19,7 +19,7 @@ const ButtomHeader = () => {
     const [burgerMenu,setBurgerMenu] = useState(false);
     const {cartQuantity} = useSelector(state=>state.cartReducer)
     const { currentUser } = useAuth();
-    const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser.uid),[],'firebase')
+    const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser?.uid||'s'),[],'firebase')
 
     const widthTriger = window.screen.availWidth;
     const [searchQuery,setSearchQuery] = useState('');

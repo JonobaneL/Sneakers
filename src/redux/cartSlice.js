@@ -4,11 +4,19 @@ import { getFinalPrice } from "../utils/getFinalPrice"
 
 export const fetchShoppingCart = createAsyncThunk(
     'cart/fetchShoppingCart',
-    async (userID)=>{
-        const response = await getCart(userID)
-        let cart = {}
-        response.forEach(item=>cart={...item.data(),cartID:item.id})
-        return cart
+    async (userID,{rejectWithValue})=>{
+        try{
+            const response = await getCart(userID)
+            console.log(response.docs)
+            let cart = {}
+            response.forEach(item=>{cart={...item.data(),cartID:item.id}})
+            return cart
+        }
+        catch(err){
+            
+            rejectWithValue();
+        }
+        
     }
 )
 export const addToCart = createAsyncThunk(
@@ -132,7 +140,6 @@ const cartSlice = createSlice({
         },
         clearCartAction(state){
             state.shoppingCart = []
-            // state.cartID = 'standart';
             state.cartDiscount = 0;
         },  
     },
@@ -146,6 +153,9 @@ const cartSlice = createSlice({
             state.isLoading = false;
             state.shoppingCart = action.payload?.cart || []
             state.cartID = action.payload?.cartID || 'standart';
+        })
+        .addCase(fetchShoppingCart.rejected,(state)=>{
+            state.shoppingCart = []
         })
         
         .addMatcher(isAnyOf,(state)=>{

@@ -29,7 +29,8 @@
                     p{
                         line-height: 60px;
                         color: #5b5b5b;
-                        font-size: min($fs-400,16px);
+                        font-size: min($fs-400,15px);
+                        font-weight: 500;
                     }
                     &::before{
                         content:'';
