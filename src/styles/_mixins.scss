@@ -31,4 +31,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, min((100%/var(--min-cols) - var(--col-gap)*(var(--min-cols) - 1)/var(--min-cols)), max(var(--cols-min-width), (100%/var(--max-cols) - var(--col-gap)*(var(--max-cols) - 1)/var(--max-cols))))));
     gap: $row-gap $col-gap;
-  }
+}
+@mixin loader{
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}

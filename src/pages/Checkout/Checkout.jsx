@@ -54,6 +54,7 @@ const Checkout = () => {
                 paymentMethod:paymentMethod,
                 card:cardData,
                 status:'ordered',
+                sortDate:`${orderDate.getMonth()+1}/${orderDate.getFullYear()}`,
                 date:`${orderDate.getDate()}/${orderDate.getMonth()+1}/${orderDate.getFullYear()}`,
                 userCart:{
                     shoppingCart:cart.shoppingCart,

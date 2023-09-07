@@ -26,7 +26,7 @@ const useSort = (products,sortMethod) =>{
 }
 
 export const useFiltered = (type,male,sortMethod,category=[],brand=[],color=[],price=[],percent=[],size=[],material=[])=>{
-    const [isLoading,,productsResponse] = useAllProducts(type,male)
+    const [isLoading,productsError,productsResponse] = useAllProducts(type,male)
     const sortRes = useSort(productsResponse,sortMethod)
     const filteredCategories = useMemo(()=>{
             if(category.length>0){
@@ -130,7 +130,7 @@ export const useFiltered = (type,male,sortMethod,category=[],brand=[],color=[],p
             return fitleredSize.filter(item=>material.includes(item.material))
         }else return fitleredSize
     },[material,fitleredSize])
-    return [filteredMaterial,isLoading];
+    return [filteredMaterial,isLoading,productsError];
 }
 
 export const useToShow = (data,limit,current=1)=>{

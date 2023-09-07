@@ -90,20 +90,27 @@ const SearchResults = ({isOpen,onChange,query,onChangeQuery}) => {
                                     {
                                         productsResult.map((item,index)=>{
                                             if(index<=4) {
-                                                return <Link key={`${item.productID}/${item.modelID}`} to={`/product/${item.productID}/${item.modelID}`}>
-                                                <div  className={styles.product}>
-                                                    <img src={item.images[1]} alt={item.name} />
-                                                    <p className={styles.name}>{item.name}</p>
-                                                    <p className={styles.type}>{titleEvent(item.male,item.type)}</p>
-                                                    <div className={styles.price}>
-                                                        {(item.discount>0)?
-                                                                <p className={styles.price__discount}>${getFinalPrice(item.price,item.discount)}</p>
-                                                                : null
-                                                        }
-                                                        <p className={item.discount?styles.price__disabled:''}>${item.price}</p>
+                                                return <Link 
+                                                    key={`${item.productID}/${item.modelID}`} 
+                                                    to={`/product/${item.productID}/${item.modelID}`}
+                                                    onClick={()=>{
+                                                        onChange(false)
+                                                        onChangeQuery('')
+                                                    }}
+                                                >
+                                                    <div  className={styles.product}>
+                                                        <img src={item.images[1]} alt={item.name} />
+                                                        <p className={styles.name}>{item.name}</p>
+                                                        <p className={styles.type}>{titleEvent(item.male,item.type)}</p>
+                                                        <div className={styles.price}>
+                                                            {(item.discount>0)?
+                                                                    <p className={styles.price__discount}>${getFinalPrice(item.price,item.discount)}</p>
+                                                                    : null
+                                                            }
+                                                            <p className={item.discount?styles.price__disabled:''}>${item.price}</p>
 
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 </Link>
                                             }
                                         })
@@ -126,11 +133,14 @@ const SearchResults = ({isOpen,onChange,query,onChangeQuery}) => {
                                             categoriesResult.map((item,index)=>{
                                                 if(item.parent===null){
                                                     return <div onClick={()=>{
-                                                        navigate({ pathname: `/shoes/men?category=${item.name}`});
+                                                        navigate({ pathname: '/shoes/men',search:`category=${item.name}`});
                                                         onChange(false)
-                                                    }
-                                                } 
-                                                    className={styles.list__item} data-index={index} key={item.id}>{item.name}</div>
+                                                        onChangeQuery('')
+                                                    }} 
+                                                    className={styles.list__item} data-index={index} key={item.id}
+                                                    >
+                                                        {item.name}
+                                                    </div>
                                                 }
                                             })
                                         }

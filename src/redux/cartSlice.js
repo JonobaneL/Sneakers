@@ -7,7 +7,6 @@ export const fetchShoppingCart = createAsyncThunk(
     async (userID,{rejectWithValue})=>{
         try{
             const response = await getCart(userID)
-            console.log(response.docs)
             let cart = {}
             response.forEach(item=>{cart={...item.data(),cartID:item.id}})
             return cart
@@ -17,19 +16,6 @@ export const fetchShoppingCart = createAsyncThunk(
             rejectWithValue();
         }
         
-    }
-)
-export const addToCart = createAsyncThunk(
-    'cart/addToCart',
-    async (product,{dispatch,rejectWithValue,getState})=>{
-        dispatch(addToCartAction(product))
-        const state = getState()
-        try{
-            await updateCart({cartID:state.cartReducer.cartID,cart:state.cartReducer.shoppingCart});
-        }catch(err){
-            console.log(err)
-            rejectWithValue()
-        }
     }
 )
 export const removeFromCart = createAsyncThunk(
@@ -98,9 +84,7 @@ const cartSlice = createSlice({
         isLoading:true
     },
     reducers:{
-        addToCartAction(state,action) {
-            state.shoppingCart.push({...action.payload,quantity:1})
-        },
+       
         removeFromCartAction(state,action){
             const product = {...action.payload}
             state.shoppingCart = state.shoppingCart.filter(item=>{
@@ -111,13 +95,18 @@ const cartSlice = createSlice({
         },
         increaseCartQuantityAction(state,action){
             const product = {...action.payload}
-            state.shoppingCart = state.shoppingCart.map(item=>{
-                if(item.productID===product.productID && item.modelID===product.modelID && item.size===product.size){
-                    return {...item,quantity: item.quantity+1}
-                }else{
-                    return item
-                }
-            })
+            if(state.shoppingCart.find(item=>item.productID===product.productID && item.modelID===product.modelID && item.size===product.size) === undefined){
+                state.shoppingCart.push({...product,quantity:1})
+            }else{
+                state.shoppingCart = state.shoppingCart.map(item=>{
+                    if(item.productID===product.productID && item.modelID===product.modelID && item.size===product.size){
+                        return {...item,quantity: item.quantity+1, cost:item.discountPrice*(item.quantity+1)}
+                    }else{
+                        return item
+                    }
+                })
+            }
+           
         },
         decreaseCartQuantityAction(state,action){
             const product = {...action.payload}
@@ -127,7 +116,7 @@ const cartSlice = createSlice({
             }else{
                 state.shoppingCart = state.shoppingCart.map(item=>{
                     if(item.productID===product.productID && item.modelID===product.modelID && item.size===product.size){
-                        return {...item,quantity: item.quantity-1}
+                        return {...item,quantity: item.quantity-1, cost:item.discountPrice*(item.quantity-1)}
                     }else{
                         return item
                     }
@@ -166,6 +155,6 @@ const cartSlice = createSlice({
         })
     }
 })
-export const { setDiscount,increaseCartQuantityAction,decreaseCartQuantityAction,addToCartAction,removeFromCartAction,clearCartAction } = cartSlice.actions
+export const { setDiscount,increaseCartQuantityAction,decreaseCartQuantityAction,removeFromCartAction,clearCartAction } = cartSlice.actions
 
 export default cartSlice.reducer;

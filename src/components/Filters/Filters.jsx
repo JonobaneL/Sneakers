@@ -39,7 +39,7 @@ const filtersOptionsVariants = {
 
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
-const Filters = ({setData,loading}) => {
+const Filters = ({setData,loading,onChangeError}) => {
     const [sort,setSort] = useState()
     const windowSize = window.screen.availWidth<=1024;
    
@@ -53,7 +53,7 @@ const Filters = ({setData,loading}) => {
     const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     
-    const [filteredData,isDataLoading] = useFiltered(type,male,sort,categoryFilters,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
+    const [filteredData,isDataLoading,dataError] = useFiltered(type,male,sort,categoryFilters,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
     const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(!windowSize);
     const [searchQuery,setSearchQuery] = useState('');
     const searchedBrands = useSearch(brands,searchQuery,'name')
@@ -61,7 +61,9 @@ const Filters = ({setData,loading}) => {
     useEffect(()=>{
         setData(filteredData)
         loading(isDataLoading);
+        onChangeError(dataError)
     },[filteredData])
+    
     const clearEvent = ()=>{
         setCategoryFilters([]);
         setBrandFilters([]);

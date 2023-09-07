@@ -1,11 +1,8 @@
+@use '../../styles/mixins';
 @import '../../styles/variables';
 .orders{
     .wrapper{
-        width: 100%;
-        min-height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content:center;
+       @include mixins.loader;
     }
     .list-header{
         display: grid;
@@ -14,19 +11,26 @@
         height: 50px;
         padding:0 10px;
         border-bottom: 1px solid #b0b0b0;
-        p{
+        .single-column{
+            text-transform: uppercase;
+            font-weight: 500;
+            display: none;
+        }
+        .column-title{
             text-transform: uppercase;
             font-weight: 500;
         }
     }
-    .month{
-        font-size: $fs-600;
-        font-weight: 600;
-        margin: 20px 10px;
-        color:$clr-primary
+    .order-group{
+        .month{
+            font-weight: 600;
+            margin: 25px 0px 0px 10px;
+            color:$clr-primary;
+        }
+       
     }
     .orders-list{
-        margin-top: 20px;
+        margin-top: 10px;
         display: flex;
         flex-direction: column;
         gap:7px;
@@ -38,13 +42,58 @@
             align-items:center;
             padding:0 10px;
             grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            grid-template-rows: 100%;
             box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            cursor: pointer;
             &__status{
                 text-transform: capitalize;
+            }
+            .field-name{
+                display: none;
             }
             .arrow{
                 width: 20px;
             }
         }
+    }
+}
+@media screen and (width < 600px) {
+    .orders {
+        .list-header{
+            .single-column{
+                display: block;
+            }
+            .column-title{
+                display: none;
+            }
+        } 
+        .orders-list .order{
+            height: fit-content;
+            grid-template-columns: 2fr 1fr auto;
+            grid-template-rows: auto auto auto;
+            grid-template-areas: 
+            "orderNumber date arrow"
+            "status date arrow"
+            "total date arrow";
+            row-gap: 5px;
+            padding: 10px;
+            .orderID{
+                grid-area: orderNumber;
+            }
+            .total{
+                grid-area: total;
+            }
+            .date{
+                grid-area: date;
+            }
+            .arrow{
+                grid-area: arrow;
+            }
+            .field-name{
+                display: inline;
+            }
+
+        }  
+
     }
 }

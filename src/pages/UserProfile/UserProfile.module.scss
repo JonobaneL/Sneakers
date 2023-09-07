@@ -67,7 +67,7 @@
 
 @media screen and (max-width:1024px) {
     .profile{
-        padding:40px 0;
+        padding:0;
     }
 }
 @media screen and (max-width:768px) {
@@ -106,7 +106,7 @@
                         .dark-icon{
                             display: block;
                         }
-                        &:hover,&.active{
+                        &.active{
                             .dark-icon{
                                 display: none;
                             }
@@ -124,10 +124,7 @@
     }
 }
 @media screen and (max-width:425px) {
-    .profile{
-        padding:0 0 40px 0;
-        .content .tabs .tab{
+        .profile .content .tabs .tab{
             padding: 15px;
         }
-    }
 }

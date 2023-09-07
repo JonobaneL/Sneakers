@@ -7,7 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useEffect } from 'react';
 import { getCurrentUser } from '../../firebase/fireAuthAPI';
 import { useDispatch } from 'react-redux';
-import { fetchShoppingCart } from '../../redux/cartSlice';
+import { clearCartAction, fetchShoppingCart } from '../../redux/cartSlice';
 import { fetchFavorites } from '../../redux/favoritesSlice';
 import ButtomHeader from '../ButtomHeader/ButtomHeader';
 import { useAsync } from '../../hooks/useAsync';
@@ -28,6 +28,7 @@ const Header = () => {
     const handleLogout = async()=>{
         try{
             await logout();
+            dispatch(clearCartAction())
             setUserDropMenu(false)
         }catch (err){
             console.log(err)

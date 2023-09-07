@@ -25,6 +25,7 @@ input{
 body{
   scroll-behavior: smooth;
   font-size: $fs-300;
+  scrollbar-gutter: stable;
 }
 
 body::-webkit-scrollbar {

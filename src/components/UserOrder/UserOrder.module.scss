@@ -1,0 +1,89 @@
+@use '../../styles/mixins';
+@import '../../styles/variables';
+
+
+.order-info{
+    .back{
+        margin-bottom: 15px;
+        a{
+            font-weight: 500;
+            color:$clr-text;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        &__icon{
+            line-height: 30px;
+            font-size: 25px;
+            color:$clr-primary;
+        }
+    }
+    .loader{
+        @include mixins.loader;
+    }
+    .header-info{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+        border-bottom: 1px solid #c0c0c0;
+        padding: 0px 10px 5px 10px;
+        p{
+            font-weight: 500;
+        }
+    }
+    .order-details{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        .column{
+            flex: 1 0 50%;
+            // min-width: 260px;
+            container-type: inline-size;
+            .details-title{
+                font-size: $fs-400;
+                font-weight: 500;
+                line-height: 120%;
+                margin-bottom: 10px;
+            }
+            .shipping, .payment{
+                margin: 10px 0;
+                h3{
+                    font-weight: 500;
+                    font-size: $fs-400;
+                    margin-bottom: 5px;
+                }
+                p{
+                    font-size: $fs-300;
+                    line-height: 22px;
+                }
+                .card{
+                    display: flex;
+                    gap: 15px;
+                    p{
+                        font-size: $fs-300;
+                        font-weight: 500;
+                        color:#5e5e5e;
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+}
+@media screen and (width < 630px) {
+    .order-info .order-details 
+    {
+        flex-direction: column;
+        .column:first-child{
+            text-align: center;
+            .payment .card{
+                justify-content: center;
+            }
+        }
+    }
+    
+    
+}

@@ -9,6 +9,8 @@ import heartIconW from '../../images/heart-iconw.svg'
 import listIconD from '../../images/list-icon.svg'
 import listIconW from '../../images/list-iconw.svg'
 import logOutIcon from '../../images/log-out-icon.svg'
+import { clearCartAction } from '../../redux/cartSlice';
+import { useDispatch } from 'react-redux';
 
 
 const setActiveLink = ({isActive})=> isActive?styles.active:''
@@ -16,9 +18,11 @@ const setActiveLink = ({isActive})=> isActive?styles.active:''
 const UserProfile = () => {
     const { logout } = useAuth();
     const navigate = useNavigate()
+    const dispatch = useDispatch();
     const handleLogout = async()=>{
         try{
             await logout();
+            dispatch(clearCartAction());
             navigate('/log-in')
         }catch (err){
             console.log(err)

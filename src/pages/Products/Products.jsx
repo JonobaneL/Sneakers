@@ -10,6 +10,7 @@ const Products = () => {
     const {type,male} = useParams();
     const [data,setData] = useState([]);
     const [isProductsLoading,setProductsLoading] = useState(true)
+    const [productsError,setProductsError] = useState('')
     const limit = 12;
     const [currentPage, setCurrentPage] = useState(1);
     const shownData = useToShow(data,limit,currentPage);
@@ -20,6 +21,8 @@ const Products = () => {
     useEffect(()=>{
       setCurrentPage(1)
     },[type,male])
+    console.log(isProductsLoading,'loader')
+    console.log(productsError,'err')
     return <div className={styles.products}>
             <div className={styles.content}>
                   <h2 className={styles.title}>{titleEvent()}</h2>
@@ -27,16 +30,17 @@ const Products = () => {
                   {(currentPage*limit)-limit+1}-{limit} of {data.length} products
                 </p>
               <div className={styles.filters}>
-                <Filters setData={setData} loading={setProductsLoading} />
+                <Filters setData={setData} loading={setProductsLoading} onChangeError={setProductsError} />
               </div>
               <div className={styles.list}>
-                  <ProductsList data={shownData} isLoading={isProductsLoading} />
-                {
-                  (data.length==0 && !isProductsLoading) && <div className={styles.warning}>
-                    <h1>No Results</h1>
-                    <h3>Try different filters</h3>
-                  </div>
-                }
+                    {
+                      (data.length==0 && isProductsLoading==true)
+                      ?<div className={styles.warning}>
+                        <h1>No Results</h1>
+                        <h3>Try different filters</h3>
+                      </div>
+                      :<ProductsList data={shownData} isLoading={isProductsLoading} />
+                    }
                 {
                    data.length>limit
                    ? <div className={styles["list-nav"]}>

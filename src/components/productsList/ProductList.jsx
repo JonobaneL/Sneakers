@@ -3,13 +3,14 @@ import styles from './ProductList.module.scss'
 import ProductsItem from '../productsListItem/ProductsItem';
 import SkeletonCard from '../UI/skeletonCard/SkeletonCard';
 const ProductsList = ({data,isLoading}) => {
+    // console.log(isLoading,'list')
     return (
         <div className={styles["products-list"]}>
             {
               isLoading
                 ?Array(10).fill(1).map((_,index)=><SkeletonCard key={index}/>)  
                 :data.map((item,index)=>
-                <ProductsItem key={index} item={item}/>
+                    <ProductsItem key={index} item={item}/>
                 )
             }
         </div>

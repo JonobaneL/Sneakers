@@ -12,7 +12,7 @@ import Toast from '../../components/ToastV2/Toast';
 import Button from '../../components/UI/button/Button'
 import Loader from '../../components/UI/loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../redux/cartSlice';
+import { increaseCartQuantity } from '../../redux/cartSlice';
 import heartIcon from '../../images/header-icons/favorites.svg'
 import fullHeartIcon from '../../images/full-heart.svg'
 import { addToFavorites, removeFromFavorites } from '../../redux/favoritesSlice';
@@ -35,7 +35,14 @@ const ProductDetails = () => {
         if(productSize.length==0 && currentProduct.type!=='accessories'){
             warning_ref.current.hidden = false;
         }else{
-            dispatch(addToCart({productID:id,modelID:modelId,size:productSize.toString(),price:currentProduct.price,cost:currentProduct.cost}))
+            dispatch(increaseCartQuantity({
+                productID:id,
+                modelID:modelId,
+                size:productSize.toString(),
+                price:currentProduct.price,
+                cost:currentProduct.cost,
+                discountPrice:currentProduct.cost,
+            }))
             setToastOpen(true)
         }
     }

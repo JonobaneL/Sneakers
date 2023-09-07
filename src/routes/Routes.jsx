@@ -19,6 +19,7 @@ import Favorites from '../components/Favorites/Favorites';
 import UserInfoSettings from '../components/UserInfoSettings/UserInfoSettings';
 import OrderInfo from '../pages/OrderInfo/OrderInfo';
 import UserOrders from '../components/UserOrders/UserOrders';
+import UserOrder from '../components/UserOrder/UserOrder';
 
 
 const StoreRoutes = () => {
@@ -39,11 +40,12 @@ const StoreRoutes = () => {
                 <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
                 <Route path='/sign-up' element={<SignUp/>}/>
                 <Route path='/log-in' element={<LogIn/>}/>
-                <Route path='/user-profile/*' element={<RequireAuth>
+                <Route path='/user-profile/' element={<RequireAuth>
                     <UserProfile />
                 </RequireAuth>}>
                     <Route path='info' element={<RequireAuth><UserInfo/></RequireAuth>}/>
                     <Route path='orders' element={<RequireAuth><UserOrders/></RequireAuth>}/>
+                    <Route path='orders/:orderID' element={<RequireAuth><UserOrder/></RequireAuth>}/>
                     <Route path='info-settings' element={<RequireAuth><UserInfoSettings/></RequireAuth>}/>
                     <Route path='favorites' element={<RequireAuth><Favorites/></RequireAuth>}/>
                 </Route>
