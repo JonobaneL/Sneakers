@@ -6,6 +6,8 @@ import ProductsList from "../../components/productsList/ProductList";
 import { useToShow } from "../../hooks/useFilters";
 import { getTotalPagesCount } from "../../utils/getPageCount";
 import Pagination from "../../components/UI/pagination/Pagination";
+import { useAsync } from "../../hooks/useAsync";
+import { getAllProductsModels, getProductModels } from "../../firebase/productFirebaseAPI";
 const Products = () => {
     const {type,male} = useParams();
     const [data,setData] = useState([]);
@@ -21,8 +23,8 @@ const Products = () => {
     useEffect(()=>{
       setCurrentPage(1)
     },[type,male])
-    console.log(isProductsLoading,'loader')
-    console.log(productsError,'err')
+    // console.log(isProductsLoading)
+    // console.log(productsError)
     return <div className={styles.products}>
             <div className={styles.content}>
                   <h2 className={styles.title}>{titleEvent()}</h2>
@@ -33,14 +35,16 @@ const Products = () => {
                 <Filters setData={setData} loading={setProductsLoading} onChangeError={setProductsError} />
               </div>
               <div className={styles.list}>
-                    {
-                      (data.length==0 && isProductsLoading==true)
+                    {/* {
+                      (data.length==0)
                       ?<div className={styles.warning}>
                         <h1>No Results</h1>
                         <h3>Try different filters</h3>
                       </div>
                       :<ProductsList data={shownData} isLoading={isProductsLoading} />
-                    }
+                    } */}
+                      <ProductsList data={shownData} isLoading={isProductsLoading} />
+
                 {
                    data.length>limit
                    ? <div className={styles["list-nav"]}>
