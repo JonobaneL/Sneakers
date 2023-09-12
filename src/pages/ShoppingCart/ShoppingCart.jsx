@@ -58,7 +58,7 @@ const ShoppingCart = () => {
             <div className={styles.content}>
                 {
                     cart.isLoading?
-                    <div className={styles.loader}><Loader/></div> //пофіксити
+                    <div className={styles.loader}><Loader/></div> 
                     :cart.shoppingCart.length>0
                     ?<>
                         <div className={styles.products}>

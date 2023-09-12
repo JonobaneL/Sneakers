@@ -1,5 +1,5 @@
 import { firebaseDB } from "./firebase";
-import { collection, getDocs, getDoc, doc,orderBy, query, where } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc,orderBy, query, where, updateDoc } from "firebase/firestore";
 
 const categoriesRef = collection(firebaseDB,'categories');
 const brandsRef = collection(firebaseDB,'brands');
@@ -73,4 +73,10 @@ export const getAllProductsModels = (type,male)=>{
 export const getAllProducts = ()=>{
     const productsRef = collection(firebaseDB,'products');
     return getDocs(productsRef)
+}
+export const updateProductAmount = (modelID,sizes)=>{
+    const productRef = doc(firebaseDB,'products_models',modelID);
+    return updateDoc(productRef,{
+        sizes:sizes
+    })
 }

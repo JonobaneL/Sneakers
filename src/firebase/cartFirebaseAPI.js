@@ -16,13 +16,6 @@ export const updateCart = (props)=>{
         cart:props.cart
     })
 }
-export const updateCartDiscount = (props)=>{
-    const cartRef = doc(firebaseDB,'shopping_carts',props.cartID)
-    return updateDoc(cartRef,{
-        cart_discount:props.discount
-    })
-}
-
 export const getCoupon = (coupon)=>{
     const couponRef = query(
         collection(firebaseDB,'coupons'),

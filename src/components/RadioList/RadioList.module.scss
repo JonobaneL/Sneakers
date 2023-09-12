@@ -8,7 +8,7 @@
         width: 100%;
         padding: 5px 10px;
         border-radius: 6px;
-        
+        overflow: visible;
         &.active{
             outline: 1px solid #b0b0b0;
             .wrapper{
@@ -27,26 +27,6 @@
                 color: #a6a6a6;
             }
         }
-        .wrapper{
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s ease-out;
-            .option-body{
-                overflow: hidden;
-                opacity: 0;
-                transition: opacity 0.3s;
-                &.active{
-                    // overflow: visible;
-                    opacity: 1;
-                    transition: opacity 0.3s 0.3s;
-                }
-                //пофіксити цю йобану анімацію
-            }
-        }
         
     }
 }
-
-// @keyframes show-overflow {
-//     from { overflow: visible; }
-//   }

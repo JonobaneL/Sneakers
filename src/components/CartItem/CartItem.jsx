@@ -13,9 +13,9 @@ const CartItem = (item) => {
     return (
         <div className={styles['cart-item']}>
             <img className={styles['product-image']} src={productDetails.images[1]} alt={item.name} />
-            <p className={styles['product-name']}>{item.name}</p>
+            <p className={styles['product-name']}>{productDetails.name}</p>
             <p className={`${styles['product-size']} ${styles.details}`}><span className={styles.parameter}>Size: </span>{item.size}</p>
-            <p className={`${styles['product-model']} ${styles.details}`}><span className={styles.parameter}>Color: </span>{item.currentModelName}</p>
+            <p className={`${styles['product-model']} ${styles.details}`}><span className={styles.parameter}>Color: </span>{productDetails.currentModelName}</p>
             <div className={`${styles["product-total"]} ${styles.details}`}>
                 <p className={productDetails.discount?styles.price__diabled:styles.price}>${item.price*item.quantity}</p>
                 {(productDetails.discount>0)?

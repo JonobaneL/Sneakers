@@ -36,7 +36,7 @@ const Products = () => {
               </div>
               <div className={styles.list}>
                     {/* {
-                      (data.length==0)
+                      (data.length==0)//перевірити ще раз цей код
                       ?<div className={styles.warning}>
                         <h1>No Results</h1>
                         <h3>Try different filters</h3>

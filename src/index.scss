@@ -50,4 +50,11 @@ body::-webkit-scrollbar-thumb:hover {
 .App .content{
   flex: 1 1 auto;
 }
+.page-loader{
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
 

@@ -31,7 +31,6 @@ const ProductDetails = () => {
            return favorites.findIndex(item=>item.productID===id && item.modelID === modelId)
     },[id,modelId,favorites]);
     const navigate = useNavigate()
-    console.log(currentProduct)
     const addHandler =()=>{
         if(productSize.length==0 && currentProduct.type!=='accessories'){
             warning_ref.current.hidden = false;

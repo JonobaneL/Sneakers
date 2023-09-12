@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Select.module.scss'
 import arrow from '../../../images/down-arrow.svg'
-const Select = ({placeholder, params,getData,type='underLineType',height='40px',disabled=[],optionsHeight='200px'}) => {
+const Select = ({placeholder, params,getData,type='underLineType',height='40px',disabled=[],optionsHeight='180px'}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectValue, setSelectValue] = useState({})
    

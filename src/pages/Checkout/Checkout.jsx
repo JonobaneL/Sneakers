@@ -19,6 +19,7 @@ import AddressesList from '../../components/AddressesList/AddressesList';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewOrder } from '../../firebase/ordersFirebaseAPI';
 import { clearCart } from '../../redux/cartSlice';
+import { decreaseAmount } from '../../utils/productsAmount';
 
 const Checkout = () => {
     const {currentUser} = useAuth();
@@ -38,6 +39,7 @@ const Checkout = () => {
     const [isOrderLoading,setIsOrderLoading]= useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
     const orderHandler= async() =>{
         const orderDate = new Date()
         const orderID = currentUser?`U${Date.now()}`:`A${Date.now()}`
@@ -64,6 +66,7 @@ const Checkout = () => {
                     cartDiscount:cart.cartDiscount
                 },
             })
+            // productsAmount(cart.shoppingCart)
             dispatch(clearCart());
             navigate(`/order-info/${orderID}`)
         }catch(err){

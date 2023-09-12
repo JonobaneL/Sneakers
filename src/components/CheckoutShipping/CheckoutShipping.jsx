@@ -12,16 +12,16 @@ import CustomerAddressForm from '../CustomerAddress/CustomerAddressForm';
 
 const CheckoutShipping = ({city,address,onChange}) => {
     const [currentCity,setCurrentCity] = useState(city||{})
-    const ukrposhtaOffices = getPostOffice(currentCity.id,'ukrposhta')
-    const novaposhtaOffices = getPostOffice(currentCity.id,'novaposhta')
+    const ukrposhtaOffices = getPostOffice(currentCity.id,'Ukr Poshta')
+    const novaposhtaOffices = getPostOffice(currentCity.id,'Nova Poshta')
     const [isCityModalOpen,setIsCityModalOpen] = useState(false);
     const validRadio = currentCity.id>0?false:true;
     const closeModalWindowHandler = ()=>{
         setIsCityModalOpen(false)
     }
     const handler = (param)=>{
-        console.log(param)
-    }
+        onChange(prev=>{return {...prev,postOffice:param.value}})
+        }
   return (
     <div className={styles.shipping}>
         <div className={styles.city} onClick={()=>setIsCityModalOpen(true)}>

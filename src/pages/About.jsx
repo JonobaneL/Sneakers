@@ -1,76 +1,52 @@
 import React,{useState,useEffect,useMemo, useCallback, useRef} from 'react'
 import styles from './about.module.scss'
 import { groupByObject } from '../utils/objectSort';
+import RadioList from '../components/RadioList/RadioList';
+import Select from '../components/UI/select/Select';
 const About = () => {
-    const orders = [
-        {   
-            orderID:'order1',
-            userName:'andri',
-            sortDate:'September 2023',
-            cart:[]
-        },
-        {   
-            orderID:'order2',
-            userName:'max',
-            sortDate:'October 2023',
-            cart:[]
-        },
-        {   
-            orderID:'order3',
-            userName:'petro',
-            sortDate:'September 2023',
-            cart:[]
-        },
-        {   
-            orderID:'order4',
-            userName:'andri',
-            sortDate:'August 2023',
-            cart:[]
-        },
+    const [option,setOption] = useState('')
+    const arr = [
+        {id:'1',value:`opt1`},
+        {id:'2',value:`opt4`},
+        {id:'3',value:`opt3`},
+        {id:'4',value:`opt2`},
     ]
-    console.log(groupByObject(orders,'sortDate'))
-    const ordersRes = groupByObject(orders,'sortDate')
-    useEffect(()=>{
-        const data = [
-            {
-                name:'Andri',
-                lastName:'Fedun'
-            },
-            {
-                name:'Andri1',
-                lastName:'Fedun2'
-            },
-            {
-                name:'Andri2',
-                lastName:'Fedun1'
-            },
-    ];
-        localStorage.removeItem('user')
-
-    },[])
-
+    // productsAmount()
     return <div className={styles.about}>
         <div className={styles.content} >
             <button
                 onClick={()=>{
-                    // console.log(JSON.parse(localStorage.getItem('user')))
+                    console.log(option)
                 }}
             >Open</button>
-            {
-                Object.keys(ordersRes).map((key,index)=>{
-                    return <div key={index}>
-                        <h2>{key}</h2>
-                        <ul>
-                            {
-                                ordersRes[key].map((item,itemIndex)=>{
-                                    return <li key={itemIndex}>{item.orderID}</li>
-                                })
-                            }
-                        </ul>
-                    </div>
-                })
-            }
-            
+             <RadioList 
+                list={[
+                    {id:'opt1',label:'Pickup from Ukrposhta',value:'Ukr Poshta1',disabled:false},
+                    {id:'opt2',label:'Courier Ukrposhta',value:'Ukr Poshta2',disabled:false},
+                    {id:'opt3',label:'Pickup from Nova Poshta',value:'Nova Poshta1',disabled:false},
+                    {id:'opt4',label:'Courier Nova Poshta',value:'Nova Poshta2',disabled:false},
+                ]}
+                groupName='shipping'
+                callback={value=>setOption(value.slice(0,-1))}
+            >
+                <>
+                <Select placeholder='Select a post office'
+                        getData={(val)=>console.log(val)}
+                        params={arr}
+                        type='borderType'
+                        height='45px'
+                    />
+                </>
+                <>
+                    <h2>Option 2</h2>
+                </>
+                <>
+                    <h2>Option 3</h2>
+                </>
+                <>
+                    <h2>Option 4</h2>
+                </>
+            </RadioList>
         
         </div>
     </div>;

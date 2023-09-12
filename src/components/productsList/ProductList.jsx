@@ -3,7 +3,6 @@ import styles from './ProductList.module.scss'
 import ProductsItem from '../productsListItem/ProductsItem';
 import SkeletonCard from '../UI/skeletonCard/SkeletonCard';
 const ProductsList = ({data,isLoading}) => {
-    console.log(data)
     return (
         <div className={styles["products-list"]}>
             {
