@@ -3,6 +3,12 @@ import styles from './about.module.scss'
 import { groupByObject } from '../utils/objectSort';
 import RadioList from '../components/RadioList/RadioList';
 import Select from '../components/UI/select/Select';
+import { some } from '../firebase/productFirebaseAPI';
+import { useInput } from '../hooks/useInput';
+import ValidationErrorMessages from '../components/ValidationErrorMessages/ValidationErrorMessages';
+import CInput from '../components/UI/input/CInput';
+import Autocomplete from '../components/UI/autocomplete/Autocomplete';
+import { findLocation } from '../utils/searchLocation';
 const About = () => {
     const [option,setOption] = useState('')
     const arr = [
@@ -10,43 +16,39 @@ const About = () => {
         {id:'2',value:`opt4`},
         {id:'3',value:`opt3`},
         {id:'4',value:`opt2`},
+        {id:'5',value:`opt2`},
+        {id:'6',value:`opt2`},
+        {id:'7',value:`opt2`},
     ]
-    // productsAmount()
+    const city = useInput('',{isEmpty:true})
+    const locationResponse = findLocation(city.value)
+    console.log(locationResponse)
+
     return <div className={styles.about}>
         <div className={styles.content} >
             <button
                 onClick={()=>{
-                    console.log(option)
+                    setOption(true)
                 }}
             >Open</button>
-             <RadioList 
-                list={[
-                    {id:'opt1',label:'Pickup from Ukrposhta',value:'Ukr Poshta1',disabled:false},
-                    {id:'opt2',label:'Courier Ukrposhta',value:'Ukr Poshta2',disabled:false},
-                    {id:'opt3',label:'Pickup from Nova Poshta',value:'Nova Poshta1',disabled:false},
-                    {id:'opt4',label:'Courier Nova Poshta',value:'Nova Poshta2',disabled:false},
-                ]}
-                groupName='shipping'
-                callback={value=>setOption(value.slice(0,-1))}
-            >
-                <>
-                <Select placeholder='Select a post office'
-                        getData={(val)=>console.log(val)}
-                        params={arr}
-                        type='borderType'
-                        height='45px'
-                    />
-                </>
-                <>
-                    <h2>Option 2</h2>
-                </>
-                <>
-                    <h2>Option 3</h2>
-                </>
-                <>
-                    <h2>Option 4</h2>
-                </>
-            </RadioList>
+            <br />
+            <br />
+            <br />
+            <ValidationErrorMessages durty={city.isDurty} errorMessages={city.currentErrors}>
+                <Autocomplete data={locationResponse} query={city.value} setQuery={city.setValue} >
+                    <CInput  
+                        value={city.value} 
+                        onChange={e=>city.onChange(e)} 
+                        id="location" 
+                        mode='fullBorder'
+                        onBlur={e => city.onBlur(e)}
+                        height={50}
+                        placeholder="Enter your city"
+                        valid={city.isDurty && city.currentErrors.length>0}
+
+                        />
+                </Autocomplete>
+            </ValidationErrorMessages>
         
         </div>
     </div>;

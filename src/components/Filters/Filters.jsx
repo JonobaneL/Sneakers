@@ -39,7 +39,10 @@ const filtersOptionsVariants = {
 
 const FILTERS_SERIALIZE = data => data.join("-");
 const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
-const Filters = ({setData,loading,onChangeError}) => {
+
+
+
+const Filters = ({setData,loading}) => {
     const [sort,setSort] = useState()
     const windowSize = window.screen.availWidth<=1024;
    
@@ -53,7 +56,18 @@ const Filters = ({setData,loading,onChangeError}) => {
     const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     
-    const [filteredData,isDataLoading,dataError] = useFiltered(type,male,sort,categoryFilters,brandFilters,colorFilters,priceFilters,percentFilters,sizeFilters,materialFilters)
+    const [filteredData,isDataLoading,dataError] = useFiltered(
+        // products,
+        type,
+        male,
+        sort,
+        categoryFilters,
+        brandFilters,
+        colorFilters,
+        priceFilters,
+        percentFilters,
+        sizeFilters,
+        materialFilters)
     const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(!windowSize);
     const [searchQuery,setSearchQuery] = useState('');
     const searchedBrands = useSearch(brands,searchQuery,'name')
@@ -61,9 +75,8 @@ const Filters = ({setData,loading,onChangeError}) => {
     useEffect(()=>{
         setData(filteredData)
         loading(isDataLoading);
-        onChangeError(dataError)
     },[filteredData])
-    
+    console.log(filteredData)
     const clearEvent = ()=>{
         setCategoryFilters([]);
         setBrandFilters([]);
@@ -225,7 +238,7 @@ const Filters = ({setData,loading,onChangeError}) => {
                         </Accordion>
                         <div className={styles["button-bar"]}>
                             <Button mode='secondary' height="45px" width="50%" onClick={()=>clearEvent()}>Clear</Button>
-                            <Button mode='primary' height="45px" width="50%" onClick={()=>setIsFiltersOptionsOpen(false)}>View results ({filteredData.length})</Button>
+                            <Button mode='primary' height="45px" width="50%" onClick={()=>setIsFiltersOptionsOpen(false)}>View results ({filteredData?.length})</Button>
                         </div>
                     </motion.div>
                 

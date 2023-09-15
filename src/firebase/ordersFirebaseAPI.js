@@ -8,10 +8,15 @@ export const getOrder = (orderID) =>{
 export const addNewOrder = (order)=>{
     return setDoc(doc(firebaseDB,'orders',order.orderID),order)
 }
-export const getUserOrders = (userID)=>{
-    const ordersRef = query(
+export const getUserOrders = (userID,status)=>{
+    const statusOption = ['Ordered','Delivered','Canceled'];
+    let ordersRef = query(
         collection(firebaseDB,'orders'),
         where('userID','==',userID)
     )
+    if(statusOption.includes(status)){
+        ordersRef = query(ordersRef,
+            where('status','==',status))
+    }
     return getDocs(ordersRef);
 }

@@ -19,21 +19,20 @@ import AddressesList from '../../components/AddressesList/AddressesList';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewOrder } from '../../firebase/ordersFirebaseAPI';
 import { clearCart } from '../../redux/cartSlice';
-import { decreaseAmount } from '../../utils/productsAmount';
+import { decreaseProductsAmount } from '../../utils/productsAmount';
 
 const Checkout = () => {
     const {currentUser} = useAuth();
     const userInfo = getUser(currentUser?.uid?currentUser.uid:'user')
     const windowWidth = window.screen.availWidth;
-
     const firstName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const lastName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:'Please enter a valid email address',isEmail:'Please enter a valid email address'})
     const phoneNumber = useInput('',{isEmpty:true},{isEmpty:'Please enter your phone number'})
     const [cardUse,setCardUse] = useState(false);
-    const [addressUse,setAddressUse] = useState(false);
+    const [addressUse,setAddressUse] = useState(false);//shipping
     const [cardData,setCardData] = useState({cartNumber:'',date:'',cvv:''})
-    const [addressData,setAddressData] = useState({address:'',appartment:''});
+    const [addressData,setAddressData] = useState({address:'',appartment:''});//shipping
     const [paymentMethod,setPaymentMethod] = useState('')
     const cart = useSelector(state=>state.cartReducer);
     const [isOrderLoading,setIsOrderLoading]= useState(false);
@@ -53,9 +52,10 @@ const Checkout = () => {
                 email:email.value,
                 phoneNumber:phoneNumber.value,
                 shipping:addressData,
+                city:userInfo.city.name,
                 paymentMethod:paymentMethod,
                 card:cardData,
-                status:'ordered',
+                status:'Ordered',
                 sortDate:`${orderDate.getMonth()+1}/${orderDate.getFullYear()}`,
                 date:`${orderDate.getDate()}/${orderDate.getMonth()+1}/${orderDate.getFullYear()}`,
                 userCart:{
@@ -66,11 +66,11 @@ const Checkout = () => {
                     cartDiscount:cart.cartDiscount
                 },
             })
-            // productsAmount(cart.shoppingCart)
+            decreaseProductsAmount(cart.shoppingCart)
             dispatch(clearCart());
             navigate(`/order-info/${orderID}`)
         }catch(err){
-            console.log(err)
+            console.log(err.message)
         }
         finally{
             setIsOrderLoading(false)
@@ -133,7 +133,7 @@ const Checkout = () => {
                             
                         </>
                         :<>
-                            <CheckoutShipping city={userInfo?.city_1} address={addressData} onChange={setAddressData} />
+                            <CheckoutShipping city={userInfo?.city} address={addressData} onChange={setAddressData} />
                             {
                                 currentUser&&<div className={styles["button-bar"]}>
                                     <Button 

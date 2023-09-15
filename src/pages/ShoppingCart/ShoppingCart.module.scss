@@ -44,27 +44,6 @@
             border:1px solid #ddd;
             box-shadow:0 4px 8px rgba(221,221,221,.5);
             border-radius:5px;
-            .coupon-title{
-                margin-bottom: 8px;
-                font-size: $fs-400;
-                font-weight: 500;
-            }
-            .coupon{
-                width: 100%;
-                display: flex;
-                align-items: center;
-                padding-bottom: 15px;
-                .apply-coupon{
-                    flex: 1 0 auto;
-                }
-            }
-            .coupon-remove{
-                text-align: center;
-                font-size: min($fs-400,15px);
-                font-weight: 500;
-                text-decoration: underline;
-                cursor: pointer;
-            }
             .checkout{
                 margin-top: 10px;
             }

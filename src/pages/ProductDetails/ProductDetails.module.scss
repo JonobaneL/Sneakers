@@ -138,42 +138,7 @@
                 }
             }
             .common-info{
-                grid-area:commonInfo;
-                .tab{
-                    width: 100%;
-                    color: $clr-text;
-                    font-size: 14px;
-                    line-height: 20px;
-                    padding: 0 10px;
-                    .title{
-                        font-weight: 500;
-                        margin-top: 10px;
-                        margin-bottom: 5px;
-                    }
-                    .sub-title{
-                        margin-left: 5px;
-                    }
-                    .payments{
-                        margin-left: 10px;
-                        li{
-                            list-style-type: '\2014';
-                            padding-left: 5px;
-                            margin: 5px 0;
-                            line-height: 24px;
-                        }
-                    }
-                }
-                .guarantee{
-                    line-height: 24px;
-                    text-align: center;
-                    color:$clr-text;
-                    a{
-                        font-weight: 600;
-                        text-decoration: underline;
-                        color:$clr-primary;
-                        
-                    }
-                }
+                grid-area: commonInfo;
             }
         }
     }

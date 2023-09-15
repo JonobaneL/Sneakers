@@ -48,7 +48,7 @@ const UserInfo = () => {
                     <div className={styles['field-name']}>
                         City:
                     </div> 
-                    {userInfo.city}
+                    {userInfo.city?.name}
                 </li>
             </ul>
            

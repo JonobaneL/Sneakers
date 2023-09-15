@@ -51,6 +51,7 @@ const OrderInfo = () => {
                                     <p>{orderInfo.shipping.address}, {orderInfo.shipping.appartment}</p>
                                 :<p>{orderInfo.shipping?.postOffice}</p>
                                 }
+                                <p>{orderInfo.city}</p>
                             </div>
                             <div className={styles.payment}>
                                 <h3>Payment</h3>

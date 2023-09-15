@@ -17,8 +17,7 @@ const Header = () => {
     const [userDropMenu,setUserDropMenu] = useState(false)
     const dispatch = useDispatch();
     const {currentUser,logout} = useAuth();
-    const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser?.uid||'s'),[],'firebase')
-   
+    const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser?.uid||'s'),[currentUser],'firebase')
     useEffect(()=>{
         if(currentUser){
             dispatch(fetchShoppingCart(currentUser.uid))
@@ -83,7 +82,7 @@ const Header = () => {
                                             <li><Link to='/user-profile/info'>Profile</Link></li>
                                             <li><Link to='/user-profile/orders'>Orders</Link></li>
                                             <li><Link to='/user-profile/favorites'>Favorites</Link></li>
-                                            <li><p onClick={handleLogout}>Log Out</p></li>
+                                            <li><Link to='/' onClick={handleLogout}>Log Out</Link></li>
                                         </ul>
                                     </div>
                                 </DropDownMenu>

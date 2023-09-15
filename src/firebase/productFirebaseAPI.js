@@ -1,5 +1,6 @@
 import { firebaseDB } from "./firebase";
-import { collection, getDocs, getDoc, doc,orderBy, query, where, updateDoc } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc,orderBy, query, where, updateDoc, increment } from "firebase/firestore";
+
 
 const categoriesRef = collection(firebaseDB,'categories');
 const brandsRef = collection(firebaseDB,'brands');
@@ -78,5 +79,11 @@ export const updateProductAmount = (modelID,sizes)=>{
     const productRef = doc(firebaseDB,'products_models',modelID);
     return updateDoc(productRef,{
         sizes:sizes
+    })
+}
+export const some = ()=>{
+    const productRef = doc(firebaseDB,'products_models','7zGHo67VLwec0Xxl2AN8');
+    return updateDoc(productRef,{
+        count:increment(-5)
     })
 }

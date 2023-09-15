@@ -24,19 +24,19 @@ export const useValidation = (value='',validations,validationErrorMessages) =>{
           case 'minLength':
             if(value.length < validations[item]){
               setMinLength(true);
-              addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages.minLength||standart.minLength)
+              addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages?.minLength||standart.minLength)
             }else{
               setMinLength(false);
-              setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages.minLength||standart.minLength)))
+              setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages?.minLength||standart.minLength)))
             }
           break;
           case 'maxLength':
             if(value.length>validations[item]){
               setMaxLength(true)
-              addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages.maxLength||standart.maxLength)
+              addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages?.maxLength||standart.maxLength)
             }else{
               setMaxLength(false);
-              setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages.maxLength||standart.maxLength)))
+              setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages?.maxLength||standart.maxLength)))
             }
             break;
           case 'isEmail':
@@ -44,26 +44,26 @@ export const useValidation = (value='',validations,validationErrorMessages) =>{
             re.test(String(value).toLowerCase())?setEmailError(false):setEmailError(true)
             if(re.test(String(value).toLowerCase())){
                 setEmailError(false)
-                setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages.isEmail||standart.isEmail)))
+                setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages?.isEmail||standart.isEmail)))
             }else{
                 setEmailError(true)
-                addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages.isEmail||standart.isEmail)
+                addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages?.isEmail||standart.isEmail)
             }
             break;
           case 'isMatch':
             if(value === validations[item]){
-              setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages.isMatch || standart.isMatch)))
+              setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages?.isMatch || standart.isMatch)))
             }else{
-              addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages.isMatch || standart.isMatch)
+              addErrorMessage(currentErrors,setCurrentErrors,validationErrorMessages?.isMatch || standart.isMatch)
             }
             break
           case 'isEmpty':
             if(value){
               setIsEmpty(false);
-              setCurrentErrors(p=>p.filter(item=>item !== validationErrorMessages.isEmpty))
+              setCurrentErrors(p=>p.filter(item=>item !== (validationErrorMessages?.isEmpty||standart.isEmpty)))
             }else{
               setIsEmpty(true)
-              setCurrentErrors([validationErrorMessages.isEmpty])
+              setCurrentErrors([validationErrorMessages?.isEmpty||standart.isEmpty])
             }
           break;
         }

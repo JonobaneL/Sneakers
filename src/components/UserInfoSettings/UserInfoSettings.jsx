@@ -24,7 +24,7 @@ const UserInfoSettings = () => {
     const navigate = useNavigate();
     useEffect(()=>{
         if(userInfo.city){
-            setCity(userInfo.city)
+            setCity(userInfo.city.name)
         }
         if(userInfo.phone){
             const number = formatPhoneNumber(userInfo.phone)
@@ -41,7 +41,7 @@ const UserInfoSettings = () => {
             promises.push(updateUserPhone({uid:currentUser.uid,phone:phoneNumber.value}))
         }
         if(city !== userInfo.city){
-            promises.push(updateUserCity({uid:currentUser.uid,city:city}))
+            promises.push(updateUserCity({uid:currentUser.uid,city:locationResponse[0]}))
         }
         
         if(confirmPassword.currentErrors.length===0){

@@ -8,13 +8,14 @@ import { getTotalPagesCount } from "../../utils/getPageCount";
 import Pagination from "../../components/UI/pagination/Pagination";
 import { useAsync } from "../../hooks/useAsync";
 import { getAllProductsModels, getProductModels } from "../../firebase/productFirebaseAPI";
+import useAllProducts from "../../hooks/useAllProducts";
 const Products = () => {
     const {type,male} = useParams();
     const [data,setData] = useState([]);
     const [isProductsLoading,setProductsLoading] = useState(true)
-    const [productsError,setProductsError] = useState('')
     const limit = 12;
     const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading,productsError,productsResponse] = useAllProducts(type,male)
     const shownData = useToShow(data,limit,currentPage);
     const totalCountPages = getTotalPagesCount(data.length,limit);
     const titleEvent = ()=>{
@@ -25,6 +26,7 @@ const Products = () => {
     },[type,male])
     // console.log(isProductsLoading)
     // console.log(productsError)
+    //дуже багато пить до цього варіанту виконання відображення, сортування та фільтрації товарів
     return <div className={styles.products}>
             <div className={styles.content}>
                   <h2 className={styles.title}>{titleEvent()}</h2>
@@ -32,7 +34,7 @@ const Products = () => {
                   {(currentPage*limit)-limit+1}-{limit} of {data.length} products
                 </p>
               <div className={styles.filters}>
-                <Filters setData={setData} loading={setProductsLoading} onChangeError={setProductsError} />
+                <Filters setData={setData} loading={setProductsLoading}  />
               </div>
               <div className={styles.list}>
                     {/* {

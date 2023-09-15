@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './UserOrders.module.scss'
 import { useAsync } from '../../hooks/useAsync';
 import { useAuth } from '../../context/AuthContext';
@@ -8,10 +8,12 @@ import rightArrow from '../../images/right-arrow.svg'
 import { groupByObject } from '../../utils/objectSort';
 import { dateSortMethod, getMonth } from '../../utils/dateSort';
 import { useNavigate } from 'react-router-dom';
+import Select from '../UI/select/Select';
 
 const UserOrders = () => {
     const {currentUser} = useAuth()
-    const [isLoading,,userOrders] = useAsync(()=>getUserOrders(currentUser.uid),[],'firebase')
+    const [statusFilter,setStatusFilter] = useState(null)
+    const [isLoading,,userOrders] = useAsync(()=>getUserOrders(currentUser.uid,statusFilter),[statusFilter],'firebase')
     const navigate = useNavigate()
     const groupedOrders = groupByObject(userOrders,'sortDate')
     const ordersKey = dateSortMethod(Object.keys(groupedOrders))
@@ -24,6 +26,22 @@ const UserOrders = () => {
                 <p className={styles['column-title']}>Total</p>
                 <p className={styles['column-title']}>Date</p>
             </div>
+            <div className={styles["status-filter"]}>
+                <Select
+                    type="borderType"
+                    placeholder='Status'
+                    height='45px'
+                    disabled={!statusFilter?['1']:[]}
+                    params={[
+                        {id:'1',value:'All'},
+                        {id:'2',value:'Ordered'},
+                        {id:'3',value:'Delivered'},
+                        {id:'4',value:'Canceled'},
+                    ]}
+                    getData={(option)=>setStatusFilter(option?.value)}
+                />
+            </div>
+            
             {
                 isLoading?
                 <div className={styles.wrapper}>

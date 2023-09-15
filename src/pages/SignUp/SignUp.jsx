@@ -34,7 +34,7 @@ const SignUp = () => {
                 id: userResponce.user.uid,
                 firstName: firstName.value,
                 lastName: lastName.value,
-                city: city.value,
+                city: locationResponse[0],
                 phone:null,
                 payment_methods:[],
                 delivery_addresses:[],
