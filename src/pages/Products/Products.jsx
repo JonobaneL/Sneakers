@@ -6,16 +6,12 @@ import ProductsList from "../../components/productsList/ProductList";
 import { useToShow } from "../../hooks/useFilters";
 import { getTotalPagesCount } from "../../utils/getPageCount";
 import Pagination from "../../components/UI/pagination/Pagination";
-import { useAsync } from "../../hooks/useAsync";
-import { getAllProductsModels, getProductModels } from "../../firebase/productFirebaseAPI";
-import useAllProducts from "../../hooks/useAllProducts";
 const Products = () => {
     const {type,male} = useParams();
     const [data,setData] = useState([]);
     const [isProductsLoading,setProductsLoading] = useState(true)
     const limit = 12;
     const [currentPage, setCurrentPage] = useState(1);
-    const [isLoading,productsError,productsResponse] = useAllProducts(type,male)
     const shownData = useToShow(data,limit,currentPage);
     const totalCountPages = getTotalPagesCount(data.length,limit);
     const titleEvent = ()=>{

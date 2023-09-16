@@ -45,27 +45,30 @@ export const getProducts = (type='shoes',male='all')=>{
         return getDocs(
             query(
                 collection(firebaseDB,'products'),
-                where('type','==',type),
+                wherproductse('type','==',type),
                 )
             )
     }
 }
-export const getAllProductsModels = (type,male)=>{
+export const getAllProductsModels = (type,male,filter)=>{
     if(type==='all' && male==='all'){
         return getDocs(query(
-            collection(firebaseDB,'products_models')
+            // collection(firebaseDB,'products_models')
+            filter
         ));
     }
     
     if(male){
         return getDocs(query(
-            collection(firebaseDB,'products_models'),
+            // collection(firebaseDB,'products_models'),
+            filter,
             where('type','==',type),
             where('male','==',male)
         ));
     }else{
         return getDocs(query(
-            collection(firebaseDB,'products_models'),
+            // collection(firebaseDB,'products_models'),
+            filter,
             where('type','==',type),
         ));
     }
@@ -81,9 +84,31 @@ export const updateProductAmount = (modelID,sizes)=>{
         sizes:sizes
     })
 }
-export const some = ()=>{
-    const productRef = doc(firebaseDB,'products_models','7zGHo67VLwec0Xxl2AN8');
-    return updateDoc(productRef,{
-        count:increment(-5)
-    })
+// export const getFilteredProduct = (id,filter)=>{
+//     return get
+// }
+
+export const expGetProducts = (type,male,filter)=>{
+    if(type==='all' && male==='all'){
+        return getDocs(query(
+            filter
+        ));
+    }
+    
+    if(male){
+        return getDocs(query(
+            filter,
+            where('type','==',type),
+            where('male','==',male)
+        ));
+    }else{
+        return getDocs(query(
+            filter,
+            where('type','==',type),
+        ));
+    }
+}
+export const expGetModels = (productID,filter)=>{
+    const modelsRef = query(filter,where('productID','==',productID))
+    return getDocs(modelsRef)
 }
