@@ -12,7 +12,7 @@ const useAllProducts = (type,male,productsFilter,modelsFilter) => {
         setError(undefined)
         setProducts([])
 
-        getAllProductsModels(type,male,modelsQuery)
+        getAllProductsModels(type,male)
         .then(models_response=>{
             if(models_response.size === 0){
                 throw new Error("don't find any data");

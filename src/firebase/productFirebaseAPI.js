@@ -50,7 +50,11 @@ export const getProducts = (type='shoes',male='all')=>{
             )
     }
 }
-export const getAllProductsModels = (type,male,filter)=>{
+export const getAllProductsModels = (
+    type,
+    male,
+    filter=collection(firebaseDB,'products_models')
+    )=>{
     if(type==='all' && male==='all'){
         return getDocs(query(
             // collection(firebaseDB,'products_models')

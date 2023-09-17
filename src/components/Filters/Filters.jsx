@@ -42,7 +42,7 @@ const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
 
 
 
-const Filters = ({setData,loading}) => {
+const Filters = ({setData,loading,productsLength,onChangeProductFilter,onChangeModelFilter,onChangeFilter}) => {
     const [sort,setSort] = useState()
     const windowSize = window.screen.availWidth<=1024;
    
@@ -56,27 +56,26 @@ const Filters = ({setData,loading}) => {
     const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     
-    const [filteredData,isDataLoading,dataError] = useFiltered(
-        // products,
-        type,
-        male,
-        sort,
-        categoryFilters,
-        brandFilters,
-        colorFilters,
-        priceFilters,
-        percentFilters,
-        sizeFilters,
-        materialFilters)
+    // const [filteredData,isDataLoading,dataError] = useFiltered(
+    //     // products,
+    //     type,
+    //     male,
+    //     sort,
+    //     categoryFilters,
+    //     brandFilters,
+    //     colorFilters,
+    //     priceFilters,
+    //     percentFilters,
+    //     sizeFilters,
+    //     materialFilters)
     const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(!windowSize);
     const [searchQuery,setSearchQuery] = useState('');
     const searchedBrands = useSearch(brands,searchQuery,'name')
     const navigate = useNavigate()
-    useEffect(()=>{
-        setData(filteredData)
-        loading(isDataLoading);
-    },[filteredData])
-    console.log(filteredData)
+    // useEffect(()=>{
+    //     setData(filteredData)
+    //     loading(isDataLoading);
+    // },[filteredData])
     const clearEvent = ()=>{
         setCategoryFilters([]);
         setBrandFilters([]);
@@ -156,6 +155,16 @@ const Filters = ({setData,loading}) => {
                             <DropDownList 
                                 handler={value=>{
                                     setCategoryFilters(value)
+                                    console.log(value)
+                                    if(value.length==0){
+                                        onChangeFilter('category',false,'product')
+                                    }else{
+                                        onChangeFilter('category',false,'product')
+                                        // onChangeFilter('sub_category',false,'product')
+                                    }
+                                    if(value?.length>1){
+                                        onChangeFilter('sub_category',value[1],'product')
+                                    }
                                 }}
                                 data={categories}
                                 seleted={categoryFilters}
@@ -238,7 +247,7 @@ const Filters = ({setData,loading}) => {
                         </Accordion>
                         <div className={styles["button-bar"]}>
                             <Button mode='secondary' height="45px" width="50%" onClick={()=>clearEvent()}>Clear</Button>
-                            <Button mode='primary' height="45px" width="50%" onClick={()=>setIsFiltersOptionsOpen(false)}>View results ({filteredData?.length})</Button>
+                            <Button mode='primary' height="45px" width="50%" onClick={()=>setIsFiltersOptionsOpen(false)}>View results ({productsLength})</Button>
                         </div>
                     </motion.div>
                 

@@ -13,7 +13,7 @@ export const useProduct =(id,modelId)=>{
         price:product.price,
         descripion:product.description,
         models:productModels ||[],
-        currentModelName:currentModel.name,
+        currentModelName:currentModel.model_name,
         images:currentModel.images||[],
         rate:currentModel.rate,
         sizes:currentModel.sizes||[],

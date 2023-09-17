@@ -7,7 +7,9 @@ export const useGenerateQuery = (collectionName,filters)=>{
 
     Object.keys(filters).forEach(key=>{
         if(Array.isArray(filters[key])){
-            productsRef = query(productsRef,where(key,'in',filters[key]))
+            if(filters[key].length>=1){
+                productsRef = query(productsRef,where(key,'in',filters[key]))
+            }
         }else{
             productsRef = query(productsRef,where(key,'==',filters[key]))
         }

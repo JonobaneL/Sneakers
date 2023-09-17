@@ -2,7 +2,6 @@ import React, { useMemo, useRef, useState } from 'react';
 import styles from './ProductDetails.module.scss'
 import { useNavigate, useParams } from 'react-router-dom';
 import backIcon from '../../images/back-icon.svg'
-import InfoTabs from '../../components/UI/info-tabs/InfoTabs';
 import { useProduct } from '../../hooks/useProduct';
 import Gallery from '../../components/UI/gallery/Gallery';
 import Rate from '../../components/UI/rate/Rate';

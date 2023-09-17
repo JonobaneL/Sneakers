@@ -134,7 +134,6 @@ export const useFiltered = (type,male,sortMethod,category=[],brand=[],color=[],p
 }
 
 export const useToShow = (data,limit,current=1)=>{
-    console.log(data)
     const response = useMemo(()=>{
         return data.filter((_,index)=>index>=((current*limit)-limit)&&index<(current*limit));
     },[data,current]) 

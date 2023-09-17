@@ -2,14 +2,15 @@ import { useCallback, useEffect, useState } from "react"
 import { useGenerateQuery } from "./useGenerateQuery"
 import { expGetModels, expGetProducts, getAllProductsModels, getProductModels } from "../firebase/productFirebaseAPI"
 
-export const useProducts = (type,male,productsFilter,modelsFilter)=>{
+export const useProducts = (type,male,productsFilter={},modelsFilter={})=>{
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
     const [products,setProducts] = useState([])
 
     const productsQuery = useGenerateQuery('products',productsFilter);
-    const modelsQuery = useGenerateQuery('products_models',{});
-
+    const modelsQuery = useGenerateQuery('products_models',modelsFilter);
+    const productsTriger = Object.keys(productsFilter).length
+    const modelsTriger = Object.keys(modelsFilter).length
     const getEvent = useCallback(()=>{
         setIsLoading(true);
         setError(undefined)
@@ -22,13 +23,10 @@ export const useProducts = (type,male,productsFilter,modelsFilter)=>{
             return tempProducts;
         })
         .then(productsResponse=>{
-            console.log(productsResponse)
             productsResponse.forEach(product=>{
-                console.log(product.id)
                 expGetModels(product.id,modelsQuery)
                 .then(modelsRespone=>{
                     modelsRespone.forEach(item=>{
-                        console.log(item.id)
                         setProducts(p=>[...p,{modelID:item.id,...item.data(),...product}])
                     })
                 })
@@ -44,7 +42,7 @@ export const useProducts = (type,male,productsFilter,modelsFilter)=>{
         .finally(()=>{
             setIsLoading(false)
         })
-    },[])
+    },[type,male,productsTriger,modelsTriger])
     useEffect(()=>{
         getEvent()
     },[getEvent])

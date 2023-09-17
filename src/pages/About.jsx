@@ -33,9 +33,7 @@ const About = () => {
     //         console.log(err)
     //     }
     // }
-    const [test,testLoading,testError] = useProducts('shoes','men',{
-        brand:'Sperry'
-    },{})
+    
 
     return <div className={styles.about}>
         <div className={styles.content} >
@@ -44,7 +42,7 @@ const About = () => {
                     // setOption(true)
                     // generateQuery(filters)
                     console.log(test)
-                    // console.log(productsResponse)
+                    console.log(productsResponse)
                 }}
             >Open</button>
             <br />
