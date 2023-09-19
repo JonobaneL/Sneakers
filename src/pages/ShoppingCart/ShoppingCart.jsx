@@ -11,7 +11,6 @@ import CouponForm from '../../components/CouponForm/CouponForm';
 const ShoppingCart = () => {
     
     const cart = useSelector(state=>state.cartReducer);
-    
     return (
         <div className={styles['shopping-cart']}>
             <div className={styles.content}>

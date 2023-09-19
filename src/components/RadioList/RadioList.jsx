@@ -13,7 +13,6 @@ const RadioList = ({
         setChoosedItem(e.target.value)
         if(choosedItem!==e.target.value){
             callback(e.target.value)
-            console.log(e.target.value)
         }
     }
     const optionVariants = {

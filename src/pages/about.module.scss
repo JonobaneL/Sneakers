@@ -3,71 +3,91 @@
 .about{
     // width: 100%;
     // padding: 20px 80px;
-    @include mixins.wrapper-desktop;
+    // @include mixins.wrapper-desktop;
     .content{
-        @include mixins.content;
+        // @include mixins.content;
         // display: flex;
-        justify-content: center;
-        gap:10px;
-        .wrapper{
-            width: 100%;
-        }
+        // justify-content: center;
+        // gap:10px;
         .btn{
+            margin: 20px;
             width: 160px;
             height: 50px;
         }
-    }
-}
-.wrapper{
-    @include mixins.content;
-    display: grid;
-    // grid-template-areas: 'logo . nav search . button cancel';
-    background: #b0b0b0;
-    height: 60px;
-    .b1{
-        // grid-area: logo;
-        width: 130px;
-        background: blue;
-    }
-    .b2{
-        // grid-area: nav;
-        width: 100%;
-        background: red;
-    }
-    .b3{
-        width: 100%;
-        background: green; 
-        display: flex;
-        align-items: center;
-        // justify-content: center;
-        // grid-template-areas: '. child .';
-        .child{
-            width: 100%;
-            height: 40px;
-            background: yellow;
+        .popular-brands{
+            @include mixins.wrapper-desktop;
+            border:1px solid red;
+            .content{
+                @include mixins.content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .arrow{
+                    opacity: 0;
+                    visibility: hidden;
+                    background: none;
+                    width: 30px;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    &.left{
+                        translate: -10px;
+                        img{
+                            rotate: 180deg;
+                        }
+                    } 
+                    &.right{
+                        translate: 10px;
+                    }
+                }
+                &:hover{
+                    .arrow{
+                        translate: 0;
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+                .wrapper{
+                    overflow: hidden;
+                }
+                .carousel{
+                    display: flex;
+                    gap:10px;
+                    height: 150px;
+                    transition: translate 0.3s ease;
+                    .brand{
+                        // flex: 1 0 auto;
+                        background: blueviolet;
+                        width: 150px;
+                        aspect-ratio: 1/1;
+                        font-size: 30px;
+                        color:#fff;
+                        font-weight: 600;
+                        text-align: center;
+                        line-height: 150px;
+                    }
+                }
+            }
         }
     }
-    .b4{
-        // width: 70px;
-        background: violet;
-        overflow: hidden;
-    }
-    .b5{
-        // width: 130px;
-        background: blueviolet;
-    }
-
-}    
-
+}
+.brand{
+    width: 150px;
+    font-weight: 600;
+    font-size:40px;
+    color:white;
+    background: green;
+    aspect-ratio: 1/1
+}
 @media screen and (width <= 768px) {
-    .about{
-        @include mixins.wrapper-tablet;
+    .about .content .popular-brands{
+            @include mixins.wrapper-tablet;
+        }
        
-    }
 }
 @media screen and (width <= 425px) {
-    .about{
-        @include mixins.wrapper-mobile;
-       
-    }
+    .about .content .popular-brands{
+            @include mixins.wrapper-mobile;
+    
+            }
+    
 }

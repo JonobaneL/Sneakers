@@ -43,11 +43,15 @@ const CartItem = (item) => {
                     width={btnWidth}
                     height={btnWidth}
                     onClick={()=>{
-                        dispatch(increaseCartQuantity({
-                            productID:item.productID,
-                            modelID:item.modelID,
-                            size:item.size
-                        }))
+                        const sizeInfo = productDetails.sizes.find(sizeItem=>sizeItem.size === item.size)
+                        if(item.quantity<=sizeInfo.amount-1){
+                            dispatch(increaseCartQuantity({
+                                productID:item.productID,
+                                modelID:item.modelID,
+                                size:item.size
+                            }))
+                        }
+                        
                     }}
                 ><span className={styles.btn}>+</span></Button>
             </div>

@@ -18,6 +18,7 @@ const CityForm = ({currentCity,setCity,applyCallback}) => {
     }
     const applyButtonHandler = ()=>{
         setCity(choosedCity);
+        console.log(choosedCity)
         applyCallback();
     }
     useEffect(()=>{

@@ -12,7 +12,6 @@ export const fetchShoppingCart = createAsyncThunk(
             return cart
         }
         catch(err){
-            
             rejectWithValue();
         }
         
@@ -81,7 +80,7 @@ const cartSlice = createSlice({
         cartSubTotal:0,
         cartDiscount:0,
         cartTotal:0,
-        isLoading:true
+        isLoading:false
     },
     reducers:{
        
@@ -145,6 +144,7 @@ const cartSlice = createSlice({
         })
         .addCase(fetchShoppingCart.rejected,(state)=>{
             state.shoppingCart = []
+            state.isLoading = false;
         })
         
         .addMatcher(isAnyOf,(state)=>{

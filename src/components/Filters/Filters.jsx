@@ -45,7 +45,7 @@ const FILTERS_DESERIALIZE = data => data?data.split("-"):[];
 const Filters = ({setData,loading,productsLength,onChangeProductFilter,onChangeModelFilter,onChangeFilter}) => {
     const [sort,setSort] = useState()
     const windowSize = window.screen.availWidth<=1024;
-   
+    
     const {type,male} = useParams()
     const {categories,brands,materials,sort_params,price_params,percent_params} = productsFilterParrams(male)
     const [categoryFilters,setCategoryFilters] = useSearchParamsState({name:"category",serialize:(data)=>data.join(">"), deserialize:(data)=>data?data.split(">"):[]})
@@ -55,27 +55,40 @@ const Filters = ({setData,loading,productsLength,onChangeProductFilter,onChangeM
     const [materialFilters,setMaterialFilters] = useSearchParamsState({name:"material",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [priceFilters,setPriceFilters] = useSearchParamsState({name:"price",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
     const [percentFilters,setPercentFilters] = useSearchParamsState({name:"percent",serialize:FILTERS_SERIALIZE,deserialize:FILTERS_DESERIALIZE})
-    
-    // const [filteredData,isDataLoading,dataError] = useFiltered(
-    //     // products,
-    //     type,
-    //     male,
-    //     sort,
-    //     categoryFilters,
-    //     brandFilters,
-    //     colorFilters,
-    //     priceFilters,
-    //     percentFilters,
-    //     sizeFilters,
-    //     materialFilters)
+   
     const [isFiltersOptionsOpen,setIsFiltersOptionsOpen] = useState(!windowSize);
     const [searchQuery,setSearchQuery] = useState('');
     const searchedBrands = useSearch(brands,searchQuery,'name')
     const navigate = useNavigate()
-    // useEffect(()=>{
-    //     setData(filteredData)
-    //     loading(isDataLoading);
-    // },[filteredData])
+
+    ///products filters
+    const [productsFilter,setProductsFilter]= useState({})
+    const [modelsFilter,setModelsFilter]= useState({})
+    useEffect(()=>{
+        console.log(productsFilter)
+        console.log(modelsFilter)
+        onChangeFilter(productsFilter,modelsFilter)
+    },[productsFilter,modelsFilter])
+    const filterConfig = (name,filter,type='product')=>{
+        console.log(name,filter)
+        if(filter?.length===0){
+          const tempCopy = {...productsFilter};
+          delete tempCopy[name]
+          if(type==='product'){
+            setProductsFilter(tempCopy)
+          }else if(type==='model'){
+            setModelsFilter(tempCopy)
+          }
+        }else{
+            if(type==='product'){
+              setProductsFilter(p=>{return {...p,[name]:filter}})
+            }else if(type==='model'){
+              setModelsFilter(p=>{return {...p,[name]:filter}})
+            }
+        }
+        
+      }
+   ///-end
     const clearEvent = ()=>{
         setCategoryFilters([]);
         setBrandFilters([]);
@@ -155,15 +168,17 @@ const Filters = ({setData,loading,productsLength,onChangeProductFilter,onChangeM
                             <DropDownList 
                                 handler={value=>{
                                     setCategoryFilters(value)
-                                    console.log(value)
+                                    console.log('drop value',value)
                                     if(value.length==0){
-                                        onChangeFilter('category',false,'product')
+                                        filterConfig('category',[],'product')
+                                        filterConfig('sub_category',[],'product')
                                     }else{
-                                        onChangeFilter('category',false,'product')
-                                        // onChangeFilter('sub_category',false,'product')
+                                        // filterConfig('category',false,'product')
+                                        filterConfig('category',value[0],'product')
                                     }
+
                                     if(value?.length>1){
-                                        onChangeFilter('sub_category',value[1],'product')
+                                        filterConfig('sub_category',value[1],'product')
                                     }
                                 }}
                                 data={categories}
@@ -175,13 +190,23 @@ const Filters = ({setData,loading,productsLength,onChangeProductFilter,onChangeM
                             header={
                                 <div className={styles.accordion}>
                                     Brands
-                                    <ClearButton triger={brandFilters.length} handler={()=>setBrandFilters([])}/>
+                                    <ClearButton triger={brandFilters.length} handler={()=>{
+                                        setBrandFilters([])
+                                // onChangeFilter('brand',[],'product')
+                                filterConfig('brand',[],'product')
+
+                                        
+                                        }}/>
                                 </div>
                             }
                         >
                             <Search initial={searchQuery} onChange={setSearchQuery}/>
                             <br/>
-                            <CheckBoxList data={searchedBrands} checkedItems={brandFilters} handler={(value)=>setBrandFilters(value)}/>
+                            <CheckBoxList data={searchedBrands} checkedItems={brandFilters} handler={(value)=>{
+                                setBrandFilters(value)
+                                // onChangeFilter('brand',value,'product')
+                                filterConfig('brand',value,'product')
+                                }}/>
                         </Accordion>
                         
                         <Accordion 

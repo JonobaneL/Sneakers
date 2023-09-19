@@ -1,12 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { getAllProductsModels, getProduct } from "../firebase/productFirebaseAPI";
-import { useGenerateQuery } from "./useGenerateQuery";
 
 const useAllProducts = (type,male,productsFilter,modelsFilter) => {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
     const [products,setProducts] = useState([])
-    const modelsQuery = useGenerateQuery('products_models',modelsFilter);
     const callbackMemorized = useCallback(()=>{
         setIsLoading(true);
         setError(undefined)

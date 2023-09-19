@@ -99,7 +99,7 @@ export const expGetProducts = (type,male,filter)=>{
         ));
     }
     
-    if(male){
+    if(male!=='all'){
         return getDocs(query(
             filter,
             where('type','==',type),

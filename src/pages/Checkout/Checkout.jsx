@@ -52,7 +52,7 @@ const Checkout = () => {
                 email:email.value,
                 phoneNumber:phoneNumber.value,
                 shipping:addressData,
-                city:userInfo.city.name,
+                city:userInfo?.city.name||'Ternopil',
                 paymentMethod:paymentMethod,
                 card:cardData,
                 status:'Ordered',

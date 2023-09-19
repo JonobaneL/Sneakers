@@ -1,125 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Carousel.module.scss'
-import { AnimatePresence, wrap,motion, AnimateSharedLayout } from 'framer-motion';
-import { Link } from 'react-router-dom';
-const Carousel = ({data,arrows=false,dots=true,children}) => {
-    console.log(children)
-   
-    const [[page,direction],setPage]=useState([0,0])
-    const pageIndex = wrap(0,children.length,page);
-    const secondPage = wrap(0,children.length,page+1);
-    const arrowsPaginate = newDirection =>{
-        setPage([page+newDirection,newDirection])
-    }
-    const dotsPaginate = dotIndex =>{
-        setPage([dotIndex,dotIndex<pageIndex?-1:1])
-    }
-    const itemVariants = {
-        enter: (direction) => {
-            return {
-              x: direction > 0 ? 100 : -100,
-              opacity: 0
-            };
-          },
-          center: {
-            // zIndex: 1,
-            x: 0,
-            opacity: 1
-          },
-          exit: (direction) => {
-            return {
-            //   zIndex: 0,
-              x: direction < 0 ? 100 : -100,
-              opacity: 0
-            };
-          }
-    }
-    const imageVariants ={
-        start:{
-            x: 20,
-            opacity:0,
-        },
-        done:{
-            x:0,
-            opacity:1,
+import rigthArrow from '../../../images/right-arrow.svg'
+
+const Carousel = ({children,cardWidth=150,cardGap=10,cardsToShow=5}) => {
+    const [itemsToShow,setItemsToShow] = useState(cardsToShow);
+    const itemsAmount = children.length;
+    const minItems = 1;
+    const wrapperRef = useRef();
+    const [carouselPosition,setCarouselPosition] = useState(0)
+    useEffect(()=>{
+        const temWidth = wrapperRef.current?.offsetWidth;
+        const wrapperWidth = itemsToShow*(cardWidth+cardGap)-cardGap;
+        if(temWidth<wrapperWidth){
+            const currentWidth = Math.max(Math.floor((temWidth-60)/(cardWidth+cardGap)),minItems);
+            console.log(temWidth,cardWidth)
+            console.log(Math.floor(temWidth/(cardWidth+cardGap)))
+            setItemsToShow(currentWidth)
+        }
+    },[])
+    const leftArrowHandler = ()=>{
+        if(carouselPosition>0){
+            setCarouselPosition(prev=>prev-(cardWidth+cardGap))
         }
     }
-    const infoVariants = {
-        hidden:{
-            x:-20,
-            opacity:0
-        },
-        visible:(index)=>{
-            return{
-                x:0,
-                opacity:1,
-                transition:{
-                    type: "spring", 
-                    stiffness: 300, 
-                    damping: 30,
-                    duration:1,
-                    delay:index*0.2
-                }
-            }
+    const rightArrowHandler = ()=>{
+        const tempTriger = (itemsAmount-itemsToShow)*(cardWidth+cardGap)
+        if(carouselPosition<tempTriger){
+            setCarouselPosition(prev=>prev+(cardWidth+cardGap))
         }
     }
     return (
-        <div className={styles.carousel}>
-                <div className={styles.container}>
-            <AnimatePresence initial={false} mode='wait' custom={direction}>
-                    <motion.div 
-                    key={page}
-                    custom={direction}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    variants={itemVariants}
-                    transition={{
-                        opacity: { duration: 0.2 },
-                        x: { type: "spring", stiffness: 300, damping: 30,duration:1},
-                        when:'beforeChildren'
+        <div ref={wrapperRef} className={styles.content}>
+            <button className={`${styles.arrow} ${styles.left}`}
+                onClick={leftArrowHandler}
+            >
+                <img src={rigthArrow} alt="right arrow" />
+            </button>
+            <div  className={styles.wrapper}
+                style={{
+                    width:`${itemsToShow*(cardWidth+cardGap)-cardGap}px`
+                }}
+            >
+                <div className={styles.carousel}
+                    style={{
+                        translate:`${-1*(carouselPosition)}px`,
+                        gap:`${cardGap}px`
                     }}
-                    className={styles.item}>
-                        
-                        {children[pageIndex]}
-                    </motion.div>
-                    
-            </AnimatePresence>
-            <AnimatePresence initial={false} mode='wait' custom={direction}>
-                    <motion.div 
-                    key={page}
-                    custom={direction}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    variants={itemVariants}
-                    transition={{
-                        opacity: { duration: 0.2 },
-                        x: { type: "spring", stiffness: 300, damping: 30,duration:1},
-                        when:'beforeChildren'
-                    }}
-                    className={styles.item}>
-                        
-                        {children[secondPage]}
-                    </motion.div>
-                    
-            </AnimatePresence>
-            </div>
-
-            <div onClick={()=>arrowsPaginate(-1)} className={styles.leftArrow}>&#60;</div>
-            <div onClick={()=>arrowsPaginate(1)} className={styles.rightArrow}>&#62;</div>
-            {
-                dots&&<div className={styles.dots_nav}>
-                    {data.map((_,index)=>
-                        <motion.div
-                        key={index}
-                        imate={{boxShadow:pageIndex===index?'0px 0px 0px 2px #1d2d44':'0px 0px 0px 2px transparent'}}
-                        className={`${styles.dot} ${pageIndex===index?styles.active:''}`}
-                        onClick={()=>dotsPaginate(index)}
-                    ></motion.div>
-                    )}
+                >
+                   {children.map((item,index)=><div key={index} className='item-wrapper' style={{width:cardWidth}}>
+                    {item}
+                   </div>)}
                 </div>
-            }
+            </div>
+            <button className={`${styles.arrow} ${styles.right}`}
+                onClick={rightArrowHandler}
+            >
+                <img src={rigthArrow} alt="right arrow" />
+            </button>
+            
             
         </div>
     );

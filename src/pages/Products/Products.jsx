@@ -24,25 +24,25 @@ const Products = () => {
       setCurrentPage(1)
     },[type,male])
 
-    const filterConfig = (name,filter,type='product')=>{
-      console.log(name,filter)
-      if(filter?.length===0){
-        const tempCopy = {...productsFilter};
-        delete tempCopy[name]
-        if(type==='product'){
-          setProductsFilter(tempCopy)
-        }else if(type==='model'){
-          setModelsFilter(tempCopy)
-        }
-      }else{
-          if(type==='product'){
-            setProductsFilter(p=>{return {...p,[name]:filter}})
-          }else if(type==='model'){
-            setModelsFilter(p=>{return {...p,[name]:filter}})
-          }
-      }
+    // const filterConfig = (name,filter,type='product')=>{
+    //   console.log(name,filter)
+    //   if(filter?.length===0){
+    //     const tempCopy = {...productsFilter};
+    //     delete tempCopy[name]
+    //     if(type==='product'){
+    //       setProductsFilter(tempCopy)
+    //     }else if(type==='model'){
+    //       setModelsFilter(tempCopy)
+    //     }
+    //   }else{
+    //       if(type==='product'){
+    //         setProductsFilter(p=>{return {...p,[name]:filter}})
+    //       }else if(type==='model'){
+    //         setModelsFilter(p=>{return {...p,[name]:filter}})
+    //       }
+    //   }
       
-    }
+    // }
     const [test,testLoading,testError] = useProducts(type,male,productsFilter,modelsFilter)
 
     return <div className={styles.products}>
@@ -58,27 +58,14 @@ const Products = () => {
                   loading={setProductsLoading} 
                   onChangeProductFilter={setProductsFilter} 
                   onChangeModelFilter={setModelsFilter}
-                  onChangeFilter = {filterConfig}
+                  onChangeFilter = {(product,model)=>{
+                    setProductsFilter(product)
+                    setModelsFilter(model)
+                  }}
                   />
               </div>
               <div className={styles.list}>
-                <button onClick={()=>{filterConfig('category',['Boat Shoes'])}}>
-                  Add
-                </button>
-                <br />
-                <button onClick={()=>{filterConfig('category',[])}}>
-                  Delete
-                </button>
-                <br />
-
-                <button onClick={()=>{filterConfig('category','Boat Shoes')}}>
-                  Add 2
-                </button>
-                <br />
-
-                <button onClick={()=>{filterConfig('category','')}}>
-                  Delete 2
-                </button>
+              
                     {/* {
                       (data.length==0)//перевірити ще раз цей код
                       ?<div className={styles.warning}>

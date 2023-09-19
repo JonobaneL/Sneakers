@@ -1,55 +1,219 @@
-.slider{
+@import '../../../styles/variables';
+
+.carousel{
     width: 100%;
     position: relative;
-    .next,.prev{
+    padding: 10px 80px 15px 80px;
+    .background{
+        width: 100%;
+        height: 100%;
         position: absolute;
-        background: none;
-        top: 30%;
-        font-size: 50px;
-        line-height: 40px;
-        cursor:pointer;
-    }
-    .next{
+        top: 0;
         right: 0;
-    }
-    .prev{
-        left: 0;
-    }
-    .dots_nav{
-        position: absolute;
-        bottom:0;
-        margin-inline: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        .dot{
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            background:"#a0a0a0";
-            box-shadow: "0px 0px 0px 3px rgba(0,0,0,0)"
-        }
+        object-fit: cover;
     }
     .content{
-        width: 100%;
-        .slide_item{
-            width: 100%;
-            
+        max-width: 1200px;
+        margin-inline: auto;
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows:auto 30px;
+        grid-template-areas:
+        "slide"
+        "dots";
+        .carousel_item{
+            display: flex;
+            height: fit-content;
+            align-self: center;
             .title{
-                font-size: 20px;
-                font-weight: 600;
-                
+                max-width: 600px;
+                align-self: center;
+                flex: 0 1 100%;
+                text-transform: uppercase;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                container-type:inline-size;
+                &__season{
+                    font-size: $fs-400;
+                    font-family: $ff-accent;
+                    font-weight: 500;
+                    padding-left: 30px;
+                    position: relative;
+                    color: $clr-accent;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        width: 25px;
+                        height: 2px;
+                        background: $clr-accent;
+                        left: 0;
+                        top: 50%;
+                    }
+                }
+                &__head{
+                    font-family: $ff-accent;
+                    color: transparent;
+                    font-weight: 800;
+                    -webkit-text-stroke: 2px $clr-primary;
+                    text-wrap:balance;
+                    letter-spacing: 2px;
+                    line-height: 100%;
+                    font-size: min(16cqi,90px);
+                }
+                &__description{
+                    font-size: min(4cqi,16px);
+                    color: $clr-accent;
+                    font-weight: 600;
+                    margin-top: 15px;
+                }
+                .discover{
+                    margin-top: 15px;
+                    width: 180px;
+                    height: 50px;
+                }
             }
-            .btn{
-                width: 160px;
-                height: 40px;
-                color:#3e5c86;
-                background: #fff;
-                border-radius:5px;
-                margin-top: 20px;
+            .image{
+                flex: 0 1 100%;
+                max-width: 600px;
+                display: flex;
+                align-items: center;
+                justify-content: right;
+                    img{
+                        width: 75%;
+                        max-width: 380px;
+                         transform: scaleX(-1) rotate(2deg);
+                     }
             }
         }
+        .dots_nav{
+            grid-area: dots;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            .dot{
+                width: 30px;
+                height: 30px;
+                border: 2px solid transparent;
+                border-radius:50%;
+                position: relative;
+                transition: all 0.5s;
+                &::before{
+                    content:'';
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background: $clr-accent;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                }
+                cursor: pointer;
+                &.active,&:hover{
+                    border: 2px solid $clr-primary;
+                    transition: all 0.5s;
+                    &::before{
+                        transition: all 0.5s;
+                        background: $clr-primary;
+                    }
+                }
+            }
+        }
+    }
+   
+}
+
+@media screen and (max-width:1140px) {
+    .carousel .content .carousel_item .title{
+        
+        .discover{
+            width: 160px;
+            height: 45px;
+        }
+    } 
+}
+@media screen and (max-width:768px) {
+    .carousel{
+        padding: 0 40px 10px 40px;
+        .content{
+            grid-template-rows: auto 20px;
+            .carousel_item .title{
+                &__season{
+                    padding-left: 23px;
+                    &::before{
+                        height: 1px;
+                        width:20px;
+                        transform: translateY(-50%);
+                    }
+                }
+            }
+            .dots_nav{
+                .dot{
+                    width: 20px;
+                    height: 20px;
+                    &::before{
+                        width: 5px;
+                        height: 5px;
+                    }
+                }
+            }
+        } 
+        
+    }
+}
+@media screen and (max-width:450px) {
+    .carousel{
+        padding: 10px 40px;
+        &::before{
+            display: none;
+        }
+        .content{
+            .carousel_item{
+                .title{
+                    margin-top:15px;
+                    margin-bottom: 20px;
+                    &__season{
+                        color: rgba($color: #fff, $alpha: 0.9);
+                        &::before{
+                            background: rgba($color: #fff, $alpha: 0.9);
+                        }
+                    }
+                    &__head{
+                        -webkit-text-stroke-color:#fff;
+                    }
+                    &__description{
+                        margin-top: 15px;
+                        color: #fff;
+                    }
+                    .discover{
+                        width: 150px;
+                        height: 40px;
+                    }
+                }
+                .image{
+                    display: none;
+                }
+            }
+            .dots_nav{
+                .dot{
+                   &.active,&:hover{
+                    border: 2px solid #fff;
+                    &::before{
+                        background:#fff;
+                    }
+                   }
+                    &::before{
+                        background:rgba($color: #fff, $alpha: 0.9)
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 375px) {
+    .carousel{
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
