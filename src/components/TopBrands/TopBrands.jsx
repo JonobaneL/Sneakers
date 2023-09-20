@@ -6,7 +6,7 @@ import newBalance from '../../images/brands/new-balance.png'
 import heyDude from '../../images/brands/hey-dude.png'
 import drMartens from '../../images/brands/dr.martens.png'
 import converse from '../../images/brands/converse.svg'
-import birkenstock from '../../images/brands/birkenstock1.png'
+import birkenstock from '../../images/brands/birkenstock.png'
 import Carousel from '../UI/carousel/Carousel';
 
 const TopBrands = () => {
