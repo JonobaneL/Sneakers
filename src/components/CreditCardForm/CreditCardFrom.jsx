@@ -1,8 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { normilizeDate, normilzeCardNumber } from '../../utils/normalizeMethods';
 import CInput from '../UI/input/CInput';
 import styles from './CreaditCardForm.module.scss'
+import { setCardInfo } from '../../redux/checkoutSlice';
 
-const CreditCardFrom = ({cardData,callback}) => {
+const CreditCardFrom = () => {
+    const dispatch = useDispatch();
+    const checkout = useSelector(state=>state.checkoutReducer)
     return (
         <div className={styles['card-form']}>
             <div className={styles.number}>
@@ -11,10 +15,10 @@ const CreditCardFrom = ({cardData,callback}) => {
                     placeholder="Card Number"
                     mode='fullBorder'
                     height={45}
-                    value={cardData.cartNumber}
+                    value={checkout?.card?.cardNumber||''}
                     onChange={e=>{
                         const {value} = e.target;
-                        e.target.value = normilzeCardNumber(value,number=>callback({...cardData,cartNumber:number}))
+                        e.target.value = normilzeCardNumber(value,number=>dispatch(setCardInfo({...checkout?.card,cardNumber:number})))
                     }}
                     />
             </div>
@@ -24,10 +28,10 @@ const CreditCardFrom = ({cardData,callback}) => {
                     placeholder="MM/YY"
                     mode='fullBorder'
                     height={45}
-                    value={cardData.date}
+                    value={checkout?.card?.date||''}
                     onChange={e=>{
                         const {value} = e.target;
-                        e.target.value = normilizeDate(value,date=>callback({...cardData,date:date}))
+                        e.target.value = normilizeDate(value,date=>dispatch(setCardInfo({...checkout?.card,date:date})))
                     }}
                     />
             </div>
@@ -37,9 +41,9 @@ const CreditCardFrom = ({cardData,callback}) => {
                     placeholder="CVV"
                     mode='fullBorder'
                     height={45}
-                    value={cardData.cvv}
+                    value={checkout?.card?.cvv||''}
                     maxLength="3"
-                    onChange={e=>callback({...cardData,cvv:e.target.value})}
+                    onChange={e=>dispatch(setCardInfo({...checkout?.card,cvv:e.target.value}))}
                     />
             </div>
         </div>

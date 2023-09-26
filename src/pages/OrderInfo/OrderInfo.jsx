@@ -51,14 +51,14 @@ const OrderInfo = () => {
                                     <p>{orderInfo.shipping.address}, {orderInfo.shipping.appartment}</p>
                                 :<p>{orderInfo.shipping?.postOffice}</p>
                                 }
-                                <p>{orderInfo.city}</p>
+                                <p>{orderInfo.city.name}</p>
                             </div>
                             <div className={styles.payment}>
                                 <h3>Payment</h3>
                                 <p>{orderInfo.paymentMethod}</p>
                                 {
-                                    orderInfo.card.cartNumber&&<div className={styles.card}>
-                                           <p>{orderInfo.card.cartNumber.match(/.{0,4}/g)?.join(' ')}</p>
+                                    orderInfo.card&&<div className={styles.card}>
+                                           <p>{orderInfo.card.cardNumber.match(/.{0,4}/g)?.join(' ')}</p>
                                            <p>{orderInfo.card.date}</p>
                                     </div>
                                 }

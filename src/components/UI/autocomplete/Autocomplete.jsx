@@ -5,7 +5,6 @@ import { findLocation } from '../../../utils/searchLocation';
 const Autocomplete = ({children,query,setQuery}) => {
     const [flag,setFlag] = useState(false);
     const locations = findLocation(query)
-    // console.log(locations)
     return (
         <div 
         className={styles.autocomplete} 
@@ -22,7 +21,7 @@ const Autocomplete = ({children,query,setQuery}) => {
                 key={item.id}
                 className={styles['options__item']}
                 onMouseDown={e=>{
-                  setQuery(item.name);
+                  setQuery(item);
                 }}
               >
                 {item.name}

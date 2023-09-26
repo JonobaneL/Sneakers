@@ -1,6 +1,10 @@
+import { useDispatch, useSelector } from 'react-redux';
 import CInput from '../UI/input/CInput';
 import styles from './CustomerAddressForm.module.scss'
-const CustomerAddressForm = ({address,onChange}) => {
+import { setOrderAddress } from '../../redux/checkoutSlice';
+const CustomerAddressForm = () => {
+    const dispatch = useDispatch();
+    const checkout = useSelector(state=>state.checkoutReducer)
     return (
         <div className={styles.addressForm}>
             <div className={styles.address}>
@@ -8,8 +12,8 @@ const CustomerAddressForm = ({address,onChange}) => {
                     mode='fullBorder' 
                     height={45} 
                     placeholder='Address*'
-                    value={address.address ||''}
-                    onChange={e=>onChange(current=>{return {...current,address:e.target.value}})}
+                    value={checkout?.shipping?.address||''}
+                    onChange={e=>dispatch(setOrderAddress({type:'address',value:e.target.value}))}
                 />
             </div>
             <div className={styles.apartment}>
@@ -18,8 +22,8 @@ const CustomerAddressForm = ({address,onChange}) => {
                     height={45}  
                     placeholder='Apartment*'
                     type='number'
-                    value={address.appartment || ''}
-                    onChange={e=>onChange(current=>{return {...current,appartment:e.target.value}})}
+                    value={checkout?.shipping?.appartment||''}
+                    onChange={e=>dispatch(setOrderAddress({type:'appartment',value:e.target.value}))}
                 />
             </div>
         </div>

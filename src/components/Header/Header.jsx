@@ -11,6 +11,7 @@ import { clearCartAction, fetchShoppingCart } from '../../redux/cartSlice';
 import { fetchFavorites } from '../../redux/favoritesSlice';
 import ButtomHeader from '../ButtomHeader/ButtomHeader';
 import { useAsync } from '../../hooks/useAsync';
+import { setOrderCity } from '../../redux/checkoutSlice';
 
 const Header = () => {
     const [helpDropMenu,setHelpDropMenu] = useState(false)
@@ -18,11 +19,14 @@ const Header = () => {
     const dispatch = useDispatch();
     const {currentUser,logout} = useAuth();
     const [,,userInfo] = useAsync(()=>getCurrentUser(currentUser?.uid||'s'),[currentUser],'firebase')
+
     useEffect(()=>{
         if(currentUser){
             dispatch(fetchShoppingCart(currentUser.uid))
             dispatch(fetchFavorites(currentUser.uid))
+            // dispatch(setOrderCity(userInfo?.city||{}))
         }
+
     },[currentUser])
     const handleLogout = async()=>{
         try{

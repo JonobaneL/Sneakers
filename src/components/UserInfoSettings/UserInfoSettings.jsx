@@ -89,7 +89,7 @@ const UserInfoSettings = () => {
                         City:
                     </div>
                     <div className={styles.input}>
-                        <Autocomplete data={locationResponse} query={city} setQuery={setCity}>
+                        <Autocomplete data={locationResponse} query={city} setQuery={(value)=>setCity(value.name)}>
                             <CInput 
                                 mode='fullBorder' 
                                 height={`${windowSize?'40':'50'}`}

@@ -45,7 +45,7 @@ const MethodsList = ({
                         if(!triger) methodHandler(item)
                     }}
                     >
-                <p className={styles['cart-number']}>{item.cartNumber.match(/.{0,4}/g)?.join(' ')}</p>
+                <p className={styles['cart-number']}>{item.cardNumber.match(/.{0,4}/g)?.join(' ')}</p>
                 <p className={styles.date}>{item.date}</p>
                 <span className={styles.cvv}>&#10033;&#10033;&#10033;</span>
                 {

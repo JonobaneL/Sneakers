@@ -4,12 +4,15 @@ import { popularCities } from '../../data/shipping-data';
 import CInput from '../UI/input/CInput';
 import Autocomplete from '../UI/autocomplete/Autocomplete';
 import Button from '../UI/button/Button';
+import { useDispatch } from 'react-redux';
+import { setOrderCity } from '../../redux/checkoutSlice';
 
-const CityForm = ({currentCity,setCity,applyCallback}) => {
+const CityForm = ({currentCity,applyCallback}) => {
     const [choosedCity,setChoosedCity] = useState(currentCity)
     const [query,setQuery] = useState(currentCity.name || '');
     const windowWidth = window.screen.availWidth<=425;
     const [isValid,setIsValid] = useState(true)
+    const dispatch = useDispatch()
     const popularLocatinHandler = (item)=>{
         if(item.id!==choosedCity.id) {
             setChoosedCity(item);
@@ -17,9 +20,12 @@ const CityForm = ({currentCity,setCity,applyCallback}) => {
         }
     }
     const applyButtonHandler = ()=>{
-        setCity(choosedCity);
-        console.log(choosedCity)
+        dispatch(setOrderCity(choosedCity))
         applyCallback();
+    }
+    const onChangeQuery = (city)=>{
+        setChoosedCity(city);
+        setQuery(city.name)
     }
     useEffect(()=>{
        if(choosedCity.id !== currentCity.id) setIsValid(false)
@@ -42,7 +48,7 @@ const CityForm = ({currentCity,setCity,applyCallback}) => {
             </div>
             <div className={styles['location-search']}>
                 <p className={styles['location-search__title']}>Specify the settlement of Ukraine</p>
-                <Autocomplete query={query} setQuery={setQuery} >
+                <Autocomplete query={query} setQuery={onChangeQuery} >
                     <CInput  
                         value={query} 
                         onChange={e=>setQuery(e.target.value)} 

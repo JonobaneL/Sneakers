@@ -98,7 +98,7 @@ const SignUp = () => {
                         />
                 </ValidationErrorMessages>
                 <ValidationErrorMessages durty={city.isDurty} errorMessages={city.currentErrors}>
-                    <Autocomplete data={locationResponse} query={city.value} setQuery={city.setValue} >
+                    <Autocomplete data={locationResponse} query={city.value} setQuery={(value)=>city.setValue(value.name)} >
                         <CInput  
                             value={city.value} 
                             onChange={e=>city.onChange(e)} 

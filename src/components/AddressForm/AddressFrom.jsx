@@ -14,7 +14,7 @@ const AddressFrom = ({city,userID,closeHandler,triger}) => {
     const address = useInput('',{isEmpty:true},{isEmpty:'Please enter your address'})
     const appartment = useInput('',{isEmpty:true},{isEmpty:'Please enter your appartment'})
     const [company,setCompany] = useState('');
-    const currentCity = findLocation(city);
+    const currentCity = findLocation(city.name);
     const postalOffices = getPostOffice(currentCity[0].id,company);
     const [postalOffice,setPostalOffice] = useState('')
     const [tabIndex,setTabIndex] = useState(0);

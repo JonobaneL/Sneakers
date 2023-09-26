@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+
+.shipping{
+    .city{
+        width: 100%;
+        height: 60px;
+        border: 1px solid #b0b0b0;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        gap:10px;
+        margin: 15px 0;
+        cursor:pointer;
+        transition: all 0.2s;
+        &:hover{
+            background: rgba(236, 236, 236, 0.45);
+            transition: all 0.2s;
+        }
+        &__name{
+            flex:1 1 100%;
+            font-size: max($fs-300,13px);
+            font-weight: 500;
+            color: rgba($color: $clr-text, $alpha: 0.8);
+            .city__current{
+                margin-left:5px;
+                font-weight: 600;
+                font-size: min($fs-400,15px);
+            }
+        }
+        &__pointIcon{
+            width: 25px;
+        }
+        &__arrow{
+            background:none;
+            img{
+                width: 20px;
+            }
+        }
+        
+    }
+    .option-wrapper{
+        overflow: visible;
+    }
+}

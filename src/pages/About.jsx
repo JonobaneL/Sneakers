@@ -5,38 +5,25 @@ import { useAsync } from '../hooks/useAsync';
 import useAllProducts from '../hooks/useAllProducts';
 import { useProducts } from '../hooks/useProducts';
 import Carousel from '../components/UI/carousel/Carousel';
+import { getCurrentUser } from '../firebase/fireAuthAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetOrder, setOrderDate } from '../redux/checkoutSlice';
 const About = () => {
     const [option,setOption] = useState(0)
-    const [itemsToShow,setItemsToShow] = useState(6);
-    const itemsAmount = 12;
-    const cardWidth = 150;
-    const cardGap = 10;
-    const minItems = 1;
-    const wrapperRef = useRef();
-    const [carouselPosition,setCarouselPosition] = useState(0)
-    console.log(carouselPosition)
-    useEffect(()=>{
-        const temWidth = wrapperRef.current?.offsetWidth;
-        const wrapperWidth = itemsToShow*(cardWidth+cardGap)-cardGap;
-        if(temWidth<wrapperWidth){
-            const currentWidth = Math.max(Math.floor(temWidth/(cardWidth+cardGap)),minItems);
-            console.log(temWidth,cardWidth)
-            console.log(Math.floor(temWidth/(cardWidth+cardGap)))
-            setItemsToShow(currentWidth)
-        }
-    },[])
-    const leftArrowHandler = ()=>{
-        if(carouselPosition>0){
-            setCarouselPosition(prev=>prev-(cardWidth+cardGap))
+    const dispatch = useDispatch();
+    const checkout = useSelector(state=>state.checkoutReducer);
+    console.log(checkout)
+    const handler = async (uid)=>{
+        try{
+            const userResponse = await getCurrentUser('EOmwDcL6GUWJuwxApsj2oeylk2r1')
+            console.log(userResponse.data())
+            if(!userResponse.data()){
+                throw new Error('');
+            }
+        }catch(err){
+            console.log(err);
         }
     }
-    const rightArrowHandler = ()=>{
-        const tempTriger = (itemsAmount-itemsToShow)*(cardWidth+cardGap)
-        if(carouselPosition<tempTriger){
-            setCarouselPosition(prev=>prev+(cardWidth+cardGap))
-        }
-    }
-
     return <div className={styles.about}>
         <div className={styles.content} >
            
@@ -45,79 +32,27 @@ const About = () => {
             <button 
                 className={styles.btn}
                 onClick={()=>{
-                    console.log(wrapperRef.current?.offsetWidth )
+                    dispatch(setOrderDate({
+                        sortDate:'12/2023',
+                        date:'23/12/2023'   
+                    }))
                 }}
             >Settings</button>
-            <button 
-                className={styles.btn}
-                onClick={()=>{
-                    
-                }}
-            >Prev</button>
-            <button 
-                className={styles.btn}
-                onClick={()=>{
-                   
-                }}
-            >Next</button>
             <br />
-                {/* <div className={styles["popular-brands"]}>
-                    <div ref={wrapperRef} className={styles.content}>
-                        <button className={`${styles.arrow} ${styles.left}`}
-                            onClick={leftArrowHandler}
-                        >
-                            <img src={rigthArrow} alt="right arrow" />
-                        </button>
-                        <div  className={styles.wrapper}
-                            style={{
-                                width:`${itemsToShow*(cardWidth+cardGap)-cardGap}px`
-                            }}
-                        >
-                            <div className={styles.carousel}
-                                style={{
-                                    translate:`${-1*(carouselPosition)}px`
-                                }}
-                            >
-                                <div className={styles.brand}>1</div>
-                                <div className={styles.brand}>2</div>
-                                <div className={styles.brand}>3</div>
-                                <div className={styles.brand}>4</div>
-                                <div className={styles.brand}>5</div>
-                                <div className={styles.brand}>6</div>
-                                <div className={styles.brand}>7</div>
-                                <div className={styles.brand}>8</div>
-                                <div className={styles.brand}>9</div>
-                                <div className={styles.brand}>10</div>
-                                <div className={styles.brand}>11</div>
-                                <div className={styles.brand}>12</div>
-                            </div>
-                        </div>
-                        <button className={`${styles.arrow} ${styles.right}`}
-                            onClick={rightArrowHandler}
-                        >
-                            <img src={rigthArrow} alt="right arrow" />
-                        </button>
-                        
-                        
-                    </div>
-                </div> */}
+            <br />
+            <br />
+             <button 
+                className={styles.btn}
+                onClick={()=>{
+                    dispatch(resetOrder())
+                }}
+            >Reset</button>
+           
+           
                 <br />
             <br />
             <br />
-            <Carousel>
-                <div className={styles.brand}>1</div>
-                <div className={styles.brand}>2</div>
-                <div className={styles.brand}>3</div>
-                <div className={styles.brand}>4</div>
-                <div className={styles.brand}>5</div>
-                <div className={styles.brand}>6</div>
-                <div className={styles.brand}>7</div>
-                <div className={styles.brand}>8</div>
-                <div className={styles.brand}>9</div>
-                <div className={styles.brand}>10</div>
-                <div className={styles.brand}>11</div>
-                <div className={styles.brand}>12</div>
-            </Carousel>
+            
         </div>
     </div>;
 }

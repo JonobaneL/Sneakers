@@ -8,7 +8,7 @@ import { addPaymentMethod } from '../../firebase/userFirebaseAPI';
 import { normilizeDate,normilzeCardNumber } from '../../utils/normalizeMethods';
 
 const PaymentMethods = ({userID,closeHandler,triger}) => {
-    const cartNumber = useInput('',{isEmpty:true,minLength:16},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
+    const cardNumber = useInput('',{isEmpty:true,minLength:16},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
     const date = useInput('',{isEmpty:true,minLength:5},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
     const cvvNumber = useInput('',{isEmpty:true,minLength:3},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
     const saveHandler = async()=>{
@@ -17,7 +17,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
                 uid:userID,
                 method:{
                     methodID: `method${Date.now()}`,
-                    cartNumber:cartNumber.value.replace(/\s/g,''),
+                    cardNumber:cardNumber.value.replace(/\s/g,''),
                     date:date.value,
                     cvv:cvvNumber.value,
                 }
@@ -34,7 +34,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
     }
     return (
         <div className={styles['payment-methods']}>
-            <ValidationErrorMessages durty={cartNumber.isDurty} errorMessages={cartNumber.currentErrors}>
+            <ValidationErrorMessages durty={cardNumber.isDurty} errorMessages={cardNumber.currentErrors}>
                 <CInput 
                     mode='fullBorder'
                     height='50' 
@@ -42,10 +42,10 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
                     maxLength="20"
                     onChange={e=>{
                         const {value} = e.target;
-                        e.target.value = normilzeCardNumber(value,cartNumber.setValue)
+                        e.target.value = normilzeCardNumber(value,cardNumber.setValue)
                     }}
-                    onBlur={e=>cartNumber.onBlur(e)}
-                    valid={cartNumber.isDurty && cartNumber.currentErrors.length>0}
+                    onBlur={e=>cardNumber.onBlur(e)}
+                    valid={cardNumber.isDurty && cardNumber.currentErrors.length>0}
                 />
             </ValidationErrorMessages>
             <ValidationErrorMessages durty={date.isDurty} errorMessages={date.currentErrors}>
@@ -82,7 +82,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
                     width='140px'
                     height='45px'
                     onClick={saveHandler}
-                    disabled={isFormValid([cartNumber.isValid,date.isValid,cvvNumber.isValid])}
+                    disabled={isFormValid([cardNumber.isValid,date.isValid,cvvNumber.isValid])}
                 >Save</Button>
             </div>
         </div>
