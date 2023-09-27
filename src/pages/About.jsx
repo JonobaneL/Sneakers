@@ -8,22 +8,17 @@ import Carousel from '../components/UI/carousel/Carousel';
 import { getCurrentUser } from '../firebase/fireAuthAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetOrder, setOrderDate } from '../redux/checkoutSlice';
+import { useLoaderData } from 'react-router-dom';
+
+export const aboutLoader = async()=>{
+    const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    return res.json();
+}
+
+
 const About = () => {
     const [option,setOption] = useState(0)
-    const dispatch = useDispatch();
-    const checkout = useSelector(state=>state.checkoutReducer);
-    console.log(checkout)
-    const handler = async (uid)=>{
-        try{
-            const userResponse = await getCurrentUser('EOmwDcL6GUWJuwxApsj2oeylk2r1')
-            console.log(userResponse.data())
-            if(!userResponse.data()){
-                throw new Error('');
-            }
-        }catch(err){
-            console.log(err);
-        }
-    }
+    const test = useLoaderData()
     return <div className={styles.about}>
         <div className={styles.content} >
            
@@ -32,22 +27,14 @@ const About = () => {
             <button 
                 className={styles.btn}
                 onClick={()=>{
-                    dispatch(setOrderDate({
-                        sortDate:'12/2023',
-                        date:'23/12/2023'   
-                    }))
+                   console.log('click')
                 }}
             >Settings</button>
             <br />
             <br />
             <br />
-             <button 
-                className={styles.btn}
-                onClick={()=>{
-                    dispatch(resetOrder())
-                }}
-            >Reset</button>
-           
+                <h1>{test.title}</h1>
+                <h1>{test.completed}</h1>
            
                 <br />
             <br />

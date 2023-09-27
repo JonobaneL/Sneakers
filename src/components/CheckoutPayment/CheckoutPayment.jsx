@@ -8,12 +8,16 @@ import PayPalIcon from '../../images/PayPal-icon.svg'
 import { useDispatch } from 'react-redux';
 import { setCardInfo, setOrderPaymentMethod } from '../../redux/checkoutSlice';
 
-const CheckoutPayment=({user})=> {
+const CheckoutPayment=({user,validation,validationTirger})=> {
     const [cardUse,setCardUse] = useState(false);
     const dispatch = useDispatch();
   return (
     <div className={styles.payment}>
-        <h2 className={styles['section-title']}>Payment</h2>
+        <div className={styles['section-title']}>
+            <h2>Payment</h2>
+            {validation.includes('payment')&&validationTirger?<span className={styles['validation-message']}>Choose payment method</span>:''}
+            {validation.includes('card')&&validationTirger?<span className={styles['validation-message']}>Enter your card details</span>:''}
+        </div>
         <RadioList list={[
                 {id:'upon-receipt',label:'Payment upon receipt of goods',value:'Payment upon receipt of goods'},
                 {id:'by-card',label:'Credit or Debit Card',value:'Credit or Debit Card'},
@@ -45,7 +49,7 @@ const CheckoutPayment=({user})=> {
                         </div>
                     </>
                     :<><div className={`${styles['card-form']} ${cardUse?styles.active:''}`}>
-                            <CreditCardFrom card />
+                            <CreditCardFrom />
                         </div>
                         {
                             user&&<div className={styles["button-bar"]}>

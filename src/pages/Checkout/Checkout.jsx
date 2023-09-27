@@ -26,13 +26,19 @@ const Checkout = () => {
     const firstName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const lastName = useInput('',{isEmpty:true},{isEmpty:'Please enter your first name'})
     const email = useInput('',{isEmpty:true,isEmail:true},{isEmpty:'Please enter a valid email address',isEmail:'Please enter a valid email address'})
-    const phoneNumber = useInput('',{isEmpty:true},{isEmpty:'Please enter your phone number'})
+    const phoneNumber = useInput('',{isEmpty:true,minLength:12,maxLength:12},{isEmpty:'Please enter your phone number',minLength:'Please enter your phone number'})
     const cart = useSelector(state=>state.cartReducer);
     const checkout = useSelector(state=>state.checkoutReducer);
     const [isOrderLoading,setIsOrderLoading]= useState(false);
+    const [validationTriger,setValidationTriger] = useState(false)
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const orderValidation = checkCheckout([firstName.isValid,lastName.isValid,email.isValid,phoneNumber.isValid]);
     const orderHandler= async() =>{
+        if(orderValidation[orderValidation.length-1]){
+            setValidationTriger(true);
+            return
+        }
         const orderDate = new Date()
         const orderID = currentUser?`U${Date.now()}`:`A${Date.now()}`
         try{
@@ -100,14 +106,14 @@ const Checkout = () => {
                     <h2 className={styles['section-title']}>Customer</h2>
                     <CheckoutCustomer firstName={firstName} lastName={lastName} email={email} phoneNumber={phoneNumber} />
                 </div>
-                <CheckoutShipping user={userInfo}/>
-                <CheckoutPayment user={userInfo}/>
+                <CheckoutShipping user={userInfo} validation={orderValidation} validationTirger={validationTriger}/>
+                <CheckoutPayment user={userInfo} validation={orderValidation} validationTirger={validationTriger}/>
                 <div className={styles["button-bar"]}>
                     <Button
                         mode='primary'
                         width='160px'
                         height='45px'
-                        disabled={checkCheckout([isOrderLoading,firstName.isValid,lastName.isValid,email.isValid,phoneNumber.isValid])}
+                        disabled={isOrderLoading}
                         onClick={orderHandler}
                     >Place Order</Button>
                 </div>

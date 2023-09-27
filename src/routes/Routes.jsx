@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import {Navigate, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
-import About from '../pages/About';
+import About, { aboutLoader } from '../pages/About';
 // import ProductDetails from '../pages/ProductDetails/ProductDetails';
 import ShoppingCart from '../pages/ShoppingCart/ShoppingCart';
 // import Products from '../pages/Products/Products';
@@ -43,8 +43,10 @@ const StoreRoutes = () => {
         <Suspense fallback={<div className='page-loader'><Loader/></div>}>
             <Routes>
                 <Route path='/' element={<Home/>}/>
-                <Route path='/about' element={<About/>}/>
-                <Route path='/product/:id/:modelId' element={<ProductDetails/>}/>
+                <Route path='/about' element={<About/>} loader={aboutLoader}/>
+                <Route path='/product/:id/:modelId' element={<ProductDetails/>} loader={async()=>{
+                    return await fetch('https://jsonplaceholder.typicode.com/todos/1')
+                }}/>
                 <Route path='/shopping-cart' element={<ShoppingCart/>}/>
                 <Route path='/:type' element={<Products/>}/>
                 <Route path='/:type/:male' element={<Products/>}/>

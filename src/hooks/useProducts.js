@@ -9,6 +9,7 @@ export const useProducts = (type,male,productsFilter={},modelsFilter={})=>{
 
     const productsQuery = useGenerateQuery('products',productsFilter);
     const modelsQuery = useGenerateQuery('products_models',modelsFilter);
+    console.log('useProducs',productsFilter)
     const productsTriger = Object.keys(productsFilter).length
     const modelsTriger = Object.keys(modelsFilter).length
     const getEvent = useCallback(()=>{

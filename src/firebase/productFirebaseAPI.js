@@ -57,21 +57,18 @@ export const getAllProductsModels = (
     )=>{
     if(type==='all' && male==='all'){
         return getDocs(query(
-            // collection(firebaseDB,'products_models')
             filter
         ));
     }
     
     if(male){
         return getDocs(query(
-            // collection(firebaseDB,'products_models'),
             filter,
             where('type','==',type),
             where('male','==',male)
         ));
     }else{
         return getDocs(query(
-            // collection(firebaseDB,'products_models'),
             filter,
             where('type','==',type),
         ));
@@ -88,9 +85,7 @@ export const updateProductAmount = (modelID,sizes)=>{
         sizes:sizes
     })
 }
-// export const getFilteredProduct = (id,filter)=>{
-//     return get
-// }
+
 
 export const expGetProducts = (type,male,filter)=>{
     if(type==='all' && male==='all'){
@@ -99,16 +94,16 @@ export const expGetProducts = (type,male,filter)=>{
         ));
     }
     
-    if(male!=='all'){
+    if(male=='all' || !male){
         return getDocs(query(
             filter,
             where('type','==',type),
-            where('male','==',male)
         ));
     }else{
         return getDocs(query(
             filter,
             where('type','==',type),
+            where('male','==',male)
         ));
     }
 }

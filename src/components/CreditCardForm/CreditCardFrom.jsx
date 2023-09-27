@@ -17,7 +17,7 @@ const CreditCardFrom = () => {
                     height={45}
                     value={checkout?.card?.cardNumber||''}
                     onChange={e=>{
-                        const {value} = e.target;
+                        const value = e.target.value.replace(/[^0-9]/gi, '')
                         e.target.value = normilzeCardNumber(value,number=>dispatch(setCardInfo({...checkout?.card,cardNumber:number})))
                     }}
                     />
@@ -43,7 +43,10 @@ const CreditCardFrom = () => {
                     height={45}
                     value={checkout?.card?.cvv||''}
                     maxLength="3"
-                    onChange={e=>dispatch(setCardInfo({...checkout?.card,cvv:e.target.value}))}
+                    onChange={e=>{
+                        const value = e.target.value.replace(/[^0-9]/gi, '')
+                        dispatch(setCardInfo({...checkout?.card,cvv:value}))
+                    }}
                     />
             </div>
         </div>

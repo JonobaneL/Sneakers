@@ -77,9 +77,11 @@ const UserInfoSettings = () => {
                             value={phoneNumber.value}
                             onChange={(e)=>{
                                 const number = formatPhoneNumber(e.target.value)
+                                console.log(number)
                                 phoneNumber.setValue(number)
                             }}  
                             onBlur={ e => phoneNumber.onBlur(e)}
+                            onFocus={()=>console.log('sdfjkdf')}
                             valid={phoneNumber.isDurty && phoneNumber.currentErrors.length>0}
                         />
                     </div>

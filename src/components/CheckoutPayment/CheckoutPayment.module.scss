@@ -2,9 +2,17 @@
 
 .payment{
     .section-title{
-        margin-bottom: 10px;
-        color:$clr-primary;
-        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        h2{
+            margin-bottom: 10px;
+            color:$clr-primary;
+            font-weight: 500;
+        }
+        .validation-message{
+            color:#CF000F;
+            font-weight: 500;
+        }
     }
     .list{
         max-width: 500px;

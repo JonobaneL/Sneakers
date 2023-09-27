@@ -17,7 +17,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
                 uid:userID,
                 method:{
                     methodID: `method${Date.now()}`,
-                    cardNumber:cardNumber.value.replace(/\s/g,''),
+                    cardNumber:cardNumber.value,
                     date:date.value,
                     cvv:cvvNumber.value,
                 }

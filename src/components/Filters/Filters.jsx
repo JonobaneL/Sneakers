@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from './Filters.module.scss'
 import Select from "../UI/select/Select";
 import Accordion from "../UI/accordion/Accordion";
@@ -65,18 +65,25 @@ const Filters = ({setData,loading,productsLength,onChangeProductFilter,onChangeM
     const [productsFilter,setProductsFilter]= useState({})
     const [modelsFilter,setModelsFilter]= useState({})
     useEffect(()=>{
-        console.log(productsFilter)
-        console.log(modelsFilter)
-        onChangeFilter(productsFilter,modelsFilter)
+        // console.log(productsFilter)
+        // console.log(modelsFilter)
+        // console.log('Filters catgory',productsFilter)
+        onChangeFilter({
+            category:categoryFilters[0],
+            sub_category:categoryFilters[1],
+            // brand:brandFilters,
+        },{})
     },[productsFilter,modelsFilter])
     const filterConfig = (name,filter,type='product')=>{
-        console.log(name,filter)
+        // console.log(name,filter)
         if(filter?.length===0){
-          const tempCopy = {...productsFilter};
-          delete tempCopy[name]
           if(type==='product'){
+            const tempCopy = {...productsFilter};
+            delete tempCopy[name]
             setProductsFilter(tempCopy)
           }else if(type==='model'){
+            const tempCopy = {...productsFilter};
+            delete tempCopy[name]
             setModelsFilter(tempCopy)
           }
         }else{
@@ -167,19 +174,18 @@ const Filters = ({setData,loading,productsLength,onChangeProductFilter,onChangeM
                         >
                             <DropDownList 
                                 handler={value=>{
+                                    // console.log('drop value',value)
                                     setCategoryFilters(value)
-                                    console.log('drop value',value)
-                                    if(value.length==0){
-                                        filterConfig('category',[],'product')
-                                        filterConfig('sub_category',[],'product')
-                                    }else{
-                                        // filterConfig('category',false,'product')
-                                        filterConfig('category',value[0],'product')
-                                    }
-
-                                    if(value?.length>1){
-                                        filterConfig('sub_category',value[1],'product')
-                                    }
+                                    // if(value.length==0){
+                                    //     filterConfig('category',[],'product')
+                                    //     console.log('onClick',productsFilter)
+                                    //     filterConfig('sub_category',[],'product')
+                                    // }else if(value.length===1){
+                                    //     filterConfig('category',value[0],'product')
+                                    // }else{
+                                    //     filterConfig('category',value[0],'product')
+                                    //     filterConfig('sub_category',value[1],'product')
+                                    // }
                                 }}
                                 data={categories}
                                 seleted={categoryFilters}

@@ -7,6 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 import LogInForm from '../LogInForm/LogInForm'
 import { getCurrentUser } from '../../firebase/fireAuthAPI';
 import Loader from '../UI/loader/Loader';
+import { formatPhoneNumber } from '../../utils/formatPhoneNumber';
 
 const CheckoutCustomer = memo(({firstName,lastName,email,phoneNumber}) => {
     const {currentUser} = useAuth();
@@ -20,7 +21,8 @@ const CheckoutCustomer = memo(({firstName,lastName,email,phoneNumber}) => {
             firstName.setValue(response.data().firstName)
             lastName.setValue(response.data().lastName)
             email.setValue(currentUser.email)
-            phoneNumber.setValue(response.data().phone || '')
+            const number = formatPhoneNumber(response.data().phone)
+            phoneNumber.setValue(number)
             setIsLoading(false)
         }
         catch(err){
@@ -82,13 +84,16 @@ const CheckoutCustomer = memo(({firstName,lastName,email,phoneNumber}) => {
                         <ValidationErrorMessages durty={phoneNumber.isDurty} errorMessages={phoneNumber.currentErrors}>
                             <CInput 
                                 value={phoneNumber.value} 
-                                onChange={e=>phoneNumber.onChange(e)} 
+                                onChange={e=>{
+                                    const number = formatPhoneNumber(e.target.value)
+                                    phoneNumber.setValue(number)
+                                    }} 
                                 onBlur={e=>phoneNumber.onBlur(e)} 
                                 placeholder='Phone number*' 
-                                type='tel' 
                                 mode='fullBorder'
                                 height={50} 
-                                valid={phoneNumber.isValid==false && phoneNumber.isDurty}/>
+                                valid={phoneNumber.isValid==false && phoneNumber.isDurty}
+                                />
                         </ValidationErrorMessages>
                     </div>
                 </div>
@@ -142,7 +147,10 @@ const CheckoutCustomer = memo(({firstName,lastName,email,phoneNumber}) => {
                             <ValidationErrorMessages durty={phoneNumber.isDurty} errorMessages={phoneNumber.currentErrors}>
                                 <CInput 
                                     value={phoneNumber.value} 
-                                    onChange={e=>phoneNumber.onChange(e)} 
+                                    onChange={e=>{
+                                        const number = formatPhoneNumber(e.target.value)
+                                        phoneNumber.setValue(number)
+                                    }} 
                                     onBlur={e=>phoneNumber.onBlur(e)} 
                                     placeholder='Phone number*' 
                                     type='tel' 

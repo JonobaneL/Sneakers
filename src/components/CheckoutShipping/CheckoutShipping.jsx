@@ -6,13 +6,16 @@ import AddressesList from '../AddressesList/AddressesList'
 import { useDispatch, useSelector } from 'react-redux'
 import { setOrderShipping } from '../../redux/checkoutSlice'
 
-const CheckoutShipping=({user})=> {
+const CheckoutShipping=({user,validation,validationTirger})=> {
     const [addressUse,setAddressUse] = useState(false);
     const dispatch = useDispatch();
     const checkout = useSelector(state=>state.checkoutReducer)
   return (
     <div className={styles.shipping}>
-        <h2 className={styles['section-title']}>Shipping</h2>
+        <div className={styles['section-title']}>
+            <h2>Shipping</h2>
+            {validation.includes('shipping')&&validationTirger?<span className={styles['validation-message']}>Choose shipping method</span>:''}
+        </div>
         {
             (user?.delivery_addresses?.length>0 && !addressUse)?<>
                 <div>
@@ -42,7 +45,10 @@ const CheckoutShipping=({user})=> {
                             mode='secondary'
                             width='140px'
                             height='45px' 
-                            onClick={()=>setAddressUse(false)}   
+                            onClick={()=>{
+                                setAddressUse(false)
+                                dispatch(setOrderShipping(null))
+                            }}   
                         >Cancel</Button>
                     </div>
                 }
