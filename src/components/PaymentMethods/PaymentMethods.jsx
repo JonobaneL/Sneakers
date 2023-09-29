@@ -8,9 +8,9 @@ import { addPaymentMethod } from '../../firebase/userFirebaseAPI';
 import { normilizeDate,normilzeCardNumber } from '../../utils/normalizeMethods';
 
 const PaymentMethods = ({userID,closeHandler,triger}) => {
-    const cardNumber = useInput('',{isEmpty:true,minLength:16},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
-    const date = useInput('',{isEmpty:true,minLength:5},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
-    const cvvNumber = useInput('',{isEmpty:true,minLength:3},{isEmpty:'Please enter card number.',minLength:'Please enter card number.'})
+    const cardNumber = useInput('',{isEmpty:true,minLength:16},{isEmpty:'Please enter card number',minLength:'Please enter the card number in full'})
+    const date = useInput('',{isEmpty:true,minLength:5},{isEmpty:'Please enter date',minLength:'Please enter the date in full'})
+    const cvvNumber = useInput('',{isEmpty:true,minLength:3},{isEmpty:'Please enter cvv code',minLength:'Please enter the cvv code in full'})
     const saveHandler = async()=>{
         try{
             await addPaymentMethod({
@@ -41,7 +41,7 @@ const PaymentMethods = ({userID,closeHandler,triger}) => {
                     placeholder='Cart Number'
                     maxLength="20"
                     onChange={e=>{
-                        const {value} = e.target;
+                        const value = e.target.value.replace(/[^0-9]/gi, '')
                         e.target.value = normilzeCardNumber(value,cardNumber.setValue)
                     }}
                     onBlur={e=>cardNumber.onBlur(e)}

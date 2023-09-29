@@ -18,12 +18,14 @@ const Products = () => {
     const titleEvent = ()=>{
         return `${!male?'':male!=='kids'?`${male}'s`:`${male}'`} ${type}`
     }
-    const [productsFilter,setProductsFilter]= useState({})
+    const [productsFilter,setProductsFilter]= useState({
+      category:'Boots',
+      sub_category:'Chelsea Boots'
+    })
     const [modelsFilter,setModelsFilter]= useState({})
     useEffect(()=>{
       setCurrentPage(1)
     },[type,male])
-
     // const filterConfig = (name,filter,type='product')=>{
     //   console.log(name,filter)
     //   if(filter?.length===0){
@@ -65,7 +67,11 @@ const Products = () => {
                   />
               </div>
               <div className={styles.list}>
-              
+                  <button
+                  onClick={()=>{
+                    setProductsFilter(p=>{return {...p,sub_category:''}})
+                  }}
+                  >delete</button>
                     {/* {
                       (data.length==0)//перевірити ще раз цей код
                       ?<div className={styles.warning}>

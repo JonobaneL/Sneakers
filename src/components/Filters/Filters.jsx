@@ -68,11 +68,10 @@ const Filters = ({setData,loading,productsLength,onChangeProductFilter,onChangeM
         // console.log(productsFilter)
         // console.log(modelsFilter)
         // console.log('Filters catgory',productsFilter)
-        onChangeFilter({
-            category:categoryFilters[0],
-            sub_category:categoryFilters[1],
-            // brand:brandFilters,
-        },{})
+        // onChangeFilter({
+        //     category:categoryFilters[0],
+        //     sub_category:categoryFilters[1],
+        // },{})
     },[productsFilter,modelsFilter])
     const filterConfig = (name,filter,type='product')=>{
         // console.log(name,filter)
