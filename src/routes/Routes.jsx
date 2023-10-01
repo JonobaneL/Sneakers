@@ -2,24 +2,9 @@ import React, { Suspense, lazy } from 'react';
 import {Navigate, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import About, { aboutLoader } from '../pages/About';
-// import ProductDetails from '../pages/ProductDetails/ProductDetails';
 import ShoppingCart from '../pages/ShoppingCart/ShoppingCart';
-// import Products from '../pages/Products/Products';
-// import Checkout from "../pages/Checkout/Checkout";
-// import ShippingReturns from "../pages/Help/ShippingReturns/ShippingReturns";
-// import ContactUs from "../pages/Help/ContactUs/ContactUs";
-// import PrivacyPolicy from "../pages/Help/PrivacyPolicy/PrivacyPolicy";
-// import SignUp  from "../pages/SignUp/SignUp";
-// import LogIn from "../pages/LogIn/LogIn";
-// import UserProfile from "../pages/UserProfile/UserProfile";
 import RequireAuth from './PrivateRoute';
-// import PasswordReset from '../pages/PasswordReset/PasswordReset';
-// import UserInfo from '../components/UserInfo/UserInfo';
-// import Favorites from '../components/Favorites/Favorites';
 import UserInfoSettings from '../components/UserInfoSettings/UserInfoSettings';
-// import OrderInfo from '../pages/OrderInfo/OrderInfo';
-// import UserOrders from '../components/UserOrders/UserOrders';
-// import UserOrder from '../components/UserOrder/UserOrder';
 import Loader from '../components/UI/loader/Loader';
 
 const Products = lazy(()=>import('../pages/Products/Products'))

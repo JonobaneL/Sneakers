@@ -19,3 +19,4 @@ export const shoesColor = [,
     {id:20,name: 'Metallic', color:'linear-gradient(135deg, rgb(246, 240, 221) 0%, rgb(34, 31, 26) 100%)'},
     {id:21,name: 'Silver', color:'linear-gradient(318.08deg,#c4c4c4 4.84%,rgba(196,196,196,0) 100%)'},
 ]
+//done
