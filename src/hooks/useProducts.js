@@ -6,32 +6,26 @@ import {
   getAllProductsModels,
   getProductModels,
 } from "../firebase/productFirebaseAPI";
-
-export const useProducts = (
-  type,
-  male,
-  productsFilter = {},
-  modelsFilter = {}
-) => {
-  const [isLoading, setIsLoading] = useState(true);
+import { onSnapshot } from "firebase/firestore";
+export const useProducts = (type, male, productsFilter, modelsFilter) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [products, setProducts] = useState([]);
 
-  const productsQuery = useGenerateQuery("products", productsFilter);
-  const modelsQuery = useGenerateQuery("products_models", modelsFilter);
+  // const productsQuery = useGenerateQuery("products", productsFilter);
+  // const modelsQuery = useGenerateQuery("products_models", modelsFilter);
   const productsTriger = Object.keys(productsFilter).length;
-  console.log(productsTriger);
-  const test = { name: "er", age: 23 };
-
   const modelsTriger = Object.keys(modelsFilter).length;
+  console.log(productsFilter);
+  console.log("products", products);
   const getEvent = useCallback(() => {
+    const productsQuery = useGenerateQuery("products", productsFilter);
+    const modelsQuery = useGenerateQuery("products_models", modelsFilter);
     setIsLoading(true);
     setError(undefined);
     setProducts([]);
-
     expGetProducts(type, male, productsQuery)
       .then((productsResponse) => {
-        console.log("query");
         const tempProducts = [];
         productsResponse.forEach((item) =>
           tempProducts.push({ id: item.id, ...item.data() })
@@ -39,15 +33,21 @@ export const useProducts = (
         return tempProducts;
       })
       .then((productsResponse) => {
+        console.log("product response", productsResponse);
+
         productsResponse.forEach((product) => {
           expGetModels(product.id, modelsQuery)
             .then((modelsRespone) => {
+              const tempModels = [];
               modelsRespone.forEach((item) => {
-                setProducts((p) => [
-                  ...p,
-                  { modelID: item.id, ...item.data(), ...product },
-                ]);
+                tempModels.push({
+                  modelID: item.id,
+                  ...item.data(),
+                  ...product,
+                });
               });
+              console.log("temp model product", tempModels);
+              setProducts((p) => [...tempModels, ...p]);
             })
             .catch((err) => {
               console.log(err);
@@ -55,18 +55,24 @@ export const useProducts = (
             });
         });
       })
+
       .catch((err) => {
         setError(err);
       })
       .finally(() => {
-        console.log("finalie");
         setIsLoading(false);
       });
   }, [type, male, productsTriger, modelsTriger]);
+
   useEffect(() => {
     console.log("effect useProduct");
     getEvent();
-    console.log(products);
-  }, [getEvent]);
+  }, [getEvent, productsTriger, modelsTriger]);
+
   return [products, isLoading, error];
 };
+// console.log("model response", item.id);
+// setProducts((p) => [
+//   ...p,
+//   { modelID: item.id, ...item.data(), ...product },
+// ]);

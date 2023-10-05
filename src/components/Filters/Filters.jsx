@@ -46,7 +46,6 @@ const FILTERS_SERIALIZE = (data) => data.join("-");
 const FILTERS_DESERIALIZE = (data) => (data ? data.split("-") : []);
 
 const Filters = ({
-  setData,
   loading,
   productsLength,
   onChangeProductFilter,
@@ -104,12 +103,12 @@ const Filters = ({
   const [searchQuery, setSearchQuery] = useState("");
   const searchedBrands = useSearch(brands, searchQuery, "name");
   const navigate = useNavigate();
-  console.log("brands", brandFilters);
-  useEffect(() => {
-    // if(brandFilters.length){
-    updateObject(brandFilters, "brand", onChangeProductFilter);
-    // }
-  }, [brandFilters]);
+  // useEffect(() => {
+  //   console.log("this useEffect");
+  //   console.log(brandFilters);
+  //   updateObject(brandFilters, "brand", onChangeProductFilter);
+  //   // }
+  // }, [brandFilters.length]);
 
   const clearEvent = () => {
     setCategoryFilters([]);
@@ -218,7 +217,7 @@ const Filters = ({
                       triger={brandFilters.length}
                       handler={() => {
                         setBrandFilters([]);
-                        // updateObject([],'brand',onChangeProductFilter)
+                        updateObject([], "brand", onChangeProductFilter);
                       }}
                     />
                   </div>
@@ -231,7 +230,7 @@ const Filters = ({
                   checkedItems={brandFilters}
                   handler={(value) => {
                     setBrandFilters(value);
-                    // updateObject(value,'brand',onChangeProductFilter)
+                    updateObject(value, "brand", onChangeProductFilter);
                   }}
                 />
               </Accordion>

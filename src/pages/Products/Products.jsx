@@ -8,53 +8,32 @@ import { getTotalPagesCount } from "../../utils/getPageCount";
 import Pagination from "../../components/UI/pagination/Pagination";
 import { useProducts } from "../../hooks/useProducts";
 import { updateObject } from "../../utils/objectSort";
+import { useGenerateQuery } from "../../hooks/useGenerateQuery";
 const Products = () => {
   const { type, male } = useParams();
   const [data, setData] = useState([]);
   const [isProductsLoading, setProductsLoading] = useState(true);
   const limit = 12;
   const [currentPage, setCurrentPage] = useState(1);
-  const shownData = useToShow(data, limit, currentPage);
+  // const shownData = useToShow(data, limit, currentPage);
   const totalCountPages = getTotalPagesCount(data.length, limit);
   const titleEvent = () => {
     return `${!male ? "" : male !== "kids" ? `${male}'s` : `${male}'`} ${type}`;
   };
-  const [productsFilter, setProductsFilter] = useState({
-    // category:'Boots',
-    // sub_category:'Chelsea Boots'
-  });
-  console.log(productsFilter);
+  const [productsFilter, setProductsFilter] = useState({});
   const [modelsFilter, setModelsFilter] = useState({});
 
   useEffect(() => {
     setCurrentPage(1);
+    updateObject(["Dr. Martens"], "brand", setProductsFilter);
   }, [type, male]);
-  // const filterConfig = (name,filter,type='product')=>{
-  //   console.log(name,filter)
-  //   if(filter?.length===0){
-  //     const tempCopy = {...productsFilter};
-  //     delete tempCopy[name]
-  //     if(type==='product'){
-  //       setProductsFilter(tempCopy)
-  //     }else if(type==='model'){
-  //       setModelsFilter(tempCopy)
-  //     }
-  //   }else{
-  //       if(type==='product'){
-  //         setProductsFilter(p=>{return {...p,[name]:filter}})
-  //       }else if(type==='model'){
-  //         setModelsFilter(p=>{return {...p,[name]:filter}})
-  //       }
-  //   }
-
-  // }
   const [test, testLoading, testError] = useProducts(
     type,
     male,
     productsFilter,
     modelsFilter
   );
-  console.log(test);
+  // console.log(test);
   return (
     <div className={styles.products}>
       <div className={styles.content}>
@@ -64,7 +43,6 @@ const Products = () => {
         </p>
         <div className={styles.filters}>
           <Filters
-            setData={setData}
             productsLength={test.length}
             loading={setProductsLoading}
             onChangeProductFilter={setProductsFilter}
@@ -75,10 +53,17 @@ const Products = () => {
           <button
             onClick={() => {
               updateObject("", "category", setProductsFilter);
-              updateObject("", "sub_category", setProductsFilter);
             }}
           >
             delete
+          </button>
+          <br />
+          <button
+            onClick={() => {
+              updateObject("Boat Shoes", "category", setProductsFilter);
+            }}
+          >
+            add
           </button>
           {/* {
                       (data.length==0)//перевірити ще раз цей код
