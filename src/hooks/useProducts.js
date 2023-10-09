@@ -1,12 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useGenerateQuery } from "./useGenerateQuery";
-import {
-  expGetModels,
-  expGetProducts,
-  getAllProductsModels,
-  getProductModels,
-} from "../firebase/productFirebaseAPI";
-import { onSnapshot } from "firebase/firestore";
+import { expGetModels, expGetProducts } from "../firebase/productFirebaseAPI";
 export const useProducts = (type, male, productsFilter, modelsFilter) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();

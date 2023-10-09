@@ -1,40 +1,39 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
-.accordion{
+.accordion {
+  width: 100%;
+  border-bottom: 1px solid #b0b0b0;
+  padding: 5px 0;
+  &-header {
     width: 100%;
-    border-bottom: 1px solid #b0b0b0;
-    padding: 5px 0;
-    &-header{
+    padding-inline: 5px;
+    .title {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .content {
         width: 100%;
-        padding-inline: 5px;
-        .title{
-            min-height: 40px;
-            display: flex;  
-            align-items: center;
-            gap: 10px;
-            .content{
-                width: 100%;
-                cursor: pointer;
-            }
-        }
+        cursor: pointer;
+      }
     }
-    &-body{
-        width: 100%;
-        padding-inline: 5px;
-        &::-webkit-scrollbar {
-            width: 6px;
-            margin-right: 5px;
-        }
-        &::-webkit-scrollbar-track {
-            background: #fff;
-        }
-        &::-webkit-scrollbar-thumb {
-            background: $clr-accent;
-            border-radius: 6px;
-
-        }
-        &::-webkit-scrollbar-thumb:hover {
-            background: $clr-primary;
-        }
+  }
+  &-body {
+    width: 100%;
+    padding-inline: 5px;
+    &::-webkit-scrollbar {
+      width: 6px;
+      margin-right: 5px;
     }
+    &::-webkit-scrollbar-track {
+      background: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $clr-accent;
+      border-radius: 6px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: $clr-primary;
+    }
+  }
 }

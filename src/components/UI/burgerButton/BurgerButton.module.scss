@@ -1,35 +1,37 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
-.burger{display: none;}
+.burger {
+  display: none;
+}
 @media only screen and (width < 1024px) {
-    .burger{
-        display: block;
-        width: 22px;
-        height: 16px;
-        position: relative;
-        span{
-            width: 100%;
-            height: 2px;
-            background: $clr-primary;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-45%);
-            transition: all 0.3s ease 0s;
-        }
-        &::before,&::after{
-            content: '';
-            width: 100%;
-            height: 2px;
-            background: $clr-primary;
-            position: absolute;
-            transition: all 0.3s ease 0s;
-        }
-        &::before{
-            top: 0;
-        }
-        &::after{
-            bottom:0;
-        }
-        
+  .burger {
+    display: block;
+    width: 22px;
+    height: 16px;
+    position: relative;
+    span {
+      width: 100%;
+      height: 2px;
+      background: $clr-primary;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-45%);
+      transition: all 0.3s ease 0s;
     }
+    &::before,
+    &::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      background: $clr-primary;
+      position: absolute;
+      transition: all 0.3s ease 0s;
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+  }
 }

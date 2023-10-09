@@ -1,30 +1,30 @@
-@import '../../../styles/variables';
-.btn{
-    width: 12px;
-    height: 12px;
-    position: relative;
-    flex: 1 0 12px;
-    cursor: pointer;
-    &::after,&::before{
-        content: '';
-        position: absolute;
-        background:$clr-primary;
+@import "../../../styles/variables";
+.btn {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  flex: 1 0 12px;
+  cursor: pointer;
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    background: $clr-primary;
+  }
+  &::before {
+    top: 5px;
+    width: 100%;
+    height: 2px;
+  }
+  &::after {
+    height: 100%;
+    width: 2px;
+    left: 5px;
+    transition: transform ease-in-out 0.2s;
+  }
+  &.opened {
+    &::after {
+      transform: rotate(90deg);
     }
-    &::before{
-        top: 5px;
-        width: 100%;
-        height: 2px;
-    }
-    &::after{
-        height: 100%;
-        width: 2px;
-        left: 5px;
-        transition: transform ease-in-out 0.2s;
-    }
-    &.opened{
-        &::after{
-            transform: rotate(90deg);
-        }
-    }
-   
+  }
 }

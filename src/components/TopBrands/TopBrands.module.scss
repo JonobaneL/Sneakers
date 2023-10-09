@@ -1,33 +1,46 @@
-@use '../../styles/mixins';
-@import '../../styles/variables';
+@use "../../styles/mixins";
+@import "../../styles/variables";
 
-.brands{
-    @include mixins.wrapper-desktop;
-    padding-bottom: 0;
-    .content{
-        @include mixins.content;
-        .title{
-            @include mixins.page-title;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .brand{
-            width: 150px;
-            font-weight: 600;
-            font-size:40px;
-            color:white;
-            background: $clr-primary;
-            aspect-ratio: 1/1 ;
-            display: flex;
-            align-items:center;
-            justify-content: center;
-            cursor: pointer;
-            &.accent{
-                background: $clr-accent;
-            }
-            img{
-                width: 100px;
-            }
-        }
+.brands {
+  @include mixins.wrapper-desktop;
+  padding-bottom: 0;
+  .content {
+    @include mixins.content;
+    .title {
+      @include mixins.page-title;
+      text-align: center;
+      margin-bottom: 30px;
     }
+    .loader {
+      @include mixins.loader;
+    }
+    .brand {
+      width: 150px;
+      font-weight: 600;
+      font-size: 40px;
+      color: white;
+      background: $clr-primary;
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &.accent {
+        background: $clr-accent;
+      }
+      img {
+        width: 70%;
+      }
+    }
+  }
+}
+@media screen and (width <=768px) {
+  .brands {
+    @include mixins.wrapper-tablet;
+  }
+}
+@media screen and (width <=425px) {
+  .brands {
+    @include mixins.wrapper-mobile;
+  }
 }

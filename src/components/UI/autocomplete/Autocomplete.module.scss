@@ -1,37 +1,34 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
-.autocomplete{
+.autocomplete {
+  width: 100%;
+  position: relative;
+  &-options {
     width: 100%;
-    position: relative;
-    // height: 100%;
-    // height: 45px;
-    &-options{
-        width: 100%;
-        background: #fff;
-        position: absolute;
-        box-shadow:0 4px 8px rgba(221,221,221,.5);
-        .options__item{
-            width: 100%;
-            padding: 10px;
-            font-size: $fs-300;
-            max-height: 120px;
-            &:hover{
-                background: $clr-accent;
-                color:#fff;
-                transition: all 0.4s;
-            }
-        }
-        &::-webkit-scrollbar {
-            width: 5px;
-            margin-right: 5px;
-        }
-        &::-webkit-scrollbar-track {
-            background: #fff;
-        }
-        &::-webkit-scrollbar-thumb {
-            background: #1d2d44;
-            border-radius: 6px;
-
-        }
+    background: #fff;
+    position: absolute;
+    box-shadow: 0 4px 8px rgba(221, 221, 221, 0.5);
+    .options__item {
+      width: 100%;
+      padding: 10px;
+      font-size: $fs-300;
+      max-height: 120px;
+      &:hover {
+        background: $clr-accent;
+        color: #fff;
+        transition: all 0.4s;
+      }
     }
+    &::-webkit-scrollbar {
+      width: 5px;
+      margin-right: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #1d2d44;
+      border-radius: 6px;
+    }
+  }
 }

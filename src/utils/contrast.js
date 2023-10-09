@@ -1,8 +1,8 @@
-export const getContrast = (hexcolor) =>{
-    if(hexcolor.length>7) return 'white'
-    const r = parseInt(hexcolor.substring(1,3),16)
-    const g = parseInt(hexcolor.substring(3,5),16)
-    const b = parseInt(hexcolor.substring(5,7),16)
-    let yiq = ((r*299)+(g*587)+(b*114))/1000;
-    return (yiq >= 128) ? 'black' : 'white'
-}
+export const getContrast = (hexcolor) => {
+  if (hexcolor.length > 7) return "white";
+  const r = parseInt(hexcolor.substring(1, 3), 16);
+  const g = parseInt(hexcolor.substring(3, 5), 16);
+  const b = parseInt(hexcolor.substring(5, 7), 16);
+  let yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return yiq >= 128 ? "black" : "white";
+};

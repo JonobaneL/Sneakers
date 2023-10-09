@@ -1,19 +1,21 @@
-.card-form{
-    width: 100%;
-    display: flex;
-    gap:10px;
-    .number{
-        flex: 0 1 100%;
-    }
-    .date,.cvv{
-        flex: 0 1 145px;
-    }
+.card-form {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  .number {
+    flex: 0 1 100%;
+  }
+  .date,
+  .cvv {
+    flex: 0 1 145px;
+  }
 }
-@media screen and (max-width:424px) {
-    .card-form{
-        flex-wrap: wrap;
-        .date,.cvv{
-            flex: 0 1 calc(50% - 5px);
-        }
+@media screen and (max-width: 424px) {
+  .card-form {
+    flex-wrap: wrap;
+    .date,
+    .cvv {
+      flex: 0 1 calc(50% - 5px);
     }
+  }
 }

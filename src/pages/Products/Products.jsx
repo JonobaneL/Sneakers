@@ -25,7 +25,7 @@ const Products = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-    updateObject(["Dr. Martens"], "brand", setProductsFilter);
+    // updateObject(["Dr. Martens"], "brand", setProductsFilter);
   }, [type, male]);
   const [test, testLoading, testError] = useProducts(
     type,
@@ -50,21 +50,6 @@ const Products = () => {
           />
         </div>
         <div className={styles.list}>
-          <button
-            onClick={() => {
-              updateObject("", "category", setProductsFilter);
-            }}
-          >
-            delete
-          </button>
-          <br />
-          <button
-            onClick={() => {
-              updateObject("Boat Shoes", "category", setProductsFilter);
-            }}
-          >
-            add
-          </button>
           {/* {
                       (data.length==0)//перевірити ще раз цей код
                       ?<div className={styles.warning}>

@@ -1,117 +1,118 @@
-@import '../../styles/variables';
-.filters{
-    width: 100%;
-    .accordion{
-        height: 45px;
+@import "../../styles/variables";
+.filters {
+  width: 100%;
+  .accordion {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 600;
+    color: $clr-primary;
+  }
+  &-nav {
+    display: none;
+  }
+  &-options {
+    .button-bar {
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .filters {
+    &-nav {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      &__opener {
         display: flex;
+        gap: 5px;
         align-items: center;
-        justify-content: space-between;
-        font-size: 15px;
+        justify-content: center;
+        font-size: 14px;
         font-weight: 600;
-        color: $clr-primary;
+        color: #2f2f2f;
+        img {
+          width: 20px;
+        }
+      }
+      .select {
+        width: 200px;
+      }
     }
-    &-nav{
-        display: none;
+    &-wrapper {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 20;
+      background: rgba($color: #000000, $alpha: 0.5);
     }
-    &-options{
-        .button-bar{
-            display: none;
-        } 
+    &-options {
+      position: fixed;
+      background: #fff;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      padding: 25px 80px 40px 80px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      .close-btn {
+        background: none;
+        height: 24px;
+        width: 24px;
+        margin: 10px 0 10px auto;
+        cursor: pointer;
+        img {
+          width: 100%;
+        }
+      }
+      .button-bar {
+        display: flex;
+        margin-top: 40px;
+        align-items: center;
+        gap: 10px;
+      }
     }
-    
+  }
 }
-@media screen and (max-width:1024px) {
-    .filters{
-        &-nav{
-            width: 100%;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: right;
-            &__opener{
-                display: flex;
-                gap:5px;
-                align-items: center;
-                justify-content: center;
-                font-size: 14px;
-                font-weight: 600;
-                color: #2f2f2f;
-                img{
-                    width: 20px;
-                }
-            }
-            .select{
-                width: 200px;
-            }
-        }
-        &-wrapper{
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            z-index: 20;
-            background: rgba($color: #000000, $alpha: 0.5);
-        }
-        &-options{
-            position: fixed;
-            background: #fff;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            padding: 25px 80px 40px 80px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            .close-btn{
-                background: none;
-                height: 24px;
-                width: 24px;
-                margin: 10px 0 10px auto;
-                cursor: pointer;
-                img{
-                    width: 100%;
-                }
-            }
-            .button-bar{
-                display: flex;
-                margin-top: 40px;
-                align-items: center;
-                gap:10px;
-            }
-        }
+@media screen and (max-width: 768px) {
+  .filters {
+    &-options {
+      padding: 15px 40px 30px 40px;
     }
+  }
 }
-@media screen and (max-width:768px) {
-    .filters{
-        &-options{
-            padding: 15px 40px 30px 40px;
+@media screen and (max-width: 425px) {
+  .filters {
+    &-options {
+      .button-bar {
+        &__clear,
+        &__view {
+          font-size: 15px;
         }
+      }
     }
-}
-@media screen and (max-width:425px) {
-    .filters{
-        &-options{
-            .button-bar{
-                &__clear,&__view{
-                    font-size: 15px;
-                }
-            }
-        }
-    }
+  }
 }
 
-@media screen and (max-width:375px) {
-    .filters{
-        &-options{
-            padding: 10px 20px 25px 20px;
-            .button-bar{
-                &__clear,&__view{
-                    font-size: 14px;
-                }
-            }
+@media screen and (max-width: 375px) {
+  .filters {
+    &-options {
+      padding: 10px 20px 25px 20px;
+      .button-bar {
+        &__clear,
+        &__view {
+          font-size: 14px;
         }
+      }
     }
+  }
 }

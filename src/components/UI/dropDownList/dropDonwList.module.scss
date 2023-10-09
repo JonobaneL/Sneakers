@@ -1,13 +1,13 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
-.dropDownList{
-    width: 100%;
-    .all-category{
-        font-size: 15px;
-        color:$clr-primary;
-        font-family: $ff-accent;
-        font-weight: 500;
-        text-decoration: underline;
-        cursor: pointer;
-    }
+.dropDownList {
+  width: 100%;
+  .all-category {
+    font-size: 15px;
+    color: $clr-primary;
+    font-family: $ff-accent;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

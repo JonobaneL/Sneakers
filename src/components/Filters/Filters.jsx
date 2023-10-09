@@ -11,8 +11,6 @@ import Button from "../UI/button/Button";
 import CheckBoxList from "../UI/checkBoxList/CheckBoxList";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSearchParamsState } from "../../hooks/useSearchParamsState";
-import { shoesColor } from "../../data/shoesColor";
-import { useFiltered } from "../../hooks/useFilters";
 import DropDownList from "../UI/dropDownList/dropDownList";
 import SizeSelect from "../UI/sizeSelect/SizeSelect";
 import filtersIcon from "../../images/filters.png";
@@ -22,7 +20,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import closeIcon from "../../images/cancel.svg";
 import { Search } from "../UI/search/Search";
 import { productsFilterParrams } from "../../utils/productsFilters";
-import { sizeList } from "../../data/sizeList";
 import { updateObject } from "../../utils/objectSort";
 
 const filtersWrapperVariants = {
@@ -59,10 +56,12 @@ const Filters = ({
     categories,
     brands,
     materials,
+    sizeList,
+    colors,
     sort_params,
     price_params,
     percent_params,
-  } = productsFilterParrams(male);
+  } = productsFilterParrams(type, male);
   const [categoryFilters, setCategoryFilters] = useSearchParamsState({
     name: "category",
     serialize: (data) => data.join(">"),
@@ -247,7 +246,7 @@ const Filters = ({
                 }
               >
                 <CheckBoxList
-                  data={shoesColor}
+                  data={colors}
                   handler={(value) => setColorFilters(value)}
                   checkedItems={colorFilters}
                   colored={true}
@@ -278,24 +277,26 @@ const Filters = ({
                   />
                 </Accordion>
               )}
+              {type === "accessories" ? null : (
+                <Accordion
+                  header={
+                    <div className={styles.accordion}>
+                      Material
+                      <ClearButton
+                        triger={materialFilters.length}
+                        handler={() => setMaterialFilters([])}
+                      />
+                    </div>
+                  }
+                >
+                  <CheckBoxList
+                    data={materials}
+                    handler={(value) => setMaterialFilters(value)}
+                    checkedItems={materialFilters}
+                  />
+                </Accordion>
+              )}
 
-              <Accordion
-                header={
-                  <div className={styles.accordion}>
-                    Material
-                    <ClearButton
-                      triger={materialFilters.length}
-                      handler={() => setMaterialFilters([])}
-                    />
-                  </div>
-                }
-              >
-                <CheckBoxList
-                  data={materials}
-                  handler={(value) => setMaterialFilters(value)}
-                  checkedItems={materialFilters}
-                />
-              </Accordion>
               <Accordion
                 autoHeight={true}
                 header={

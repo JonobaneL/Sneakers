@@ -1,0 +1,37 @@
+@import "../../styles/variables";
+
+.product {
+  width: 100%;
+  max-width: 220px;
+  flex: 0 1 auto;
+  cursor: pointer;
+  color: $clr-text;
+  img {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+  .name {
+    font-weight: 500;
+    line-height: 140%;
+    text-wrap: balance;
+  }
+  .type {
+    color: #2f2f2f;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+  }
+  .price {
+    display: flex;
+    gap: 10px;
+    p {
+      font-weight: 500;
+    }
+    .price__discount {
+      color: #a40000;
+    }
+    .price__disabled {
+      color: #2f2f2f;
+      text-decoration: line-through;
+    }
+  }
+}

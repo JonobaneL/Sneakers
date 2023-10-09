@@ -1,86 +1,85 @@
-@use '../../styles/mixins';
-@import '../../styles/variables';
+@use "../../styles/mixins";
+@import "../../styles/variables";
 
-$logo-font:'Bebas Neue', cursive;
-$icons-size:22px;
+$logo-font: "Bebas Neue", cursive;
+$icons-size: 22px;
 
-.header-wrapper{
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    .header-top{
-        height: 40px;
-        background:$clr-secondary;
-        @include mixins.wrapper-desktop;
-        padding-top: 0;
-        padding-bottom: 0;
-        .content{
-            height: 100%;
-            @include mixins.content;
+.header-wrapper {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  .header-top {
+    height: 40px;
+    background: $clr-secondary;
+    @include mixins.wrapper-desktop;
+    padding-top: 0;
+    padding-bottom: 0;
+    .content {
+      height: 100%;
+      @include mixins.content;
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      .nav {
+        display: flex;
+        gap: 10px;
+        &__item {
+          font-size: $fs-300;
+          line-height: 40px;
+          color: $clr-text;
+          cursor: pointer;
+          a {
+            color: $clr-text;
             display: flex;
             align-items: center;
-            justify-content: right;
-            .nav{
-                display: flex;
-                gap: 10px;
-                &__item{
-                    font-size: $fs-300;
-                    line-height: 40px;
-                    color:$clr-text;
-                    cursor: pointer;
-                    a{ 
-                        color:$clr-text;
-                        display: flex;
-                        align-items: center;
-                        .user-icon{
-                            margin-left: 5px;
-                            vertical-align: baseline;
-                            width: $icons-size;
-                            height: $icons-size;
-                        }
-                    }
-                    &.line{
-                        cursor: default;
-                    }
-                }
+            .user-icon {
+              margin-left: 5px;
+              vertical-align: baseline;
+              width: $icons-size;
+              height: $icons-size;
             }
+          }
+          &.line {
+            cursor: default;
+          }
         }
-        .help-menu{
-            padding:10px;
-            width: 180px;
-            line-height:100%;
-            .title{
-                font-size: 24px;
-                font-weight: 600;
-                font-family: $ff-accent;
-                line-height:100%;
-                margin-bottom: 15px;
-                color: $clr-accent;
-            }
-            .menu{
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                li{
-                    p,a{
-                        font-size: 15px;
-                        font-weight: 600;
-                        color:#9f9f9f;
-                        transition: all 0.3s;
-                        &:hover{
-                            color:$clr-text;
-                        }
-                    }
-                }
-            }
-        }
-        
+      }
     }
+    .help-menu {
+      padding: 10px;
+      width: 180px;
+      line-height: 100%;
+      .title {
+        font-size: 24px;
+        font-weight: 600;
+        font-family: $ff-accent;
+        line-height: 100%;
+        margin-bottom: 15px;
+        color: $clr-accent;
+      }
+      .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        li {
+          p,
+          a {
+            font-size: 15px;
+            font-weight: 600;
+            color: #9f9f9f;
+            transition: all 0.3s;
+            &:hover {
+              color: $clr-text;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 @media screen and (width < 1024px) {
-    .header-wrapper .header-top{
-        display: none;
-    }
+  .header-wrapper .header-top {
+    display: none;
+  }
 }
-

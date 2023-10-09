@@ -1,40 +1,35 @@
-@use '../../styles/mixins';
-@import '../../styles/variables';
-.log-in{
-    width: 100%;
-    @include mixins.wrapper-desktop;
-    .content{
-        max-width:450px;
-        margin-inline:auto;
-        .title{
-            text-align: center;
-            // font-family:$ff-accent;
-            // font-size: $fs-700;
-            // font-weight: 500;
-            // color: $clr-primary;
-            @include mixins.page-title;
-            margin-bottom: 20px;
-        }
-        .message{
-            margin-top:20px;
-            text-align: center;
-            font-size: 14px;
-            a{
-                color:$clr-primary;
-                font-weight: 500;
-                font-size: 14px;
-            }
-        }
-
+@use "../../styles/mixins";
+@import "../../styles/variables";
+.log-in {
+  width: 100%;
+  @include mixins.wrapper-desktop;
+  .content {
+    max-width: 450px;
+    margin-inline: auto;
+    .title {
+      text-align: center;
+      @include mixins.page-title;
+      margin-bottom: 20px;
     }
+    .message {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      a {
+        color: $clr-primary;
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+  }
 }
-@media screen and (max-width:768px) {
-    .log-in{
-        @include mixins.wrapper-tablet
-    }
+@media screen and (max-width: 768px) {
+  .log-in {
+    @include mixins.wrapper-tablet;
+  }
 }
-@media screen and (max-width:425px) {
-    .log-in{
-        @include mixins.wrapper-mobile
-    }
+@media screen and (max-width: 425px) {
+  .log-in {
+    @include mixins.wrapper-mobile;
+  }
 }

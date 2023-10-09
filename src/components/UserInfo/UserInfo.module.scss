@@ -1,73 +1,74 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
-.user-info{
+.user-info {
+  width: 100%;
+  .info {
+    display: flex;
+    flex-direction: column;
+    .info__item {
+      display: flex;
+      align-items: center;
+      height: 55px;
+      color: #2f2f2f;
+      border-bottom: 1px solid rgba(#b0b0b0, 0.3);
+      font-size: max($fs-300, 12.5px);
+      .field-name {
+        flex: 0 1 30%;
+        font-weight: 500;
+        color: #141414;
+      }
+    }
+  }
+  .edit-section {
     width: 100%;
-    .info{
-        display: flex;
-        flex-direction: column;
-        .info__item{
-            display: flex;
-            align-items: center;
-            height: 55px;
-            color:#2f2f2f;
-            border-bottom: 1px solid rgba(#b0b0b0,0.3);
-            font-size: max($fs-300,12.5px);
-            .field-name{
-                flex: 0 1 30%;
-                font-weight: 500;
-                color: #141414;
-            }
-        }
+    display: flex;
+    justify-content: right;
+    grid-area: edit;
+  }
+  .loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .payment-methods,
+  .delivery-addresses {
+    margin-top: 30px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "edit edit"
+      "title content";
+    row-gap: 10px;
+    .title {
+      grid-area: title;
     }
-    .edit-section{
-        width: 100%;
-        display: flex;
-        justify-content: right;
-        grid-area: edit;
+    .section-content {
+      grid-area: content;
     }
-    .loading{
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-    .payment-methods,.delivery-addresses{
-        margin-top: 30px;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 40% 60%;
-        grid-template-rows: auto auto;
-        grid-template-areas: 
-        "edit edit"
-        "title content";
-        row-gap: 10px;
-        .title{
-            grid-area: title;
-        }
-        .section-content{
-            grid-area: content;
-        }
-    }
-    
+  }
 }
 
 @media screen and (width <= 610px) {
-    .user-info{
-        .delivery-addresses,.payment-methods{
-            grid-template-columns: 60% 40%;
-            grid-template-areas: 
-            "title edit"
-            "content content";
-            row-gap: 8px;
-            .title{
-                align-self: center;
-            }
-        }
+  .user-info {
+    .delivery-addresses,
+    .payment-methods {
+      grid-template-columns: 60% 40%;
+      grid-template-areas:
+        "title edit"
+        "content content";
+      row-gap: 8px;
+      .title {
+        align-self: center;
+      }
     }
+  }
 }
-@media screen and (max-width:425px) {
-    .user-info .info{
-        .info__item{
-            justify-content: space-between;
-        }
+@media screen and (max-width: 425px) {
+  .user-info .info {
+    .info__item {
+      justify-content: space-between;
     }
+  }
 }

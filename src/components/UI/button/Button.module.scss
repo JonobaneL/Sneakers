@@ -1,32 +1,33 @@
-@import '../../../styles/variables';
-.primary,.secondary{
-    text-transform: uppercase;
-    font-weight: 500;
-    border-radius: 5px;
-    font-size: $fs-300;
-    cursor: pointer;
+@import "../../../styles/variables";
+.primary,
+.secondary {
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 5px;
+  font-size: $fs-300;
+  cursor: pointer;
 }
-.primary{
-    background: $clr-primary;
-    color: #fff;
-    transition: transform ease 0.2s, box-shadow ease 0.2s;
-    &:hover{
-        transform: translateY(-2px);
-        box-shadow: 0 20px 80px -10px $clr-primary;
+.primary {
+  background: $clr-primary;
+  color: #fff;
+  transition: transform ease 0.2s, box-shadow ease 0.2s;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 80px -10px $clr-primary;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    &:hover {
+      transform: translateY(0);
+      box-shadow: none;
     }
-    &:disabled{
-        cursor: not-allowed;
-        &:hover{
-            transform: translateY(0);
-            box-shadow: none;
-        }
-    }
+  }
 }
-.secondary{
-    background: $clr-secondary;
-    color: $clr-primary;
-    transition: transform ease 0.2s;
-    &:hover{
-        transform: translate(0, -2px);
-    }
+.secondary {
+  background: $clr-secondary;
+  color: $clr-primary;
+  transition: transform ease 0.2s;
+  &:hover {
+    transform: translate(0, -2px);
+  }
 }

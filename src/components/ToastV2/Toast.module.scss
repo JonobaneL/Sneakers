@@ -1,56 +1,57 @@
-.toast{
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 110px;
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+  .toast__item {
+    width: 280px;
+    height: 60px;
     display: flex;
-    flex-direction:column;
+    align-items: center;
     gap: 10px;
-    height: fit-content;
-    .toast__item{
-        width: 280px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        box-shadow: 0 1px 10px 0 rgba(0,0,0,.1), 0 2px 15px 0 rgba(0,0,0,.05);
-        padding: 10px;
-        border-radius:5px;
-        cursor: default;
-        position: relative;
-        font-size: 15px;
-        background-color: #fff;
-        .icon{
-            width: 25px;
-        }
-        .progress{
-            position:absolute;
-            height: 3px;
-            left: 0;
-            bottom: 0;
-            z-index: 2;
-            animation: progressBarAnimation linear 2s;
-            &.success{
-                background: green;
-            }
-            &.warning{
-                background: #FFBF00;
-            }
-            &.error{
-                background: #CF000F;
-            }
-            &.none{
-                background: #3e5c86;
-            }
-        }
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1),
+      0 2px 15px 0 rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: default;
+    position: relative;
+    font-size: 15px;
+    background-color: #fff;
+    .icon {
+      width: 25px;
     }
+    .progress {
+      position: absolute;
+      height: 3px;
+      left: 0;
+      bottom: 0;
+      z-index: 2;
+      animation: progressBarAnimation linear 2s;
+      &.success {
+        background: green;
+      }
+      &.warning {
+        background: #ffbf00;
+      }
+      &.error {
+        background: #cf000f;
+      }
+      &.none {
+        background: #3e5c86;
+      }
+    }
+  }
 }
 
 @keyframes progressBarAnimation {
-    from{
-        width: 100%;
-    }
-    to{
-        width: 0;
-    }
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
 }

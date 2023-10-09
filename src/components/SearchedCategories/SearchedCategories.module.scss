@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+
+.categories {
+  margin-top: 25px;
+
+  .title {
+    border-bottom: 1px solid #b0b0b0;
+    font-size: 14px;
+    font-weight: 500;
+    color: $clr-text;
+    padding-bottom: 7px;
+    margin-bottom: 10px;
+  }
+  .category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 120px;
+    overflow: hidden;
+    .list__item {
+      cursor: pointer;
+      color: #2f2f2f;
+    }
+  }
+}

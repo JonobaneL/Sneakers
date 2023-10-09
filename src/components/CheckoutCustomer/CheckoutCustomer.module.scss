@@ -1,32 +1,34 @@
-.customer{
-    .customer-form{
-        padding: 10px 0 20px 0;
-        display: flex;
-        flex-direction:column;
-        gap: 20px;
-        container-type: inline-size;
-        .customer-info,.customer-contacts{
-            display: flex;
-            gap: 20px;
-            flex-wrap: nowrap;
-            flex-direction: row;
-        }
+.customer {
+  .customer-form {
+    padding: 10px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    container-type: inline-size;
+    .customer-info,
+    .customer-contacts {
+      display: flex;
+      gap: 20px;
+      flex-wrap: nowrap;
+      flex-direction: row;
     }
-    .loader{
-        width: 100%;
-        padding-top: 30px;
-        display: flex;
-        justify-content: center;
-    }
-    .log-in-customer{
-        max-width: 400px;
-        padding-top: 10px;
-    }
+  }
+  .loader {
+    width: 100%;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  .log-in-customer {
+    max-width: 400px;
+    padding-top: 10px;
+  }
 }
-@container (inline-size < 520px){
-    .customer .customer-form{
-        .customer-info, .customer-contacts{
-            flex-direction:column;
-        }
+@container (inline-size < 520px) {
+  .customer .customer-form {
+    .customer-info,
+    .customer-contacts {
+      flex-direction: column;
     }
+  }
 }

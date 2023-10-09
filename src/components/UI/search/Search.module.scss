@@ -1,23 +1,23 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
-.search{
+.search {
+  width: 100%;
+  height: 40px;
+  background: $clr-secondary;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-inline: 5px;
+  &__field {
     width: 100%;
-    height: 40px;
-    background: $clr-secondary;
-    border-radius:5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-inline:5px;
-    &__field{
-        width: 100%;
-        height: 100%;
-        background: none;
-        color: $clr-text;
-        font-size: $fs-300;
-    }
-    &__icon{
-        width: 26px;
-        height: 26px;
-    }
+    height: 100%;
+    background: none;
+    color: $clr-text;
+    font-size: $fs-300;
+  }
+  &__icon {
+    width: 26px;
+    height: 26px;
+  }
 }

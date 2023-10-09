@@ -1,49 +1,50 @@
-@import '../../../styles/variables';
-.listItem{
+@import "../../../styles/variables";
+.listItem {
+  width: 100%;
+  color: $clr-text;
+  font-size: 14px;
+  .mainItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    line-height: 24px;
+    padding: 4px 5px;
+    cursor: pointer;
+    p {
+      font-size: 14px;
+    }
+  }
+  .subList {
     width: 100%;
-    color: $clr-text;
-    font-size: 14px;
-    .mainItem{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 40px;
-        line-height: 24px;
-        padding: 4px 5px;
-        cursor: pointer;
-        p{
-            font-size: 14px;
-        }
+    background: $clr-secondary;
+    overflow: hidden;
+    .subList__item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 4px 15px;
+      line-height: 24px;
+      cursor: pointer;
+      p {
+        font-size: 14px;
+      }
     }
-    .subList{
-        width: 100%;
-        background: $clr-secondary;
-        overflow: hidden;
-        .subList__item{
-            width: 100%;
-            display: flex;
-            align-items: center;
-            min-height: 40px;
-            padding: 4px 15px;
-            line-height: 24px;
-            cursor: pointer;
-            p{
-                font-size: 14px;
-            }
-        }
+  }
+  .subList__item:hover,
+  .mainItem:hover {
+    background: $clr-secondary;
+  }
+  .arrow {
+    width: 30px;
+    flex: 0 0 30px;
+    text-align: center;
+    font-size: $fs-500;
+    color: $clr-accent;
+    transition: all 0.2s;
+    &.active {
+      transform: scaleY(-1);
     }
-    .subList__item:hover,.mainItem:hover{
-        background: $clr-secondary;
-    }
-    .arrow{
-        width: 30px;
-        flex: 0 0 30px;
-        text-align: center;
-        font-size: $fs-500;
-        color: $clr-accent;
-        transition: all 0.2s;
-        &.active{
-            transform: scaleY(-1);
-        }
-    }
+  }
 }

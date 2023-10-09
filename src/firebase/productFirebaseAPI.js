@@ -8,7 +8,6 @@ import {
   query,
   where,
   updateDoc,
-  increment,
 } from "firebase/firestore";
 
 const categoriesRef = collection(firebaseDB, "categories");
@@ -16,12 +15,49 @@ const brandsRef = collection(firebaseDB, "brands");
 const brandsQuery = query(brandsRef, orderBy("name", "asc"));
 const categoriesQueary = query(categoriesRef, orderBy("name", "asc"));
 
-export const getCategories = () => {
-  return getDocs(categoriesQueary);
+export const getCategories = (type, male) => {
+  if (type && !male) {
+    const modifiedQuery = query(categoriesQueary, where("type", "==", type));
+    return getDocs(modifiedQuery);
+  } else if (type && male) {
+    const modifiedQuery = query(
+      categoriesQueary,
+      where("type", "==", type),
+      where("male", "in", [male, "all"])
+    );
+    return getDocs(modifiedQuery);
+  } else {
+    return getDocs(categoriesQueary);
+  }
 };
 
-export const getBrands = () => {
+export const getBrands = (male) => {
+  if (male) {
+    const modifiedQuery = query(
+      brandsQuery,
+      where("male", "in", [male, "all"])
+    );
+    return getDocs(modifiedQuery);
+  }
   return getDocs(brandsQuery);
+};
+export const getMaterials = (male) => {
+  const materialsQuery = query(
+    collection(firebaseDB, "materials"),
+    where("male", "in", [male, "all"])
+  );
+  return getDocs(materialsQuery);
+};
+export const getSizeList = () => {
+  const sizeListRef = query(
+    collection(firebaseDB, "sizes"),
+    orderBy("size", "asc")
+  );
+  return getDocs(sizeListRef);
+};
+export const getColors = () => {
+  const colorsRef = collection(firebaseDB, "colors");
+  return getDocs(colorsRef);
 };
 
 export const getProduct = (id) => {
@@ -77,10 +113,7 @@ export const getAllProductsModels = (
     return getDocs(query(filter, where("type", "==", type)));
   }
 };
-export const getAllProducts = () => {
-  const productsRef = collection(firebaseDB, "products");
-  return getDocs(productsRef);
-};
+
 export const updateProductAmount = (modelID, sizes) => {
   const productRef = doc(firebaseDB, "products_models", modelID);
   return updateDoc(productRef, {

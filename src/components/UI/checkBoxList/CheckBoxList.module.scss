@@ -1,36 +1,36 @@
-.checkbox-list{
-    width: 100%;
+.checkbox-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .list-item {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    width: 100%;
     gap: 10px;
-    .list-item{
-        display: flex;
-        align-items: center;
-        width: 100%;
-        gap: 10px;
-        cursor: pointer;
-        .checkbox-indicator{
-            width: 25px;
-            height: 25px;
-            border-radius:3px;
-            min-width:25px;
-            position: relative;
-            .checkbox-mark{
-                position: absolute;
-                width: 75%;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-                visibility: hidden;
-            }
-        }
-        .list-title{
-            font-size: clamp(14px,14px + 0.12vw,15px);
-        }
-        &.active{
-            .checkbox-mark{
-                visibility: visible;
-            }
-        }
+    cursor: pointer;
+    .checkbox-indicator {
+      width: 25px;
+      height: 25px;
+      border-radius: 3px;
+      min-width: 25px;
+      position: relative;
+      .checkbox-mark {
+        position: absolute;
+        width: 75%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        visibility: hidden;
+      }
     }
+    .list-title {
+      font-size: clamp(14px, 14px + 0.12vw, 15px);
+    }
+    &.active {
+      .checkbox-mark {
+        visibility: visible;
+      }
+    }
+  }
 }
