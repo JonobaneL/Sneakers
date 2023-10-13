@@ -138,3 +138,6 @@ export const expGetModels = (productID, filter) => {
   const modelsRef = query(filter, where("productID", "==", productID));
   return getDocs(modelsRef);
 };
+export const expGetProductsTest = (query) => {
+  return getDocs(query);
+};

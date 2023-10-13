@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Filters.module.scss";
 import Select from "../UI/select/Select";
 import Accordion from "../UI/accordion/Accordion";
@@ -21,6 +16,7 @@ import closeIcon from "../../images/cancel.svg";
 import { Search } from "../UI/search/Search";
 import { productsFilterParrams } from "../../utils/productsFilters";
 import { updateObject } from "../../utils/objectSort";
+import ClearAll from "../UI/clearAll/ClearAll";
 
 const filtersWrapperVariants = {
   hidden: {
@@ -102,12 +98,6 @@ const Filters = ({
   const [searchQuery, setSearchQuery] = useState("");
   const searchedBrands = useSearch(brands, searchQuery, "name");
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   console.log("this useEffect");
-  //   console.log(brandFilters);
-  //   updateObject(brandFilters, "brand", onChangeProductFilter);
-  //   // }
-  // }, [brandFilters.length]);
 
   const clearEvent = () => {
     setCategoryFilters([]);
@@ -117,6 +107,8 @@ const Filters = ({
     setMaterialFilters([]);
     setPriceFilters([]);
     setPercentFilters([]);
+    onChangeProductFilter({});
+    onChangeModelFilter({});
     navigate({ search: "" });
   };
 
@@ -182,6 +174,8 @@ const Filters = ({
                 getData={(value) => setSort(value)}
                 disabled={!sort ? [1] : []}
               />
+              <ClearAll onClear={clearEvent} />
+
               <Accordion
                 fixed={true}
                 autoHeight={true}
@@ -240,14 +234,20 @@ const Filters = ({
                     Color
                     <ClearButton
                       triger={colorFilters.length}
-                      handler={() => setColorFilters([])}
+                      handler={() => {
+                        setColorFilters([]);
+                        updateObject([], "color", onChangeModelFilter);
+                      }}
                     />
                   </div>
                 }
               >
                 <CheckBoxList
                   data={colors}
-                  handler={(value) => setColorFilters(value)}
+                  handler={(value) => {
+                    setColorFilters(value);
+                    updateObject(value, "color", onChangeModelFilter);
+                  }}
                   checkedItems={colorFilters}
                   colored={true}
                 />
@@ -284,14 +284,20 @@ const Filters = ({
                       Material
                       <ClearButton
                         triger={materialFilters.length}
-                        handler={() => setMaterialFilters([])}
+                        handler={() => {
+                          setMaterialFilters([]);
+                          updateObject([], "material", onChangeProductFilter);
+                        }}
                       />
                     </div>
                   }
                 >
                   <CheckBoxList
                     data={materials}
-                    handler={(value) => setMaterialFilters(value)}
+                    handler={(value) => {
+                      setMaterialFilters(value);
+                      updateObject(value, "material", onChangeProductFilter);
+                    }}
                     checkedItems={materialFilters}
                   />
                 </Accordion>
@@ -304,14 +310,20 @@ const Filters = ({
                     Price
                     <ClearButton
                       triger={priceFilters.length}
-                      handler={() => setPriceFilters([])}
+                      handler={() => {
+                        setPriceFilters([]);
+                        updateObject([], "price", onChangeProductFilter);
+                      }}
                     />
                   </div>
                 }
               >
                 <CheckBoxList
                   data={price_params}
-                  handler={(value) => setPriceFilters(value)}
+                  handler={(value) => {
+                    setPriceFilters(value);
+                    updateObject(value, "price", onChangeProductFilter);
+                  }}
                   checkedItems={priceFilters}
                 />
               </Accordion>
@@ -322,14 +334,20 @@ const Filters = ({
                     Percent Off
                     <ClearButton
                       triger={percentFilters.length}
-                      handler={() => setPercentFilters([])}
+                      handler={() => {
+                        setPercentFilters([]);
+                        updateObject([], "discount", onChangeProductFilter);
+                      }}
                     />
                   </div>
                 }
               >
                 <CheckBoxList
                   data={percent_params}
-                  handler={(value) => setPercentFilters(value)}
+                  handler={(value) => {
+                    setPercentFilters(value);
+                    updateObject(value, "discount", onChangeProductFilter);
+                  }}
                   checkedItems={percentFilters}
                 />
               </Accordion>

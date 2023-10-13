@@ -22,11 +22,13 @@ const Products = () => {
   };
   const [productsFilter, setProductsFilter] = useState({});
   const [modelsFilter, setModelsFilter] = useState({});
-
+  console.log(productsFilter);
   useEffect(() => {
     setCurrentPage(1);
-    // updateObject(["Dr. Martens"], "brand", setProductsFilter);
   }, [type, male]);
+  // useEffect(() => {
+  //   updateObject(["Converse"], "brand", setProductsFilter);
+  // }, []);
   const [test, testLoading, testError] = useProducts(
     type,
     male,

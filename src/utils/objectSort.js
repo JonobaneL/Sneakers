@@ -39,7 +39,7 @@ export const updateObject = (param, paramName, onChange) => {
     onChange((p) => {
       const currentFilter = { ...p };
       delete currentFilter[paramName];
-      return currentFilter;
+      return { ...currentFilter };
     });
   } else {
     onChange((p) => {
