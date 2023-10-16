@@ -10,16 +10,13 @@ export const useProducts = (type, male, productsFilter, modelsFilter) => {
   const [error, setError] = useState();
   const [products, setProducts] = useState([]);
 
-  const [counter, setCounter] = useState(0);
   const productsTriger = Object.keys(productsFilter).length;
   const modelsTriger = Object.keys(modelsFilter).length;
 
   const getEvent = useCallback(() => {
     setIsLoading(true);
     setError(undefined);
-    console.log("products check", products);
     setProducts([]);
-    setCounter(0);
     const productsQuery = useGenerateQuery("products", productsFilter);
     const modelsQuery = useGenerateQuery("products_models", modelsFilter);
     expGetProducts(type, male, productsQuery)
@@ -53,7 +50,6 @@ export const useProducts = (type, male, productsFilter, modelsFilter) => {
             })
             .finally(() => {});
         });
-        console.log(products);
       })
 
       .catch((err) => {
@@ -68,7 +64,6 @@ export const useProducts = (type, male, productsFilter, modelsFilter) => {
     console.log("effect useProduct");
     getEvent();
   }, [getEvent]);
-  console.log(counter);
 
   return [products, isLoading, error];
 };

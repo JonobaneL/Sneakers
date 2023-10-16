@@ -5,6 +5,7 @@ import {
 } from "../firebase/productFirebaseAPI";
 
 const useAllProducts = (type, male, productsFilter, modelsFilter) => {
+  //під питтанням
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const [products, setProducts] = useState([]);

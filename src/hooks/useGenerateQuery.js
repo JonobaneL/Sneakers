@@ -1,19 +1,21 @@
 import { collection, query, where } from "firebase/firestore";
 import { firebaseDB } from "../firebase/firebase";
 
-const priceFilter = (filters, collectionName) => {
-  let productsRef = collection(firebaseDB, collectionName);
-  filters.forEach((filter) => {
+const priceQuery = (ref, filters, key) => {
+  let productsRef = ref;
+  filters[key].forEach((filter) => {
+    console.log("priceQuery = ", filter);
     switch (filter) {
       case "Under $30":
         console.log("$30 to $50");
         productsRef = query(productsRef, where("price", "<=", 30));
+        break;
       case "$30 to $50":
         console.log("$30 to $50");
         productsRef = query(
           productsRef,
           where("price", ">=", 30),
-          where("price", "<=", 50)
+          where("price", "<", 50)
         );
         break;
       case "$50 to $75":
@@ -21,7 +23,7 @@ const priceFilter = (filters, collectionName) => {
         productsRef = query(
           productsRef,
           where("price", ">=", 50),
-          where("price", "<=", 75)
+          where("price", "<", 75)
         );
         break;
       case "$75+":
@@ -30,8 +32,21 @@ const priceFilter = (filters, collectionName) => {
         break;
     }
   });
-
   return productsRef;
+};
+const discountQuery = (ref, filters, key) => {};
+const filtersGeneration = (ref, filters, key) => {
+  if (!Array.isArray(filters[key])) {
+    ref = query(ref, where(key, "==", filters[key]));
+    return ref;
+  }
+  ref = query(ref, where(key, "in", filters[key]));
+  return ref;
+};
+const mainGeneration = (key) => {
+  if (key === "price") return priceQuery;
+  if (key === "discount") return discountQuery;
+  return filtersGeneration;
 };
 
 export const useGenerateQuery = (collectionName, filters) => {
@@ -41,15 +56,12 @@ export const useGenerateQuery = (collectionName, filters) => {
 
   Object.keys(filters).forEach((key) => {
     console.log("key =", key);
-    if (Array.isArray(filters[key])) {
-      if (filters[key].length >= 1) {
-        productsRef = query(productsRef, where(key, "in", filters[key]));
-      }
-    } else {
-      if (filters[key].length > 0) {
-        productsRef = query(productsRef, where(key, "==", filters[key]));
-      }
-    }
+    const generationMethod = mainGeneration(key);
+    productsRef = generationMethod(productsRef, filters, key);
   });
-  return productsRef;
+  return query(
+    collection(firebaseDB, "products"),
+    where("price", ">=", 50),
+    where("price", "<", 70)
+  );
 };

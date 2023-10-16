@@ -18,6 +18,7 @@ import { resetOrder, setOrderDate } from "../redux/checkoutSlice";
 import {
   expGetModels,
   expGetProducts,
+  expGetProductsTest,
   getProduct,
 } from "../firebase/productFirebaseAPI";
 import { useGenerateQuery } from "../hooks/useGenerateQuery";
@@ -32,17 +33,22 @@ export const aboutLoader = async () => {
 const About = () => {
   const [option, setOption] = useState(0);
   const [isProductLoading, productErr, product] = useAsync(
-    () => getProduct("sCakGNNfSNAHA2FhdlKD"),
+    expGetProductsTest,
     [],
     "firebase"
   );
-  console.log(product);
+  // console.log(product);
   return (
     <div className={styles.about}>
       <div className={styles.content}>
         <br />
         <br />
-        <button className={styles.btn} onClick={() => {}}>
+        <button
+          className={styles.btn}
+          onClick={() => {
+            console.log(product);
+          }}
+        >
           Settings
         </button>
 
