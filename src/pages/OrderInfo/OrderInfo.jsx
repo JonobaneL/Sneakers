@@ -27,7 +27,7 @@ const OrderInfo = () => {
             <p className={styles.message__content}>
               We are getting started on your order right away, and you will
               recive an order confirmation email to{" "}
-              <span className={styles.message__email}>{orderInfo.email}</span>.
+              <span className={styles.message__email}>{orderInfo?.email}</span>.
               In the meantime, explore the latest fashion and get inspired by
               new trends.
             </p>

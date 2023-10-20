@@ -114,10 +114,11 @@ export const getAllProductsModels = (
   return getDocs(query(filter, where("type", "==", type)));
 };
 
-export const updateProductAmount = (modelID, sizes) => {
+export const updateProductAmount = (modelID, sizes, available_sizes) => {
   const productRef = doc(firebaseDB, "products_models", modelID);
   return updateDoc(productRef, {
     sizes: sizes,
+    available_sizes: available_sizes,
   });
 };
 
@@ -134,10 +135,14 @@ export const expGetProducts = (type, male, filter) => {
     query(filter, where("type", "==", type), where("male", "==", male))
   );
 };
-export const expGetModels = (productID, filter) => {
+export const expGetModels = (
+  productID,
+  filter = collection(firebaseDB, "products_models")
+) => {
   const modelsRef = query(filter, where("productID", "==", productID));
   return getDocs(modelsRef);
 };
+//no need for this code
 export const expGetProductsTest = () => {
   const productQuery = query(
     collection(firebaseDB, "products"),

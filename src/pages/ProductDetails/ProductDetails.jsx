@@ -88,7 +88,9 @@ const ProductDetails = () => {
       </div>
       {currentProduct.isLoading &&
       currentProduct.currentModelName == undefined ? (
-        <Loader />
+        <div className={styles.loader}>
+          <Loader />
+        </div>
       ) : (
         <div className={styles.details}>
           <div className={styles.content}>

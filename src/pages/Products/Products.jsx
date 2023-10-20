@@ -22,7 +22,7 @@ const Products = () => {
   };
   const [productsFilter, setProductsFilter] = useState({});
   const [modelsFilter, setModelsFilter] = useState({});
-  console.log(productsFilter);
+  // console.log(productsFilter);
   useEffect(() => {
     setCurrentPage(1);
   }, [type, male]);
@@ -36,6 +36,7 @@ const Products = () => {
     modelsFilter
   );
   // console.log(test);
+  console.log(modelsFilter);
   return (
     <div className={styles.products}>
       <div className={styles.content}>

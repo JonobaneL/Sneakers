@@ -3,6 +3,18 @@ import {
   updateProductAmount,
 } from "../firebase/productFirebaseAPI";
 
+const sizeCheck = (size, available_sizes) => {
+  if (size.amount > 0) {
+    if (!available_sizes.includes(size.size)) {
+      return true;
+    }
+  } else {
+    if (available_sizes.includes(size.size)) {
+      return false;
+    }
+  }
+};
+
 export const decreaseProductsAmount = (products) => {
   products.map((item) => {
     getProductModel(item.modelID)
@@ -18,10 +30,25 @@ export const decreaseProductsAmount = (products) => {
             };
           } else return product_size;
         });
-        return currentSizes;
+
+        const available_sizes = [];
+        currentSizes.forEach((item) => {
+          if (item.amount > 0) {
+            if (!available_sizes.includes(item.size)) {
+              available_sizes.push(item.size);
+            }
+          } else {
+            if (available_sizes.includes(item.size)) {
+              available_sizes.filter(
+                (a_size) => a_size.toString() != item.size
+              );
+            }
+          }
+        });
+        return [currentSizes, available_sizes];
       })
-      .then((product_sizes) => {
-        updateProductAmount(item.modelID, product_sizes).catch((err) =>
+      .then((sizes) => {
+        updateProductAmount(item.modelID, sizes[0], sizes[1]).catch((err) =>
           console.log(err)
         );
       });

@@ -12,13 +12,13 @@ export const useProducts = (type, male, productsFilter, modelsFilter) => {
 
   const productsTriger = Object.keys(productsFilter).length;
   const modelsTriger = Object.keys(modelsFilter).length;
-
+  const productsQuery = useGenerateQuery("products", productsFilter);
+  const modelsQuery = useGenerateQuery("products_models", modelsFilter);
   const getEvent = useCallback(() => {
     setIsLoading(true);
     setError(undefined);
     setProducts([]);
-    const productsQuery = useGenerateQuery("products", productsFilter);
-    const modelsQuery = useGenerateQuery("products_models", modelsFilter);
+
     expGetProducts(type, male, productsQuery)
       .then((productsResponse) => {
         const tempProducts = [];

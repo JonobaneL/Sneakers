@@ -4,6 +4,7 @@ import styles from "./SizeSelect.module.scss";
 const SizeSelect = ({ sizes, choosed, handler, type }) => {
   const handelChange = (data) => {
     if (type == "single") {
+      console.log(data);
       handler([data]);
     } else if (type == "multi") {
       if (choosed.includes(data)) {
@@ -13,6 +14,8 @@ const SizeSelect = ({ sizes, choosed, handler, type }) => {
       }
     }
   };
+  // console.log(sizes);
+  // console.log(choosed);
   return (
     <div className={styles["size-select"]}>
       {sizes.map((item, index) => (
@@ -23,7 +26,7 @@ const SizeSelect = ({ sizes, choosed, handler, type }) => {
           } ${item.amount == 0 ? styles.disabled : ""}`}
           onClick={() => {
             if (item.amount > 0) {
-              handelChange(item.size);
+              handelChange(parseFloat(item.size));
             } else {
               return;
             }

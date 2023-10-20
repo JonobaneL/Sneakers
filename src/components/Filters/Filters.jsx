@@ -37,6 +37,8 @@ const filtersOptionsVariants = {
 
 const FILTERS_SERIALIZE = (data) => data.join("-");
 const FILTERS_DESERIALIZE = (data) => (data ? data.split("-") : []);
+const FILTERS_SIZE_DESERIALIZE = (data) =>
+  data ? data.split("-").map((item) => parseFloat(item)) : [];
 
 const Filters = ({
   loading,
@@ -76,7 +78,7 @@ const Filters = ({
   const [sizeFilters, setSizeFilters] = useSearchParamsState({
     name: "size",
     serialize: FILTERS_SERIALIZE,
-    deserialize: FILTERS_DESERIALIZE,
+    deserialize: FILTERS_SIZE_DESERIALIZE,
   });
   const [materialFilters, setMaterialFilters] = useSearchParamsState({
     name: "material",
@@ -98,7 +100,7 @@ const Filters = ({
   const [searchQuery, setSearchQuery] = useState("");
   const searchedBrands = useSearch(brands, searchQuery, "name");
   const navigate = useNavigate();
-
+  console.log(sizeFilters);
   const clearEvent = () => {
     setCategoryFilters([]);
     setBrandFilters([]);
@@ -260,19 +262,30 @@ const Filters = ({
                       Size
                       <ClearButton
                         triger={sizeFilters.length}
-                        handler={() => setSizeFilters([])}
+                        handler={() => {
+                          setSizeFilters([]);
+                          updateObject(
+                            [],
+                            "available_sizes",
+                            onChangeModelFilter
+                          );
+                        }}
                       />
                     </div>
                   }
                   autoHeight={true}
-                  handler={() => {
-                    setSizeFilters([]);
-                  }}
                 >
                   <SizeSelect
                     sizes={sizeList}
                     choosed={sizeFilters}
-                    handler={(size_data) => setSizeFilters(size_data)}
+                    handler={(size_data) => {
+                      setSizeFilters(size_data);
+                      updateObject(
+                        size_data,
+                        "available_sizes",
+                        onChangeModelFilter
+                      );
+                    }}
                     type="multi"
                   />
                 </Accordion>
