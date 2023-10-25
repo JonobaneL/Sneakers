@@ -37,8 +37,6 @@ const filtersOptionsVariants = {
 
 const FILTERS_SERIALIZE = (data) => data.join("-");
 const FILTERS_DESERIALIZE = (data) => (data ? data.split("-") : []);
-const FILTERS_SIZE_DESERIALIZE = (data) =>
-  data ? data.split("-").map((item) => parseFloat(item)) : [];
 
 const Filters = ({
   loading,
@@ -78,7 +76,7 @@ const Filters = ({
   const [sizeFilters, setSizeFilters] = useSearchParamsState({
     name: "size",
     serialize: FILTERS_SERIALIZE,
-    deserialize: FILTERS_SIZE_DESERIALIZE,
+    deserialize: FILTERS_DESERIALIZE,
   });
   const [materialFilters, setMaterialFilters] = useSearchParamsState({
     name: "material",
@@ -100,7 +98,7 @@ const Filters = ({
   const [searchQuery, setSearchQuery] = useState("");
   const searchedBrands = useSearch(brands, searchQuery, "name");
   const navigate = useNavigate();
-  console.log(sizeFilters);
+  console.log(priceFilters);
   const clearEvent = () => {
     setCategoryFilters([]);
     setBrandFilters([]);
@@ -113,7 +111,9 @@ const Filters = ({
     onChangeModelFilter({});
     navigate({ search: "" });
   };
-
+  // useEffect(() => {
+  //   // updateObject(["Converse"], "brand", onChangeProductFilter);
+  // }, []);
   return (
     <div className={styles.filters}>
       <div className={styles["filters-nav"]}>
@@ -264,11 +264,7 @@ const Filters = ({
                         triger={sizeFilters.length}
                         handler={() => {
                           setSizeFilters([]);
-                          updateObject(
-                            [],
-                            "available_sizes",
-                            onChangeModelFilter
-                          );
+                          updateObject([], "size", onChangeModelFilter);
                         }}
                       />
                     </div>
@@ -280,11 +276,7 @@ const Filters = ({
                     choosed={sizeFilters}
                     handler={(size_data) => {
                       setSizeFilters(size_data);
-                      updateObject(
-                        size_data,
-                        "available_sizes",
-                        onChangeModelFilter
-                      );
+                      updateObject(size_data, "size", onChangeModelFilter);
                     }}
                     type="multi"
                   />

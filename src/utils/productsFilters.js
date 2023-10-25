@@ -36,6 +36,7 @@ export const productsFilterParrams = (type, male) => {
   const [, , colors] = useAsync(getColors, [], "firebase");
 
   useEffect(() => {
+    setSizeList([]);
     getCategories(type, male)
       .then((categoryResponse) => {
         const filteredCategories = [];

@@ -8,35 +8,30 @@ import { getTotalPagesCount } from "../../utils/getPageCount";
 import Pagination from "../../components/UI/pagination/Pagination";
 import { useProducts } from "../../hooks/useProducts";
 import { updateObject } from "../../utils/objectSort";
-import { useGenerateQuery } from "../../hooks/useGenerateQuery";
 const Products = () => {
   const { type, male } = useParams();
   const [data, setData] = useState([]);
   const [isProductsLoading, setProductsLoading] = useState(true);
   const limit = 12;
   const [currentPage, setCurrentPage] = useState(1);
-  // const shownData = useToShow(data, limit, currentPage);
   const totalCountPages = getTotalPagesCount(data.length, limit);
   const titleEvent = () => {
     return `${!male ? "" : male !== "kids" ? `${male}'s` : `${male}'`} ${type}`;
   };
   const [productsFilter, setProductsFilter] = useState({});
   const [modelsFilter, setModelsFilter] = useState({});
-  // console.log(productsFilter);
+  //no need in code below
   useEffect(() => {
     setCurrentPage(1);
   }, [type, male]);
-  // useEffect(() => {
-  //   updateObject(["Converse"], "brand", setProductsFilter);
-  // }, []);
+
   const [test, testLoading, testError] = useProducts(
     type,
     male,
     productsFilter,
     modelsFilter
   );
-  // console.log(test);
-  console.log(modelsFilter);
+  console.log(productsFilter);
   return (
     <div className={styles.products}>
       <div className={styles.content}>

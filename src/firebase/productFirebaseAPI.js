@@ -78,24 +78,6 @@ export const getProductModels = (id) => {
   return getDocs(productModelsRef);
 };
 
-export const getProducts = (type = "shoes", male = "all") => {
-  if (male === "men" || male == "women" || male == "kids") {
-    return getDocs(
-      query(
-        collection(firebaseDB, "products"),
-        where("type", "==", type),
-        where("male", "==", male)
-      )
-    );
-  } else {
-    return getDocs(
-      query(
-        collection(firebaseDB, "products"),
-        wherproductse("type", "==", type)
-      )
-    );
-  }
-};
 export const getAllProductsModels = (
   //check purpouse of this code
   type,
@@ -143,11 +125,18 @@ export const expGetModels = (
   return getDocs(modelsRef);
 };
 //no need for this code
-export const expGetProductsTest = () => {
-  const productQuery = query(
-    collection(firebaseDB, "products"),
-    where("price", ">=", 50),
-    where("price", "<", 70)
+
+export const expGetModels2 = (type, male, filter) => {
+  if (type === "all" && male === "all") {
+    return getDocs(query(filter));
+  }
+
+  if (male == "all" || !male) {
+    return getDocs(query(filter, where("type", "==", type)));
+  }
+
+  return getDocs(
+    query(filter, where("type", "==", type), where("male", "==", male))
   );
-  return getDocs(productQuery);
 };
+expGetModels2;

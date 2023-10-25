@@ -1,10 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { useGenerateQuery } from "./useGenerateQuery";
-import {
-  expGetModels,
-  expGetProducts,
-  getProductModels,
-} from "../firebase/productFirebaseAPI";
+import { mainGeneration, useGenerateQuery } from "./useGenerateQuery";
+import { expGetModels, expGetProducts } from "../firebase/productFirebaseAPI";
 export const useProducts = (type, male, productsFilter, modelsFilter) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -12,24 +8,24 @@ export const useProducts = (type, male, productsFilter, modelsFilter) => {
 
   const productsTriger = Object.keys(productsFilter).length;
   const modelsTriger = Object.keys(modelsFilter).length;
-  const productsQuery = useGenerateQuery("products", productsFilter);
-  const modelsQuery = useGenerateQuery("products_models", modelsFilter);
+
   const getEvent = useCallback(() => {
     setIsLoading(true);
     setError(undefined);
     setProducts([]);
-
+    const productsQuery = useGenerateQuery("products", productsFilter);
+    const modelsQuery = useGenerateQuery("products_models", modelsFilter);
     expGetProducts(type, male, productsQuery)
       .then((productsResponse) => {
         const tempProducts = [];
         productsResponse.forEach((item) =>
           tempProducts.push({ id: item.id, ...item.data() })
         );
-        console.log("temp products", tempProducts);
+        // console.log("temp products", tempProducts);
         return tempProducts;
       })
       .then((productsResponse) => {
-        console.log("product response", productsResponse);
+        // console.log("product response", productsResponse);
         productsResponse.forEach((product) => {
           expGetModels(product.id, modelsQuery)
             .then((modelsRespone) => {
@@ -41,7 +37,7 @@ export const useProducts = (type, male, productsFilter, modelsFilter) => {
                   ...product,
                 });
               });
-              console.log("temp models", tempModels);
+              // console.log("temp models", tempModels);
               setProducts((p) => [...tempModels, ...p]);
             })
             .catch((err) => {
@@ -61,7 +57,7 @@ export const useProducts = (type, male, productsFilter, modelsFilter) => {
   }, [type, male, productsFilter, modelsFilter]);
 
   useEffect(() => {
-    console.log("effect useProduct");
+    // console.log("effect useProduct");
     getEvent();
   }, [getEvent]);
 

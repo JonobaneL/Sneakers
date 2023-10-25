@@ -22,11 +22,11 @@ const SizeSelect = ({ sizes, choosed, handler, type }) => {
         <div
           key={index}
           className={`${styles["size-item"]} ${
-            choosed.includes(item.size) ? styles.active : ""
+            choosed.includes(item.size.toString()) ? styles.active : ""
           } ${item.amount == 0 ? styles.disabled : ""}`}
           onClick={() => {
             if (item.amount > 0) {
-              handelChange(parseFloat(item.size));
+              handelChange(item.size.toString());
             } else {
               return;
             }
